@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nʉmʉnʉʉ Treaties: Ink &amp; Sovereignty</title>
+<meta name="description" content="The Comanche Treaties (1786–1892): a forensic exhibit comparing what was promised on paper with what happened on the ground.">
+<meta property="og:title" content="The Comanche Treaties (1786–1892): Ink & Sovereignty">
+<meta property="og:description" content="Eleven treaties and accords between the Nʉmʉnʉʉ and Spain, Texas, German colonists, and the United States.">
+<meta property="og:url" content="https://numunuu.com/treaties/">
+<meta name="theme-color" content="#121214">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Inter for UI; Gentium Book Plus for display (full support for barred-u ʉ / Ʉ) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* =====================================================================
+   DESIGN TOKENS
+   Dark archival palette. All colours live here so the theme can be
+   tuned in one place.
+   ===================================================================== */
+:root{
+  --bg:#121214;          /* deep charcoal page */
+  --surface:#1a1a22;     /* parchment-dark card surface */
+  --surface-2:#20202a;   /* raised surface (hover, inputs) */
+  --border:#2a2a36;      /* hairlines */
+  --border-2:#3a3a4a;
+  --ink:#ece6dc;         /* warm off-white body text */
+  --ink-2:#c9c2b6;
+  --muted:#9090a0;       /* gray-blue metadata */
+  --clay:#d97736;        /* terracotta accent */
+  --clay-soft:rgba(217,119,54,.14);
+  --crimson:#e05252;     /* violations */
+  --crimson-soft:rgba(224,82,82,.12);
+  --gold:#d4a373;        /* kept terms */
+  --gold-soft:rgba(212,163,115,.13);
+  --slate:#9090a0;       /* unratified / unknown */
+  --slate-soft:rgba(144,144,160,.13);
+
+  /* Fira Sans Condensed for display, Fira Sans for everything else (both include ʉ) */
+  --f-display:"Fira Sans Condensed","Fira Sans",system-ui,sans-serif;
+  --f-ui:"Fira Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Fira Sans",system-ui,sans-serif;
+
+  --r:10px;
+  --header-h:60px;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--clay)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mono{font-family:var(--f-mono)}
+
+/* =====================================================================
+   HEADER
+   ===================================================================== */
+.site-header{position:sticky;top:0;z-index:20;height:var(--header-h);background:rgba(18,18,20,.92);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.site-header .in{max-width:1400px;margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(16px,env(safe-area-inset-left))}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
+.brand b{font-family:var(--f-display);font-weight:700;font-size:21px;letter-spacing:.01em}
+.brand b .u{color:var(--clay)}
+.brand span{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.nav{display:flex;gap:4px;align-items:center}
+.nav a,.nav button{background:none;border:1px solid transparent;border-radius:999px;padding:6px 12px;font-size:13.5px;
+  color:var(--ink-2);text-decoration:none;cursor:pointer}
+.nav a:hover,.nav button:hover{border-color:var(--border-2);color:var(--ink)}
+.brand b,.nav a,.nav button{white-space:nowrap}
+@media (max-width:560px){.brand > span{display:none}.nav .hide-sm{display:none}.brand b{font-size:18px}.nav a,.nav button{padding:6px 8px}}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero{max-width:1400px;margin:0 auto;padding:36px max(16px,env(safe-area-inset-left)) 22px}
+.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin:0 0 10px}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,4.6vw,54px);line-height:1.05;margin:0;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p.lede{max-width:72ch;color:var(--ink-2);margin:14px 0 0;font-size:16px}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.stats b{display:block;font-family:var(--f-display);font-size:26px;font-weight:400;color:var(--ink);line-height:1.1}
+
+/* =====================================================================
+   LAYOUT: left rail timeline + main inspector
+   ===================================================================== */
+.app{max-width:1400px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left)) 48px;
+  display:grid;grid-template-columns:340px minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:960px){.app{grid-template-columns:1fr}}
+
+/* ---------- Left rail ---------- */
+.rail{position:sticky;top:calc(var(--header-h) + 14px);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);display:flex;flex-direction:column;max-height:calc(100vh - var(--header-h) - 28px)}
+.rail-head{padding:14px 14px 10px;border-bottom:1px solid var(--border)}
+.rail-head h2{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:500}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--border-2);background:transparent;border-radius:999px;padding:4px 10px;font-size:12.5px;color:var(--ink-2);cursor:pointer}
+.chip:hover{color:var(--ink);border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--clay-soft);border-color:var(--clay);color:var(--ink)}
+.chip .n{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-left:4px}
+.rail-toggle{display:none}
+.tl{list-style:none;margin:0;padding:8px;overflow-y:auto;flex:1;position:relative}
+.tl li{position:relative}
+.tl li + li{margin-top:2px}
+.tl button{width:100%;text-align:left;background:none;border:1px solid transparent;border-radius:8px;cursor:pointer;
+  padding:10px 10px 10px 40px;display:block;position:relative}
+.tl button::before{ /* timeline spine */
+  content:"";position:absolute;left:19px;top:0;bottom:-4px;width:1px;background:var(--border)}
+.tl li:last-child button::before{bottom:50%}
+.tl li:first-child button::before{top:50%}
+.tl button::after{ /* timeline node, coloured by outcome */
+  content:"";position:absolute;left:14px;top:17px;width:11px;height:11px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--dot,var(--muted))}
+.tl button:hover{background:var(--surface-2)}
+.tl button[aria-current="true"]{background:var(--surface-2);border-color:var(--border-2)}
+.tl button[aria-current="true"]::after{background:var(--dot)}
+.tl .yr{font-family:var(--f-display);font-size:20px;line-height:1;color:var(--ink)}
+.tl .t{display:block;font-size:13.5px;color:var(--ink-2);margin-top:3px;line-height:1.35}
+.tl .meta{display:flex;gap:6px;align-items:center;margin-top:6px;flex-wrap:wrap}
+.era{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--border-2);border-radius:4px;padding:1px 6px}
+.tl .empty{padding:18px;color:var(--muted);font-size:13px}
+
+@media (max-width:960px){
+  .rail{position:relative;top:0;max-height:none}
+  .rail-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;
+    padding:12px 14px;cursor:pointer;border-bottom:1px solid var(--border);text-align:left}
+  .rail-toggle span{font-size:13px;color:var(--ink-2)}
+  .rail-toggle b{font-family:var(--f-display);font-weight:400;font-size:17px}
+  .rail-toggle svg{transition:transform .2s}
+  .rail[data-open="false"] .rail-head,.rail[data-open="false"] .tl{display:none}
+  .rail[data-open="true"] .rail-toggle svg{transform:rotate(180deg)}
+  .tl{max-height:60vh}
+}
+
+/* ---------- Status badges ---------- */
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:2px 7px;border:1px solid}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.k-kept{color:var(--gold);background:var(--gold-soft);border-color:rgba(212,163,115,.35)}
+.k-mixed{color:var(--clay);background:var(--clay-soft);border-color:rgba(217,119,54,.35)}
+.k-violated{color:var(--crimson);background:var(--crimson-soft);border-color:rgba(224,82,82,.35)}
+.k-unratified{color:var(--slate);background:var(--slate-soft);border-color:rgba(144,144,160,.35)}
+
+/* =====================================================================
+   INSPECTOR
+   ===================================================================== */
+.inspector{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);min-width:0}
+.ins-head{padding:26px 28px 20px;border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(217,119,54,.06),transparent 70%)}
+@media (max-width:560px){.ins-head{padding:20px 16px 16px}}
+.ins-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.ins-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0}
+.ins-head h2 .y{color:var(--clay)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px 22px;margin:18px 0 0;padding:0}
+.facts div{min-width:0}
+.facts dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:2px 0 0;font-size:14px;color:var(--ink-2)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:9px 14px;font-size:13.5px;font-weight:500;
+  border:1px solid var(--border-2);background:var(--surface-2);color:var(--ink);cursor:pointer;text-decoration:none}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--clay);border-color:var(--clay);color:#1a0f07}
+.btn.primary:hover{background:#e48745}
+.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.btn svg{flex-shrink:0}
+
+/* Citation popover */
+.cite-wrap{position:relative}
+.cite-pop{position:absolute;z-index:15;top:calc(100% + 6px);left:0;width:min(560px,calc(100vw - 32px));background:var(--surface-2);
+  border:1px solid var(--border-2);border-radius:var(--r);padding:12px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.cite-pop[hidden]{display:none}
+.cite-row{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:start;padding:8px 4px}
+.cite-row + .cite-row{border-top:1px solid var(--border)}
+.cite-row b{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--clay);padding-top:2px}
+.cite-row p{margin:0;font-size:12.5px;color:var(--ink-2);line-height:1.5;word-break:break-word}
+.cite-row button{border:1px solid var(--border-2);background:var(--bg);border-radius:6px;padding:4px 9px;font-size:12px;cursor:pointer}
+.cite-row button:hover{border-color:var(--clay)}
+@media (max-width:560px){.cite-row{grid-template-columns:1fr auto}.cite-row b{grid-column:1/-1}}
+
+/* Tabs */
+.tabs{display:flex;gap:2px;padding:0 20px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:13px 12px 11px;font-size:13.5px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--clay)}
+.tab .n{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-left:5px}
+.panel{padding:24px 28px 30px}
+@media (max-width:560px){.panel{padding:18px 16px 24px}.tabs{padding:0 8px}}
+.panel h3{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.panel h3 + p.sub{margin-top:-6px}
+p.sub{color:var(--muted);font-size:13px;margin:0 0 16px;max-width:70ch}
+.summary{font-family:var(--f-display);font-size:19px;line-height:1.5;color:var(--ink);max-width:68ch;margin:0 0 26px}
+
+/* Promise vs Reality audit card */
+.audit{border:1px solid var(--border-2);border-radius:var(--r);overflow:hidden;background:var(--bg)}
+.audit-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--border);
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.audit-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.audit-row:first-of-type{border-top:0}
+.audit-row > div{padding:16px 18px;min-width:0}
+.audit-row .promise{border-right:1px solid var(--border)}
+.audit-row .lbl{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;display:flex;gap:6px;align-items:center}
+.promise .lbl{color:var(--gold)}
+.reality .lbl{color:var(--crimson)}
+.reality.kept .lbl{color:var(--gold)}
+.reality.mixed .lbl{color:var(--clay)}
+.audit-row p{margin:0;font-size:14px;color:var(--ink-2)}
+.audit-row .art{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-top:8px}
+.reality{background:linear-gradient(90deg,rgba(224,82,82,.05),transparent)}
+.reality.kept{background:linear-gradient(90deg,rgba(212,163,115,.05),transparent)}
+.reality.mixed{background:linear-gradient(90deg,rgba(217,119,54,.05),transparent)}
+@media (max-width:680px){.audit-row{grid-template-columns:1fr}.audit-row .promise{border-right:0;border-bottom:1px dashed var(--border)}}
+.verdict{padding:14px 18px;border-top:1px solid var(--border-2);font-size:14px;color:var(--ink)}
+.verdict b{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-right:8px}
+
+/* Quote */
+blockquote.q{margin:26px 0 0;padding:16px 20px;border-left:3px solid var(--clay);background:var(--clay-soft);border-radius:0 8px 8px 0}
+blockquote.q p{font-family:var(--f-display);font-style:italic;font-size:18px;line-height:1.5;margin:0;color:var(--ink)}
+blockquote.q cite{display:block;margin-top:8px;font-style:normal;font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+
+/* Core terms */
+.terms{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.terms li{display:grid;grid-template-columns:86px 1fr;gap:14px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.terms .a{font-family:var(--f-mono);font-size:11.5px;color:var(--clay);padding-top:2px}
+.terms p{margin:0;color:var(--ink-2);font-size:14px}
+@media (max-width:560px){.terms li{grid-template-columns:1fr;gap:4px}}
+
+/* Signatories */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.sig{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;position:relative}
+.sig .rec{font-family:var(--f-display);font-size:18px;line-height:1.2;color:var(--ink);word-break:break-word}
+.sig .orth{font-family:var(--f-display);font-size:15px;color:var(--gold)}
+.sig .orth.pending{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.02em}
+.sig .mean{grid-column:1/-1;font-size:13px;color:var(--ink-2)}
+.sig .band{grid-column:1/-1;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.play{grid-row:1/3;grid-column:2;align-self:start;width:38px;height:38px;border-radius:50%;border:1px solid var(--border-2);
+  background:var(--surface-2);cursor:pointer;display:grid;place-items:center;color:var(--clay)}
+.play:hover{border-color:var(--clay)}
+.play[data-state="playing"]{background:var(--clay);color:#1a0f07;border-color:var(--clay)}
+.tip{position:relative;cursor:help;border-bottom:1px dotted var(--muted)}
+.tip .bubble{position:absolute;left:0;bottom:calc(100% + 8px);z-index:5;width:max-content;max-width:240px;background:#0b0b0d;border:1px solid var(--border-2);
+  color:var(--ink);font-family:var(--f-ui);font-size:12.5px;line-height:1.45;padding:8px 10px;border-radius:6px;opacity:0;pointer-events:none;
+  transform:translateY(4px);transition:opacity .15s,transform .15s}
+.tip:hover .bubble,.tip:focus .bubble{opacity:1;transform:none}
+.gov{margin-top:26px}
+.gov ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.gov li{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:7px 11px;font-size:13.5px;color:var(--ink-2)}
+.gov li small{display:block;font-family:var(--f-mono);font-size:10.5px;color:var(--muted)}
+.audio-note{margin-top:14px;font-size:12.5px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.audio-note [aria-live]{color:var(--clay)}
+
+/* Band matrix */
+.matrix{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.cell{border:1px solid var(--border);border-radius:8px;padding:12px 14px;background:var(--bg);position:relative}
+.cell .bn{font-family:var(--f-display);font-size:18px;color:var(--ink);line-height:1.2}
+.cell .gl{font-size:12.5px;color:var(--muted)}
+.cell .st{margin-top:8px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.cell .st::before{content:"";width:8px;height:8px;border-radius:2px;background:currentColor}
+.cell.present{border-color:rgba(212,163,115,.45);background:linear-gradient(180deg,var(--gold-soft),transparent)}
+.cell.present .st{color:var(--gold)}
+.cell.absent{border-style:dashed;border-color:rgba(224,82,82,.45)}
+.cell.absent .st{color:var(--crimson)}
+.cell.unrecorded .st{color:var(--slate)}
+.cell.unrecorded .bn{color:var(--ink-2)}
+.cell .nt{margin-top:6px;font-size:12px;color:var(--ink-2);line-height:1.45}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0 0;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.legend span{display:flex;gap:6px;align-items:center}
+.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.callout{margin-top:20px;padding:14px 16px;border:1px solid var(--border);border-radius:8px;background:var(--surface-2);font-size:13.5px;color:var(--ink-2)}
+.callout b{color:var(--ink)}
+
+/* Sources panel */
+.src{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.src li{padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:13.5px;color:var(--ink-2)}
+.src li small{display:block;font-family:var(--f-mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.basis{display:inline-flex;gap:6px;align-items:center;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.basis::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--basis,var(--muted))}
+
+/* =====================================================================
+   MODAL + TOAST + FOOTER
+   ===================================================================== */
+dialog{border:1px solid var(--border-2);border-radius:14px;background:var(--surface);color:var(--ink);padding:0;
+  width:min(640px,calc(100vw - 32px));max-height:calc(100vh - 48px)}
+dialog::backdrop{background:rgba(6,6,8,.72);backdrop-filter:blur(3px)}
+.modal-in{padding:26px 26px 22px;overflow-y:auto}
+.modal-in h2{font-family:var(--f-display);font-weight:400;font-size:28px;margin:0 0 6px}
+.modal-in p,.modal-in li{color:var(--ink-2);font-size:14.5px}
+.modal-in ul{padding-left:18px}
+.modal-x{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border-2);background:var(--surface-2);cursor:pointer}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;z-index:50;
+  background:var(--ink);color:#141416;padding:9px 16px;border-radius:999px;font-size:13.5px;font-weight:500;transition:.2s}
+.toast.on{opacity:1;transform:translateX(-50%)}
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
+footer .in{max-width:1400px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+footer p{margin:0;max-width:80ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* =====================================================================
+   POSTER TYPOGRAPHY (matches Follow the Herd)
+   Heavy condensed headings, sentence-case labels, no italics.
+   ===================================================================== */
+.brand b,.hero h1,.ins-head h2,.tl .yr,.stats b,.modal-in h2,.cell .bn,.sig .rec{font-weight:800;letter-spacing:-.01em}
+.hero h1{font-size:clamp(34px,5vw,60px);line-height:1}
+.hero h1 em{font-style:normal}
+.brand span,.eyebrow,.rail-head h2,.era,.badge,.facts dt,.panel h3,.audit-head,.audit-row .lbl,.audit-row .art,.verdict b,.terms .a,
+.sig .orth.pending,.sig .band,.cell .st,.legend,.src li small,.basis,.stats,.tab .n,.chip .n,.blockquote cite,blockquote.q cite,.mono{
+  font-family:var(--f-ui);text-transform:none;letter-spacing:0}
+.eyebrow{font-size:14px;font-weight:600}
+.rail-head h2,.panel h3,.facts dt,.audit-head{font-size:13px;font-weight:600}
+.era,.badge,.basis{font-size:12px;font-weight:600}
+.audit-row .lbl,.verdict b,.terms .a,.cell .st,.src li small{font-size:12.5px;font-weight:600}
+.stats{font-size:13px}
+.stats b{font-family:var(--f-display);font-size:30px}
+.summary{font-family:var(--f-ui);font-size:18px;line-height:1.55}
+blockquote.q p{font-family:var(--f-ui);font-style:normal;font-size:18px;font-weight:500}
+.sig .rec{font-size:19px}
+.sig .orth{font-family:var(--f-ui)}
+.tl .yr{font-size:22px}
+.cell .bn{font-size:19px}
+.modal-in h2{font-size:30px}
+</style>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="in">
+    <a class="brand" href="/" aria-label="Nʉmʉnʉʉ Treaties home">
+      <b>N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span> Treaties</b>
+      <span>Ink &amp; Sovereignty</span>
+    </a>
+    <nav class="nav" aria-label="Site">
+      <a href="../herd/">Game</a>
+      <a href="https://dictionary.numunuu.com" target="_blank" rel="noopener">Dictionary</a>
+      <a class="hide-sm" href="https://numunuu.com/">numunuu.com</a>
+      <button type="button" id="aboutBtn" aria-haspopup="dialog">About<span class="hide-sm"> the Project</span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" aria-labelledby="pageTitle">
+  <p class="eyebrow">A forensic exhibit · 1786–1892</p>
+  <h1 id="pageTitle">The Comanche Treaties: <em>Ink &amp; Sovereignty</em></h1>
+  <p class="lede">Eleven treaties and accords between the Nʉmʉnʉʉ and Spain, the Republic of Texas, German colonists, and the United States. Each one is read twice: once for what the paper promised, once for what happened on the ground.</p>
+  <div class="stats" id="stats" aria-label="Exhibit summary"></div>
+</section>
+
+<!-- ============================ APP ============================ -->
+<div class="app">
+
+  <!-- LEFT RAIL: timeline + era filter -->
+  <aside class="rail" id="rail" data-open="false" aria-label="Treaty timeline">
+    <button class="rail-toggle" id="railToggle" type="button" aria-expanded="false" aria-controls="timeline">
+      <span>Timeline<br><b id="railCurrent">Select a treaty</b></span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="rail-head">
+      <h2 id="filterLabel">Filter by era</h2>
+      <div class="filters" id="filters" role="group" aria-labelledby="filterLabel"></div>
+    </div>
+    <ol class="tl" id="timeline" aria-label="Treaties in chronological order"></ol>
+  </aside>
+
+  <!-- MAIN: forensic inspector -->
+  <main class="inspector" id="inspector" aria-live="polite"></main>
+</div>
+
+<footer>
+  <div class="in">
+    <p>Treaty texts: Oklahoma State University Libraries, Tribal Treaties Database (Kappler, <i>Indian Affairs: Laws and Treaties</i>). Signer names are reproduced exactly as the clerks wrote them. Comanche spellings are shown only once reviewed against a published Comanche dictionary.</p>
+    <p><a href="https://dictionary.numunuu.com">dictionary.numunuu.com</a></p>
+  </div>
+</footer>
+
+<!-- ============================ ABOUT MODAL ============================ -->
+<dialog id="about" aria-labelledby="aboutTitle">
+  <button class="modal-x" type="button" data-close aria-label="Close">✕</button>
+  <div class="modal-in">
+    <p class="eyebrow">About the Project</p>
+    <h2 id="aboutTitle">Ink &amp; Sovereignty</h2>
+    <p>Treaties are often taught as moments of surrender. Read closely, they show something else: a people negotiating band by band, as autonomous political bodies, with empires and republics that frequently could not or would not keep their side of the paper.</p>
+    <p>This exhibit puts each document on the table and asks three questions:</p>
+    <ul>
+      <li><b>Who was in the room?</b> Comanche bands were sovereign. A chief's mark bound his own people, not the whole Nation.</li>
+      <li><b>What was promised?</b> Key articles in plain English, with links to the full transcript.</li>
+      <li><b>What happened?</b> A forensic audit of promise against outcome.</li>
+    </ul>
+    <p><b>On names and language.</b> Treaty clerks wrote Comanche names by ear in English or Spanish spelling. Those recorded forms are kept exactly. The Comanche orthography field (Nʉmʉ Tekwapʉ) stays marked <i>pending</i> until a spelling has been checked against the Comanche Language and Cultural Preservation Committee's dictionary. No pronunciation is invented: where no recording of a fluent speaker exists, the play button sounds a neutral placeholder tone, one beat per recorded syllable.</p>
+    <p><b>Data basis.</b> Each treaty is marked <span class="basis" style="--basis:var(--gold)">Transcript</span> when names and terms were taken from the OSU transcript, or <span class="basis" style="--basis:var(--clay)">Secondary</span> when they come from published histories and should be checked against the primary record.</p>
+    <p>An independent project of numunuu.com. Corrections are welcome.</p>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   DATASET
+   ---------------------------------------------------------------------
+   One object per treaty. Field notes:
+   - signatories_comanche[].name_recorded : spelling exactly as printed
+   - signatories_comanche[].name_comanche : Comanche orthography, or null
+       until verified. Never filled by guesswork.
+   - signatories_comanche[].audio_url     : URL of a fluent-speaker
+       recording, or null (falls back to a placeholder tone).
+   - bands_present : { band: "present" | "absent" | "unrecorded", note }
+   - status_kind   : drives colour. kept | mixed | violated | unratified
+   - basis         : "transcript" (OSU text) or "secondary" (histories)
+   ===================================================================== */
+const OSU = "https://treaties.okstate.edu/treaties/";
+
+/* The major autonomous divisions used in the band matrix. */
+const BANDS = [
+  { id:"Penateka",  gloss:"Honey / Sugar Eaters (southern)" },
+  { id:"Yamparika", gloss:"Yap (root) Eaters (northern)" },
+  { id:"Kotsoteka", gloss:"Buffalo Eaters (Cuchanec)" },
+  { id:"Nokoni",    gloss:"Those Who Turn Back / Wanderers" },
+  { id:"Quahadi",   gloss:"Antelope (Llano Estacado)" },
+  { id:"Tenawa",    gloss:"Those Who Stay Downstream" },
+  { id:"Tanima",    gloss:"Liver Eaters (Dehanima)" }
+];
+
+const ERAS = {
+  "colonial": "Colonial / Republic",
+  "early-us": "Early U.S.",
+  "reservation": "Reservation Era",
+  "allotment": "Allotment"
+};
+
+/* helper to build a band map quickly: present / absent lists, rest unrecorded */
+function bands(present = [], absent = [], notes = {}) {
+  return BANDS.map(b => ({
+    band: b.id,
+    status: present.includes(b.id) ? "present" : absent.includes(b.id) ? "absent" : "unrecorded",
+    note: notes[b.id] || ""
+  }));
+}
+/* helper for a signer */
+const s = (name_recorded, meaning, band = "", name_comanche = null, audio_url = null) =>
+  ({ name_recorded, name_comanche, band, audio_url, meaning });
+
+const TREATIES = [
+  /* ------------------------------------------------------------ 1786 */
+  {
+    id:"1786", year:1786, era:"colonial",
+    title:"Spanish–Comanche Treaty of Pecos",
+    citation_title:"Spanish–Comanche Peace of Pecos (Ecueracapa–de Anza Accord)",
+    date_signed:"1786-02-28", date_label:"February 28, 1786 (Pecos council; terms confirmed into March)",
+    location:"Pecos Pueblo, Province of New Mexico (New Spain)",
+    counterparty:"Kingdom of Spain",
+    ratification:"Approved by Spanish colonial authority (Commandant General Ugarte)",
+    statute:null,
+    status_badge:"Honored for 35 Years", status_kind:"kept",
+    basis:"secondary",
+    summary:"Ecueracapa, chosen by the western rancherías as their single spokesman, met Governor Juan Bautista de Anza at Pecos and ended a generation of war with New Mexico. It became one of the longest-lasting peace agreements in the colonial borderlands.",
+    signatories_comanche:[
+      s("Ecueracapa (also recorded as Cota de Malla)", "Iron Shirt / Coat of Mail, a name tied to the Spanish armor he wore in battle", "Kotsoteka (Cuchanec)")
+    ],
+    signatories_gov:[
+      { name:"Juan Bautista de Anza", role:"Governor of New Mexico" }
+    ],
+    bands_present: bands(["Kotsoteka","Yamparika"], [], {
+      Kotsoteka:"Ecueracapa's own division (Cuchanec).",
+      Yamparika:"Western divisions (with the Jupe) joined the New Mexico peace.",
+      Penateka:"Eastern Comanches had made a separate peace with Spanish Texas in October 1785."
+    }),
+    core_terms:[
+      { art:"Peace", text:"Hostilities between the Comanche and New Mexico end; Ecueracapa is recognized as spokesman for the western rancherías." },
+      { art:"Trade", text:"Comanches gain open trade at Pecos, Santa Fe, and Taos, with fairer prices set by the governor." },
+      { art:"Alliance", text:"Both sides cooperate against the Apache, their common enemy." },
+      { art:"Gifts", text:"Spain commits to regular presents and recognition of Comanche leaders." }
+    ],
+    historical_audit:[
+      { promise:"Lasting peace and open trade with New Mexico.", reality:"Largely held from 1786 until Mexican independence in 1821, surviving strain during the independence war.", kind:"kept", art:"Peace / Trade" },
+      { promise:"Spain recognizes a Comanche spokesman and pays gifts.", reality:"Spain kept the gift economy running through the 1810s; the arrangement weakened when Mexico could no longer fund it.", kind:"mixed", art:"Gifts" }
+    ],
+    verdict:"A peace that worked because it paid: trade and gifts gave both sides a reason to keep it. It ended with the Spanish state, not with a Comanche breach.",
+    document_url:null,
+    archive_label:"No OSU entry (Spanish colonial record)",
+    sources:[
+      { label:"New Mexico History: Peace Between Spaniards and Comanches", url:"https://newmexicohistory.org/timeline/peace-between-spaniards-and-comanches" },
+      { label:"National Park Service: The Ute–Comanche Treaty of 1786", url:"https://www.nps.gov/articles/000/indigenous-diplomacy-the-ute-comanche-treaty-of-1786.htm" }
+    ]
+  },
+
+  /* ------------------------------------------------------------ 1835 */
+  {
+    id:"1835", year:1835, era:"early-us",
+    title:"Treaty of Camp Holmes",
+    citation_title:"Treaty with the Comanche, etc., 1835",
+    date_signed:"1835-08-24", date_label:"August 24, 1835",
+    location:"Camp Holmes, near the Canadian River, Muscogee (Creek) Nation, Indian Territory",
+    counterparty:"United States",
+    ratification:"Ratified by the U.S. Senate, 1836",
+    statute:"7 Stat. 474",
+    status_badge:"Ratified · Overtaken", status_kind:"mixed",
+    basis:"transcript",
+    summary:"The first formal treaty between the United States and the Comanche. It was written mainly to give safe passage to Americans bound for Mexico and to keep peace between Plains nations and the eastern tribes the U.S. was removing west.",
+    signatories_comanche:[
+      s("Ishacoly","The Wolf"), s("Queenashano","The War Eagle"), s("Tabaqueena","The Big Eagle"),
+      s("Pohowetowshah","The Brass Man"), s("Shabbakasha","The Roving Wolf"), s("Neraquassi","The Yellow Horse"),
+      s("Toshapappy","The White Hare"), s("Pahohsareya","The Broken Arm"), s("Pahkah","The Man Who Draws the Bow"),
+      s("Witsitony","He Who Sucks Quick")
+    ],
+    signatories_gov:[
+      { name:"Montfort Stokes", role:"Commissioner" },
+      { name:"Matthew Arbuckle", role:"Brigadier General, U.S. Army" },
+      { name:"F. W. Armstrong", role:"Acting Superintendent, Western Territory" }
+    ],
+    bands_present: bands([], [], { Penateka:"The treaty text does not name bands for any Comanche signer." }),
+    core_terms:[
+      { art:"Art. 1", text:"Perpetual peace among the U.S., the Comanche and Wichita, and the removed Cherokee, Muscogee, Choctaw, Osage, Seneca, and Quapaw nations." },
+      { art:"Art. 3", text:"U.S. citizens may pass safely through Comanche and Wichita lands to and from Mexico." },
+      { art:"Art. 4", text:"All parties may hunt and trap on the Great Prairie west of the Cross Timbers." },
+      { art:"Art. 8", text:"The U.S. gives presents in return for continued peace." },
+      { art:"Art. 9", text:"Nothing in the treaty disturbs Comanche relations with Mexico." }
+    ],
+    historical_audit:[
+      { promise:"Shared hunting rights on the Great Prairie (Art. 4).", reality:"Thousands of removed eastern people were pushed onto the same ranges, raising competition for bison that the treaty did nothing to manage.", kind:"violated", art:"Art. 4" },
+      { promise:"Safe passage for Americans heading to Mexico (Art. 3).", reality:"Trade traffic grew; the Comanche largely kept this term, and the treaty is better remembered for that than for anything the U.S. delivered.", kind:"kept", art:"Art. 3" }
+    ],
+    verdict:"A treaty for the convenience of Removal policy. It cost the U.S. little and promised the Comanche little beyond presents.",
+    document_url: OSU + "treaty-with-the-comanche-etc-1835-0435",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[{ label:"OSU transcript: Treaty with the Comanche, etc., 1835", url: OSU + "treaty-with-the-comanche-etc-1835-0435" }]
+  },
+
+  /* ------------------------------------------------------------ 1844 */
+  {
+    id:"1844", year:1844, era:"colonial",
+    title:"Treaty of Tehuacana Creek",
+    citation_title:"Treaty of Tehuacana Creek",
+    date_signed:"1844-10-09", date_label:"October 9, 1844",
+    location:"Tehuacana Creek, near present-day Waco, Republic of Texas",
+    counterparty:"Republic of Texas",
+    ratification:"Ratified by the Republic of Texas, 1845",
+    statute:null,
+    status_badge:"Ratified · Unenforced", status_kind:"violated",
+    basis:"secondary",
+    summary:"Sam Houston's peace policy reached its high point here. Twenty-two articles promised trade houses, an annual council, and an end to raids, but the Comanche refused any boundary that would fence them out of their own country.",
+    signatories_comanche:[
+      s("Buffalo Hump (Potsanaquahip)", "Buffalo Hump; led the Penateka delegation", "Penateka"),
+      s("Mopechucope", "Old Owl", "Penateka")
+    ],
+    signatories_gov:[
+      { name:"Sam Houston", role:"President of the Republic of Texas (presided)" },
+      { name:"Texas commissioners", role:"See Texas Indian Papers, Vol. II" }
+    ],
+    bands_present: bands(["Penateka"], [], { Penateka:"Southern Comanches negotiated; northern divisions were not party." }),
+    core_terms:[
+      { art:"Art. I", text:"Both parties cease hostilities and agree to live in peace forever." },
+      { art:"Art. VI–VII", text:"Indians trade only with Texas where goods are available; Texas will establish trading houses." },
+      { art:"Art. VIII", text:"Once peace is fully established, Texas will supply powder, lead, and guns." },
+      { art:"Art. XII", text:"A line is to be run and marked in connection with the trading houses." },
+      { art:"Art. XXI", text:"A yearly council of chiefs from both sides." }
+    ],
+    historical_audit:[
+      { promise:"A marked line and trading houses (Art. VII, XII).", reality:"Texas would not guarantee a line that limited settlement, and the Comanche would not accept one that limited them. Surveyors and settlers kept moving west.", kind:"violated", art:"Art. XII" },
+      { promise:"Peace forever (Art. I).", reality:"Texas joined the United States within fifteen months, and the Republic's promises passed to a government that never signed them.", kind:"mixed", art:"Art. I" }
+    ],
+    verdict:"Houston meant it; the Republic could not deliver it. Annexation erased the counterparty before the treaty could be tested.",
+    document_url:null,
+    archive_label:"Texas Indian Papers, Vol. II",
+    sources:[
+      { label:"Indian Papers of Texas and the Southwest, Vol. II (Texas History Trust)", url:"https://archive.texashistorytrust.org/view/49753277/122/" },
+      { label:"Wikipedia: Treaty of Tehuacana Creek", url:"https://en.wikipedia.org/wiki/Treaty_of_Tehuacana_Creek" }
+    ]
+  },
+
+  /* ------------------------------------------------------------ 1846 */
+  {
+    id:"1846", year:1846, era:"early-us",
+    title:"Treaty of Council Springs",
+    citation_title:"Treaty with the Comanche, Aionai, Anadarko, Caddo, etc., 1846",
+    date_signed:"1846-05-15", date_label:"May 15, 1846",
+    location:"Council Springs, Robinson County, Texas, near the Brazos River",
+    counterparty:"United States",
+    ratification:"Ratified with Senate amendments; proclaimed March 8, 1847",
+    statute:"9 Stat. 844",
+    status_badge:"Ratified · Eroded", status_kind:"violated",
+    basis:"transcript",
+    summary:"Signed months after Texas annexation, this treaty brought the southern Comanche under U.S. 'protection'. It contained no boundary at all: Texas had kept its public lands, so the U.S. had no land to guarantee.",
+    signatories_comanche:[
+      s("Pah-ha-u-ca","The Amorous Man","Penateka"), s("Mo-pe-chu-co-pe","Old Owl","Penateka"),
+      s("Po-che-na-qua-heip","Buffalo Hump","Penateka"), s("Santa Anna","(recorded without translation)","Penateka"),
+      s("Sa-ba-heit","Small Wolf"), s("Ka-bah-ha-moo","Won't Smoke"), s("Ta-bup-pua-ta","The Winner"),
+      s("Pa-na-che","Mistletoe")
+    ],
+    signatories_gov:[
+      { name:"P. M. Butler", role:"Commissioner" },
+      { name:"M. G. Lewis", role:"Commissioner" }
+    ],
+    bands_present: bands(["Penateka"], [], { Penateka:"Pahayuco, Old Owl, Buffalo Hump, and Santa Anna were all Penateka leaders." }),
+    core_terms:[
+      { art:"Art. 1", text:"The tribes place themselves under the protection of the United States and no other power." },
+      { art:"Art. 2", text:"The U.S. holds the sole right to regulate trade; only licensed traders may operate." },
+      { art:"Art. 4", text:"Captives are returned, with compensation from the U.S." },
+      { art:"Art. 9", text:"Trading houses and agencies on the tribal borders, plus $10,000 in presents." },
+      { art:"Art. 3, 5", text:"Struck out by the Senate before ratification." }
+    ],
+    historical_audit:[
+      { promise:"U.S. protection and trading houses on 'tribal borders' (Art. 1, 9).", reality:"No border was ever defined. German and Anglo settlement advanced into the Hill Country within a year.", kind:"violated", art:"Art. 9" },
+      { promise:"$10,000 in presents (Art. 9).", reality:"Goods were delivered, but the Senate's amendments reshaped the terms after the chiefs had already signed.", kind:"mixed", art:"Art. 3, 5" }
+    ],
+    verdict:"Protection without territory. The treaty's central promise depended on land the United States did not control.",
+    document_url: OSU + "treaty-with-the-comanche-aionai-anadarko-caddo-etc-1846-0554",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[{ label:"OSU transcript: Treaty with the Comanche, Aionai, Anadarko, Caddo, etc., 1846", url: OSU + "treaty-with-the-comanche-aionai-anadarko-caddo-etc-1846-0554" }]
+  },
+
+  /* ------------------------------------------------------------ 1847 */
+  {
+    id:"1847", year:1847, era:"early-us",
+    title:"Meusebach–Comanche Treaty",
+    citation_title:"Meusebach–Comanche Treaty",
+    date_signed:"1847-05-09", date_label:"May 9, 1847 (after the San Saba council of March 1847)",
+    location:"Fredericksburg, Texas, on the Pedernales River",
+    counterparty:"German Immigration Company (Adelsverein), a private society",
+    ratification:"Ratified by the parties at Fredericksburg; never a government treaty",
+    statute:null,
+    status_badge:"Honored", status_kind:"kept",
+    basis:"secondary",
+    summary:"A private peace between Penateka chiefs and John O. Meusebach, leader of the German colonists of the Fisher–Miller Land Grant. No government signed it, yet it is widely described as one of the few such agreements that was never broken.",
+    signatories_comanche:[
+      s("Buffalo Hump (Potsanaquahip)","Buffalo Hump","Penateka"),
+      s("Santa Anna","(recorded without translation)","Penateka"),
+      s("Mopechucope","Old Owl","Penateka")
+    ],
+    signatories_gov:[
+      { name:"John O. Meusebach", role:"Commissioner General, German Immigration Company" }
+    ],
+    bands_present: bands(["Penateka"], [], { Penateka:"Three Penateka chiefs for themselves and their people." }),
+    core_terms:[
+      { art:"Access", text:"Germans may travel through the grant under Comanche protection; Comanches may visit German settlements." },
+      { art:"Protection", text:"Each side warns the other of horse thieves and helps against enemies." },
+      { art:"Disputes", text:"Wrongs by individuals go before the chiefs and are settled with the U.S. agent." },
+      { art:"Survey", text:"Meusebach may survey lands in the San Saba country." },
+      { art:"Presents", text:"About $1,000 in goods, $2,000 or more with provisions." }
+    ],
+    historical_audit:[
+      { promise:"Mutual safe passage and visiting rights.", reality:"Both sides kept it. Fredericksburg descendants still mark the treaty each year.", kind:"kept", art:"Access" },
+      { promise:"Surveying in the San Saba country.", reality:"The grant opened the Llano and San Saba valleys to later Anglo settlement that the Penateka never agreed to.", kind:"mixed", art:"Survey" }
+    ],
+    verdict:"The exception that proves the pattern: a treaty that was kept, made by people who lived next to each other and had to.",
+    document_url:null,
+    archive_label:"Private accord (not in OSU database)",
+    sources:[
+      { label:"Wikipedia: Meusebach–Comanche Treaty", url:"https://en.wikipedia.org/wiki/Meusebach%E2%80%93Comanche_Treaty" },
+      { label:"Texas State Library: John Meusebach", url:"https://www.tsl.texas.gov/mural-meusebach.html" }
+    ]
+  },
+
+  /* ------------------------------------------------------------ 1850 */
+  {
+    id:"1850", year:1850, era:"early-us",
+    title:"Treaty of Spring Creek",
+    citation_title:"Treaty with the Comanche, Caddo, Lipan Apache, Quapaw, Tawakoni, and Waco, 1850",
+    date_signed:"1850-12-10", date_label:"December 10, 1850",
+    location:"Spring Creek, near the San Saba River, Texas",
+    counterparty:"United States",
+    ratification:"Never ratified by the U.S. Senate",
+    statute:null,
+    status_badge:"Unratified", status_kind:"unratified",
+    basis:"transcript",
+    summary:"Special Agent John H. Rollins drew a frontier line: Comanches could not go below the military posts or the Llano River without written permission. The U.S. in turn promised trading houses and a negotiated boundary that never came.",
+    signatories_comanche:[
+      s("Po-che-na-qua-heip","Buffalo Hump","Penateka"), s("Sa-ba-heit","Small Wolf"), s("Ca-tumsie","(recorded without translation)"),
+      s("To-souk","White"), s("Car-i-wah","Never Stops"), s("Seech-che-ni-ka","Feather"),
+      s("Weit-che-ki","Humming Bird"), s("Pe-ah-tie-quosh","Rifle-breech")
+    ],
+    signatories_gov:[
+      { name:"John H. Rollins", role:"Special Agent for the Indians of Texas" },
+      { name:"H. W. Merrill", role:"Witness, Capt. 2nd Dragoons" },
+      { name:"John Conner & Jesse Chisholm", role:"Interpreters" }
+    ],
+    bands_present: bands(["Penateka"], [], { Penateka:"Buffalo Hump's people, the most exposed to the Texas frontier." }),
+    core_terms:[
+      { art:"Art. 1", text:"The tribes acknowledge U.S. jurisdiction and protection, and no other power." },
+      { art:"Art. 8", text:"All captives and runaways, white or Black, to be delivered by February 5, 1851." },
+      { art:"Art. 15", text:"No passage below the military posts or the Llano River without written permission." },
+      { art:"Art. 18", text:"U.S. to establish trading houses and agencies in 1851 and negotiate a boundary." },
+      { art:"Art. 20", text:"The President may send blacksmiths, teachers, and preachers." }
+    ],
+    historical_audit:[
+      { promise:"A negotiated boundary and trading houses in 1851 (Art. 18).", reality:"The Senate never ratified the treaty, so nothing in Art. 18 was owed. The restrictions in Art. 15 were still enforced on the ground by the Army.", kind:"violated", art:"Art. 15, 18" }
+    ],
+    verdict:"The obligations bound only one side. The Comanche were policed under a line the Senate never approved.",
+    document_url: OSU + "treaty-with-the-comanche-caddo-lipan-apache-quapaw-tawakoni-and-waco-1850-22513",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[{ label:"OSU transcript: Treaty with the Comanche, Caddo, Lipan Apache, et al., 1850", url: OSU + "treaty-with-the-comanche-caddo-lipan-apache-quapaw-tawakoni-and-waco-1850-22513" }]
+  },
+
+  /* ------------------------------------------------------------ 1851 */
+  {
+    id:"1851", year:1851, era:"early-us",
+    title:"Treaty of San Saba",
+    citation_title:"Treaty with the Comanche, Lipan Apache, and Mescalero Apache, 1851",
+    date_signed:"1851-10-28", date_label:"October 28, 1851",
+    location:"Council ground on the San Saba River, Bexar County, Texas",
+    counterparty:"United States",
+    ratification:"Never ratified by the U.S. Senate",
+    statute:null,
+    status_badge:"Unratified", status_kind:"unratified",
+    basis:"transcript",
+    summary:"Agent John A. Rogers bound the southern Comanche to the 1846 treaty and to the United States' own promise to Mexico: stop raids south of the Rio Grande. It also paid a $50 bounty for every freedom seeker the Comanche returned.",
+    signatories_comanche:[
+      s("Katumpsa","(recorded without translation)","Penateka"), s("Toshowa","Captain White","Penateka"),
+      s("Carawa","Never Stop"), s("Ceacheneca","Feather"), s("Mowery","The End of the Track"),
+      s("Pemon Soco","Old Wild Bull"), s("Pite-quash","Gun Tail")
+    ],
+    signatories_gov:[
+      { name:"John A. Rogers", role:"Special Agent and Commissioner for the United States" }
+    ],
+    bands_present: bands(["Penateka"], ["Quahadi","Kotsoteka"], {
+      Penateka:"Katumse and Toshaway's people.",
+      Quahadi:"Northern and western divisions were raiding into Mexico and were not party."
+    }),
+    core_terms:[
+      { art:"Art. I", text:"The tribes acknowledge U.S. authority and no other power." },
+      { art:"Art. II", text:"The 1846 Council Springs treaty is accepted as binding." },
+      { art:"Art. III", text:"Adopts Art. XI of the Treaty of Guadalupe Hidalgo: stop raids into Mexico, return Mexican captives." },
+      { art:"Art. IV", text:"Fugitive enslaved people to be seized and delivered; $50 paid by the owner per person." }
+    ],
+    historical_audit:[
+      { promise:"Possible annual payments for keeping peace with Mexico (Art. III).", reality:"Unratified, so never owed. In 1853 the Gadsden Purchase released the U.S. from its own Article XI duty to Mexico entirely.", kind:"violated", art:"Art. III" }
+    ],
+    verdict:"The Comanche were asked to police an international border for a government that soon bought its way out of the same obligation.",
+    document_url: OSU + "treaty-with-the-comanche-lipan-apache-and-mescalero-apache-1851-22538",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[{ label:"OSU transcript: Treaty with the Comanche, Lipan Apache, and Mescalero Apache, 1851", url: OSU + "treaty-with-the-comanche-lipan-apache-and-mescalero-apache-1851-22538" }]
+  },
+
+  /* ------------------------------------------------------------ 1853 */
+  {
+    id:"1853", year:1853, era:"early-us",
+    title:"Treaty of Fort Atkinson",
+    citation_title:"Treaty with the Comanche, Kiowa, and Apache, 1853",
+    date_signed:"1853-07-27", date_label:"July 27, 1853",
+    location:"Fort Atkinson, south of the Arkansas River (present-day Kansas)",
+    counterparty:"United States",
+    ratification:"Ratified with amendments April 12, 1854; proclaimed February 12, 1855",
+    statute:"10 Stat. 1013",
+    status_badge:"Ratified · Partially Kept", status_kind:"mixed",
+    basis:"transcript",
+    summary:"Thomas Fitzpatrick secured U.S. rights to roads, depots, and posts along the Santa Fe Trail in exchange for $18,000 a year in goods. Ten Bears signed the Senate's amendments a year later.",
+    signatories_comanche:[
+      s("Wulea-boo","Shaved Head; chief Comanche"), s("Wa-ya-ba-tos-a","White Eagle; chief of band"),
+      s("Hai-nick-seu","The Crow; chief of band"), s("Paro-sa-wa-no","Ten Sticks; chief of band"),
+      s("Wa-ra-kon-alta","Poor Coyote Wolf; chief of band"), s("Ka-na-re-tah","One That Rides the Clouds; chief of the southern Comanches"),
+      s("Para-sar-a-man-no","Ten Bears (signed the 1854 amendments)","Yamparika")
+    ],
+    signatories_gov:[
+      { name:"Thomas Fitzpatrick", role:"Indian Agent, sole Commissioner" }
+    ],
+    bands_present: bands(["Yamparika"], [], { Yamparika:"Ten Bears accepted the Senate amendments in July 1854.", Penateka:"Text names a 'chief of the southern Comanches' without a band." }),
+    core_terms:[
+      { art:"Art. 3", text:"The U.S. may build roads, set aside land, and establish depots and military posts in tribal territory." },
+      { art:"Art. 5", text:"No raids into Mexico; captives returned." },
+      { art:"Art. 6", text:"$18,000 a year for ten years in goods, provisions, or tools, extendable five years." },
+      { art:"Art. 7", text:"The U.S. will protect the tribes from depredations by U.S. citizens and compensate them." },
+      { art:"Art. 8", text:"Annuities may be withheld from tribes that break the treaty." }
+    ],
+    historical_audit:[
+      { promise:"Protection from depredations by U.S. citizens (Art. 7).", reality:"Trail traffic, hide hunters, and emigrants drained grass, timber, and bison along the Arkansas with no meaningful federal check.", kind:"violated", art:"Art. 7" },
+      { promise:"$18,000 a year in annuities (Art. 6).", reality:"Paid in most years, but goods were often late or poor, and Art. 8 let the U.S. withhold them collectively.", kind:"mixed", art:"Art. 6, 8" }
+    ],
+    verdict:"The road was guaranteed; the people beside it were not.",
+    document_url: OSU + "treaty-with-the-comanche-kiowa-and-apache-1853-0600",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[{ label:"OSU transcript: Treaty with the Comanche, Kiowa, and Apache, 1853", url: OSU + "treaty-with-the-comanche-kiowa-and-apache-1853-0600" }]
+  },
+
+  /* ------------------------------------------------------------ 1865 */
+  {
+    id:"1865", year:1865, era:"reservation",
+    title:"Treaty of the Little Arkansas",
+    citation_title:"Treaty with the Comanche and Kiowa, 1865",
+    date_signed:"1865-10-18", date_label:"October 18, 1865",
+    location:"Council ground on the Little Arkansas River, Kansas",
+    counterparty:"United States",
+    ratification:"Ratified May 22, 1866; proclaimed May 26, 1866",
+    statute:"14 Stat. 717",
+    status_badge:"Never Implemented", status_kind:"violated",
+    basis:"transcript",
+    summary:"After the Civil War, the U.S. promised a vast reservation across the Texas and Oklahoma panhandles for 'absolute and undisturbed use'. Much of it lay inside Texas, which owned its public lands and refused to give them up.",
+    signatories_comanche:[
+      s("Tab-e-nan-i-kah","Rising Sun","Yamparika"), s("Bo-wah-quas-suh","Iron Shirt","Tanima"),
+      s("To-sa-wi","Silver Brooch","Penateka"), s("A-sha-hab-beet","Milky Way","Penateka; for the Kotsoteka"),
+      s("Queen-ah-e-vah","Eagle Drinking","Nokoni"), s("Ta-ha-yer-quoip","Horse's Back","Nokoni"),
+      s("Pocha-naw-quoip","Buffalo Hump","Penateka"), s("Parry-wah-say-mer","Ten Bears","Yamparika"),
+      s("Bo-yah-wah-to-yeh-be","Iron Mountain","Yamparika")
+    ],
+    signatories_gov:[
+      { name:"John B. Sanborn", role:"Commissioner" }, { name:"William S. Harney", role:"Commissioner" },
+      { name:"Kit Carson", role:"Commissioner" }, { name:"William W. Bent", role:"Commissioner" },
+      { name:"Jesse H. Leavenworth", role:"Commissioner" }, { name:"Thomas Murphy", role:"Commissioner" },
+      { name:"James Steele", role:"Commissioner" }
+    ],
+    bands_present: bands(["Yamparika","Tanima","Penateka","Nokoni","Kotsoteka"], ["Quahadi"], {
+      Yamparika:"Rising Sun, Ten Bears, Iron Mountain, Over the Buttes.",
+      Tanima:"Iron Shirt, chief of the De-na-vi (Liver Eater) band.",
+      Kotsoteka:"Represented by proxy: Milky Way signed for the Co-che-te-ka.",
+      Quahadi:"Did not attend; remained on the Llano Estacado."
+    }),
+    core_terms:[
+      { art:"Art. 2", text:"A reservation from the northeast corner of New Mexico to the Red River and the 98th meridian, for 'absolute and undisturbed use and occupation'." },
+      { art:"Art. 2", text:"Tribes may not leave to hunt without the agent's written consent or camp within ten miles of main roads and posts." },
+      { art:"Art. 3", text:"Until removal, the tribes may range over unsettled lands south of the Arkansas." },
+      { art:"Art. 5", text:"Annuities for forty years: $10 per person before removal, $15 after." },
+      { art:"Art. 6", text:"Signers will urge absent bands to join." }
+    ],
+    historical_audit:[
+      { promise:"A reservation for 'absolute and undisturbed use' (Art. 2).", reality:"Texas retained title to its public lands under annexation and would not cede the panhandle. The reservation existed only on paper.", kind:"violated", art:"Art. 2" },
+      { promise:"Forty years of annuities (Art. 5).", reality:"Replaced two years later at Medicine Lodge with a smaller reservation and shorter terms.", kind:"violated", art:"Art. 5" }
+    ],
+    verdict:"The United States promised land it did not own. Two years later it renegotiated from that failure.",
+    document_url: OSU + "treaty-with-the-comanche-and-kiowa-1865-0892",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[{ label:"OSU transcript: Treaty with the Comanche and Kiowa, 1865", url: OSU + "treaty-with-the-comanche-and-kiowa-1865-0892" }]
+  },
+
+  /* ------------------------------------------------------------ 1867 */
+  {
+    id:"1867", year:1867, era:"reservation",
+    title:"Treaty of Medicine Lodge",
+    citation_title:"Treaty with the Kiowa and Comanche, 1867",
+    date_signed:"1867-10-21", date_label:"October 21, 1867",
+    location:"Council Camp on Medicine Lodge Creek, 70 miles south of Fort Larned, Kansas",
+    counterparty:"United States (Indian Peace Commission)",
+    ratification:"Ratified July 25, 1868; proclaimed August 25, 1868",
+    statute:"15 Stat. 581",
+    status_badge:"Violated", status_kind:"violated",
+    basis:"transcript",
+    summary:"The defining reservation treaty. About three million acres between the Washita and Red rivers, with a written guarantee in Article 12 that no further cession would be valid without three-fourths of adult Comanche and Kiowa men. Ten Bears spoke for the Yamparika before signing.",
+    quote:{ text:"I was born upon the prairie, where the wind blew free and there was nothing to break the light of the sun. I was born where there were no enclosures and where everything drew a free breath.", by:"Ten Bears (recorded Parry-wah-say-men), Yamparika, at the Medicine Lodge council, October 1867" },
+    signatories_comanche:[
+      s("Parry-wah-say-men","Ten Bears","Yamparika"), s("Tep-pe-navon","Painted Lips"),
+      s("To-sa-in","Silver Brooch","Penateka"), s("Cear-chi-neka","Standing Feather"),
+      s("Ho-we-ar","Gap in the Woods"), s("Tir-ha-yah-guahip","Horse's Back","Nokoni"),
+      s("Es-a-nanaca","Wolf's Name"), s("Ah-te-es-ta","Little Horn"),
+      s("Pooh-yah-to-yeh-be","Iron Mountain","Yamparika"), s("Sad-dy-yo","Dog Fat")
+    ],
+    signatories_gov:[
+      { name:"N. G. Taylor", role:"Commissioner of Indian Affairs, chair" }, { name:"William S. Harney", role:"Brevet Major General" },
+      { name:"C. C. Augur", role:"Brevet Major General" }, { name:"Alfred H. Terry", role:"Brevet Major General" },
+      { name:"John B. Sanborn", role:"Commissioner" }, { name:"Samuel F. Tappan", role:"Commissioner" },
+      { name:"J. B. Henderson", role:"U.S. Senator, Missouri" }
+    ],
+    bands_present: bands(["Yamparika","Penateka","Nokoni"], ["Quahadi"], {
+      Yamparika:"Ten Bears and Iron Mountain.",
+      Penateka:"Silver Brooch (Toshaway).",
+      Nokoni:"Horse's Back.",
+      Quahadi:"Absent. Under Quanah they stayed free on the Llano Estacado until 1875."
+    }),
+    core_terms:[
+      { art:"Art. 2", text:"A reservation in southwestern Indian Territory, set apart for 'absolute and undisturbed use and occupation'." },
+      { art:"Art. 10", text:"Annual clothing and $25,000 a year for thirty years in goods." },
+      { art:"Art. 11", text:"Hunting allowed south of the Arkansas 'so long as the buffalo may range thereon in such numbers as to justify the chase'." },
+      { art:"Art. 12", text:"No cession of any part of the reservation is valid unless signed by at least three-fourths of the adult male Indians occupying it." }
+    ],
+    historical_audit:[
+      { promise:"Hunting south of the Arkansas while the buffalo justify the chase (Art. 11).", reality:"Commercial hide hunters destroyed the southern herd by the late 1870s. The clause expired by extermination, not by agreement.", kind:"violated", art:"Art. 11" },
+      { promise:"No cession without three-fourths of adult men (Art. 12).", reality:"The 1892 Jerome Agreement fell short of three-fourths, and Congress enacted it anyway in 1900. The Supreme Court upheld that in Lone Wolf v. Hitchcock (1903).", kind:"violated", art:"Art. 12" },
+      { promise:"'Absolute and undisturbed use' of the reservation (Art. 2).", reality:"Texas cattlemen leased and trespassed on reservation grass through the 1880s; the 1901 opening ended the common land base.", kind:"violated", art:"Art. 2" }
+    ],
+    verdict:"Article 12 was the strongest written protection the Comanche ever received. It was broken by the same government that wrote it, and the Supreme Court said it could be.",
+    document_url: OSU + "treaty-with-the-kiowa-and-comanche-1867-0977",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[
+      { label:"OSU transcript: Treaty with the Kiowa and Comanche, 1867", url: OSU + "treaty-with-the-kiowa-and-comanche-1867-0977" },
+      { label:"GovInfo: 15 Stat. 581", url:"https://www.govinfo.gov/link/statute/15/581" }
+    ]
+  },
+
+  /* ------------------------------------------------------------ 1892 */
+  {
+    id:"1892", year:1892, era:"allotment",
+    title:"The Jerome Agreement",
+    citation_title:"Agreement with the Comanche, Kiowa, and Apache, 1892",
+    date_signed:"1892-10-06", date_label:"October 6–21, 1892 (enacted by Congress June 6, 1900)",
+    location:"Fort Sill, Indian Territory",
+    counterparty:"United States (Cherokee Commission)",
+    ratification:"Enacted by Act of Congress, June 6, 1900",
+    statute:"31 Stat. 672",
+    status_badge:"Extinguished by Statute", status_kind:"violated",
+    basis:"transcript",
+    summary:"The Cherokee Commission, led by David H. Jerome, pressed the Comanche, Kiowa, and Apache to accept 160-acre allotments and sell the 'surplus'. Signatures fell short of the three-fourths Medicine Lodge required. Congress ratified it eight years later regardless.",
+    signatories_comanche:[
+      s("Quanah Parker","Fragrance / Smell","Quahadi","Kwana")
+    ],
+    signatories_gov:[
+      { name:"David H. Jerome", role:"Chair, Cherokee Commission" },
+      { name:"Alfred M. Wilson", role:"Commissioner" },
+      { name:"Warren G. Sayre", role:"Commissioner" }
+    ],
+    bands_present: bands(BANDS.map(b=>b.id), [], {
+      Quahadi:"Quanah Parker signed. By 1892 all divisions lived on the reservation.",
+      Penateka:"Many signers later said the interpreters misstated the terms."
+    }),
+    core_terms:[
+      { art:"Art. I", text:"The tribes cede their claims to the reservation, subject to allotments and grazing lands." },
+      { art:"Art. II", text:"Each member may select 160 acres; parents select for children; the Commissioner selects for orphans." },
+      { art:"Art. III", text:"480,000 acres of grazing land held in common (the 'Big Pasture'); sections 16 and 36 reserved for schools." },
+      { art:"Art. V", text:"Allotments held in trust for 25 years, then conveyed in fee simple." },
+      { art:"Art. VI", text:"$2,000,000: $500,000 per capita, $1,500,000 in the Treasury at 5% interest." }
+    ],
+    historical_audit:[
+      { promise:"Consent of three-fourths of adult men (Medicine Lodge Art. 12).", reality:"The commission did not obtain it, and tribal members protested fraud and misinterpretation. Congress enacted the agreement in 1900 with altered terms.", kind:"violated", art:"Medicine Lodge Art. 12" },
+      { promise:"480,000 acres of common grazing land (Art. III).", reality:"The Big Pasture was opened and sold to settlers in 1906. The 1901 land lottery had already opened about two million acres.", kind:"violated", art:"Art. III" },
+      { promise:"Judicial protection of treaty rights.", reality:"In Lone Wolf v. Hitchcock, 187 U.S. 553 (1903), the Supreme Court held Congress had 'plenary authority' to abrogate treaty provisions.", kind:"violated", art:"Lone Wolf v. Hitchcock" }
+    ],
+    verdict:"Not a treaty broken in the field but a treaty overruled in Washington. Lone Wolf made the breach legal and set a precedent that shaped federal Indian law for generations.",
+    document_url: OSU + "agreement-with-the-comanche-kiowa-and-apache-1892-22361",
+    archive_label:"OSU Tribal Treaties Database",
+    sources:[
+      { label:"OSU transcript: Agreement with the Comanche, Kiowa, and Apache, 1892", url: OSU + "agreement-with-the-comanche-kiowa-and-apache-1892-22361" },
+      { label:"Lone Wolf v. Hitchcock, 187 U.S. 553 (1903), Justia", url:"https://supreme.justia.com/cases/federal/us/187/553/" }
+    ]
+  }
+];
+
+/* =====================================================================
+   STATE + DOM HELPERS
+   ===================================================================== */
+const state = { era:"all", id:null, tab:"overview" };
+const $ = (sel, root = document) => root.querySelector(sel);
+const esc = str => String(str ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const kindVar = k => ({ kept:"var(--gold)", mixed:"var(--clay)", violated:"var(--crimson)", unratified:"var(--slate)" }[k]);
+const icon = {
+  ext:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>',
+  quote:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 5H4v6h4l-2 6M18 5h-4v6h4l-2 6"/></svg>',
+  play:'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>',
+  stop:'<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="1"/></svg>',
+  link:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>'
+};
+
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("on");
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("on"), 2200);
+}
+
+/* =====================================================================
+   HERO STATS
+   ===================================================================== */
+function renderStats(){
+  const signers = TREATIES.reduce((n,t) => n + t.signatories_comanche.length, 0);
+  const violated = TREATIES.filter(t => t.status_kind === "violated").length;
+  const kept = TREATIES.filter(t => t.status_kind === "kept").length;
+  $("#stats").innerHTML = `
+    <div><b>${TREATIES.length}</b>treaties &amp; accords</div>
+    <div><b>${signers}</b>Comanche signers shown</div>
+    <div><b style="color:var(--crimson)">${violated}</b>marked violated</div>
+    <div><b style="color:var(--gold)">${kept}</b>honored</div>`;
+}
+
+/* =====================================================================
+   FILTERS + TIMELINE (left rail)
+   ===================================================================== */
+function renderFilters(){
+  const counts = { all: TREATIES.length };
+  TREATIES.forEach(t => counts[t.era] = (counts[t.era] || 0) + 1);
+  const opts = [["all","All"], ...Object.entries(ERAS)];
+  $("#filters").innerHTML = opts.map(([k,l]) =>
+    `<button type="button" class="chip" data-era="${k}" aria-pressed="${state.era===k}">${esc(l)}<span class="n">${counts[k]||0}</span></button>`
+  ).join("");
+}
+
+function visibleTreaties(){
+  return state.era === "all" ? TREATIES : TREATIES.filter(t => t.era === state.era);
+}
+
+function renderTimeline(){
+  const list = visibleTreaties();
+  $("#timeline").innerHTML = list.length ? list.map(t => `
+    <li><button type="button" data-id="${t.id}" aria-current="${t.id===state.id}" style="--dot:${kindVar(t.status_kind)}">
+      <span class="yr">${t.year}</span>
+      <span class="t">${esc(t.title)}</span>
+      <span class="meta"><span class="era">${esc(ERAS[t.era])}</span><span class="badge k-${t.status_kind}">${esc(t.status_badge)}</span></span>
+    </button></li>`).join("")
+    : `<li class="empty">No treaties in this era.</li>`;
+}
+
+/* =====================================================================
+   CITATION GENERATOR (APA 7, MLA 9, Chicago 17 notes-bibliography)
+   ===================================================================== */
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MLA_MON = ["Jan.","Feb.","Mar.","Apr.","May","June","July","Aug.","Sept.","Oct.","Nov.","Dec."];
+
+function citations(t){
+  const [y,m,d] = t.date_signed.split("-").map(Number);
+  const url = t.document_url || (t.sources[0] && t.sources[0].url) || "https://numunuu.com/treaties/";
+  const container = t.document_url ? "Tribal Treaties Database, Oklahoma State University Libraries" : (t.sources[0]?.label || "numunuu.com");
+  const now = new Date();
+  const accessed = `${now.getDate()} ${MLA_MON[now.getMonth()]} ${now.getFullYear()}`;
+  const stat = t.statute ? `, ${t.statute}` : "";
+  return {
+    APA: `${t.citation_title}${stat}. (${y}, ${MONTHS[m-1]} ${d}). ${container}. ${url}`,
+    MLA: `"${t.citation_title}." ${d} ${MLA_MON[m-1]} ${y}${stat}. ${container}, ${url.replace(/^https?:\/\//,"")}. Accessed ${accessed}.`,
+    Chicago: `${t.citation_title}. ${MONTHS[m-1]} ${d}, ${y}${stat}. ${container}. ${url}.`
+  };
+}
+
+async function copyText(text){
+  try { await navigator.clipboard.writeText(text); return true; }
+  catch {
+    /* fallback for file:// or older browsers */
+    const ta = document.createElement("textarea"); ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    let ok = false; try { ok = document.execCommand("copy"); } catch {}
+    ta.remove(); return ok;
+  }
+}
+
+/* =====================================================================
+   AUDIO: real recording if audio_url exists, otherwise a placeholder
+   tone sequence (one soft beat per recorded syllable). The tone is
+   deliberately neutral so it is never mistaken for a pronunciation.
+   ===================================================================== */
+let audioCtx = null, currentAudio = null, currentBtn = null, toneTimer = null;
+
+function stopAudio(){
+  if (currentAudio){ currentAudio.pause(); currentAudio = null; }
+  clearTimeout(toneTimer);
+  if (currentBtn){ currentBtn.dataset.state = "idle"; currentBtn.innerHTML = icon.play; currentBtn = null; }
+}
+
+function playTones(syllables, btn){
+  audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === "suspended") audioCtx.resume();
+  const beat = 0.24, now = audioCtx.currentTime + 0.03;
+  syllables.forEach((_, i) => {
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = "sine";
+    o.frequency.value = 196 * Math.pow(2, ((i % 3) * 2) / 12);   /* gentle G3 / A3 / B3 motif */
+    const t0 = now + i * beat;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.16, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + beat * 0.9);
+    o.connect(g).connect(audioCtx.destination);
+    o.start(t0); o.stop(t0 + beat);
+  });
+  toneTimer = setTimeout(stopAudio, syllables.length * beat * 1000 + 120);
+}
+
+function playSigner(sig, btn){
+  if (currentBtn === btn){ stopAudio(); return; }
+  stopAudio();
+  currentBtn = btn; btn.dataset.state = "playing"; btn.innerHTML = icon.stop;
+  const status = $("#audioStatus");
+  const syllables = sig.name_recorded.split(/\s*\(|\)/)[0].split(/[-\s]+/).filter(Boolean);
+  const fallback = () => {
+    if (currentBtn !== btn) return;
+    if (status) status.textContent = `Placeholder tone: ${syllables.length} beat${syllables.length>1?"s":""} for "${sig.name_recorded.split(" (")[0]}". No verified recording yet.`;
+    playTones(syllables, btn);
+  };
+  if (!sig.audio_url) return fallback();
+  const a = new Audio(sig.audio_url);
+  currentAudio = a;
+  a.addEventListener("ended", stopAudio);
+  a.addEventListener("error", () => { currentAudio = null; fallback(); }, { once:true });
+  a.play().then(() => { if (status) status.textContent = `Playing recording: ${sig.name_recorded}`; })
+          .catch(() => { currentAudio = null; fallback(); });
+}
+
+/* =====================================================================
+   INSPECTOR (main panel)
+   ===================================================================== */
+const TABS = [
+  ["overview","Promise vs. Reality"],
+  ["terms","Core Terms"],
+  ["signers","Signatories"],
+  ["bands","Bands"],
+  ["sources","Sources"]
+];
+
+function renderInspector(){
+  const t = TREATIES.find(x => x.id === state.id);
+  if (!t) return;
+  const presentCount = t.bands_present.filter(b => b.status === "present").length;
+  const counts = { terms:t.core_terms.length, signers:t.signatories_comanche.length, bands:`${presentCount}/${BANDS.length}`, sources:t.sources.length };
+  const archiveBtn = t.document_url
+    ? `<a class="btn primary" href="${esc(t.document_url)}" target="_blank" rel="noopener">${icon.ext} Read the transcript at OSU</a>`
+    : `<span class="btn" aria-disabled="true" title="${esc(t.archive_label)}">${icon.ext} ${esc(t.archive_label)}</span>`;
+  const cites = citations(t);
+
+  $("#inspector").innerHTML = `
+    <header class="ins-head">
+      <div class="ins-top">
+        <span class="badge k-${t.status_kind}">${esc(t.status_badge)}</span>
+        <span class="era">${esc(ERAS[t.era])}</span>
+        <span class="basis" style="--basis:${t.basis==="transcript"?"var(--gold)":"var(--clay)"}" title="${t.basis==="transcript"?"Names and terms taken from the OSU transcript":"From published histories; verify against the primary record"}">${t.basis==="transcript"?"Transcript":"Secondary"} basis</span>
+      </div>
+      <h2><span class="y">${t.year}</span> · ${esc(t.title)}</h2>
+      <dl class="facts">
+        <div><dt>Signed</dt><dd>${esc(t.date_label)}</dd></div>
+        <div><dt>Location</dt><dd>${esc(t.location)}</dd></div>
+        <div><dt>Counterparty</dt><dd>${esc(t.counterparty)}</dd></div>
+        <div><dt>Ratification</dt><dd>${esc(t.ratification)}${t.statute?` <span class="mono" style="color:var(--muted)">(${esc(t.statute)})</span>`:""}</dd></div>
+      </dl>
+      <div class="actions">
+        ${archiveBtn}
+        <div class="cite-wrap">
+          <button type="button" class="btn" id="citeBtn" aria-expanded="false" aria-controls="citePop">${icon.quote} Cite this treaty</button>
+          <div class="cite-pop" id="citePop" hidden>
+            ${Object.entries(cites).map(([k,v]) => `
+              <div class="cite-row"><b>${k}</b><p>${esc(v)}</p><button type="button" data-copy="${k}">Copy</button></div>`).join("")}
+          </div>
+        </div>
+        <button type="button" class="btn" id="linkBtn">${icon.link} Copy link</button>
+      </div>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Treaty sections">
+      ${TABS.map(([k,l]) => `<button type="button" class="tab" role="tab" id="tab-${k}" aria-controls="panel" aria-selected="${state.tab===k}" tabindex="${state.tab===k?0:-1}" data-tab="${k}">${l}${counts[k]!=null?`<span class="n">${counts[k]}</span>`:""}</button>`).join("")}
+    </div>
+    <section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-${state.tab}">${renderPanel(t)}</section>`;
+
+  $("#citePop").__cites = cites;
+}
+
+function renderPanel(t){
+  switch(state.tab){
+    /* ---- Promise vs Reality audit card ---- */
+    case "overview": return `
+      <p class="summary">${esc(t.summary)}</p>
+      <div class="audit" role="table" aria-label="Promise versus ground reality">
+        <div class="audit-head"><span>Forensic audit</span><span>Written text ⟶ Historical consequence</span></div>
+        ${t.historical_audit.map(a => `
+          <div class="audit-row" role="row">
+            <div class="promise" role="cell"><div class="lbl">On parchment</div><p>${esc(a.promise)}</p><div class="art">${esc(a.art)}</div></div>
+            <div class="reality ${a.kind}" role="cell"><div class="lbl">${a.kind==="kept"?"On the ground · Kept":a.kind==="mixed"?"On the ground · Partial":"On the ground · Broken"}</div><p>${esc(a.reality)}</p></div>
+          </div>`).join("")}
+        <div class="verdict"><b>Verdict</b>${esc(t.verdict)}</div>
+      </div>
+      ${t.quote ? `<blockquote class="q"><p>“${esc(t.quote.text)}”</p><cite>${esc(t.quote.by)}</cite></blockquote>` : ""}`;
+
+    /* ---- Core terms ---- */
+    case "terms": return `
+      <h3>Key articles in plain English</h3>
+      <p class="sub">Summaries for orientation. The transcript is the authority; quoted phrases are from the treaty text.</p>
+      <ol class="terms">${t.core_terms.map(c => `<li><span class="a">${esc(c.art)}</span><p>${esc(c.text)}</p></li>`).join("")}</ol>`;
+
+    /* ---- Signatories with audio ---- */
+    case "signers": return `
+      <h3>Comanche signatories</h3>
+      <p class="sub">Recorded spelling is exactly as the clerk wrote it${t.signatories_comanche.length>=7?" (selection shown; see the transcript for the full list)":""}. Hover or focus a meaning for the translation given in the document.</p>
+      <div class="sig-grid">${t.signatories_comanche.map((sg,i) => `
+        <article class="sig">
+          <div class="rec" lang="und">${esc(sg.name_recorded)}</div>
+          ${sg.name_comanche
+            ? `<div class="orth" lang="com">${esc(sg.name_comanche)} <span class="mono" style="font-size:10px;color:var(--muted)">· pending review</span></div>`
+            : `<div class="orth pending">Nʉmʉ Tekwapʉ spelling: pending verification</div>`}
+          <button type="button" class="play" data-sig="${i}" data-state="idle" aria-label="Play pronunciation for ${esc(sg.name_recorded)}">${icon.play}</button>
+          <div class="mean"><span class="tip" tabindex="0">Meaning<span class="bubble" role="tooltip">${esc(sg.meaning)}</span></span>: ${esc(sg.meaning)}</div>
+          ${sg.band ? `<div class="band">${esc(sg.band)}</div>` : ""}
+        </article>`).join("")}
+      </div>
+      <p class="audio-note"><span>▸</span><span id="audioStatus" aria-live="polite">No fluent-speaker recordings are attached yet. Play sounds a neutral placeholder tone.</span></p>
+      <div class="gov">
+        <h3>${esc(t.counterparty.split(" (")[0])} signatories</h3>
+        <ul>${t.signatories_gov.map(g => `<li>${esc(g.name)}<small>${esc(g.role)}</small></li>`).join("")}</ul>
+      </div>
+      <p class="sub" style="margin-top:20px">Look up Comanche words at <a href="https://dictionary.numunuu.com" target="_blank" rel="noopener">dictionary.numunuu.com</a>.</p>`;
+
+    /* ---- Band representation matrix ---- */
+    case "bands": {
+      const present = t.bands_present.filter(b=>b.status==="present").map(b=>b.band);
+      return `
+      <h3>Band representation</h3>
+      <p class="sub">Each division governed itself. A signature bound the signer's own band; it did not bind the Nation.</p>
+      <div class="matrix">${t.bands_present.map(b => {
+        const g = BANDS.find(x => x.id === b.band).gloss;
+        const label = { present:"Represented", absent:"Absent", unrecorded:"Not recorded" }[b.status];
+        return `<div class="cell ${b.status}"><div class="bn">${esc(b.band)}</div><div class="gl">${esc(g)}</div>
+          <div class="st">${label}</div>${b.note?`<div class="nt">${esc(b.note)}</div>`:""}</div>`;
+      }).join("")}</div>
+      <div class="legend">
+        <span><i style="background:var(--gold)"></i>Represented</span>
+        <span><i style="border:1px dashed var(--crimson)"></i>Absent (documented)</span>
+        <span><i style="background:var(--slate)"></i>Not recorded in the text</span>
+      </div>
+      <div class="callout"><b>Why this matters.</b> ${present.length
+        ? `This document carries the marks of ${present.join(", ")} leaders. Any band not represented had not consented to it, whatever the U.S. or Texas later claimed.`
+        : `The text does not tie its signers to bands, so representation cannot be stated from the document alone.`}</div>`;
+    }
+
+    /* ---- Sources ---- */
+    case "sources": return `
+      <h3>Primary &amp; secondary sources</h3>
+      <ul class="src">${t.sources.map(x => `<li><small>${x.url.includes("okstate")?"Primary transcript":"Reference"}</small><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a></li>`).join("")}</ul>
+      <p class="sub" style="margin-top:16px">Data basis: <b>${t.basis==="transcript"?"Transcript":"Secondary"}</b>. ${t.basis==="transcript"
+        ? "Signer names, dates, and articles were taken from the OSU Tribal Treaties Database transcript."
+        : "This record is assembled from published histories; check names and dates against the primary document before citing."}</p>`;
+  }
+  return "";
+}
+
+/* =====================================================================
+   SELECTION + ROUTING (#1867 deep links)
+   ===================================================================== */
+function select(id, { push = true, focus = false } = {}){
+  if (!TREATIES.some(t => t.id === id)) return;
+  stopAudio();
+  state.id = id;
+  if (push) history.replaceState(null, "", "#" + id);
+  renderTimeline(); renderInspector();
+  const t = TREATIES.find(x => x.id === id);
+  $("#railCurrent").textContent = `${t.year} · ${t.title}`;
+  if (focus) $(`#timeline button[data-id="${id}"]`)?.focus();
+}
+
+function setRailOpen(open){
+  $("#rail").dataset.open = open; $("#railToggle").setAttribute("aria-expanded", open);
+}
+
+/* =====================================================================
+   EVENTS
+   ===================================================================== */
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest("[data-era]"); if (!b) return;
+  state.era = b.dataset.era; renderFilters();
+  const list = visibleTreaties();
+  if (list.length && !list.some(t => t.id === state.id)) select(list[0].id); else renderTimeline();
+});
+
+$("#timeline").addEventListener("click", e => {
+  const b = e.target.closest("[data-id]"); if (!b) return;
+  select(b.dataset.id);
+  if (matchMedia("(max-width:960px)").matches){ setRailOpen(false); $("#inspector").scrollIntoView({ behavior:"smooth", block:"start" }); }
+});
+
+/* Arrow keys move through the timeline */
+$("#timeline").addEventListener("keydown", e => {
+  if (!["ArrowDown","ArrowUp"].includes(e.key)) return;
+  e.preventDefault();
+  const list = visibleTreaties(); const i = list.findIndex(t => t.id === state.id);
+  const next = list[Math.max(0, Math.min(list.length - 1, i + (e.key === "ArrowDown" ? 1 : -1)))];
+  if (next) select(next.id, { focus:true });
+});
+
+$("#railToggle").addEventListener("click", () => setRailOpen($("#rail").dataset.open !== "true"));
+
+$("#inspector").addEventListener("click", async e => {
+  const t = TREATIES.find(x => x.id === state.id);
+  const tab = e.target.closest("[data-tab]");
+  if (tab){ stopAudio(); state.tab = tab.dataset.tab; renderInspector(); $(`#tab-${state.tab}`).focus(); return; }
+
+  const play = e.target.closest(".play");
+  if (play){ playSigner(t.signatories_comanche[+play.dataset.sig], play); return; }
+
+  if (e.target.closest("#citeBtn")){
+    const pop = $("#citePop"); pop.hidden = !pop.hidden; $("#citeBtn").setAttribute("aria-expanded", !pop.hidden); return;
+  }
+  const cp = e.target.closest("[data-copy]");
+  if (cp){ const ok = await copyText($("#citePop").__cites[cp.dataset.copy]); toast(ok ? `${cp.dataset.copy} citation copied` : "Copy failed: select the text manually"); return; }
+
+  if (e.target.closest("#linkBtn")){ const ok = await copyText(location.href.split("#")[0] + "#" + t.id); toast(ok ? "Link copied" : "Copy failed"); }
+});
+
+/* Tablist arrow-key navigation (WAI-ARIA pattern) */
+$("#inspector").addEventListener("keydown", e => {
+  if (!e.target.matches(".tab") || !["ArrowLeft","ArrowRight","Home","End"].includes(e.key)) return;
+  e.preventDefault();
+  const i = TABS.findIndex(([k]) => k === state.tab);
+  const n = e.key === "Home" ? 0 : e.key === "End" ? TABS.length - 1 : (i + (e.key === "ArrowRight" ? 1 : -1) + TABS.length) % TABS.length;
+  state.tab = TABS[n][0]; renderInspector(); $(`#tab-${state.tab}`).focus();
+});
+
+/* Close citation popover on outside click / Escape */
+document.addEventListener("click", e => {
+  const pop = $("#citePop");
+  if (pop && !pop.hidden && !e.target.closest(".cite-wrap")){ pop.hidden = true; $("#citeBtn").setAttribute("aria-expanded","false"); }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape"){ const pop = $("#citePop"); if (pop && !pop.hidden){ pop.hidden = true; $("#citeBtn").focus(); } }
+});
+
+/* About modal (native <dialog>) */
+const about = $("#about");
+$("#aboutBtn").addEventListener("click", () => about.showModal());
+about.addEventListener("click", e => { if (e.target === about || e.target.closest("[data-close]")) about.close(); });
+
+window.addEventListener("hashchange", () => select(location.hash.slice(1), { push:false }));
+
+/* =====================================================================
+   INIT
+   ===================================================================== */
+renderStats(); renderFilters();
+select(TREATIES.some(t => t.id === location.hash.slice(1)) ? location.hash.slice(1) : "1867", { push:false });
+</script>
+</body>
+</html>

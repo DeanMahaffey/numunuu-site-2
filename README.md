@@ -8,6 +8,8 @@ Landing page for numunuu.com, hosted free on GitHub Pages. The domain stays regi
 - `404.html` – shown for any address that doesn't exist
 - `CNAME` – tells GitHub Pages this site is numunuu.com (don't delete it)
 - `favicon.svg` – the browser tab icon
+- `herd/` – Follow the Herd, the history game (`herd/index.html` plus scripts in `herd/js/`)
+- `treaties/` – The Comanche Treaties exhibit (single page)
 
 ## Setup
 

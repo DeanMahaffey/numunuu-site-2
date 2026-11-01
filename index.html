@@ -4,16 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nʉmʉnʉʉ</title>
-<meta name="description" content="Independent projects for learning the Comanche language, starting with a free online Comanche dictionary.">
+<meta name="description" content="Independent projects about the Comanche people and language: a free Comanche dictionary, a history game, and an exhibit on the Comanche treaties.">
 <meta property="og:title" content="Nʉmʉnʉʉ">
-<meta property="og:description" content="Independent projects for learning the Comanche language, starting with a free online Comanche dictionary.">
+<meta property="og:description" content="A free Comanche dictionary, a history game set on the southern plains in 1845, and an exhibit on the Comanche treaties.">
 <meta property="og:url" content="https://numunuu.com/">
 <meta name="theme-color" content="#e8ecea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1314" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<!-- Fira Sans (and Condensed) include the barred ʉ used in Comanche spelling -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
 /* Layout: the page is one dictionary entry. A huge headword, its pronunciation and meaning,
    then the projects set as numbered senses. Hills drawn along the bottom edge. */
@@ -21,9 +22,8 @@
   --sky:#e8ecea; --ink:#1b2220; --muted:#5d6764; --rule:#c9d0cc;
   --earth:#a3412a;            /* southwest Oklahoma red dirt */
   --hill-1:#c3ccc6; --hill-2:#a9b5ae; --hill-3:#8a9890; --ground:#7e5444;
-  --f-word:"Gentium Book Plus","Gentium Plus","Charis SIL","Noto Serif",Georgia,serif;
-  --f-ui:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --f-word:"Fira Sans Condensed","Fira Sans",system-ui,sans-serif;
+  --f-ui:"Fira Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 @media (prefers-color-scheme: dark){:root{
   --sky:#0e1314; --ink:#e4e9e6; --muted:#8f9c97; --rule:#2a3331;
@@ -39,53 +39,82 @@ a{color:inherit}
 :focus-visible{outline:2px solid var(--earth);outline-offset:4px;border-radius:2px}
 .wrap{width:100%;max-width:1040px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
 
-.top .wrap{display:flex;justify-content:space-between;align-items:baseline;padding-block:calc(22px + env(safe-area-inset-top,0px)) 0;
-  font-family:var(--f-mono);font-size:13px;color:var(--muted);letter-spacing:.02em}
+.top .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-block:calc(22px + env(safe-area-inset-top,0px)) 0;
+  font-size:14px;font-weight:500;color:var(--muted)}
+.top nav{display:flex;gap:18px;flex-wrap:wrap}
 .top a{text-decoration:none;border-bottom:1px solid var(--rule)}
 .top a:hover{color:var(--earth);border-color:var(--earth)}
 
 main{flex:1;position:relative;z-index:1}
-main .wrap{padding-block:clamp(48px,10vh,120px) 40px}
+main .wrap{padding-block:clamp(40px,8vh,96px) 40px}
 
-.hw{font-family:var(--f-word);font-weight:400;font-size:clamp(68px,17vw,212px);line-height:.86;letter-spacing:-.02em;margin:0 0 0 -.04em}
-.hw .u{color:var(--earth);cursor:help;position:relative}
+.hw{font-family:var(--f-word);font-weight:800;font-size:clamp(72px,17vw,208px);line-height:.86;letter-spacing:0;margin:0 0 0 -.04em}
+.hw .u{color:var(--earth);cursor:help;position:relative;letter-spacing:.07em;margin-left:.05em}
+.hw .u:last-child{letter-spacing:.07em}
 .hw .u:hover, .hw .u:focus{outline:none}
 
 .head2{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-top:22px;padding-bottom:22px;border-bottom:1px solid var(--rule);max-width:720px}
-.syl{font-family:var(--f-word);font-size:24px;color:var(--muted)}
-.pos{font-family:var(--f-word);font-style:italic;font-size:22px}
-.note{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);min-height:1.5em;flex-basis:100%}
-.note b{font-family:var(--f-word);font-weight:400;font-size:17px;color:var(--earth)}
+.syl{font-size:24px;color:var(--muted);letter-spacing:.04em}
+.pos{font-style:italic;font-size:20px;color:var(--muted)}
+.note{font-size:14px;color:var(--muted);min-height:1.5em;flex-basis:100%;margin:0}
+.note b{font-family:var(--f-word);font-weight:700;font-size:18px;color:var(--earth)}
 
-.def{font-family:var(--f-word);font-size:clamp(22px,2.6vw,28px);line-height:1.35;margin:22px 0 0;max-width:30ch}
+.def{font-size:clamp(22px,2.6vw,28px);line-height:1.35;margin:22px 0 0;max-width:30ch}
 
-.senses{list-style:none;margin:56px 0 0;padding:0;max-width:720px;display:flex;flex-direction:column;gap:30px;counter-reset:s}
-.senses li{display:grid;grid-template-columns:44px 1fr;counter-increment:s}
-.senses li::before{content:counter(s);font-family:var(--f-word);font-weight:700;font-size:26px;line-height:1.2;color:var(--earth)}
-.senses h2{font-family:var(--f-word);font-weight:400;font-size:clamp(26px,3.2vw,34px);line-height:1.15;margin:0}
-.senses p{margin:6px 0 0;color:var(--muted);max-width:52ch}
-.senses a.go{display:inline-block;margin-top:10px;font-weight:500;text-decoration:none;color:var(--earth);border-bottom:1.5px solid currentColor;padding-bottom:1px}
+.senses{list-style:none;margin:56px 0 0;padding:0;display:flex;flex-direction:column;gap:44px;counter-reset:s}
+.senses li{display:grid;grid-template-columns:48px 1fr;counter-increment:s}
+.senses li::before{content:counter(s);font-family:var(--f-word);font-weight:800;font-size:30px;line-height:1.1;color:var(--earth)}
+.senses h2{font-family:var(--f-word);font-weight:800;font-size:clamp(28px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.senses p{margin:6px 0 0;color:var(--muted);max-width:56ch}
+.senses a.go{display:inline-block;margin-top:12px;font-weight:600;text-decoration:none;color:var(--earth);border-bottom:2px solid currentColor;padding-bottom:1px}
 .senses a.go:hover{border-bottom-width:3px}
 .later h2{color:var(--muted)}
-.tag{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:var(--muted);margin-left:10px;vertical-align:middle}
+.tag{font-size:13px;font-weight:600;color:var(--muted);margin-left:10px;vertical-align:middle;letter-spacing:0}
+.new{font-family:var(--f-ui);font-size:13px;font-weight:600;color:#fff;background:var(--earth);border-radius:999px;padding:2px 9px;margin-left:10px;vertical-align:middle;letter-spacing:0}
+
+/* feature rows: text beside a preview */
+.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:28px;align-items:center}
+@media (max-width:760px){.feat{grid-template-columns:1fr;gap:16px}}
+.preview{display:block;position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:#1c1612;text-decoration:none;
+  box-shadow:0 12px 40px rgba(0,0,0,.18);transition:transform .2s}
+.preview:hover{transform:translateY(-3px)}
+.preview canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.preview .cap{position:absolute;left:18px;bottom:16px;right:18px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.preview .cap b{display:block;font-family:var(--f-word);font-weight:800;font-size:clamp(26px,3.6vw,40px);line-height:.95;text-transform:uppercase}
+.preview .cap span{font-size:14px;font-weight:500;opacity:.92}
+
+.tl{display:block;text-decoration:none;border-radius:14px;padding:22px 22px 18px;background:#17161b;color:#ece6dc;box-shadow:0 12px 40px rgba(0,0,0,.18);transition:transform .2s}
+.tl:hover{transform:translateY(-3px)}
+.tl b{font-family:var(--f-word);font-weight:800;font-size:clamp(24px,3vw,32px);line-height:1;display:block}
+.tl small{color:#a8a3b0;font-size:13.5px}
+.strip{position:relative;height:74px;margin:22px 4px 6px}
+.strip::before{content:"";position:absolute;left:0;right:0;top:30px;height:2px;background:#3a3a4a}
+.strip i{position:absolute;top:24px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #17161b}
+.strip i[data-k="kept"]{background:#d4a373}.strip i[data-k="mixed"]{background:#d97736}.strip i[data-k="violated"]{background:#e05252}.strip i[data-k="unratified"]{background:#9090a0}
+.strip em{position:absolute;top:46px;font-style:normal;font-size:12px;font-weight:600;color:#a8a3b0;transform:translateX(-50%)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:#a8a3b0}
+.legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:var(--c)}
 
 .land{position:relative;flex-shrink:0;height:clamp(150px,24vh,260px);margin-top:-40px;pointer-events:none}
 .top,footer{flex-shrink:0}
 .land canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 footer{background:var(--ground);color:#f1e7e1}
-footer .wrap{padding-block:18px calc(22px + env(safe-area-inset-bottom,0px));font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px}
+footer .wrap{padding-block:18px calc(22px + env(safe-area-inset-bottom,0px));font-size:13.5px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px}
 footer p{margin:0;max-width:60ch;opacity:.9}
 
 @media (max-width:520px){
-  .senses li{grid-template-columns:32px 1fr}
+  .senses li{grid-template-columns:34px 1fr}
   .senses{margin-top:44px}
-  .tag{display:block;margin:6px 0 0}
+  .tag,.new{display:inline-block;margin:6px 0 0}
+  .top nav{gap:12px}
 }
+@media (prefers-reduced-motion:reduce){.preview,.tl{transition:none}}
 </style>
 </head>
 <body>
 <header class="top">
-  <div class="wrap"><span>numunuu.com</span><a href="https://dictionary.numunuu.com">dictionary ↗</a></div>
+  <div class="wrap"><span>numunuu.com</span>
+    <nav aria-label="Projects"><a href="herd/">Game</a><a href="treaties/">Treaties</a><a href="https://dictionary.numunuu.com">Dictionary ↗</a></nav></div>
 </header>
 
 <main>
@@ -108,9 +137,38 @@ footer p{margin:0;max-width:60ch;opacity:.9}
           <a class="go" href="https://dictionary.numunuu.com">Open dictionary.numunuu.com</a>
         </div>
       </li>
+      <li>
+        <div class="feat">
+          <div>
+            <h2>Follow the Herd <span class="new">New</span></h2>
+            <p>A history game. It is 1845 and you lead a Comanche band across the southern plains for one year. Follow the buffalo, run the hunt on horseback, keep your council together, trade with the Comancheros, and get your people through the winter.</p>
+            <p>Every event is drawn from the history of the 1840s, with a short note on what really happened.</p>
+            <a class="go" href="herd/">Play Follow the Herd</a>
+          </div>
+          <a class="preview" href="herd/" aria-label="Play Follow the Herd">
+            <canvas id="herdPreview" aria-hidden="true"></canvas>
+            <span class="cap"><b>Follow the Herd</b><span>A year in the Comanchería, 1845</span></span>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="feat">
+          <div>
+            <h2>The Comanche treaties</h2>
+            <p>Eleven treaties and accords with Spain, the Republic of Texas, German colonists, and the United States, from 1786 to 1892. Each one is read twice: once for what the paper promised, once for what happened on the ground.</p>
+            <p>Who signed, which bands were in the room, and links to every transcript.</p>
+            <a class="go" href="treaties/">Read the treaties</a>
+          </div>
+          <a class="tl" href="treaties/" aria-label="Open the Comanche treaties exhibit">
+            <b>Ink &amp; Sovereignty</b><small>The Comanche treaties, 1786–1892</small>
+            <div class="strip" id="strip" aria-hidden="true"></div>
+            <div class="legend"><span style="--c:#d4a373">Honored</span><span style="--c:#d97736">Partly kept</span><span style="--c:#e05252">Broken</span><span style="--c:#9090a0">Never ratified</span></div>
+          </a>
+        </div>
+      </li>
       <li class="later">
         <div>
-          <h2>Lessons and games <span class="tag">on the way</span></h2>
+          <h2>Lessons and word games <span class="tag">On the way</span></h2>
           <p>Short lessons, listening practice, and word games built from the dictionary.</p>
         </div>
       </li>
@@ -126,6 +184,9 @@ footer p{margin:0;max-width:60ch;opacity:.9}
   </div>
 </footer>
 
+<!-- the game's own landscape painter, used for the live preview -->
+<script src="herd/js/util.js"></script>
+<script src="herd/js/paint.js"></script>
 <script>
 // Letter notes for the red ʉ in the headword.
 const notes = {
@@ -139,6 +200,32 @@ document.querySelectorAll('.hw .u').forEach((el) => {
   el.addEventListener('focus', show);
   el.addEventListener('click', show);
 });
+
+// Treaty timeline strip: one dot per treaty, coloured by what happened.
+const TREATY_DOTS = [[1786,'kept'],[1835,'mixed'],[1844,'violated'],[1846,'violated'],[1847,'kept'],[1850,'unratified'],[1851,'unratified'],[1853,'mixed'],[1865,'violated'],[1867,'violated'],[1892,'violated']];
+const strip = document.getElementById('strip');
+const pos = (y) => ((y - 1780) / (1898 - 1780) * 100).toFixed(2) + '%';
+strip.innerHTML = TREATY_DOTS.map(([y, k]) => `<i data-k="${k}" style="left:${pos(y)}" title="${y}"></i>`).join('') +
+  [1786, 1867, 1892].map((y) => `<em style="left:${pos(y)}">${y}</em>`).join('');
+
+// Live painted preview of the game, using the game's own painter.
+(function () {
+  const cv = document.getElementById('herdPreview');
+  if (!cv || typeof paintScene !== 'function') return;
+  const ctx = cv.getContext('2d');
+  const o = { biome: 'llano', season: 1, herd: true, camp: false, caravan: true, scroll: 0, t: 0, seed: 3, lodges: 6 };
+  let w = 0, h = 0, last = 0, visible = true;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0); };
+  new ResizeObserver(fit).observe(cv); fit();
+  new IntersectionObserver((e) => { visible = e[0].isIntersecting; }).observe(cv);
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const loop = (ts) => {
+    const dt = Math.min(0.05, (ts - last) / 1000 || 0); last = ts;
+    if (visible && w) { o.t += dt; o.scroll += still ? 0 : dt * 20; paintScene(ctx, w, h, o); }
+    if (!still) requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
 
 // Low rolling hills along the bottom edge, three layers, drawn the same on every load.
 const canvas = document.getElementById('hills');
@@ -168,7 +255,7 @@ function draw() {
   }
 }
 draw();
-let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(draw, 100); });
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(draw, 100); });
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
 </script>
 </body>
