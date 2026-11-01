@@ -258,5 +258,12 @@ draw();
 let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(draw, 100); });
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
 </script>
+<script>
+/* Opened from your computer (file://)? Make folder links open their index.html. On the live site this does nothing. */
+if (location.protocol === "file:") document.querySelectorAll("a[href]").forEach(a => {
+  const h = a.getAttribute("href"); if (/^(https?:|mailto:|#)/.test(h)) return;
+  if (h.endsWith("/")) a.setAttribute("href", h + "index.html");
+});
+</script>
 </body>
 </html>

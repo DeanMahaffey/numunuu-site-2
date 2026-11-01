@@ -332,14 +332,14 @@ blockquote.q p{font-family:var(--f-ui);font-style:normal;font-size:18px;font-wei
 <!-- ============================ HEADER ============================ -->
 <header class="site-header">
   <div class="in">
-    <a class="brand" href="/" aria-label="Nʉmʉnʉʉ Treaties home">
+    <a class="brand" href="../" aria-label="numunuu.com home">
       <b>N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span> Treaties</b>
       <span>Ink &amp; Sovereignty</span>
     </a>
     <nav class="nav" aria-label="Site">
       <a href="../herd/">Game</a>
       <a href="https://dictionary.numunuu.com" target="_blank" rel="noopener">Dictionary</a>
-      <a class="hide-sm" href="https://numunuu.com/">numunuu.com</a>
+      <a class="hide-sm" href="../">numunuu.com</a>
       <button type="button" id="aboutBtn" aria-haspopup="dialog">About<span class="hide-sm"> the Project</span></button>
     </nav>
   </div>
@@ -1295,6 +1295,13 @@ window.addEventListener("hashchange", () => select(location.hash.slice(1), { pus
    ===================================================================== */
 renderStats(); renderFilters();
 select(TREATIES.some(t => t.id === location.hash.slice(1)) ? location.hash.slice(1) : "1867", { push:false });
+</script>
+<script>
+/* Opened from your computer (file://)? Make folder links open their index.html. On the live site this does nothing. */
+if (location.protocol === "file:") document.querySelectorAll("a[href]").forEach(a => {
+  const h = a.getAttribute("href"); if (/^(https?:|mailto:|#)/.test(h)) return;
+  if (h.endsWith("/")) a.setAttribute("href", h + "index.html");
+});
 </script>
 </body>
 </html>
