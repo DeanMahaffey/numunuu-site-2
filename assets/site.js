@@ -4,7 +4,8 @@
 (function () {
   const PAGES = [
     ["herd", "Game"], ["stories", "Turning Points"], ["camp", "Camp"],
-    ["plants", "Plants"], ["codetalkers", "Code Talkers"], ["treaties", "Treaties"]
+    ["plants", "Plants"], ["codetalkers", "Code Talkers"], ["treaties", "Treaties"],
+    ["catlin", "1834 Paintings"], ["visit", "Visit the Museum"]
   ];
   const top = document.querySelector("[data-site-top]");
   if (top){
@@ -36,7 +37,7 @@
   document.head.appendChild(css);
   if (still) return;
   /* reveal: only things that start below the fold, so nothing flashes on load */
-  const REVEAL = ".chapter,.section .card,.more a,.facts .card,.senses > li,.hist a,.roll > div,.sources,.note,.tool,.codes";
+  const REVEAL = ".chapter,.section .card,.more a,.facts .card,.senses > li,.hist a,.roll > div,.sources,.note,.tool,.codes,.room-head,.wall .work,.voice,.read .card,.see .card,.stop,.prep a,.when li";
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin:"0px 0px -8% 0px" });
   document.querySelectorAll(REVEAL).forEach((el, i) => {
     if (el.getBoundingClientRect().top < innerHeight * .92) return;
@@ -53,7 +54,7 @@
   document.querySelectorAll("[data-count]").forEach((el) => co.observe(el));
   /* tilt: cards lean toward the pointer */
   if (!matchMedia("(hover: hover)").matches) return;
-  const TILT = ".more a,.hist a,.preview,.tl,.plant,.goal,.code";
+  const TILT = ".more a,.hist a,.preview,.tl,.plant,.goal,.code,.prep a";
   let cur = null;
   document.addEventListener("pointermove", (e) => {
     const el = e.target.closest && e.target.closest(TILT);

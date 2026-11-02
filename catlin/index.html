@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painted in 1834 · Nʉmʉnʉʉ</title>
+<meta name="description" content="An online exhibit of George Catlin's 1834 paintings of Comanche life: the village, the horsemen, the chiefs and families he painted when U.S. dragoons came into Comanche country.">
+<meta property="og:title" content="Painted in 1834: Catlin in the Comanche Camp">
+<meta property="og:description" content="Sixteen paintings of Comanche life from the summer of 1834, in an online exhibit from numunuu.com.">
+<meta property="og:url" content="https://numunuu.com/catlin/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/catlin.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted plains with granite mountains, titled Painted in 1834">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/catlin.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="preconnect" href="https://ids.si.edu">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+/* hero: the landscape Catlin painted near the village, with a painted fallback underneath */
+.hero{min-height:min(88vh,800px);background:#2a211b}
+.hero .art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease,transform 12s ease-out;transform:scale(1.06)}
+.hero .art.on{opacity:1;transform:scale(1)}
+.hero::after{background:linear-gradient(0deg,var(--bg) 0%,rgba(28,22,18,.82) 30%,rgba(28,22,18,.45) 58%,rgba(28,22,18,.08) 85%)}
+.hero .lead,.hero h1{text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.hero h1{font-size:clamp(44px,8.4vw,104px)}
+.hero .cap{position:absolute;right:16px;top:72px;z-index:1;font-size:12.5px;color:rgba(255,240,220,.8);background:rgba(20,15,12,.45);padding:4px 10px;border-radius:999px;max-width:min(70vw,420px)}
+
+/* the trip */
+.trip{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,56px);align-items:start}
+@media (max-width:860px){.trip{grid-template-columns:1fr}}
+.trip p{color:var(--ink-2);margin:0 0 14px;max-width:62ch}
+.when{list-style:none;margin:0;padding:0;border-left:2px solid var(--line-2)}
+.when li{position:relative;padding:0 0 18px 22px}
+.when li::before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--clay)}
+.when b{display:block;font-family:var(--f-display);font-weight:800;font-size:19px;color:var(--gold);line-height:1.2}
+.when span{color:var(--ink-2);font-size:15.5px}
+
+/* rooms */
+.room{padding:clamp(40px,7vw,80px) 0;border-top:1px solid var(--line)}
+.room-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;align-items:baseline;margin-bottom:22px}
+.room-head .no{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,6vw,64px);line-height:.9;color:var(--clay)}
+.room-head h2{font-size:clamp(30px,4.4vw,48px)}
+.room-head p{grid-column:2;color:var(--ink-2);margin:6px 0 0;max-width:64ch}
+@media (max-width:560px){.room-head{grid-template-columns:1fr}.room-head p{grid-column:1}}
+
+.wall{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.wall.wide{grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr))}
+.work{display:flex;flex-direction:column;width:100%;min-width:0;text-align:left;background:none;border:0;padding:0;color:var(--ink)}
+.frame{position:relative;width:100%;border-radius:6px;overflow:hidden;background:#3a2c20;box-shadow:0 0 0 1px rgba(0,0,0,.4),0 0 0 7px #2b2017,0 0 0 8px rgba(227,183,102,.25),0 18px 40px rgba(0,0,0,.45);margin:8px 8px 0;width:calc(100% - 16px)}
+.frame img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease,transform .5s ease}
+.frame img.on{opacity:1}
+.work:hover .frame img{transform:scale(1.03)}
+.frame .miss{position:absolute;inset:0;display:none;place-items:center;padding:16px;text-align:center;font-size:14px;color:var(--muted)}
+.frame.err .miss{display:grid}
+.work .t{display:block;margin:18px 4px 0;font-family:var(--f-display);font-weight:700;font-size:20px;line-height:1.15}
+.work .d{display:block;margin:4px 4px 0;font-size:14px;color:var(--muted)}
+
+/* quote block inside rooms */
+.voice{margin:28px 0 0;padding:18px 22px;border-left:4px solid var(--clay);background:rgba(217,119,54,.09);border-radius:0 14px 14px 0;max-width:760px}
+.voice p{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,2.4vw,26px);line-height:1.25;margin:0}
+.voice cite{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--muted)}
+
+/* reading Catlin */
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.read .card{padding:18px 20px}
+.read b{display:block;font-family:var(--f-display);font-weight:800;font-size:21px;margin-bottom:6px}
+.read p{margin:0;color:var(--ink-2);font-size:15.5px}
+
+/* viewer */
+dialog.viewer{width:min(1180px,100vw);max-width:100vw;max-height:100dvh;margin:auto;padding:0;border:0;background:#141010;color:var(--ink);border-radius:14px;overflow:hidden}
+dialog.viewer::backdrop{background:rgba(8,6,5,.86);backdrop-filter:blur(4px)}
+.vw{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);max-height:min(92dvh,900px)}
+.vw .pic{position:relative;background:#0d0b0a;display:grid;place-items:center;min-height:300px;overflow:hidden;cursor:zoom-in}
+.vw .pic img{max-width:100%;max-height:min(92dvh,900px);object-fit:contain;transition:transform .35s ease;transform-origin:var(--ox,50%) var(--oy,50%)}
+.vw .pic.zoom{cursor:zoom-out}
+.vw .pic.zoom img{transform:scale(2.2)}
+.vw .txt{padding:26px 26px 22px;overflow:auto;max-height:min(92dvh,900px)}
+.vw h3{font-size:clamp(26px,3vw,34px);margin:4px 0 6px}
+.vw .meta{font-size:14px;color:var(--muted);margin:0 0 16px}
+.vw .lab{color:var(--ink-2);margin:0 0 14px}
+.vw blockquote{margin:16px 0;padding:12px 16px;border-left:3px solid var(--clay);background:rgba(217,119,54,.08);border-radius:0 10px 10px 0;color:var(--ink);font-size:16px}
+.vw blockquote small{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+.vw .credit{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:18px}
+.vw .nav{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.vw .x{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:rgba(20,16,14,.8);color:var(--ink);font-size:20px;line-height:1}
+.vw .hint{position:absolute;left:12px;bottom:10px;font-size:12px;color:rgba(255,240,220,.7);background:rgba(0,0,0,.4);padding:3px 9px;border-radius:999px;pointer-events:none}
+@media (max-width:820px){
+  .vw{grid-template-columns:1fr;max-height:none}
+  dialog.viewer{border-radius:0;height:100dvh;max-height:100dvh}
+  dialog.viewer[open]{display:block;overflow:auto}
+  .vw .pic{min-height:0;max-height:60dvh}
+  .vw .pic img{max-height:60dvh}
+  .vw .txt{max-height:none}
+}
+.see{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+.see .card{padding:20px}
+.see b{display:block;font-family:var(--f-display);font-weight:800;font-size:22px;margin-bottom:4px}
+.see p{margin:0 0 10px;color:var(--ink-2);font-size:15.5px}
+</style>
+</head>
+<body>
+<header data-site-top data-page="catlin"></header>
+
+<main>
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <img class="art" id="heroArt" alt="" src="https://ids.si.edu/ids/deliveryService?id=SAAM-1985.66.352_1&max=1800">
+  <p class="cap" id="heroCap" hidden>Catlin, <i>Ta-wa-que-nah, or the Rocky Mountain, Near the Comanche Village</i>, 1834–1835. Smithsonian American Art Museum.</p>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffd7a8">Online exhibit · Paintings by George Catlin</p>
+    <h1 id="pageTitle">Painted in <span class="accent">1834</span></h1>
+    <p class="lead">In July 1834, a column of United States dragoons rode into Comanche country, and a painter from Pennsylvania rode with them. Sick with fever, he stayed near a Comanche village for weeks and painted what he saw: the lodges, the families, the chiefs, and the horsemen. These are among the first paintings of Comanche people made from life.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap trip">
+    <div>
+      <p class="eyebrow">How he got there</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);margin-bottom:16px">A peace mission, a fever, and a sketchbook</h2>
+      <p>George Catlin had already traveled up the Missouri River in 1832, painting the nations he met there. In 1834 he got permission to travel with the First Dragoon Regiment, sent out from Fort Gibson to meet the Comanche, Kiowa, and Wichita and open talks with the United States.</p>
+      <p>The summer was brutal. Fever moved through the column. Catlin later estimated that as many as 150 men died. When the dragoons pushed on toward the Wichita village, Catlin was too sick to ride, and he was left behind with other sick men near the Comanche camp.</p>
+      <p>So he painted. Portraits were made in camp. Many scenes were sketched there and finished later in his studio. Sixteen paintings, on four walls below, show the camp, the horsemen, and the people he met. Tap any painting to see it large.</p>
+    </div>
+    <ol class="when" aria-label="Timeline of the 1834 expedition">
+      <li><b>June 1834</b><span>The dragoons leave Fort Gibson, in what is now eastern Oklahoma. Catlin rides along as a civilian.</span></li>
+      <li><b>July 14</b><span>Comanche riders meet the column under a white flag and lead the soldiers to their village.</span></li>
+      <li><b>Mid-July</b><span>Sick men, Catlin among them, are left near the Comanche camp. The rest march west through the Wichita Mountains.</span></li>
+      <li><b>July 21–22</b><span>Council at the Wichita village, joined by Comanche and Kiowa leaders. Gen. Henry Leavenworth dies the same week.</span></li>
+      <li><b>August</b><span>The survivors straggle back to Fort Gibson.</span></li>
+      <li><b>August 1835</b><span>The talks lead to the Treaty of Camp Holmes, the first treaty between the United States and the Comanche. <a href="../treaties/">See it in the treaties exhibit</a>.</span></li>
+    </ol>
+  </div>
+</section>
+
+<div id="rooms"></div>
+
+<section class="room">
+  <div class="wrap">
+    <div class="room-head"><span class="no">5</span><h2>Reading Catlin carefully</h2>
+      <p>These paintings are a rare record, and they are also one outsider's view, made in a few weeks, alongside an army. Here is what to keep in mind.</p></div>
+    <div class="read">
+      <div class="card"><b>The names are his spellings</b><p>Catlin wrote names the way they sounded to him, then gave his own English translation. They are not modern Comanche spellings, and we have not changed them. If your family knows these names another way, we would like to hear it.</p></div>
+      <div class="card"><b>The words are of his time</b><p>Catlin admired the people he painted and said so often. He also used the language and ideas of an American in 1834. Where we quote him, the words are his, not ours.</p></div>
+      <div class="card"><b>Some scenes were finished later</b><p>The portraits were painted in camp. Many of the larger scenes were sketched there and finished in his studio over the next few years, so details may be arranged for the picture.</p></div>
+      <div class="card"><b>Only a few weeks</b><p>Catlin saw one village, in one summer, while he was sick. The people in these paintings had names, families, and histories far beyond what he wrote down.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="room">
+  <div class="wrap">
+    <div class="room-head"><span class="no">6</span><h2>See them in person</h2>
+      <p>In 1852, deep in debt, Catlin lost his whole Indian Gallery to Joseph Harrison Jr. of Philadelphia, who had lent him money against it. Harrison's widow gave the collection to the Smithsonian in 1879.</p></div>
+    <div class="see">
+      <div class="card"><b>Smithsonian American Art Museum</b><p>Washington, D.C. Most of the Comanche paintings are kept in storage. At our last check, <i>Bow and Quiver</i> was on view in the Luce Foundation Center, third floor. Every painting here links to its museum record.</p><a class="btn" href="https://americanart.si.edu/search?query=catlin%20comanche" rel="noopener">Search the collection ↗</a></div>
+      <div class="card"><b>Comanche National Museum</b><p>Lawton, Oklahoma. Comanche history told by the Comanche Nation, close to the country Catlin painted in 1834. Free admission.</p><a class="btn primary" href="../visit/">Plan a visit</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <h2 style="font-size:28px;margin-bottom:10px">Sources</h2>
+    <ul class="sources">
+      <li>Painting records, dates, sizes, and the Catlin quotations: <a href="https://americanart.si.edu/" rel="noopener">Smithsonian American Art Museum</a>, Gift of Mrs. Joseph Harrison, Jr. Images are marked public domain by the museum.</li>
+      <li>George Catlin, <i>Letters and Notes on the Manners, Customs, and Condition of the North American Indians</i>, vol. 2, letters 41 and 42 (London, 1841).</li>
+      <li>Brad Agnew, "<a href="https://www.okhistory.org/publications/enc/entry?entry=DO004" rel="noopener">Dodge-Leavenworth Expedition</a>," <i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society.</li>
+      <li>William H. Truettner, <i>The Natural Man Observed: A Study of Catlin's Indian Gallery</i> (Smithsonian, 1979).</li>
+    </ul>
+    <div class="more">
+      <a href="../visit/"><b>Visit the museum</b><small>Hours, directions, and a day in Lawton</small></a>
+      <a href="../treaties/"><b>The treaties</b><small>Camp Holmes, 1835, and what came after</small></a>
+      <a href="../camp/"><b>Walk through a camp</b><small>The lodges and racks Catlin painted, up close</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<dialog class="viewer" id="viewer" aria-labelledby="vTitle">
+  <div class="vw">
+    <button class="x" type="button" data-close aria-label="Close">×</button>
+    <div class="pic" id="vPic"><img id="vImg" alt=""><span class="hint">Tap to zoom</span></div>
+    <div class="txt">
+      <p class="eyebrow" id="vRoom"></p>
+      <h3 id="vTitle"></h3>
+      <p class="meta" id="vMeta"></p>
+      <p class="lab" id="vLab"></p>
+      <div id="vQuote"></div>
+      <p class="credit" id="vCredit"></p>
+      <div class="nav"><button class="btn" type="button" data-step="-1">← Previous</button><button class="btn" type="button" data-step="1">Next →</button></div>
+    </div>
+  </div>
+</dialog>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+/* Paintings: titles, dates and object numbers from the Smithsonian American Art Museum.
+   Labels are written for this exhibit. Quotes are Catlin's own, as quoted by the museum. */
+const IMG = (id, max) => `https://ids.si.edu/ids/deliveryService?id=SAAM-${id}&max=${max}`;
+const SAAM = slug => `https://americanart.si.edu/artwork/${slug}`;
+const ROOMS = [
+  { no:1, title:"The meeting", wide:true,
+    intro:"Before there were any talks, there was a meeting on the open prairie. The Comanche came out to the soldiers under a white flag, on their own terms, and led them home.",
+    works:["white-flag","dragoons"] },
+  { no:2, title:"The village", wide:false,
+    intro:"Catlin counted six or eight hundred lodges. He painted women at work on robes and meat, a chief's lodge with his children and dogs, and the whole camp on the move.",
+    works:["rocky","village","lodge","girls","moving"],
+    voice:{ q:"This village with its thousands of wild inmates, with horses and dogs, and wild sports and domestic occupations . . .", c:"George Catlin, Letters and Notes, 1841" } },
+  { no:3, title:"The horsemen", wide:true,
+    intro:"Nothing struck Catlin more than Comanche riders. Every young man trained to hang off the side of a running horse, out of sight of the enemy, and shoot from under its neck.",
+    works:["feats","warparty","sunrise"],
+    voice:{ q:"A stratagem of war, learned and practiced by every young man in the tribe.", c:"George Catlin, on riding along the side of the horse" } },
+  { no:4, title:"The people", wide:false,
+    intro:"Six of the Comanche men Catlin painted that summer. The names are Catlin's spellings and his translations.",
+    works:["bowquiver","mountain","bullsneck","wolf","spaniard","beaver"] }
+];
+const W = {
+  "white-flag": { t:"Comanche Warriors, with White Flag, Receiving the Dragoons", d:"1834–1835", id:"1985.66.353_1-000001", no:"1985.66.353", r:800/652, slug:"comanche-warriors-white-flag-receiving-dragoons-4016",
+    lab:"The Comanche riders formed a line in front of the soldiers, with a white flag carried forward on a lance. Look at how quickly the figures are brushed in. Catlin was working fast, from a scene that only lasted minutes.",
+    q:"As they wheeled their horses, they very rapidly formed in a line, and 'dressed' like well-disciplined cavalry." },
+  "dragoons": { t:"Comanche Meeting the Dragoons", d:"1834–1835", id:"1985.66.488_1", no:"1985.66.488", r:800/652, slug:"comanche-meeting-dragoons-4009",
+    lab:"One rider came out alone on a white horse, with a piece of white buffalo skin on the point of his lance in answer to the soldiers' flag. He rode up, touched his lance to their flag, looked the bearer in the face, and then rode to Colonel Dodge and shook his hand.",
+    q:"This moment was the commencement of one of the most thrilling and beautiful scenes I ever witnessed." },
+  "rocky": { t:"Ta-wa-que-nah, or the Rocky Mountain, Near the Comanche Village", d:"1834–1835", id:"1985.66.352_1", no:"1985.66.352", r:800/528, slug:"node/15338", raw:true,
+    lab:"Comanche guides pointed out their village from miles away, set in a valley with granite mountains beyond. The museum calls this the most accurate landscape in Catlin's southern plains series. The mountain shares a name with the second chief, Mountain of Rocks, on the fourth wall.",
+    q:"" },
+  "village": { t:"Comanche Village, Women Dressing Robes and Drying Meat", d:"1834–1835", id:"1985.66.346_1", no:"1985.66.346", r:800/528, slug:"collections/search/artwork/?id=4011", raw:true,
+    lab:"Women stretch and scrape buffalo hides into robes, and strips of meat hang on racks to dry. Catlin said he painted only a small part of the village, because the lodges and the work looked the same all through it.",
+    q:"Six or eight hundred skin-covered lodges, made of poles and buffalo skins." },
+  "lodge": { t:"Comanche Lodge of Buffalo Skins", d:"1834–1835", id:"1985.66.493_1", no:"1985.66.493", r:800/659, slug:"comanche-lodge-buffalo-skins-4008",
+    lab:"Horses changed how people lived. Before them, dogs dragged the poles and covers, and lodges had to be small. With horses, Comanche families could carry bigger, heavier lodges across the plains. The rider arriving here is Little Spaniard, whose portrait is on the fourth wall.",
+    q:"" },
+  "girls": { t:"Two Comanche Girls", d:"1834", id:"1985.66.53-54_1", no:"1985.66.53-54", r:799/654, slug:"two-comanche-girls-4421",
+    lab:"Catlin painted these girls outside a chief's lodge. He wrote that the scene showed the chief's lodge, his dogs, and his five children.",
+    q:"A rich subject for the brush and the pen." },
+  "moving": { t:"Comanche Moving Camp, Dog Fight Enroute", d:"1834–1835", id:"1985.66.466_1", no:"1985.66.466", r:800/521, slug:"comanche-moving-camp-dog-fight-enroute-4010",
+    lab:"A whole camp on the move: horses dragging lodge poles, dogs pulling loads, women carrying the rest. Catlin saw a dog fight break out in the crowd, spread to the women who owned the dogs, and set the men laughing.",
+    q:"So many dogs, and so many [women], are traveling in such a confused mass." },
+  "feats": { t:"Comanche Feats of Horsemanship", d:"1834–1835", id:"1985.66.487_1", no:"1985.66.487", r:800/663, slug:"collections/search/artwork?id=4004", raw:true,
+    lab:"The rider drops his body to the side of a running horse, so the horse shields him from enemy fire. From there he can use his bow, his shield, or a lance about fourteen feet long, shooting over or under the horse's neck.",
+    q:"A stratagem of war, learned and practiced by every young man in the tribe." },
+  "warparty": { t:"Comanche War Party, Mounted on Wild Horses", d:"1834–1837", id:"1985.66.496_1", no:"1985.66.496", r:800/557, slug:"comanche-war-party-mounted-wild-horses-4013",
+    lab:"A war party on the move. Catlin probably painted this one in his studio after he got home, working from his sketches and memory.",
+    q:"" },
+  "sunrise": { t:"Comanche War Party, Chief Discovering the Enemy and Urging his Men at Sunrise", d:"1834–1835", id:"1985.66.459_1", no:"1985.66.459", r:800/524, slug:"node/14933", raw:true,
+    lab:"A chief spots the enemy at first light and turns to rally his riders. Catlin likely painted it the winter after the expedition, from what he had seen and heard that summer.",
+    q:"" },
+  "bowquiver": { t:"Eé-shah-kó-nee, Bow and Quiver, First Chief of the Tribe", d:"1834", id:"1985.66.46_1", no:"1985.66.46", r:652/800, slug:"ee-shah-ko-nee-bow-and-quiver-first-chief-tribe-3935",
+    lab:"Catlin called Bow and Quiver the first chief. He was struck by how plainly he dressed: hair worn loose, few ornaments, nothing to set him apart. This portrait was made before the United States had any military control of the southern plains.",
+    q:"Pleasant looking . . . without anything striking or peculiar in his looks." },
+  "mountain": { t:"Ta-wáh-que-nah, Mountain of Rocks, Second Chief of the Tribe", d:"1834", id:"1985.66.47_1", no:"1985.66.47", r:655/800, slug:"ta-wah-que-nah-mountain-rocks-second-chief-tribe-4278",
+    lab:"Mountain of Rocks welcomed Catlin at his village. Catlin was told the name came from a time he led his people through a hidden passage inside the granite mountain behind the village, escaping a stronger enemy.",
+    q:"With great kindness at his village." },
+  "bullsneck": { t:"Kots-o-kó-ro-kó, Hair of the Bull's Neck, a Chief", d:"1834", id:"1985.66.49_1", no:"1985.66.49", r:648/800, slug:"kots-o-ko-ro-ko-hair-bulls-neck-chief-4083",
+    lab:"Catlin listed Hair of the Bull's Neck as a chief and painted him at the village in 1834. Beyond the portrait and the name, Catlin wrote little about him.",
+    q:"" },
+  "wolf": { t:"Is-sa-wáh-tám-ah, Wolf Tied with Hair, a Chief", d:"1834", id:"1985.66.50_1", no:"1985.66.50", r:654/800, slug:"sa-wah-tam-ah-wolf-tied-hair-chief-4474",
+    lab:"Wolf Tied with Hair holds a pipe. Catlin used the portrait to write about pipes, which were made with great care and skill because smoking together mattered so much.",
+    q:"As smoking is a luxury so highly valued by the Indians . . ." },
+  "spaniard": { t:"His-oo-sán-chees, Little Spaniard, a Warrior", d:"1834", id:"1985.66.51_1", no:"1985.66.51", r:653/800, slug:"his-oo-san-chees-little-spaniard-warrior-4213",
+    lab:"Little Spaniard was part Spanish and part Comanche, and he was one of the leading warriors of the tribe, often first into a fight. Catlin painted him full length with his shield, quiver, and a lance about fourteen feet long. He is the rider in <i>Comanche Lodge of Buffalo Skins</i>.",
+    q:"This extraordinary little man, whose figure was light, seemed to be all bone and muscle." },
+  "beaver": { t:"Háh-nee, The Beaver, a Warrior", d:"1834", id:"1985.66.52_1", no:"1985.66.52", r:651/800, slug:"collections/search/artwork/?id=3908", raw:true,
+    lab:"Catlin knew Beaver as a warrior with a reputation in the tribe, and painted him at the village that summer.",
+    q:"A warrior of terrible aspect, and also of considerable distinction." }
+};
+const ORDER = ROOMS.flatMap(r => r.works);
+const roomOf = k => ROOMS.find(r => r.works.includes(k));
+const link = w => w.raw ? `https://americanart.si.edu/${w.slug}` : SAAM(w.slug);
+const escA = s => String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+
+document.getElementById("rooms").innerHTML = ROOMS.map(r => `
+<section class="room" aria-labelledby="room${r.no}">
+  <div class="wrap">
+    <div class="room-head"><span class="no">${r.no}</span><h2 id="room${r.no}">${r.title}</h2><p>${r.intro}</p></div>
+    <div class="wall${r.wide ? " wide" : ""}">
+      ${r.works.map(k => { const w = W[k]; return `<button class="work" type="button" data-k="${k}" aria-label="${escA(w.t)}, ${w.d}. Open painting.">
+        <span class="frame" style="aspect-ratio:${w.r.toFixed(3)}"><img loading="lazy" decoding="async" alt="${escA(w.t)}, painted by George Catlin" src="${IMG(w.id, 800)}"><span class="miss">The painting could not load right now. It is on the Smithsonian's site.</span></span>
+        <span class="t">${w.t}</span><span class="d">${w.d}</span></button>`; }).join("")}
+    </div>
+    ${r.voice ? `<blockquote class="voice"><p>“${r.voice.q}”</p><cite>${r.voice.c}</cite></blockquote>` : ""}
+  </div>
+</section>`).join("");
+
+/* fade images in when they load; show a note if they can't */
+const watch = img => {
+  const done = () => img.classList.add("on");
+  if (img.complete && img.naturalWidth) done(); else { img.addEventListener("load", done); img.addEventListener("error", () => img.parentElement.classList.add("err")); }
+};
+document.querySelectorAll(".frame img").forEach(watch);
+
+/* hero painting, with the painted plains behind it if the image can't load */
+const art = document.getElementById("heroArt");
+const showArt = () => { art.classList.add("on"); document.getElementById("heroCap").hidden = false; };
+if (art.complete && art.naturalWidth) showArt(); else art.addEventListener("load", showArt);
+(function(){
+  const cv = document.getElementById("heroCv"), ctx = cv.getContext("2d");
+  const o = { biome:"granite", season:1, tod:.33, herd:true, camp:true, caravan:false, scroll:0, t:0, seed:18 };
+  let w = 0, h = 0, last = 0;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(cv); fit();
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; o.t += dt;
+    if (w && !art.classList.contains("on")) paintScene(ctx, w, h, o);
+    if (!art.classList.contains("on")) requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})();
+
+/* viewer */
+const dlg = document.getElementById("viewer"), pic = document.getElementById("vPic"), vImg = document.getElementById("vImg");
+let cur = null;
+function show(k){
+  const w = W[k], r = roomOf(k); cur = k;
+  pic.classList.remove("zoom");
+  vImg.src = IMG(w.id, 800); vImg.alt = `${w.t}, painted by George Catlin`;
+  const big = new Image(); big.onload = () => { if (cur === k) vImg.src = big.src; }; big.src = IMG(w.id, 2000);
+  document.getElementById("vRoom").textContent = `Wall ${r.no} · ${r.title}`;
+  document.getElementById("vTitle").textContent = w.t;
+  document.getElementById("vMeta").textContent = `George Catlin · ${w.d} · oil on canvas`;
+  document.getElementById("vLab").innerHTML = w.lab;
+  document.getElementById("vQuote").innerHTML = w.q ? `<blockquote>“${w.q}”<small>George Catlin, Letters and Notes, 1841</small></blockquote>` : "";
+  document.getElementById("vCredit").innerHTML = `Smithsonian American Art Museum, Gift of Mrs. Joseph Harrison, Jr., ${w.no}. <a href="${link(w)}" rel="noopener">Museum record ↗</a>`;
+  history.replaceState(null, "", "#" + k);
+}
+document.getElementById("rooms").addEventListener("click", e => { const b = e.target.closest("[data-k]"); if (!b) return; show(b.dataset.k); dlg.showModal(); });
+dlg.addEventListener("click", e => {
+  if (e.target === dlg || e.target.closest("[data-close]")) return dlg.close();
+  const s = e.target.closest("[data-step]");
+  if (s){ const i = (ORDER.indexOf(cur) + Number(s.dataset.step) + ORDER.length) % ORDER.length; show(ORDER[i]); }
+});
+pic.addEventListener("click", e => {
+  const b = vImg.getBoundingClientRect();
+  vImg.style.setProperty("--ox", ((e.clientX - b.left) / b.width * 100) + "%");
+  vImg.style.setProperty("--oy", ((e.clientY - b.top) / b.height * 100) + "%");
+  pic.classList.toggle("zoom");
+});
+document.addEventListener("keydown", e => {
+  if (!dlg.open) return;
+  if (e.key === "ArrowRight" || e.key === "ArrowLeft"){ const i = (ORDER.indexOf(cur) + (e.key === "ArrowRight" ? 1 : -1) + ORDER.length) % ORDER.length; show(ORDER[i]); }
+});
+dlg.addEventListener("close", () => history.replaceState(null, "", location.pathname));
+if (location.hash && W[location.hash.slice(1)]){ show(location.hash.slice(1)); dlg.showModal(); }
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>
