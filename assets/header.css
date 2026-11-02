@@ -1,0 +1,36 @@
+/* numunuu.com shared site header. Self-contained (fixed colors and fonts) so every page,
+   including the homepage, the game, and the treaties exhibit, gets the same header. */
+.site-top{position:sticky;top:0;z-index:50;background:rgba(28,22,18,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(243,234,219,.13);font-family:"Fira Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;color:#f3eadb}
+.site-top .wrap{width:100%;max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:18px;height:56px;box-sizing:border-box;
+  padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+.site-top .brand{font-family:"Fira Sans Condensed","Fira Sans",system-ui,sans-serif;font-weight:800;font-size:21px;text-decoration:none;color:#f3eadb;white-space:nowrap;letter-spacing:.01em;border:0}
+.site-top .brand .u{color:#d97736}
+.site-top nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.site-top nav a{white-space:nowrap;text-decoration:none;color:#d9ccb8;font-size:14.5px;font-weight:500;padding:6px 10px;border-radius:999px;border:0}
+.site-top nav a:hover{color:#f3eadb;background:rgba(255,255,255,.06)}
+.site-top nav a[aria-current="page"]{color:#f3eadb;background:rgba(217,119,54,.2)}
+.site-top :focus-visible{outline:2px solid #e3b766;outline-offset:2px}
+.exmenu{position:relative}
+.exmenu summary{list-style:none;cursor:pointer;white-space:nowrap;color:#d9ccb8;font-size:14.5px;font-weight:500;padding:6px 10px;border-radius:999px}
+.exmenu summary::-webkit-details-marker{display:none}
+.exmenu summary::after{content:"";display:inline-block;width:6px;height:6px;margin-left:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg)}
+.exmenu[open] summary,.exmenu summary:hover{color:#f3eadb;background:rgba(255,255,255,.06)}
+.exmenu summary.cur{color:#f3eadb;background:rgba(217,119,54,.2)}
+.exlist{position:absolute;right:0;top:calc(100% + 8px);min-width:250px;display:grid;padding:8px;background:#231b16;border:1px solid rgba(243,234,219,.24);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.45);z-index:60}
+.exlist a{border-radius:9px;padding:9px 12px!important}
+.exlist a.mob{display:none;border-top:1px solid rgba(243,234,219,.13);border-radius:0}
+@media (max-width:640px){
+  .site-top .wrap{gap:10px}
+  .site-top .brand{font-size:19px}
+  .site-top nav a,.exmenu summary{font-size:13.5px;padding:6px 7px}
+  .site-top nav > a[href*="dictionary"],.site-top nav > a[href$="herd/"]{display:none}
+  .exlist{position:fixed;left:12px;right:12px;top:62px;min-width:0}
+  .exlist a.mob{display:block}
+}
+
+/* shared site footer */
+.site-foot{border-top:1px solid rgba(243,234,219,.13);color:#a8997f;font-family:"Fira Sans",system-ui,sans-serif;font-size:14px;line-height:1.55;margin-top:40px}
+.site-foot .wrap{width:100%;max-width:1120px;margin:0 auto;box-sizing:border-box;padding:22px max(16px,env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.site-foot p{margin:0;max-width:72ch}
+.site-foot a{color:#e3b766}

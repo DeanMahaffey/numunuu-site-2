@@ -10,12 +10,12 @@
   ];
   const top = document.querySelector("[data-site-top]");
   if (top){
-    const cur = top.dataset.page, inEx = EXHIBITS.some(([p]) => p === cur);
-    const a = ([p, l]) => `<a href="../${p}/"${p === cur ? ' aria-current="page"' : ""}>${l}</a>`;
+    const cur = top.dataset.page, inEx = EXHIBITS.some(([p]) => p === cur), B = cur === "home" ? "" : "../";
+    const a = ([p, l]) => `<a href="${B}${p}/"${p === cur ? ' aria-current="page"' : ""}>${l}</a>`;
     top.className = "site-top";
-    top.innerHTML = `<div class="wrap"><a class="brand" href="../">N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span></a>
+    top.innerHTML = `<div class="wrap"><a class="brand" href="${B || "./"}" aria-label="numunuu.com home">N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span></a>
       <nav aria-label="numunuu.com">${MAIN.map(a).join("")}
-      <details class="exmenu"><summary${inEx ? ' class="cur"' : ""}>Exhibits</summary><div class="exlist">${EXHIBITS.map(a).join("")}<a class="mob" href="../herd/">Follow the Herd (game)</a><a class="mob" href="https://dictionary.numunuu.com">Dictionary ↗</a></div></details>
+      <details class="exmenu"><summary${inEx ? ' class="cur"' : ""}>Exhibits</summary><div class="exlist">${EXHIBITS.map(a).join("")}<a class="mob" href="${B}herd/">Follow the Herd (game)</a><a class="mob" href="https://dictionary.numunuu.com">Dictionary ↗</a></div></details>
       ${a(["visit", "Visit"])}<a href="https://dictionary.numunuu.com">Dictionary ↗</a></nav></div>`;
     const d = top.querySelector(".exmenu");
     document.addEventListener("click", e => { if (d.open && !d.contains(e.target)) d.open = false; });
@@ -60,7 +60,7 @@
   document.querySelectorAll("[data-count]").forEach((el) => co.observe(el));
   /* tilt: cards lean toward the pointer */
   if (!matchMedia("(hover: hover)").matches) return;
-  const TILT = ".more a,.hist a,.preview,.tl,.plant,.goal,.code,.prep a";
+  const TILT = ".more a,.hist a,.preview,a.tl,.plant,.goal,.code,.prep a";
   let cur = null;
   document.addEventListener("pointermove", (e) => {
     const el = e.target.closest && e.target.closest(TILT);

@@ -23,8 +23,8 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Inter for UI; Gentium Book Plus for display (full support for barred-u ʉ / Ʉ) -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/header.css">
 <style>
 /* =====================================================================
    DESIGN TOKENS
@@ -32,21 +32,21 @@
    tuned in one place.
    ===================================================================== */
 :root{
-  --bg:#121214;          /* deep charcoal page */
-  --surface:#1a1a22;     /* parchment-dark card surface */
-  --surface-2:#20202a;   /* raised surface (hover, inputs) */
-  --border:#2a2a36;      /* hairlines */
-  --border-2:#3a3a4a;
-  --ink:#ece6dc;         /* warm off-white body text */
-  --ink-2:#c9c2b6;
-  --muted:#9090a0;       /* gray-blue metadata */
+  --bg:#1c1612;          /* warm dark page, same as the rest of numunuu.com */
+  --surface:#2a211b;     /* card surface */
+  --surface-2:#33281f;   /* raised surface (hover, inputs) */
+  --border:rgba(243,234,219,.13);
+  --border-2:rgba(243,234,219,.24);
+  --ink:#f3eadb;
+  --ink-2:#d9ccb8;
+  --muted:#a8997f;
   --clay:#d97736;        /* terracotta accent */
   --clay-soft:rgba(217,119,54,.14);
   --crimson:#e05252;     /* violations */
   --crimson-soft:rgba(224,82,82,.12);
-  --gold:#d4a373;        /* kept terms */
+  --gold:#e3b766;        /* kept terms */
   --gold-soft:rgba(212,163,115,.13);
-  --slate:#9090a0;       /* unratified / unknown */
+  --slate:#a39a8c;       /* unratified / unknown */
   --slate-soft:rgba(144,144,160,.13);
 
   /* Fira Sans Condensed for display, Fira Sans for everything else (both include ʉ) */
@@ -54,14 +54,14 @@
   --f-ui:"Fira Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"Fira Sans",system-ui,sans-serif;
 
-  --r:10px;
-  --header-h:60px;
+  --r:14px;
+  --header-h:56px;
   color-scheme:dark;
 }
 
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6;
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:16px;line-height:1.6;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:var(--clay)}
 button{font:inherit;color:inherit}
@@ -70,35 +70,23 @@ button{font:inherit;color:inherit}
 .mono{font-family:var(--f-mono)}
 
 /* =====================================================================
-   HEADER
+   HERO: painted banner, same as the other numunuu.com pages
    ===================================================================== */
-.site-header{position:sticky;top:0;z-index:20;height:var(--header-h);background:rgba(18,18,20,.92);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.site-header .in{max-width:1400px;margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;
-  padding:0 max(16px,env(safe-area-inset-left))}
-.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
-.brand b{font-family:var(--f-display);font-weight:700;font-size:21px;letter-spacing:.01em}
-.brand b .u{color:var(--clay)}
-.brand > span{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.nav{display:flex;gap:4px;align-items:center}
-.nav a,.nav button{background:none;border:1px solid transparent;border-radius:999px;padding:6px 12px;font-size:13.5px;
-  color:var(--ink-2);text-decoration:none;cursor:pointer}
-.nav a:hover,.nav button:hover{border-color:var(--border-2);color:var(--ink)}
-.brand b,.nav a,.nav button{white-space:nowrap}
-@media (max-width:1180px){.brand > span{display:none}}
-@media (max-width:900px){.nav .hide-sm{display:none}}
-@media (max-width:560px){.brand > span{display:none}.nav .hide-sm{display:none}.brand b{font-size:18px}.nav a,.nav button{padding:6px 8px}}
-
-/* =====================================================================
-   HERO
-   ===================================================================== */
-.hero{max-width:1400px;margin:0 auto;padding:36px max(16px,env(safe-area-inset-left)) 22px}
-.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin:0 0 10px}
-.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,4.6vw,54px);line-height:1.05;margin:0;letter-spacing:-.01em}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero p.lede{max-width:72ch;color:var(--ink-2);margin:14px 0 0;font-size:16px}
-.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
-.stats b{display:block;font-family:var(--f-display);font-size:26px;font-weight:400;color:var(--ink);line-height:1.1}
+.hero{position:relative;min-height:min(70vh,640px);display:flex;align-items:flex-end;overflow:hidden;margin-bottom:22px;
+  background:#2a211b url("../assets/img/treaties-hero.jpg") center 60%/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,rgba(28,22,18,.72) 34%,rgba(28,22,18,.18) 72%,rgba(28,22,18,0) 100%);pointer-events:none}
+.hero .in{position:relative;z-index:1;width:100%;max-width:1400px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-left)) clamp(26px,5vh,48px)}
+.eyebrow{font-size:14px;font-weight:600;color:var(--clay);margin:0 0 8px}
+.hero .eyebrow{color:#ffd7a8}
+.hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(42px,7.4vw,96px);line-height:.92;margin:0;letter-spacing:-.01em;text-transform:uppercase;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.hero h1 em{font-style:normal;color:#ffcf96;display:block}
+.hero p.lede{max-width:66ch;color:#f6ebdc;margin:16px 0 0;font-size:clamp(17px,1.9vw,20px);text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.hero-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 28px;margin-top:22px}
+.stats{display:flex;flex-wrap:wrap;gap:10px 30px;font-size:13px;color:#e8dcc8}
+.stats b{display:block;font-family:var(--f-display);font-weight:800;font-size:30px;color:#ffcf96;line-height:1.05}
+.aboutbtn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:1px solid rgba(255,255,255,.3);background:rgba(28,22,18,.6);
+  color:#f3eadb;font-weight:600;font-size:14.5px;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.aboutbtn:hover{border-color:#e3b766}
 
 /* =====================================================================
    LAYOUT: left rail timeline + main inspector
@@ -310,27 +298,22 @@ dialog::backdrop{background:rgba(6,6,8,.72);backdrop-filter:blur(3px)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;z-index:50;
   background:var(--ink);color:#141416;padding:9px 16px;border-radius:999px;font-size:13.5px;font-weight:500;transition:.2s}
 .toast.on{opacity:1;transform:translateX(-50%)}
-footer{border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
-footer .in{max-width:1400px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
-footer p{margin:0;max-width:80ch}
+.credits{max-width:1400px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left)) 10px;color:var(--muted);font-size:13.5px}
+.credits p{margin:0;max-width:90ch}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* =====================================================================
    POSTER TYPOGRAPHY (matches Follow the Herd)
    Heavy condensed headings, sentence-case labels, no italics.
    ===================================================================== */
-.brand b,.hero h1,.ins-head h2,.tl .yr,.stats b,.modal-in h2,.cell .bn,.sig .rec{font-weight:800;letter-spacing:-.01em}
-.hero h1{font-size:clamp(34px,5vw,60px);line-height:1}
-.hero h1 em{font-style:normal}
-.brand > span,.eyebrow,.rail-head h2,.era,.badge,.facts dt,.panel h3,.audit-head,.audit-row .lbl,.audit-row .art,.verdict b,.terms .a,
+.ins-head h2,.tl .yr,.stats b,.modal-in h2,.cell .bn,.sig .rec{font-weight:800;letter-spacing:-.01em}
+.eyebrow,.rail-head h2,.era,.badge,.facts dt,.panel h3,.audit-head,.audit-row .lbl,.audit-row .art,.verdict b,.terms .a,
 .sig .orth.pending,.sig .band,.cell .st,.legend,.src li small,.basis,.stats,.tab .n,.chip .n,.blockquote cite,blockquote.q cite,.mono{
   font-family:var(--f-ui);text-transform:none;letter-spacing:0}
 .eyebrow{font-size:14px;font-weight:600}
 .rail-head h2,.panel h3,.facts dt,.audit-head{font-size:13px;font-weight:600}
 .era,.badge,.basis{font-size:12px;font-weight:600}
 .audit-row .lbl,.verdict b,.terms .a,.cell .st,.src li small{font-size:12.5px;font-weight:600}
-.stats{font-size:13px}
-.stats b{font-family:var(--f-display);font-size:30px}
 .summary{font-family:var(--f-ui);font-size:18px;line-height:1.55}
 blockquote.q p{font-family:var(--f-ui);font-style:normal;font-size:18px;font-weight:500}
 .sig .rec{font-size:19px}
@@ -350,34 +333,19 @@ blockquote.q p{font-family:var(--f-ui);font-style:normal;font-size:18px;font-wei
 </head>
 <body>
 
-<!-- ============================ HEADER ============================ -->
-<header class="site-header">
-  <div class="in">
-    <a class="brand" href="../" aria-label="numunuu.com home">
-      <b>N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span> Treaties</b>
-      <span>Ink &amp; Sovereignty</span>
-    </a>
-    <nav class="nav" aria-label="Site">
-      <a class="hide-sm" href="../map/">Map</a>
-      <a class="hide-sm" href="../timeline/">Timeline</a>
-      <a href="../herd/">Game</a>
-      <a class="hide-sm" href="../stories/">Stories</a>
-      <a class="hide-sm" href="../codetalkers/">Code Talkers</a>
-      <a class="hide-sm" href="../catlin/">Paintings</a>
-      <a class="hide-sm" href="../quanah/">Quanah</a>
-      <a class="hide-sm" href="../visit/">Visit</a>
-      <a href="https://dictionary.numunuu.com" target="_blank" rel="noopener">Dictionary</a>
-      <button type="button" id="aboutBtn" aria-haspopup="dialog">About<span class="hide-sm"> the Project</span></button>
-    </nav>
-  </div>
-</header>
+<header data-site-top data-page="treaties"></header>
 
 <!-- ============================ HERO ============================ -->
 <section class="hero" aria-labelledby="pageTitle">
-  <p class="eyebrow">A forensic exhibit · 1786–1892</p>
-  <h1 id="pageTitle">The Comanche Treaties: <em>Ink &amp; Sovereignty</em></h1>
-  <p class="lede">Eleven treaties and accords between the Nʉmʉnʉʉ and Spain, the Republic of Texas, German colonists, and the United States. Each one is read twice: once for what the paper promised, once for what happened on the ground.</p>
-  <div class="stats" id="stats" aria-label="Exhibit summary"></div>
+  <div class="in">
+    <p class="eyebrow">An exhibit · 1786–1892</p>
+    <h1 id="pageTitle">The Comanche Treaties <em>Ink &amp; Sovereignty</em></h1>
+    <p class="lede">Eleven treaties and accords between the Nʉmʉnʉʉ and Spain, the Republic of Texas, German colonists, and the United States. Each one is read twice: once for what the paper promised, once for what happened on the ground.</p>
+    <div class="hero-row">
+      <div class="stats" id="stats" aria-label="Exhibit summary"></div>
+      <button type="button" class="aboutbtn" id="aboutBtn" aria-haspopup="dialog">About this exhibit</button>
+    </div>
+  </div>
 </section>
 
 <!-- ============================ APP ============================ -->
@@ -400,12 +368,8 @@ blockquote.q p{font-family:var(--f-ui);font-style:normal;font-size:18px;font-wei
   <main class="inspector" id="inspector" aria-live="polite"></main>
 </div>
 
-<footer>
-  <div class="in">
-    <p>Treaty texts: Oklahoma State University Libraries, Tribal Treaties Database (Kappler, <i>Indian Affairs: Laws and Treaties</i>). Signer names are reproduced exactly as the clerks wrote them. Comanche spellings are shown only once reviewed against a published Comanche dictionary.</p>
-    <p><a href="https://dictionary.numunuu.com">dictionary.numunuu.com</a></p>
-  </div>
-</footer>
+<div class="credits"><p>Treaty texts: Oklahoma State University Libraries, Tribal Treaties Database (Kappler, <i>Indian Affairs: Laws and Treaties</i>). Signer names are reproduced exactly as the clerks wrote them. Comanche spellings are shown only once reviewed against a published Comanche dictionary.</p></div>
+<footer data-site-foot></footer>
 
 <!-- ============================ ABOUT MODAL ============================ -->
 <dialog id="about" aria-labelledby="aboutTitle">
@@ -1325,10 +1289,7 @@ select(TREATIES.some(t => t.id === location.hash.slice(1)) ? location.hash.slice
 </script>
 <script>
 /* Opened from your computer (file://)? Make folder links open their index.html. On the live site this does nothing. */
-if (location.protocol === "file:") document.querySelectorAll("a[href]").forEach(a => {
-  const h = a.getAttribute("href"); if (/^(https?:|mailto:|#)/.test(h)) return;
-  if (h.endsWith("/")) a.setAttribute("href", h + "index.html");
-});
 </script>
+<script src="../assets/site.js"></script>
 </body>
 </html>
