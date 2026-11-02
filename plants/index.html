@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plants of the Comanchería · Nʉmʉnʉʉ</title>
+<meta name="description" content="An illustrated field guide to the plants Comanche people ate, built with, and used as medicine on the southern plains.">
+<meta property="og:title" content="Plants of the Comanchería">
+<meta property="og:description" content="Mesquite, wild plums, pecans, bois d'arc and more: an illustrated field guide from numunuu.com.">
+<meta property="og:url" content="https://numunuu.com/plants/">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.filterbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:26px 0 16px}
+.filterbar .grp{display:flex;flex-wrap:wrap;gap:6px}
+.filterbar input{background:var(--card);border:1px solid var(--line-2);border-radius:999px;color:var(--ink);padding:8px 14px;font:inherit;font-size:15px;min-width:200px;flex:1;max-width:320px}
+.filterbar input::placeholder{color:var(--muted)}
+.count{font-size:14px;color:var(--muted);margin-left:auto}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.plant{display:flex;flex-direction:column;text-align:left;padding:0;overflow:hidden;background:#efe4cc;color:#2a1d13;border:0;border-radius:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .15s}
+.plant:hover{transform:translateY(-3px)}
+.plant .art{background:radial-gradient(ellipse at 50% 40%,#f7efdc,#e6d6b6);aspect-ratio:4/3;display:grid;place-items:center;border-bottom:1px solid rgba(60,40,20,.15)}
+.plant .art svg{width:86%;height:86%}
+.plant .txt{padding:12px 14px 14px}
+.plant h3{font-size:24px;color:#2a1d13}
+.plant .sci{font-style:italic;font-size:13.5px;color:#6b5640}
+.plant .uses{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.tg{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;line-height:1.5}
+.tg.food{background:#e8c79a;color:#5a3410}.tg.tools{background:#cdd6c0;color:#2f4220}.tg.medicine{background:#d6c8e0;color:#3e2a52}
+.plant .one{font-size:14.5px;color:#4a3a2a;margin:8px 0 0;line-height:1.45}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+
+dialog{border:0;padding:0;border-radius:18px;background:#efe4cc;color:#2a1d13;width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 32px)}
+dialog::backdrop{background:rgba(10,7,5,.7);backdrop-filter:blur(3px)}
+.dlg{display:grid;grid-template-columns:280px 1fr}
+@media (max-width:680px){.dlg{grid-template-columns:1fr}}
+.dlg .art{background:radial-gradient(ellipse at 50% 40%,#f7efdc,#e3d0ab);display:grid;place-items:center;min-height:240px}
+.dlg .art svg{width:88%}
+.dlg .body{padding:22px 22px 20px;overflow-y:auto}
+.dlg h2{font-size:36px;color:#2a1d13}
+.dlg .sci{font-style:italic;color:#6b5640}
+.dlg h4{margin:16px 0 4px;font-size:14px;color:#8a5a2c}
+.dlg p{margin:0 0 8px;color:#3a2a1c;font-size:16px}
+.dlg ul{margin:0;padding-left:18px;color:#3a2a1c}
+.dlg li{margin:4px 0}
+.dlg .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+.dlg .meta div{background:rgba(90,60,30,.08);border-radius:10px;padding:8px 10px;font-size:14px}
+.dlg .meta b{display:block;font-size:12px;color:#8a5a2c}
+.dlg .close{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(40,25,10,.12);color:#2a1d13;font-size:18px}
+.dlg .warn{margin-top:12px;font-size:13.5px;background:rgba(120,70,140,.1);border-radius:10px;padding:8px 10px;color:#4a3360}
+.dlg .game{margin-top:12px;font-size:14.5px}
+.dlg .game a{color:#9e4a2c;font-weight:600}
+</style>
+</head>
+<body>
+<header data-site-top data-page="plants"></header>
+
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffd7a8">Life on the plains</p>
+    <h1 id="pageTitle">Plants of the <span class="accent">Comanchería</span></h1>
+    <p class="lead">Buffalo fed the body, but the land fed everything else. Bows from bois d'arc, arrows from dogwood, meal from mesquite pods, plums for pemmican, and medicine from the prairie. Most of this knowledge was carried by women.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="filterbar" role="search">
+    <div class="grp" role="group" aria-label="Filter by use">
+      <button class="chip" data-use="all" aria-pressed="true">All</button>
+      <button class="chip" data-use="food" aria-pressed="false">Food</button>
+      <button class="chip" data-use="tools" aria-pressed="false">Tools</button>
+      <button class="chip" data-use="medicine" aria-pressed="false">Medicine</button>
+    </div>
+    <div class="grp" role="group" aria-label="Filter by season">
+      <button class="chip" data-season="all" aria-pressed="true">Any season</button>
+      <button class="chip" data-season="Spring" aria-pressed="false">Spring</button>
+      <button class="chip" data-season="Summer" aria-pressed="false">Summer</button>
+      <button class="chip" data-season="Fall" aria-pressed="false">Fall</button>
+    </div>
+    <input id="q" type="search" placeholder="Search plants" aria-label="Search plants">
+    <span class="count" id="count" aria-live="polite"></span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <section class="section">
+    <div class="note"><b>About these uses</b>The uses on this page were recorded from Comanche elders in the 1930s by Gustav Carlson and Volney Jones, and are summarized in later National Park Service research. They are history, not medical advice. Some plants with ceremonial or private uses are deliberately left out of this guide.</div>
+    <ul class="sources" style="margin-top:16px;padding-left:18px">
+      <li>Gustav G. Carlson and Volney H. Jones, "Some Notes on Uses of Plants by the Comanche Indians," <i>Papers of the Michigan Academy of Science, Arts and Letters</i> 25 (1940)</li>
+      <li><a href="https://files.cfc.umt.edu/cesu/NPS/UMT/2004/Campbell_Etnobotony%20Report/chaptereight.pdf">National Park Service ethnobotany report, chapter 8 (plant uses with sources)</a></li>
+      <li>Daniel E. Moerman, <i>Native American Ethnobotany</i> (Timber Press, 1998)</li>
+    </ul>
+    <div class="more">
+      <a href="../camp/"><b>Walk Through a Camp</b><small>See the bows, racks, and tanned hides these plants went into</small></a>
+      <a href="../herd/"><b>Follow the Herd</b><small>Gather plums, pecans, and mesquite beans to feed your band</small></a>
+    </div>
+  </section>
+</main>
+
+<dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+"use strict";
+/* =======================================================================
+   PLANTS
+   Uses from Carlson & Jones (1940) as summarized in the NPS ethnobotany
+   report. art: illustration recipe (see drawPlant below).
+   ======================================================================= */
+const PLANTS = [
+  { id:"mesquite", name:"Honey mesquite", sci:"Prosopis glandulosa", uses:["food","medicine"], seasons:["Summer"],
+    one:"Sweet pods pounded into meal.", where:"Dry flats and draws across the southern Comanchería, thickest toward Big Spring and the Texas plains.",
+    food:"The sweet pods were pounded into a meal.", medicine:"Leaves were used for an acid stomach.",
+    game:"Gather mesquite beans near Big Spring in Follow the Herd.", art:{ type:"compound", leaf:"#7d9a5c", fruit:"pod", fc:"#d9b45a" } },
+  { id:"plum", name:"Wild plums", sci:"Prunus angustifolia, P. americana", uses:["food"], seasons:["Summer"],
+    one:"Eaten fresh, or dried and stored for winter.", where:"Thickets along rivers and canyon floors: the Pease, the Red, and Palo Duro.",
+    food:"Chickasaw plums and American plums were eaten fresh in summer and dried for storage through the winter.",
+    game:"Plum thickets appear along the rivers in Follow the Herd.", art:{ type:"simple", leaf:"#6f9a4a", fruit:"round", fc:"#c2413a" } },
+  { id:"chokecherry", name:"Chokecherry", sci:"Prunus virginiana", uses:["food"], seasons:["Summer"],
+    one:"A key fruit for pemmican.", where:"Canyons and stream banks, more common to the north and west.",
+    food:"Eaten fresh, stored for later, and mixed into pemmican with pounded meat and fat.", art:{ type:"simple", leaf:"#5f8a3e", fruit:"cluster", fc:"#3a1a2a" } },
+  { id:"pecan", name:"Pecan", sci:"Carya illinoinensis", uses:["food","medicine"], seasons:["Fall"],
+    one:"Rich nuts gathered and stored in fall.", where:"River bottoms of central Texas: the San Saba, Colorado, and Brazos.",
+    food:"Nuts were gathered in fall and stored.", medicine:"Powdered leaves were used on ringworm.",
+    game:"Penateka bands gather pecans on the San Saba in Follow the Herd.", art:{ type:"compound", leaf:"#5f8a3e", fruit:"nut", fc:"#7a5232" } },
+  { id:"walnut", name:"Black walnut", sci:"Juglans nigra", uses:["food","medicine"], seasons:["Fall"],
+    one:"Nuts stored for winter.", where:"Rich bottomlands toward the east.",
+    food:"Nuts were gathered and stored.", medicine:"Like pecan leaves, powdered walnut leaves were used on ringworm.", art:{ type:"compound", leaf:"#5a8040", fruit:"ball", fc:"#7e9a4a" } },
+  { id:"pear", name:"Prickly pear", sci:"Opuntia species", uses:["food"], seasons:["Summer","Fall"],
+    one:"Red fruit eaten fresh and dried.", where:"Everywhere: rocky slopes, plains, and canyon rims.",
+    food:"The fruit, called tunas, was eaten fresh and dried. The spines had to be burned or brushed off first.", art:{ type:"cactus", leaf:"#6f9a5a", fruit:"round", fc:"#b2304a", flower:"#f2c94c" } },
+  { id:"txpersimmon", name:"Texas persimmon", sci:"Diospyros texana", uses:["food"], seasons:["Summer","Fall"],
+    one:"Black fruit, dried for storage.", where:"Brushy hills of central and south Texas.",
+    food:"The small black fruit was eaten and dried for storage.", art:{ type:"simple", leaf:"#6b8a4a", fruit:"round", fc:"#1e1a1a" } },
+  { id:"persimmon", name:"Common persimmon", sci:"Diospyros virginiana", uses:["food"], seasons:["Fall"],
+    one:"Sweet after the first frost.", where:"Woodland edges toward the eastern Comanchería.",
+    food:"Eaten fresh or dried. The orange fruit is bitter until fully ripe and soft.", art:{ type:"simple", leaf:"#5f8a3e", fruit:"round", fc:"#e08a2c" } },
+  { id:"hackberry", name:"Sugarberry", sci:"Celtis laevigata", uses:["food"], seasons:["Fall"],
+    one:"Berries mashed with fat and roasted.", where:"Creek banks and river bottoms.",
+    food:"The small berries were mashed, mixed with fat, and roasted. Sugarberry is a kind of hackberry.", art:{ type:"simple", leaf:"#7a9a5a", fruit:"berries", fc:"#c06a2a" } },
+  { id:"mulberry", name:"Red mulberry", sci:"Morus rubra", uses:["food"], seasons:["Spring","Summer"],
+    one:"Early summer fruit.", where:"Woodlands and stream banks in the east.",
+    food:"The fruit was eaten.", art:{ type:"simple", leaf:"#5f8a3e", fruit:"cluster", fc:"#4a1a3a" } },
+  { id:"onion", name:"Wild onion", sci:"Allium canadense", uses:["food"], seasons:["Spring"],
+    one:"Bulbs roasted in spring.", where:"Prairies and open woods.",
+    food:"The bulbs were roasted.", art:{ type:"bulb", leaf:"#7da05a", flower:"#e3b6d0" } },
+  { id:"breadroot", name:"Indian breadroot", sci:"Pediomelum hypogaeum", uses:["food"], seasons:["Spring","Summer"],
+    one:"Starchy root eaten raw.", where:"Dry, sandy prairies.",
+    food:"The root was eaten raw. Related plants were one of the most important wild root foods on the plains.", art:{ type:"herb", leaf:"#7a9a6a", flower:"#7a7ad0", root:true } },
+  { id:"sumac", name:"Smooth sumac", sci:"Rhus glabra", uses:["food","tools","medicine"], seasons:["Summer","Fall"],
+    one:"Sour berries, smoking leaves, and a remedy for colds.", where:"Prairie edges and canyon slopes.",
+    food:"The fruit was eaten.", tools:"Leaves were mixed with tobacco for smoking.", medicine:"The bark was chewed for colds.", art:{ type:"compound", leaf:"#6a9a4a", fruit:"spike", fc:"#a8262a" } },
+  { id:"oak", name:"Blackjack oak", sci:"Quercus marilandica", uses:["food","tools"], seasons:["Fall"],
+    one:"Acorns in hard times.", where:"The Cross Timbers along the eastern edge of the Comanchería.",
+    food:"Acorns were eaten when food was scarce.", tools:"Leaves were used as wrappers for cigarettes.", art:{ type:"simple", leaf:"#4f7a3a", fruit:"acorn", fc:"#8a6a3a", lobed:true } },
+  { id:"osage", name:"Osage orange (bois d'arc)", sci:"Maclura pomifera", uses:["tools","medicine"], seasons:["Spring","Summer","Fall"],
+    one:"The best bow wood on the plains.", where:"River bottoms of the Red River country and northeast Texas.",
+    tools:"Branches made bows. The wood is hard, heavy, and springy, and bows of it were prized and traded widely.", medicine:"A wash made from the root was used for sore eyes.",
+    game:"Every hunter in Follow the Herd rides with a bow like this.", art:{ type:"simple", leaf:"#4f7a3a", fruit:"osage", fc:"#a8b84a" } },
+  { id:"dogwood", name:"Roughleaf dogwood", sci:"Cornus asperifolia", uses:["tools"], seasons:["Spring","Summer","Fall"],
+    one:"Straight stems for arrow shafts.", where:"Thickets along creeks.",
+    tools:"Straight young stems were cut, dried, and straightened into arrow shafts.", art:{ type:"simple", leaf:"#6a8a4a", fruit:"berries", fc:"#f2efe6", straight:true } },
+  { id:"soapberry", name:"Western soapberry", sci:"Sapindus saponaria", uses:["tools"], seasons:["Spring","Summer","Fall"],
+    one:"Another arrow-shaft wood.", where:"Draws and stream banks across the plains.",
+    tools:"Stems were used for arrows.", art:{ type:"compound", leaf:"#6a9a4a", fruit:"berries", fc:"#e3b766" } },
+  { id:"snakeweed", name:"Broom snakeweed", sci:"Gutierrezia sarothrae", uses:["tools","medicine"], seasons:["Summer","Fall"],
+    one:"Brushes and brooms.", where:"Dry overgrazed prairie and the Llano.",
+    tools:"The stiff stems were bundled into brushes and brooms.", medicine:"A preparation of the leaves was used for whooping cough.", art:{ type:"herb", leaf:"#7a9a4a", flower:"#f2c94c", bushy:true } },
+  { id:"yucca", name:"Yucca (soapweed)", sci:"Yucca species", uses:["tools"], seasons:["Spring","Summer","Fall"],
+    one:"Roots that make soap.", where:"Sandy prairies and rocky slopes.",
+    tools:"The roots, pounded in water, make a lather used as soap.", art:{ type:"rosette", leaf:"#6a8a6a", flower:"#f4efdc" } },
+  { id:"sagebrush", name:"Sand sagebrush", sci:"Artemisia filifolia", uses:["tools"], seasons:["Spring","Summer","Fall"],
+    one:"Soft padding in the lodge.", where:"Sandhills along the Canadian and the Red.",
+    tools:"Bundles were used as cushions and padding in the lodge, and as bedding.", art:{ type:"herb", leaf:"#a8b8a8", flower:"#d8d0a0", bushy:true, thread:true } },
+  { id:"croton", name:"Croton (prairie tea)", sci:"Croton monanthogynus", uses:["tools"], seasons:["Summer","Fall"],
+    one:"Added to the brain mixture for tanning hides.", where:"Open prairie and disturbed ground.",
+    tools:"Leaves were added to the animal brains used to soften hides during tanning.",
+    game:"Every robe in Follow the Herd was tanned this way.", art:{ type:"herb", leaf:"#9aaa8a", flower:"#c8c0a0", bushy:true } },
+  { id:"buttonbush", name:"Buttonbush", sci:"Cephalanthus occidentalis", uses:["tools"], seasons:["Summer"],
+    one:"Wood for game sticks.", where:"Wet ground at the edges of creeks and ponds.",
+    tools:"The wood was used for sticks in games.", art:{ type:"simple", leaf:"#5f8a3e", fruit:"button", fc:"#f4efdc" } },
+  { id:"coneflower", name:"Purple coneflower", sci:"Echinacea species", uses:["medicine"], seasons:["Summer"],
+    one:"Root used for sore throats and toothache.", where:"Prairies across the Comanchería.",
+    medicine:"A tea made from the root was used for sore throat and toothache.", art:{ type:"flower", leaf:"#6a8a4a", flower:"#c06aa8", cone:"#7a3a1a" } },
+  { id:"sagewort", name:"Louisiana sagewort", sci:"Artemisia ludoviciana", uses:["medicine"], seasons:["Summer","Fall"],
+    one:"Chewed leaves for bites and stings.", where:"Prairies and dry slopes.",
+    medicine:"Chewed leaves were put on insect and spider bites.", art:{ type:"herb", leaf:"#b8c4b8", flower:"#d8d4b0" } },
+  { id:"poppy", name:"Prickly poppy", sci:"Argemone polyanthemos", uses:["medicine"], seasons:["Spring","Summer"],
+    one:"Sap used for sore eyes.", where:"Sandy prairies and roadsides.",
+    medicine:"The yellow sap was used for sore eyes.", art:{ type:"flower", leaf:"#9ab0a8", flower:"#fbf8f0", cone:"#f2c94c", spiky:true } }
+];
+
+/* =======================================================================
+   ILLUSTRATIONS: simple botanical sprigs drawn as SVG
+   ======================================================================= */
+function rng(seed){ let s = 0; for (const c of seed) s = (s * 31 + c.charCodeAt(0)) | 0; return () => { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; }; }
+function leaf(x, y, len, w, ang, col){
+  return `<path d="M0,0 Q${len*.5},${-w} ${len},0 Q${len*.5},${w} 0,0Z" fill="${col}" transform="translate(${x},${y}) rotate(${ang})"/>
+    <path d="M0,0 L${len*.95},0" stroke="rgba(0,0,0,.18)" stroke-width="1" transform="translate(${x},${y}) rotate(${ang})"/>`;
+}
+function fruit(kind, x, y, col, r){
+  switch (kind){
+    case "pod": return `<path d="M${x},${y} q14,40 4,92" stroke="${col}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M${x},${y} q14,40 4,92" stroke="rgba(0,0,0,.15)" stroke-width="2" fill="none" stroke-dasharray="3 9"/>`;
+    case "nut": return `<ellipse cx="${x}" cy="${y}" rx="${r*.75}" ry="${r*1.15}" fill="${col}"/><path d="M${x},${y-r} L${x},${y+r}" stroke="rgba(0,0,0,.3)"/>`;
+    case "acorn": return `<ellipse cx="${x}" cy="${y+3}" rx="${r*.7}" ry="${r*.95}" fill="${col}"/><path d="M${x-r*.8},${y-2} q${r*.8},${-r*.9} ${r*1.6},0z" fill="#5a4024"/>`;
+    case "osage": return `<circle cx="${x}" cy="${y}" r="${r*1.7}" fill="${col}"/>${Array.from({length:14},(_,i)=>`<circle cx="${x+Math.cos(i*2.4)*r*1.1}" cy="${y+Math.sin(i*2.4)*r*1.1}" r="${r*.32}" fill="rgba(60,80,20,.3)"/>`).join("")}`;
+    case "ball": return `<circle cx="${x}" cy="${y}" r="${r*1.3}" fill="${col}"/><circle cx="${x-r*.4}" cy="${y-r*.4}" r="${r*.35}" fill="rgba(255,255,255,.25)"/>`;
+    case "button": return `<circle cx="${x}" cy="${y}" r="${r*1.2}" fill="${col}"/>${Array.from({length:16},(_,i)=>`<line x1="${x}" y1="${y}" x2="${x+Math.cos(i*.4)*r*1.5}" y2="${y+Math.sin(i*.4)*r*1.5}" stroke="#d8cfa8" stroke-width="1.2"/>`).join("")}`;
+    case "spike": return `<path d="M${x},${y} q-6,-20 0,-44 q6,24 0,44z" fill="${col}"/>${Array.from({length:10},(_,i)=>`<circle cx="${x+(i%2?4:-4)}" cy="${y-4-i*4}" r="3.4" fill="${col}"/>`).join("")}`;
+    case "cluster": return Array.from({length:7},(_,i)=>`<circle cx="${x+(i%3-1)*r*.9}" cy="${y+Math.floor(i/3)*r*.9}" r="${r*.6}" fill="${col}"/>`).join("");
+    case "berries": return Array.from({length:5},(_,i)=>`<line x1="${x}" y1="${y-14}" x2="${x+(i-2)*8}" y2="${y+(i%2)*6}" stroke="#5a4024" stroke-width="1"/><circle cx="${x+(i-2)*8}" cy="${y+(i%2)*6}" r="${r*.5}" fill="${col}"/>`).join("");
+    default: return `<circle cx="${x}" cy="${y}" r="${r}" fill="${col}"/><circle cx="${x-r*.35}" cy="${y-r*.35}" r="${r*.28}" fill="rgba(255,255,255,.3)"/>`;
+  }
+}
+function drawPlant(p){
+  const a = p.art, R = rng(p.id); let g = "";
+  const stem = "#6b4a2c";
+  if (a.type === "simple"){
+    g += `<path d="M150,215 C145,160 160,110 150,40" stroke="${stem}" stroke-width="4" fill="none"/>`;
+    for (let i = 0; i < 7; i++){ const y = 190 - i * 22, side = i % 2 ? 1 : -1;
+      g += a.lobed ? `<path d="M150,${y} q${side*20},-12 ${side*30},-4 q${side*-4},8 ${side*12},12 q${side*-12},6 ${side*6},14 q${side*-24},2 ${side*-48},-22z" fill="${a.leaf}"/>`
+                   : leaf(150, y, 52 + R() * 12, 14 + R() * 4, side > 0 ? -25 - R() * 10 : 205 + R() * 10, a.leaf); }
+    for (let i = 0; i < 3; i++) g += fruit(a.fruit, 118 + i * 30 + (i === 1 ? 2 : 0), 58 + (i % 2) * 18 + (a.fruit === "osage" ? 30 : 0), a.fc, 10);
+  } else if (a.type === "compound"){
+    g += `<path d="M150,215 C150,150 140,100 160,40" stroke="${stem}" stroke-width="4" fill="none"/>`;
+    for (const [bx, by, ang] of [[150,170,-35],[148,120,210],[153,80,-30]]){
+      g += `<g transform="translate(${bx},${by}) rotate(${ang})"><line x1="0" y1="0" x2="100" y2="0" stroke="${stem}" stroke-width="2"/>`;
+      for (let k = 1; k < 7; k++) g += leaf(k * 14, 0, 22, 6, -60, a.leaf) + leaf(k * 14, 0, 22, 6, 60, a.leaf);
+      g += `</g>`; }
+    if (a.fruit === "pod") for (let i = 0; i < 3; i++) g += fruit("pod", 120 + i * 18, 60 + i * 6, a.fc, 8);
+    else for (let i = 0; i < 3; i++) g += fruit(a.fruit, 125 + i * 24, 55 + (i % 2) * 14, a.fc, 9);
+  } else if (a.type === "cactus"){
+    const pad = (x, y, rx, ry, r) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${a.leaf}" transform="rotate(${r} ${x} ${y})"/>` +
+      Array.from({length:8},(_,i)=>`<circle cx="${x+(R()-.5)*rx*1.4}" cy="${y+(R()-.5)*ry*1.4}" r="1.6" fill="#f4efdc"/>`).join("");
+    g += pad(150, 175, 40, 52, 0) + pad(110, 118, 30, 40, -25) + pad(188, 112, 30, 42, 22);
+    g += fruit("round", 100, 78, a.fc, 10) + fruit("round", 122, 76, a.fc, 9) + fruit("round", 198, 70, a.fc, 10);
+    g += `<circle cx="178" cy="68" r="10" fill="${a.flower}"/><circle cx="178" cy="68" r="4" fill="#c88a2a"/>`;
+  } else if (a.type === "rosette"){
+    for (let i = 0; i < 18; i++){ const ang = -170 + i * 9; g += `<path d="M150,205 L${150 + Math.cos(ang * Math.PI / 180) * 95},${205 + Math.sin(ang * Math.PI / 180) * 95}" stroke="${a.leaf}" stroke-width="7" stroke-linecap="round"/>`; }
+    g += `<line x1="150" y1="200" x2="150" y2="40" stroke="#7a6a3a" stroke-width="4"/>`;
+    for (let i = 0; i < 9; i++) g += `<ellipse cx="${150 + (i % 2 ? 12 : -12)}" cy="${48 + i * 11}" rx="8" ry="10" fill="${a.flower}" stroke="rgba(0,0,0,.1)"/>`;
+  } else if (a.type === "bulb"){
+    g += `<ellipse cx="150" cy="200" rx="20" ry="16" fill="#efe0c8" stroke="#c8b49a"/>`;
+    for (let i = 0; i < 4; i++) g += `<path d="M150,190 Q${130 + i * 12},120 ${118 + i * 20},${70 + (i % 2) * 20}" stroke="${a.leaf}" stroke-width="4" fill="none"/>`;
+    g += `<line x1="150" y1="190" x2="150" y2="60" stroke="${a.leaf}" stroke-width="3"/>`;
+    for (let i = 0; i < 12; i++){ const an = i / 12 * Math.PI * 2; g += `<line x1="150" y1="58" x2="${150 + Math.cos(an) * 22}" y2="${50 + Math.sin(an) * 16}" stroke="#7da05a"/><circle cx="${150 + Math.cos(an) * 22}" cy="${50 + Math.sin(an) * 16}" r="4" fill="${a.flower}"/>`; }
+  } else if (a.type === "flower"){
+    g += `<path d="M150,215 C148,170 152,120 150,80" stroke="${a.leaf}" stroke-width="4" fill="none"/>`;
+    g += leaf(150, 180, 60, 10, -40, a.leaf) + leaf(150, 150, 55, 10, 215, a.leaf);
+    const n = a.spiky ? 6 : 12;
+    for (let i = 0; i < n; i++){ const an = i / n * 360;
+      g += a.spiky ? `<ellipse cx="150" cy="60" rx="20" ry="15" fill="${a.flower}" stroke="rgba(0,0,0,.08)" transform="rotate(${an} 150 75) translate(0,-6)"/>`
+                   : `<path d="M150,72 q-5,30 0,48 q5,-18 0,-48z" fill="${a.flower}" transform="rotate(${an * .35 - 60 + 180} 150 72)"/>`; }
+    g += `<ellipse cx="150" cy="${a.spiky ? 74 : 66}" rx="${a.spiky ? 10 : 14}" ry="${a.spiky ? 10 : 16}" fill="${a.cone}"/>`;
+  } else { /* herb */
+    const stems = a.bushy ? 7 : 3;
+    for (let s = 0; s < stems; s++){ const x2 = 150 + (s - (stems - 1) / 2) * (a.bushy ? 18 : 26), top = 50 + R() * 30;
+      g += `<path d="M150,215 Q${(150 + x2) / 2},150 ${x2},${top}" stroke="${a.thread ? "#8a9a8a" : stem}" stroke-width="${a.bushy ? 2 : 3}" fill="none"/>`;
+      for (let k = 0; k < 6; k++){ const y = 200 - k * 24, x = 150 + (x2 - 150) * ((200 - y) / (200 - top));
+        if (y < top) break;
+        g += a.thread ? `<path d="M${x},${y} l${-10},-14 M${x},${y} l10,-14" stroke="${a.leaf}" stroke-width="1.6"/>` : leaf(x, y, a.bushy ? 16 : 30, a.bushy ? 4 : 8, k % 2 ? -40 : 220, a.leaf); }
+      g += a.bushy ? `<circle cx="${x2}" cy="${top}" r="4" fill="${a.flower}"/><circle cx="${x2 + 5}" cy="${top + 4}" r="3" fill="${a.flower}"/>`
+                   : `<ellipse cx="${x2}" cy="${top}" rx="7" ry="12" fill="${a.flower}"/>`; }
+    if (a.root) g += `<path d="M150,215 q-14,20 0,40 q14,-20 0,-40z" fill="#c8a882"/>`;
+  }
+  return `<svg viewBox="40 20 220 250" aria-hidden="true"><ellipse cx="150" cy="${a.root ? 258 : 218}" rx="80" ry="8" fill="rgba(90,60,30,.12)"/>${g}</svg>`;
+}
+
+/* =======================================================================
+   UI
+   ======================================================================= */
+/* esc() comes from herd/js/util.js */
+const LABEL = { food:"Food", tools:"Tools", medicine:"Medicine" };
+let fUse = "all", fSeason = "all", q = "";
+function render(){
+  const list = PLANTS.filter(p => (fUse === "all" || p.uses.includes(fUse)) && (fSeason === "all" || p.seasons.includes(fSeason)) &&
+    (!q || (p.name + " " + p.sci + " " + p.one + " " + (p.food||"") + (p.tools||"") + (p.medicine||"")).toLowerCase().includes(q)));
+  document.getElementById("count").textContent = `${list.length} of ${PLANTS.length} plants`;
+  document.getElementById("grid").innerHTML = list.length ? list.map(p => `<button class="plant" type="button" data-id="${p.id}" id="${p.id}">
+      <div class="art">${drawPlant(p)}</div>
+      <div class="txt"><h3>${esc(p.name)}</h3><div class="sci">${esc(p.sci)}</div>
+      <div class="uses">${p.uses.map(u => `<span class="tg ${u}">${LABEL[u]}</span>`).join("")}</div><p class="one">${esc(p.one)}</p></div></button>`).join("")
+    : `<p class="empty">No plants match. Try another filter.</p>`;
+}
+function open(id){
+  const p = PLANTS.find(x => x.id === id); if (!p) return;
+  const dlg = document.getElementById("dlg");
+  dlg.innerHTML = `<div class="dlg"><div class="art">${drawPlant(p)}</div><div class="body">
+    <button class="close" type="button" aria-label="Close">✕</button>
+    <h2 id="dlgTitle">${esc(p.name)}</h2><div class="sci">${esc(p.sci)}</div>
+    <div class="uses" style="display:flex;gap:5px;margin-top:8px">${p.uses.map(u => `<span class="tg ${u}">${LABEL[u]}</span>`).join("")}</div>
+    ${["food","tools","medicine"].filter(k => p[k]).map(k => `<h4>${LABEL[k]}</h4><p>${esc(p[k])}</p>`).join("")}
+    <div class="meta"><div><b>Where</b>${esc(p.where)}</div><div><b>Season</b>${esc(p.seasons.join(", "))}</div></div>
+    ${p.medicine ? `<div class="warn">A historical use, recorded in the 1930s. Not medical advice.</div>` : ""}
+    ${p.game ? `<p class="game">${esc(p.game)} <a href="../herd/">Play →</a></p>` : ""}
+  </div></div>`;
+  dlg.showModal();
+  history.replaceState(null, "", "#" + id);
+}
+document.getElementById("grid").addEventListener("click", e => { const b = e.target.closest("[data-id]"); if (b) open(b.dataset.id); });
+const dlg = document.getElementById("dlg");
+dlg.addEventListener("click", e => { if (e.target === dlg || e.target.closest(".close")) dlg.close(); });
+dlg.addEventListener("close", () => history.replaceState(null, "", location.pathname));
+document.querySelectorAll("[data-use]").forEach(b => b.addEventListener("click", () => { fUse = b.dataset.use; document.querySelectorAll("[data-use]").forEach(x => x.setAttribute("aria-pressed", String(x === b))); render(); }));
+document.querySelectorAll("[data-season]").forEach(b => b.addEventListener("click", () => { fSeason = b.dataset.season; document.querySelectorAll("[data-season]").forEach(x => x.setAttribute("aria-pressed", String(x === b))); render(); }));
+document.getElementById("q").addEventListener("input", e => { q = e.target.value.trim().toLowerCase(); render(); });
+render();
+if (location.hash) open(location.hash.slice(1));
+
+/* hero: summer river bottom, painted by the game's painter */
+(function(){
+  const cv = document.getElementById("heroCv"), ctx = cv.getContext("2d");
+  const o = { biome:"river", season:1, herd:false, camp:false, caravan:false, scroll:0, t:0, seed:9 };
+  let w = 0, h = 0, last = 0;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(cv); fit();
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; o.t += dt; if (w) paintScene(ctx, w, h, o); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

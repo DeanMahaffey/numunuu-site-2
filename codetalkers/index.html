@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Comanche Code Talkers · Nʉmʉnʉʉ</title>
+<meta name="description" content="Seventeen Comanche men built a code from their own language. Thirteen carried it ashore at Utah Beach on D-Day. Their story, their names, and the code itself.">
+<meta property="og:title" content="The Comanche Code Talkers">
+<meta property="og:description" content="Turtle meant tank. Pregnant bird meant bomber. The Comanche code of World War II, from numunuu.com.">
+<meta property="og:url" content="https://numunuu.com/codetalkers/">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero{min-height:min(84vh,760px);background:#141110}
+.hero::after{background:linear-gradient(0deg,var(--bg) 0%,rgba(20,17,16,.35) 45%,rgba(20,17,16,0) 75%)}
+.hero h1{font-size:clamp(44px,8.5vw,108px)}
+.stat-row{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:22px}
+.stat-row div{color:#f6ebdc;font-size:14.5px}
+.stat-row b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(34px,5vw,52px);line-height:1;color:#ffcf96}
+
+.chapter{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;padding:clamp(36px,6vw,72px) 0;border-top:1px solid var(--line)}
+@media (max-width:760px){.chapter{grid-template-columns:1fr;gap:10px}}
+.chapter .when{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,4vw,44px);color:var(--gold);line-height:1}
+.chapter .when small{display:block;font-family:var(--f-ui);font-weight:600;font-size:14px;color:var(--muted);margin-top:6px}
+.chapter h2{font-size:clamp(30px,4vw,46px);margin-bottom:14px}
+.chapter p{color:var(--ink-2);max-width:66ch;margin:0 0 14px}
+.quote{margin:20px 0;padding:18px 22px;border-left:4px solid var(--clay);background:rgba(217,119,54,.1);border-radius:0 14px 14px 0}
+.quote p{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,2.8vw,30px);line-height:1.2;color:var(--ink);margin:0}
+.quote cite{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--muted)}
+
+/* code cards */
+.codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:18px 0 8px}
+.code{perspective:800px;height:132px;background:none;border:0;padding:0;text-align:left}
+.code .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.code.flip .in{transform:rotateY(180deg)}
+.code .f,.code .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+.code .f{background:var(--card);border:1px solid var(--line-2)}
+.code .b{background:#3a2a1c;border:1px solid var(--clay);transform:rotateY(180deg)}
+.code small{font-size:12.5px;font-weight:600;color:var(--muted)}
+.code b{font-family:var(--f-display);font-weight:800;font-size:28px;line-height:1.05;color:var(--ink)}
+.code .b b{color:#ffcf96}
+.code em{font-style:normal;font-size:13px;color:var(--ink-2)}
+
+/* tools */
+.tool{padding:22px;margin-top:20px}
+.tool h3{font-size:30px;margin-bottom:6px}
+.tool p{color:var(--ink-2);margin:0 0 12px}
+textarea{width:100%;min-height:96px;background:var(--bg);color:var(--ink);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;font:inherit;font-size:17px;resize:vertical}
+.out{margin-top:12px;padding:16px 18px;border-radius:12px;background:#120f0d;border:1px solid var(--line);font-size:18px;line-height:1.7;min-height:64px}
+.out mark{background:rgba(217,119,54,.25);color:#ffcf96;padding:1px 6px;border-radius:6px;font-weight:600}
+.out .muted{font-size:15px}
+.samples{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+
+.decode .msg{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,3vw,30px);line-height:1.35;margin:10px 0 14px}
+.decode .msg button{font:inherit;background:rgba(217,119,54,.18);border:1px dashed var(--clay);color:#ffcf96;border-radius:8px;padding:0 8px;margin:2px 0}
+.decode .msg button.ok{background:rgba(167,189,140,.2);border:1px solid var(--sage);color:var(--sage)}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices button{padding:9px 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--bg);font-weight:600}
+.choices button:hover{border-color:var(--gold)}
+.choices button.bad{border-color:var(--red);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.status{margin-top:12px;font-size:15px;color:var(--ink-2);min-height:24px}
+
+.roll{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:18px}
+.roll div{padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.roll b{font-family:var(--f-display);font-weight:800;font-size:22px;display:block;line-height:1.1}
+.roll span{font-size:13px;color:var(--muted)}
+.roll .beach{border-color:rgba(227,183,102,.45)}
+.roll .beach span{color:var(--gold)}
+</style>
+</head>
+<body>
+<header data-site-top data-page="codetalkers"></header>
+
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="sig" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffd7a8">World War II · 1941–1945</p>
+    <h1 id="pageTitle">The Comanche <span class="accent">Code Talkers</span></h1>
+    <p class="lead">Seventeen young Comanche men turned their own language into a code no enemy listener could follow. On June 6, 1944, thirteen of them carried it ashore at Utah Beach.</p>
+    <div class="stat-row">
+      <div><b>17</b>men trained</div>
+      <div><b>~250</b>code terms</div>
+      <div><b>13</b>landed on D-Day</div>
+      <div><b>14</b>served in Europe</div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <article class="chapter">
+    <div class="when">1940–41<small>Oklahoma</small></div>
+    <div>
+      <h2>A language the Army needed</h2>
+      <p>As war spread across Europe, the U.S. Army looked for a way to send battlefield messages that no enemy listener could understand. A language almost no one outside one nation spoke was the answer.</p>
+      <p>Seventeen young Comanche men from Comanche communities in Oklahoma joined up. Charles Chibitty enlisted on January 2, 1941, and trained at Fort Benning, Georgia. In April 1941, Second Lieutenant Hugh Foster was put in charge of the Comanche group and the work of building a code began.</p>
+      <p>Some of these men had gone to government boarding schools, where speaking Native languages was often discouraged. Now the same language was going to war on the Army's side.</p>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <div class="when">1941–43<small>Building the code</small></div>
+    <div>
+      <h2>Turtle means tank</h2>
+      <p>Comanche had no words for tanks, bombers, or machine guns, so the men made them. They chose Comanche words for things that looked or acted like the new machines. Altogether they built about 250 terms for military and geographic words.</p>
+      <p>For names and words that weren't in the code, they spelled letter by letter, with a Comanche word standing for each letter. <i>Saddi</i>, dog, stood for D.</p>
+      <p>Even another Comanche speaker couldn't follow a message without knowing the code. Tap a card to turn it over.</p>
+      <div class="codes" id="codes"></div>
+      <p class="muted" style="font-size:14px">Comanche spellings are shown only where the Army's own published accounts give them. Spellings in English letters vary from record to record.</p>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <div class="when">June 6, 1944<small>Utah Beach, Normandy</small></div>
+    <div>
+      <h2>The first message</h2>
+      <p>The Comanche code talkers served with the 4th Infantry Division. Two were assigned to each of the division's three regiments and three to division headquarters, so that every part of the division could pass messages in Comanche.</p>
+      <p>On D-Day, thirteen of them came ashore at Utah Beach. Charles Chibitty landed with the 22nd Infantry Regiment. One of the first messages he sent back:</p>
+      <blockquote class="quote"><p>“Five miles to the right of the designated area and five miles inland, the fighting is fierce and we need help.”</p><cite>Charles Chibitty, Utah Beach, as he later recalled it</cite></blockquote>
+      <p>Fourteen Comanche code talkers served in Europe, in Normandy, the Battle of the Bulge, and other battles of the war.</p>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <div class="when">Try it<small>The code at work</small></div>
+    <div>
+      <h2>Decode a message</h2>
+      <section class="card tool decode" aria-labelledby="decH">
+        <h3 id="decH">Incoming</h3>
+        <p>A message comes over the radio. Tap each glowing code word, then choose what it really means.</p>
+        <div class="msg" id="msg"></div>
+        <div class="choices" id="choices"></div>
+        <div class="status" id="status" aria-live="polite"></div>
+        <div style="margin-top:12px"><button class="btn" id="newMsg" type="button">New message</button></div>
+      </section>
+      <section class="card tool" aria-labelledby="encH">
+        <h3 id="encH">Encode your own</h3>
+        <p>Type a battlefield message in plain English. Words the code covered are swapped for their code terms.</p>
+        <label for="plain" class="sr">Your message</label>
+        <textarea id="plain">Two tanks and a machine gun on the ridge. Bombers coming in at dawn. Tell the colonel.</textarea>
+        <div class="samples" id="samples"></div>
+        <div class="out" id="out" aria-live="polite"></div>
+      </section>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <div class="when">1989–2013<small>Recognition</small></div>
+    <div>
+      <h2>Honored, late</h2>
+      <p>For decades their work was barely known. In 1989 the government of France honored the Comanche code talkers. On December 3, 1999, Charles Chibitty was honored at the Pentagon in the Hall of Heroes.</p>
+      <p>Chibitty died on July 20, 2005, the last surviving Comanche code talker. On November 20, 2013, the Comanche code talkers were awarded the Congressional Gold Medal, alongside code talkers from many other Native nations.</p>
+      <blockquote class="quote"><p>“What we did, we saved lives, using the Native American language.”</p><cite>Charles Chibitty</cite></blockquote>
+    </div>
+  </article>
+
+  <article class="chapter" id="names">
+    <div class="when">17<small>The men</small></div>
+    <div>
+      <h2>Their names</h2>
+      <p>The seventeen Comanche men of the code-talker group. Gold marks those who landed at Utah Beach on D-Day, as listed by the U.S. Army.</p>
+      <div class="roll" id="roll"></div>
+    </div>
+  </article>
+
+  <section class="section" style="padding-top:20px">
+    <h2 style="font-size:28px">Sources</h2>
+    <ul class="sources" style="padding-left:18px">
+      <li><a href="https://www.armyheritage.org/?p=1026">U.S. Army Heritage and Education Center: Charles J. Chibitty and the Code Talkers</a></li>
+      <li><a href="https://gordon.armymwr.com/info/culturemil/comanche-code-talkers">U.S. Army, Fort Gordon: Comanche Code Talkers</a></li>
+      <li><a href="https://speakeremeritapelosi.house.gov/newsroom/pelosi-remarks-congressional-gold-medal-ceremony">Congressional Gold Medal ceremony remarks, November 20, 2013</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Charles_Chibitty">Charles Chibitty (Wikipedia)</a></li>
+      <li>William C. Meadows, <i>The Comanche Code Talkers of World War II</i> (University of Texas Press, 2002)</li>
+    </ul>
+    <div class="more">
+      <a href="../stories/"><b>Turning Points</b><small>From the horse to Fort Sill: the history behind the code talkers' grandparents</small></a>
+      <a href="../treaties/"><b>The Comanche Treaties</b><small>What was promised on paper, and what happened</small></a>
+    </div>
+  </section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script>
+"use strict";
+/* =======================================================================
+   THE CODE. Meanings from U.S. Army published accounts.
+   comanche: only where an Army source prints the Comanche word.
+   ======================================================================= */
+const CODE = [
+  { term:"Turtle", means:"Tank", comanche:"wah-kah-ray", match:/\btanks?\b/gi },
+  { term:"Pregnant bird", means:"Bomber", match:/\bbombers?\b/gi },
+  { term:"Sewing machine", means:"Machine gun", match:/\bmachine[- ]guns?\b/gi },
+  { term:"Hummingbird", means:"Fighter plane", match:/\bfighter(?: plane)?s?\b/gi },
+  { term:"Silver eagle", means:"Colonel", match:/\bcolonels?\b/gi },
+  { term:"Beaver", means:"Minesweeper", match:/\bminesweepers?\b/gi },
+  { term:"Fancy fire", means:"Pyrotechnics (flares)", match:/\b(?:flares?|pyrotechnics?)\b/gi },
+  { term:"Crazy white man", means:"Adolf Hitler", comanche:"posah-tai-vo", match:/\b(?:adolf )?hitler\b/gi }
+];
+const escH = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+/* flip cards */
+document.getElementById("codes").innerHTML = CODE.map(c => `<button class="code" type="button" aria-label="Code word ${escH(c.term)}. Tap to reveal meaning.">
+  <span class="in"><span class="f"><small>Code word</small><b>${escH(c.term)}</b><em>${c.comanche ? "Comanche: " + escH(c.comanche) : "Tap to reveal"}</em></span>
+  <span class="b"><small>Meant</small><b>${escH(c.means)}</b><em>${escH(c.term)}</em></span></span></button>`).join("");
+document.getElementById("codes").addEventListener("click", e => { const b = e.target.closest(".code"); if (b){ b.classList.toggle("flip"); b.setAttribute("aria-label", b.classList.contains("flip") ? `${b.querySelector(".f b").textContent} means ${b.querySelector(".b b").textContent}` : `Code word ${b.querySelector(".f b").textContent}`); } });
+
+/* encoder */
+const plain = document.getElementById("plain"), out = document.getElementById("out");
+function encode(){
+  let txt = escH(plain.value), hits = 0;
+  for (const c of CODE) txt = txt.replace(c.match, m => { hits++; return `<mark title="${escH(c.means)}${c.comanche ? " · " + c.comanche : ""}">${escH(m === m.toLowerCase() ? c.term.toLowerCase() : c.term)}${/s$/i.test(m) && !/s$/i.test(c.means) && !/ss$/i.test(m) ? "s" : ""}</mark>`; });
+  out.innerHTML = plain.value.trim() ? txt + (hits ? "" : `<div class="muted">No code words yet. Try tank, bomber, machine gun, fighter, colonel, minesweeper, or flares.</div>`) : `<span class="muted">Type a message above.</span>`;
+}
+plain.addEventListener("input", encode);
+const SAMPLES = ["Enemy tanks moving up the road. Send fighters.", "The colonel says hold the bridge. Machine guns on both sides.", "Minesweepers clearing the beach. Watch for flares tonight."];
+document.getElementById("samples").innerHTML = SAMPLES.map((s, i) => `<button class="chip" type="button" data-s="${i}">Example ${i + 1}</button>`).join("");
+document.getElementById("samples").addEventListener("click", e => { const b = e.target.closest("[data-s]"); if (b){ plain.value = SAMPLES[+b.dataset.s]; encode(); } });
+encode();
+
+/* decoder game */
+const MSGS = [
+  ["{Turtles} moving up the road. {Pregnant birds} overhead. {Silver eagle} wants {sewing machines} on the ridge."],
+  ["{Hummingbirds} over the beach. {Beavers} clearing the water. Watch for {fancy fire} at midnight."],
+  ["{Silver eagle} says the {turtles} are stuck. Send {pregnant birds}. {Crazy white man} will not be pleased."],
+  ["Two {sewing machines} in the farmhouse. {Turtles} coming around the hedgerow. {Hummingbirds} on the way."]
+];
+let cur = -1, active = null;
+const msgEl = document.getElementById("msg"), choicesEl = document.getElementById("choices"), statusEl = document.getElementById("status");
+function newMessage(){
+  cur = (cur + 1) % MSGS.length; active = null;
+  msgEl.innerHTML = MSGS[cur][0].replace(/\{([^}]+)\}/g, (_, t) => { const base = CODE.find(c => t.toLowerCase().startsWith(c.term.toLowerCase()));
+    return `<button type="button" data-t="${escH(base.term.toLowerCase())}" data-pl="${t.length > base.term.length ? 1 : 0}" data-cap="${t[0] === t[0].toUpperCase() ? 1 : 0}">${escH(t)}</button>`; });
+  choicesEl.innerHTML = ""; statusEl.textContent = "Tap a glowing code word.";
+}
+msgEl.addEventListener("click", e => {
+  const b = e.target.closest("button[data-t]"); if (!b || b.classList.contains("ok")) return;
+  active = b; msgEl.querySelectorAll("button").forEach(x => x.style.outline = x === b ? "2px solid #ffcf96" : "");
+  const right = CODE.find(c => c.term.toLowerCase() === b.dataset.t);
+  const opts = [right, ...CODE.filter(c => c !== right).sort(() => Math.random() - .5).slice(0, 3)].sort(() => Math.random() - .5);
+  choicesEl.innerHTML = opts.map(o => `<button type="button" data-m="${escH(o.means)}">${escH(o.means)}</button>`).join("");
+  statusEl.textContent = `What does “${b.textContent}” mean?`;
+});
+choicesEl.addEventListener("click", e => {
+  const c = e.target.closest("button[data-m]"); if (!c || !active) return;
+  const right = CODE.find(x => x.term.toLowerCase() === active.dataset.t);
+  if (c.dataset.m === right.means){
+    msgEl.querySelectorAll(`button[data-t="${active.dataset.t}"]`).forEach(x => { x.classList.add("ok"); let m = right.means.replace(" (flares)", "");
+      if (x.dataset.pl === "1") m += "s"; if (x.dataset.cap !== "1" && m !== "Adolf Hitler" && m !== "Colonel") m = m.toLowerCase(); x.textContent = m; x.style.outline = ""; });
+    choicesEl.innerHTML = ""; active = null;
+    const left = msgEl.querySelectorAll("button:not(.ok)").length;
+    statusEl.textContent = left ? `Right. ${left} code word${left > 1 ? "s" : ""} left.` : "Message decoded. That is what the officer on the other end heard, in seconds, over an open radio.";
+  } else { c.classList.remove("bad"); void c.offsetWidth; c.classList.add("bad"); statusEl.textContent = "Not that one. Try again."; }
+});
+document.getElementById("newMsg").addEventListener("click", newMessage);
+newMessage();
+
+/* honor roll (U.S. Army, Fort Gordon). Not on Utah Beach: discharged before deployment, or transferred. */
+const NAMES = ["Charles Chibitty","Haddon Codynah","Robert Holder","Forrest Kassanavoid","Wellington Mihecoby","Albert Nahquaddy Jr.","Perry Noyabad","Clifford Otitivo","Simmons Parker","Melvin Permansu","Elgin Red Elk","Roderick Red Elk","Larry Saupitty","Anthony Tabbytite","Morris Tabbyetchy","Ralph Wahnee","Willis Yackeschi"];
+const NOT_BEACH = { "Albert Nahquaddy Jr.":"Discharged before deployment", "Anthony Tabbytite":"Discharged before deployment", "Ralph Wahnee":"Discharged before deployment", "Morris Tabbyetchy":"Transferred to I Corps in England" };
+document.getElementById("roll").innerHTML = NAMES.map(n => `<div class="${NOT_BEACH[n] ? "" : "beach"}"><b>${escH(n)}</b><span>${escH(NOT_BEACH[n] || "Utah Beach, June 6, 1944")}</span></div>`).join("");
+
+/* hero: a radio signal drifting across the dark */
+(function(){
+  const cv = document.getElementById("sig"), ctx = cv.getContext("2d"); let w = 0, h = 0, t = 0, last = 0;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(cv); fit();
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function draw(){
+    ctx.fillStyle = "#141110"; ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = "rgba(243,234,219,.05)"; ctx.lineWidth = 1;
+    for (let x = 0; x < w; x += 48){ ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for (let y = 0; y < h; y += 48){ ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+    for (let k = 0; k < 3; k++){
+      ctx.strokeStyle = k === 0 ? "rgba(255,207,150,.75)" : `rgba(217,119,54,${.35 - k * .1})`; ctx.lineWidth = k === 0 ? 2 : 1.4;
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 3){
+        const burst = Math.max(0, Math.sin(x * .006 - t * 1.4 + k)) ** 6;
+        const y = h * (.36 + k * .04) + Math.sin(x * .05 + t * 4 + k) * (6 + burst * h * .12) * (1 + .3 * Math.sin(x * .013 + t));
+        x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      }
+      ctx.stroke();
+    }
+  }
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; t += dt; if (w) draw(); if (!still) requestAnimationFrame(loop); };
+  requestAnimationFrame(loop); if (still) setTimeout(draw, 50);
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

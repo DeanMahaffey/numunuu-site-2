@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nʉmʉnʉʉ</title>
-<meta name="description" content="Independent projects about the Comanche people and language: a free Comanche dictionary, a history game, and an exhibit on the Comanche treaties.">
+<meta name="description" content="Independent projects about the Comanche people, their history, and their language: a free Comanche dictionary, a history game, scrolling history stories, and an exhibit on the Comanche treaties.">
 <meta property="og:title" content="Nʉmʉnʉʉ">
 <meta property="og:description" content="A free Comanche dictionary, a history game set on the southern plains in 1845, and an exhibit on the Comanche treaties.">
 <meta property="og:url" content="https://numunuu.com/">
@@ -109,12 +109,23 @@ footer p{margin:0;max-width:60ch;opacity:.9}
   .top nav{gap:12px}
 }
 @media (prefers-reduced-motion:reduce){.preview,.tl{transition:none}}
+/* history cards */
+.hist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+@media (max-width:640px){.hist{grid-template-columns:1fr}}
+.hist a{display:block;text-decoration:none;color:#f3eadb;background:#1c1612;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.18);transition:transform .2s}
+.hist a:hover{transform:translateY(-3px)}
+.hist canvas{display:block;width:100%;aspect-ratio:16/8;background:#3b3026}
+.hist .ht{padding:12px 16px 14px}
+.hist b{display:block;font-family:var(--f-word);font-weight:800;font-size:24px;line-height:1.05}
+.hist small{display:block;font-size:14px;color:#c9bca8;margin-top:3px;line-height:1.4}
+@media (prefers-reduced-motion:reduce){.hist a{transition:none}}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap"><span>numunuu.com</span>
-    <nav aria-label="Projects"><a href="herd/">Game</a><a href="treaties/">Treaties</a><a href="https://dictionary.numunuu.com">Dictionary ↗</a></nav></div>
+    <nav aria-label="Projects"><a href="herd/">Game</a><a href="#history">History</a><a href="treaties/">Treaties</a><a href="https://dictionary.numunuu.com">Dictionary ↗</a></nav></div>
 </header>
 
 <main>
@@ -164,6 +175,18 @@ footer p{margin:0;max-width:60ch;opacity:.9}
             <div class="strip" id="strip" aria-hidden="true"></div>
             <div class="legend"><span style="--c:#d4a373">Honored</span><span style="--c:#d97736">Partly kept</span><span style="--c:#e05252">Broken</span><span style="--c:#9090a0">Never ratified</span></div>
           </a>
+        </div>
+      </li>
+      <li id="history">
+        <div>
+          <h2>Comanche history and life on the plains <span class="new">New</span></h2>
+          <p>Scrolling stories, a camp you can walk through, a field guide, and the men who carried Comanche onto Utah Beach.</p>
+          <div class="hist">
+            <a href="stories/"><canvas data-thumb="llano,2,13,herd"></canvas><span class="ht"><b>Turning Points</b><small>The horse, the Great Raid, Adobe Walls, Palo Duro, and Fort Sill, with a map that moves as you read</small></span></a>
+            <a href="camp/"><canvas data-thumb="river,2,41,camp"></canvas><span class="ht"><b>Walk Through a Camp</b><small>Tap the lodge, the travois, the drying racks, and more to learn how camp life worked</small></span></a>
+            <a href="plants/"><canvas data-thumb="river,1,9,"></canvas><span class="ht"><b>Plants of the Comanchería</b><small>Bois d'arc bows, mesquite meal, wild plums: an illustrated field guide</small></span></a>
+            <a href="codetalkers/"><canvas data-thumb="signal"></canvas><span class="ht"><b>The Comanche Code Talkers</b><small>Turtle meant tank. Decode a message, and meet the seventeen men</small></span></a>
+          </div>
         </div>
       </li>
       <li class="later">
@@ -226,6 +249,25 @@ strip.innerHTML = TREATY_DOTS.map(([y, k]) => `<i data-k="${k}" style="left:${po
   };
   requestAnimationFrame(loop);
 })();
+
+// History thumbnails: painted once with the game's painter (code talkers gets a radio signal)
+document.querySelectorAll('canvas[data-thumb]').forEach((cv) => {
+  const draw = () => {
+    const d = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight; if (!w) return;
+    cv.width = w * d; cv.height = h * d; const ctx = cv.getContext('2d'); ctx.setTransform(d, 0, 0, d, 0, 0);
+    const [biome, season, seed, extra] = cv.dataset.thumb.split(',');
+    if (biome === 'signal') {
+      ctx.fillStyle = '#141110'; ctx.fillRect(0, 0, w, h);
+      for (let k = 0; k < 3; k++) { ctx.strokeStyle = k ? `rgba(217,119,54,${0.4 - k * 0.12})` : 'rgba(255,207,150,.85)'; ctx.lineWidth = k ? 1.4 : 2; ctx.beginPath();
+        for (let x = 0; x <= w; x += 3) { const b = Math.max(0, Math.sin(x * 0.012 + k)) ** 6; const y = h * (0.5 + k * 0.05) + Math.sin(x * 0.09 + k) * (4 + b * h * 0.22); x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+        ctx.stroke(); }
+      return;
+    }
+    if (typeof paintScene !== 'function') return;
+    paintScene(ctx, w, h, { biome, season: +season, herd: extra === 'herd', camp: extra === 'camp', caravan: extra === 'herd', scroll: 0, t: 2, seed: +seed, lodges: 6 });
+  };
+  new ResizeObserver(draw).observe(cv);
+});
 
 // Low rolling hills along the bottom edge, three layers, drawn the same on every load.
 const canvas = document.getElementById('hills');

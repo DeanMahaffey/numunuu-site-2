@@ -10,6 +10,11 @@ Landing page for numunuu.com, hosted free on GitHub Pages. The domain stays regi
 - `favicon.svg` – the browser tab icon
 - `herd/` – Follow the Herd, the history game (`herd/index.html` plus scripts in `herd/js/`)
 - `treaties/` – The Comanche Treaties exhibit (single page)
+- `stories/` – Turning Points, scrolling history stories with a moving map
+- `camp/` – Walk Through a Camp, an interactive painted camp
+- `plants/` – Plants of the Comanchería, an illustrated field guide
+- `codetalkers/` – The Comanche Code Talkers
+- `assets/` – shared styles and header/footer script for the history pages
 
 ## Setup
 

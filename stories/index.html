@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Turning Points · Nʉmʉnʉʉ</title>
+<meta name="description" content="Five moments that shaped Comanche history, told as scrolling stories with a living map: the horse, the Great Raid of 1840, Adobe Walls, Palo Duro Canyon, and coming in to Fort Sill.">
+<meta property="og:title" content="Turning Points">
+<meta property="og:description" content="Comanche history in five scrolling stories, from numunuu.com.">
+<meta property="og:url" content="https://numunuu.com/stories/">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,600;0,700;0,800;1,500&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.chapters{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chapters a{text-decoration:none}
+
+.scrolly{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:28px;align-items:start;padding-top:24px}
+.mapbox{position:sticky;top:72px;height:calc(100vh - 92px);border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#d9c49e}
+.mapbox svg{width:100%;height:100%;display:block}
+.yearbadge{position:absolute;left:16px;top:14px;font-family:var(--f-display);font-weight:800;font-size:clamp(34px,5vw,64px);line-height:1;color:#3a2414;opacity:.85;pointer-events:none;transition:opacity .3s}
+.legendbox{position:absolute;right:12px;bottom:12px;background:rgba(239,228,204,.9);color:#3a2414;border-radius:10px;padding:6px 10px;font-size:12.5px;font-weight:600;pointer-events:none;max-width:60%}
+.steps{padding-bottom:40vh}
+.chapter-head{margin:10vh 0 6vh;scroll-margin-top:80px}
+.chapter-head:first-child{margin-top:0}
+.chapter-head canvas{width:100%;aspect-ratio:16/8;border-radius:16px;display:block;background:#3b3026}
+.chapter-head .num{font-family:var(--f-display);font-weight:800;color:var(--clay);font-size:18px;margin-top:16px}
+.chapter-head h2{font-size:clamp(36px,5vw,56px);text-transform:uppercase;line-height:.92;margin-top:4px}
+.chapter-head p{color:var(--ink-2);margin:10px 0 0}
+.step{min-height:70vh;display:flex;align-items:center}
+.step .card{padding:20px 22px;opacity:.35;transition:opacity .35s;width:100%}
+.step.on .card{opacity:1;border-color:var(--line-2)}
+.step .when{font-family:var(--f-display);font-weight:800;font-size:28px;color:var(--gold);line-height:1}
+.step h3{font-size:26px;margin:6px 0 10px}
+.step p{margin:0 0 10px;color:var(--ink-2);font-size:16.5px}
+.step p:last-child{margin-bottom:0}
+.step .link{font-size:15px}
+
+@media (max-width:900px){
+  .scrolly{grid-template-columns:1fr;gap:0}
+  .mapbox{order:-1;top:56px;height:42vh;z-index:5;border-radius:0 0 16px 16px;margin:0 -16px}
+  .steps{padding-bottom:30vh}
+  .step{min-height:60vh}
+  .step .card{background:rgba(42,33,27,.96)}
+  .chapter-head{margin:8vh 0 4vh}
+  .legendbox{top:10px;bottom:auto;right:10px;font-size:11px;max-width:48%}
+  .yearbadge{font-size:30px;top:10px;left:12px;max-width:48%}
+}
+
+/* map styling */
+.pin{transition:opacity .4s}
+.pin.off{opacity:0}
+.layer{transition:opacity .5s}
+.layer.off{opacity:0}
+.route{stroke-dasharray:2000;stroke-dashoffset:2000;transition:stroke-dashoffset 1.6s ease}
+.layer:not(.off) .route{stroke-dashoffset:0}
+</style>
+</head>
+<body>
+<header data-site-top data-page="stories"></header>
+
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffd7a8">Comanche history</p>
+    <h1 id="pageTitle">Turning <span class="accent">Points</span></h1>
+    <p class="lead">Five moments that changed the Nʉmʉnʉʉ world, from the arrival of the horse to the last free band coming in to Fort Sill. Scroll, and the map follows the story.</p>
+    <nav class="chapters" aria-label="Stories">
+      <a class="chip" href="#horse">1 · The horse</a>
+      <a class="chip" href="#raid">2 · The Great Raid, 1840</a>
+      <a class="chip" href="#adobe">3 · Adobe Walls, 1874</a>
+      <a class="chip" href="#paloduro">4 · Palo Duro, 1874</a>
+      <a class="chip" href="#fortsill">5 · Coming in, 1875</a>
+    </nav>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="scrolly">
+    <div class="steps" id="steps">
+
+      <!-- ================= 1. THE HORSE ================= -->
+      <div class="chapter-head" id="horse"><canvas data-paint="plains,0,5" aria-hidden="true"></canvas><div class="num">Story 1</div><h2>The horse</h2><p>How a mountain people became the greatest horse riders on the plains.</p></div>
+      <div class="step" data-view="-260,-300,1200,1000" data-pins="" data-layers="mountains,north" data-year="Before 1700">
+        <div class="card"><div class="when">Before 1700</div><h3>People of the mountains</h3>
+          <p>The Comanche were once part of the Shoshone, living in the high country to the north and west. Around 1700 their language began to separate from Shoshone, and they began moving south and east onto the plains.</p></div></div>
+      <div class="step" data-view="-180,-60,700,560" data-pins="santafe,taos,pecos" data-layers="mountains,pueblo" data-year="1680">
+        <div class="card"><div class="when">1680</div><h3>The Pueblo Revolt</h3>
+          <p>In 1680 the Pueblo peoples of New Mexico rose up and drove the Spanish out of their country for more than a decade. Spanish horses scattered. Through trade and raiding, they spread north and east among the peoples of the plains.</p></div></div>
+      <div class="step" data-view="-200,-160,800,640" data-pins="santafe,taos" data-layers="mountains,north" data-year="1706">
+        <div class="card"><div class="when">1706</div><h3>A new name</h3>
+          <p>The earliest known written use of the name "Comanche" comes from 1706, when Spanish officials in New Mexico reported that Comanches were preparing to attack Pueblo settlements to the north.</p>
+          <p>Horses took time to spread. Spanish reports say that as late as 1725 Comanches were still using large dogs to carry their lodges.</p></div></div>
+      <div class="step" data-view="-100,-80,1150,940" data-pins="taos,wichita,paloduro,sansaba" data-layers="mountains,comancheria" data-year="1750–1800">
+        <div class="card"><div class="when">1700s</div><h3>Lords of the southern plains</h3>
+          <p>Within a few generations the Comanche had become the finest horsemen on the continent. They pushed south onto the buffalo plains, drove the Apaches out of much of it, and built the Comanchería: a homeland stretching from the Arkansas River deep into Texas.</p>
+          <p>By the 1780s Spain was making peace with them on their terms. <a class="link" href="../treaties/#1786">Read the 1786 Pecos treaty →</a></p></div></div>
+
+      <!-- ================= 2. THE GREAT RAID ================= -->
+      <div class="chapter-head" id="raid"><canvas data-paint="hill,0,12" aria-hidden="true"></canvas><div class="num">Story 2</div><h2>The Great Raid of 1840</h2><p>A peace council in San Antonio ended in killing. The answer rode all the way to the sea.</p></div>
+      <div class="step" data-view="560,520,480,380" data-pins="sanantonio" data-layers="comancheria" data-year="March 1840">
+        <div class="card"><div class="when">March 19, 1840</div><h3>The Council House</h3>
+          <p>Penateka leaders came to San Antonio to talk peace with the Republic of Texas. The Texans demanded the return of every captive held by the Comanche. When they did not get them all, they tried to take the chiefs prisoner. The chiefs resisted.</p>
+          <p>In the fighting that followed, the Texans killed the Comanche leaders who had come to make peace, along with many others in the delegation.</p></div></div>
+      <div class="step" data-view="420,420,640,480" data-pins="sanantonio,victoria,linnville" data-layers="raidout" data-year="August 1840">
+        <div class="card"><div class="when">August 1840</div><h3>Buffalo Hump rides</h3>
+          <p>That summer the Penateka war leader Buffalo Hump led a great force of warriors, hundreds strong, from the hill country all the way to the Gulf of Mexico.</p>
+          <p>They struck Victoria, then Linnville, at the time the second-largest port in Texas. The town was plundered and burned. Its people escaped onto boats in the bay and watched it go up in smoke.</p></div></div>
+      <div class="step" data-view="560,520,480,380" data-pins="victoria,linnville,plumcreek" data-layers="raidout,raidback" data-year="August 12, 1840">
+        <div class="card"><div class="when">August 12, 1840</div><h3>Plum Creek</h3>
+          <p>On the way home, heavily loaded with horses, mules, and goods, the raiders were caught by Texas volunteers and Rangers at Plum Creek, near present-day Lockhart. It became a running fight across the prairie.</p>
+          <p>The raiders lost most of what they had taken. Comanche losses are disputed: Texans claimed dozens killed, but far fewer bodies were found.</p></div></div>
+      <div class="step" data-view="300,300,800,620" data-pins="sanantonio,sansaba,torrey" data-layers="comancheria" data-year="1840s">
+        <div class="card"><div class="when">After</div><h3>A broken trust</h3>
+          <p>The raid showed that Comanche power could reach the sea. It also left the Penateka and the Texans with bitter memories on both sides. It took Sam Houston years of patient talks to bring them back to a treaty council.</p>
+          <p><a class="link" href="../treaties/#1844">Read the 1844 Tehuacana Creek treaty →</a> · <a class="link" href="../herd/">Lead a Penateka band in 1845 →</a></p></div></div>
+
+      <!-- ================= 3. ADOBE WALLS ================= -->
+      <div class="chapter-head" id="adobe"><canvas data-paint="llano,1,21" aria-hidden="true"></canvas><div class="num">Story 3</div><h2>Adobe Walls, 1874</h2><p>The buffalo were disappearing. The people tried to stop it.</p></div>
+      <div class="step" data-view="250,40,560,460" data-pins="medicinelodge,adobewalls" data-layers="reservation" data-year="1867–1874">
+        <div class="card"><div class="when">1867–1874</div><h3>The hide hunters</h3>
+          <p>The Medicine Lodge treaty of 1867 promised that the Comanche could hunt south of the Arkansas River for as long as the buffalo lasted. Within a few years, commercial hide hunters were killing the southern herd by the hundreds of thousands, for leather sold back east.</p>
+          <p>In 1874 hunters and merchants set up a trading post at Adobe Walls in the Texas Panhandle, deep in Comanche hunting country. <a class="link" href="../treaties/#1867">Read the Medicine Lodge treaty →</a></p></div></div>
+      <div class="step" data-view="360,120,280,220" data-pins="adobewalls" data-layers="attack" data-year="June 27, 1874">
+        <div class="card"><div class="when">June 27, 1874</div><h3>The attack</h3>
+          <p>At dawn, an estimated 700 Comanche, Cheyenne, Kiowa, and Arapaho warriors attacked the post. They were led by Quanah, a young Quahadi war leader, and Isatai, a medicine man who had promised them protection from the hunters' bullets.</p>
+          <p>Inside were 28 men with heavy, long-range buffalo rifles. The attack failed. As many as 70 warriors may have been killed, though estimates vary, and Quanah was wounded.</p></div></div>
+      <div class="step" data-view="200,60,760,620" data-pins="adobewalls,paloduro,fortsill" data-layers="reservation,columns" data-year="Summer 1874">
+        <div class="card"><div class="when">Summer 1874</div><h3>The Red River War</h3>
+          <p>Isatai's promise had failed, and it was a hard spiritual blow. For the Army, the attack was the reason it needed. Columns of soldiers marched into the Panhandle from several directions to hunt down every band still living free.</p>
+          <p>The war that followed would end life on the open plains.</p></div></div>
+
+      <!-- ================= 4. PALO DURO ================= -->
+      <div class="chapter-head" id="paloduro"><canvas data-paint="canyon,2,30" aria-hidden="true"></canvas><div class="num">Story 4</div><h2>Palo Duro Canyon</h2><p>The safest place on the plains, until it wasn't.</p></div>
+      <div class="step" data-view="340,230,220,180" data-pins="paloduro" data-layers="canyon" data-year="Fall 1874">
+        <div class="card"><div class="when">Fall 1874</div><h3>The canyon refuge</h3>
+          <p>As the soldiers closed in, Comanche, Kiowa, and Cheyenne families gathered in the great red canyon of Palo Duro, below the rim of the Llano Estacado. There was water, grass, timber, and shelter, and they had laid in food for the winter.</p></div></div>
+      <div class="step" data-view="370,250,160,130" data-pins="paloduro" data-layers="canyon,attackpd" data-year="Sept. 28, 1874">
+        <div class="card"><div class="when">September 28, 1874</div><h3>Dawn attack</h3>
+          <p>Colonel Ranald Mackenzie's Fourth Cavalry found the camps and came down a narrow trail into the canyon at first light. Most of the people escaped up the canyon. Accounts of how many were killed differ widely.</p>
+          <p>The soldiers burned the lodges, the robes, and the winter food in great bonfires.</p></div></div>
+      <div class="step" data-view="360,240,200,170" data-pins="paloduro,tule" data-layers="canyon,horses" data-year="Sept. 29, 1874">
+        <div class="card"><div class="when">The next day</div><h3>The horses</h3>
+          <p>The soldiers drove the captured horse herd to Tule Canyon. Mackenzie kept some for his scouts and ordered the rest shot: more than a thousand horses, and by some counts closer to two thousand.</p>
+          <p>Without horses, without lodges, and without food, the families could not survive the winter on the plains. By November, many had walked in to the reservation.</p></div></div>
+
+      <!-- ================= 5. COMING IN ================= -->
+      <div class="chapter-head" id="fortsill"><canvas data-paint="granite,0,44" aria-hidden="true"></canvas><div class="num">Story 5</div><h2>Coming in, 1875</h2><p>The last free band, and what came after.</p></div>
+      <div class="step" data-view="250,180,640,460" data-pins="paloduro,fortsill" data-layers="reservation,quahadi" data-year="Spring 1875">
+        <div class="card"><div class="when">Spring 1875</div><h3>The Quahadi</h3>
+          <p>Through the winter, one band held out on the Llano Estacado: the Quahadi, with Quanah among their leaders. By spring the buffalo were going fast, and the Army would never stop coming.</p>
+          <p>In late May and early June 1875, Quanah led the Quahadi in to Fort Sill. The free life on the southern plains was over.</p></div></div>
+      <div class="step" data-view="620,230,280,220" data-pins="fortsill" data-layers="reservation" data-year="1875–1911">
+        <div class="card"><div class="when">1875–1911</div><h3>A new kind of fight</h3>
+          <p>On the reservation Quanah became a rancher and businessman, a leader who dealt with Washington and with Texas cattlemen, and he lived in a large house near Cache, Oklahoma, called the Star House. He died in 1911.</p>
+          <p>In 1892 the Jerome Agreement broke up the reservation into allotments, and in 1901 the rest was opened to settlers. <a class="link" href="../treaties/#1892">Read the Jerome Agreement →</a></p></div></div>
+      <div class="step" data-view="-100,-80,1150,940" data-pins="fortsill" data-layers="today" data-year="Today">
+        <div class="card"><div class="when">Today</div><h3>Still here</h3>
+          <p>Seventy years after Palo Duro, Comanche men carried their language onto Utah Beach as code talkers. <a class="link" href="../codetalkers/">Their story →</a></p>
+          <p>The Comanche Nation today is headquartered in Lawton, Oklahoma, with about 17,000 enrolled citizens. The people, and the language, are still here.</p></div></div>
+    </div>
+
+    <div class="mapbox" aria-hidden="true"><svg id="map" viewBox="-260 -300 1200 1000" preserveAspectRatio="xMidYMid meet"></svg><div class="yearbadge" id="year"></div><div class="legendbox" id="legend"></div></div>
+  </div>
+
+  <section class="section" style="padding-top:10px">
+    <h2 style="font-size:28px">Sources</h2>
+    <ul class="sources" style="padding-left:18px">
+      <li><a href="https://en.wikipedia.org/wiki/Comanche">Comanche (Wikipedia): origins, the 1706 record, horses, the Comanche Nation today</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Battle_of_Plum_Creek">Battle of Plum Creek and the Great Raid of 1840 (Wikipedia)</a></li>
+      <li><a href="https://www.legendsofamerica.com/tx-adobewalls/">Adobe Walls, Texas (Legends of America)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Battle_of_Palo_Duro_Canyon">Battle of Palo Duro Canyon (Wikipedia)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Quanah_Parker">Quanah Parker (Wikipedia)</a></li>
+      <li>Pekka Hämäläinen, <i>The Comanche Empire</i> (Yale University Press, 2008)</li>
+    </ul>
+    <div class="note" style="margin-top:16px"><b>About the map</b>Places and routes are approximate, drawn to show the shape of events rather than exact paths. The shaded Comanchería is a general picture of its extent at its height.</div>
+    <div class="more">
+      <a href="../treaties/"><b>The Comanche Treaties</b><small>Eleven treaties, read for what they promised and what happened</small></a>
+      <a href="../herd/"><b>Follow the Herd</b><small>Live a year in the Comanchería in 1845</small></a>
+      <a href="../codetalkers/"><b>The Code Talkers</b><small>Turtle meant tank</small></a>
+    </div>
+  </section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+"use strict";
+/* =======================================================================
+   MAP
+   Coordinates: x = (longitude + 106) * 100, y = (38.5 - latitude) * 84,
+   the same frame as the Follow the Herd map.
+   ======================================================================= */
+const PINS = {
+  santafe:{ x:6, y:236, label:"Santa Fe" }, taos:{ x:43, y:176, label:"Taos" }, pecos:{ x:32, y:252, label:"Pecos Pueblo", below:true },
+  wichita:{ x:730, y:310, label:"Wichita Mountains" }, paloduro:{ x:433, y:298, label:"Palo Duro Canyon" }, sansaba:{ x:690, y:622, label:"San Saba" },
+  sanantonio:{ x:751, y:763, label:"San Antonio" }, victoria:{ x:900, y:815, label:"Victoria", below:true }, linnville:{ x:960, y:840, label:"Linnville", below:true },
+  plumcreek:{ x:833, y:724, label:"Plum Creek" }, torrey:{ x:880, y:584, label:"Tehuacana Creek" },
+  medicinelodge:{ x:742, y:102, label:"Medicine Lodge" }, adobewalls:{ x:482, y:222, label:"Adobe Walls" }, tule:{ x:462, y:338, label:"Tule Canyon", below:true },
+  fortsill:{ x:760, y:323, label:"Fort Sill" }
+};
+const RIVERS = [
+  ["Arkansas", [[-160,10],[0,0],[120,22],[260,34],[400,46],[600,60],[800,66],[880,90],[960,170],[1100,230]], [520,48]],
+  ["Canadian", [[90,170],[180,230],[250,282],[350,250],[450,236],[600,220],[800,252],[1100,280]], [560,214]],
+  ["Red", [[405,300],[500,318],[600,336],[700,362],[820,392],[1100,400]], [880,384]],
+  ["Brazos", [[400,420],[500,438],[600,448],[750,488],[880,580],[930,640],[1000,700],[1080,820]], [640,452]],
+  ["Colorado", [[420,500],[480,530],[550,566],[700,612],[830,690],[950,750],[1020,860]], [600,575]],
+  ["Pecos", [[50,250],[120,320],[160,380],[200,500],[300,580],[380,640],[460,730]], [178,440]],
+  ["Río Grande", [[-60,-300],[-40,-60],[-20,140],[-30,300],[-40,500],[0,640],[120,700],[260,770],[400,792],[520,770],[640,820],[760,940]], [-60,420]],
+  ["Washita", [[560,250],[650,270],[720,290],[800,300]], [640,262]]
+];
+function catmull(pts){ let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++){ const p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+    d += ` C${p1[0]+(p2[0]-p0[0])/6},${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6},${p2[1]-(p3[1]-p1[1])/6} ${p2[0]},${p2[1]}`; } return d; }
+const route = (pts, col, w = 6) => `<path class="route" d="${catmull(pts)}" fill="none" stroke="${col}" data-w="${w * .6}" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>`;
+const mtn = (x, y, s) => `<path d="M${x - 30 * s},${y} L${x},${y - 46 * s} L${x + 30 * s},${y} Z" fill="#9c8670"/><path d="M${x - 10 * s},${y - 31 * s} L${x},${y - 46 * s} L${x + 10 * s},${y - 31 * s} Z" fill="#f2ece2"/>`;
+
+const LAYERS = {
+  mountains: Array.from({ length:26 }, (_, i) => mtn(-210 + (i % 6) * 48 + (i % 2) * 18, -240 + Math.floor(i / 6) * 120 + (i % 3) * 14, .9 + (i % 3) * .2)).join(""),
+  north: route([[-120,-260],[-60,-120],[0,0],[60,120],[120,200]], "#7a2e16", 8) + `<text x="-150" y="-275" class="lab big">Shoshone country</text>`,
+  pueblo: `<ellipse cx="20" cy="220" rx="80" ry="70" fill="#9e4a2c" fill-opacity=".18" stroke="#9e4a2c" stroke-dasharray="6 6"/>` +
+    [[80,140],[140,90],[200,200],[180,300],[120,360]].map(([x, y]) => route([[30,220],[x, y]], "#9e4a2c", 4)).join("") + `<text x="-40" y="320" class="lab">Spanish horses spread</text>`,
+  comancheria: `<path d="${catmull([[160,30],[420,20],[700,30],[900,140],[880,400],[800,560],[700,690],[520,720],[300,640],[170,470],[110,280],[160,30]])}Z" fill="#7a2e16" fill-opacity=".13" stroke="#7a2e16" data-w="2" stroke-dasharray="10 8"/><text x="330" y="420" class="lab big">COMANCHERÍA</text>`,
+  raidout: route([[690,560],[780,660],[880,790],[905,812],[955,835]], "#b8402e", 7),
+  raidback: route([[955,835],[880,770],[833,724],[760,640],[690,600]], "#d97736", 5),
+  reservation: `<path d="M660,268 L800,262 L805,372 L700,362 L655,330 Z" fill="#2f4a5a" fill-opacity=".22" stroke="#2f4a5a" data-w="2"/><text x="668" y="352" class="lab">1867 reservation</text>`,
+  attack: Array.from({ length:8 }, (_, i) => { const a = i / 8 * Math.PI * 2; return route([[482 + Math.cos(a) * 90, 222 + Math.sin(a) * 70],[482 + Math.cos(a) * 18, 222 + Math.sin(a) * 14]], "#b8402e", 4); }).join(""),
+  columns: [[[200,250],[400,250]],[[480,40],[482,180]],[[760,300],[540,260]],[[640,520],[470,330]],[[300,520],[420,330]]].map(p => route(p, "#2f4a5a", 5)).join("") + `<text x="210" y="240" class="lab">Army columns</text>`,
+  canyon: `<path d="${catmull([[380,268],[410,285],[433,298],[452,318],[470,340]])}" fill="none" stroke="#b6553a" data-w="12" stroke-linecap="round" opacity=".6"/>`,
+  attackpd: route([[400,262],[425,290]], "#2f4a5a", 3),
+  horses: route([[433,298],[462,338]], "#7a2e16", 3) + `<text x="470" y="360" class="lab small">Horses killed</text>`,
+  quahadi: route([[380,330],[500,330],[640,320],[750,322]], "#d97736", 6),
+  today: `<circle cx="760" cy="323" r="40" fill="#d97736" fill-opacity=".25"/><text x="760" y="400" text-anchor="middle" class="lab">Comanche Nation, Lawton</text>`
+};
+const LEGENDS = { north:"Comanche and Shoshone moving south", pueblo:"Horses spreading after the Pueblo Revolt", comancheria:"The Comanchería at its height", raidout:"The raid to the coast", raidback:"The return, and Plum Creek",
+  reservation:"The Kiowa-Comanche-Apache reservation", attack:"The attack on Adobe Walls", columns:"Army columns, 1874", quahadi:"The Quahadi come in to Fort Sill", horses:"Tule Canyon", today:"The Comanche Nation today" };
+
+const svg = document.getElementById("map");
+svg.innerHTML = `<defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <radialGradient id="pg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#ecdcb8"/><stop offset="1" stop-color="#cdb184"/></radialGradient>
+  </defs>
+  <style></style>
+  <rect x="-400" y="-500" width="1700" height="1600" fill="url(#pg)"/>
+  <path d="M780,1100 L800,900 L900,860 L1040,880 L1300,900 L1300,1100 Z" fill="#9cc0d8" opacity=".55"/>
+  <text x="1010" y="960" class="lab river">Gulf of Mexico</text>
+  ${RIVERS.map(([n, p, lp]) => `<path d="${catmull(p)}" fill="none" stroke="#5b8aa0" data-w="${n === "Río Grande" || n === "Arkansas" ? 3 : 2.2}" stroke-linecap="round" opacity=".8"/><text x="${lp[0]}" y="${lp[1]}" class="lab river">${n}</text>`).join("")}
+  ${Object.entries(LAYERS).map(([k, g]) => `<g class="layer off" data-layer="${k}">${g}</g>`).join("")}
+  ${Object.entries(PINS).map(([k, p]) => `<g class="pin off" data-pin="${k}" transform="translate(${p.x},${p.y})"><g class="ps"><circle r="9" fill="#d97736" stroke="#f6ead2" stroke-width="3"/>
+     <text y="${p.below ? 28 : -15}" text-anchor="middle" style="font-family:'Fira Sans Condensed',sans-serif;font-weight:700;font-size:15px;fill:#3a2414;paint-order:stroke;stroke:#ecdcb8;stroke-width:4px">${p.label}</text></g></g>`).join("")}`;
+
+/* animate the viewBox toward the current step's view. Pins, labels, and line widths
+   are rescaled every frame so they stay the same size on screen at any zoom. */
+let vb = [-260, -300, 1200, 1000], target = vb.slice(), lastUpp = 0;
+const styleEl = svg.querySelector("style");
+const widthEls = () => svg.querySelectorAll("[data-w]");
+function tick(){
+  for (let i = 0; i < 4; i++){ const d = target[i] - vb[i]; vb[i] = Math.abs(d) > .3 ? vb[i] + d * .08 : target[i]; }
+  svg.setAttribute("viewBox", vb.map(v => v.toFixed(1)).join(" "));
+  const bw = svg.clientWidth || 1, bh = svg.clientHeight || 1;
+  const upp = 1 / Math.min(bw / vb[2], bh / vb[3]);   /* map units per screen pixel */
+  if (Math.abs(upp - lastUpp) > lastUpp * .004){
+    lastUpp = upp;
+    svg.querySelectorAll(".pin .ps").forEach(g => g.setAttribute("transform", `scale(${upp.toFixed(4)})`));
+    widthEls().forEach(el => el.setAttribute("stroke-width", (el.dataset.w * upp).toFixed(2)));
+    styleEl.textContent = `.lab{font-family:"Fira Sans Condensed",sans-serif;font-weight:700;font-size:${(15 * upp).toFixed(2)}px;fill:#3a2414}
+      .lab.big{font-size:${(24 * upp).toFixed(2)}px;letter-spacing:${(3 * upp).toFixed(2)}px;fill:#7a2e16;opacity:.6}.lab.small{font-size:${(13 * upp).toFixed(2)}px}.lab.river{fill:#3d5f70;font-style:italic;font-weight:500}`;
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+function activate(step){
+  document.querySelectorAll(".step").forEach(s => s.classList.toggle("on", s === step));
+  target = step.dataset.view.split(",").map(Number);
+  const pins = step.dataset.pins ? step.dataset.pins.split(",") : [];
+  const layers = step.dataset.layers ? step.dataset.layers.split(",") : [];
+  svg.querySelectorAll(".pin").forEach(p => p.classList.toggle("off", !pins.includes(p.dataset.pin)));
+  svg.querySelectorAll(".layer").forEach(l => l.classList.toggle("off", !layers.includes(l.dataset.layer)));
+  document.getElementById("year").textContent = step.dataset.year || "";
+  const lg = layers.map(l => LEGENDS[l]).filter(Boolean);
+  const le = document.getElementById("legend"); le.textContent = lg.join(" · "); le.style.display = lg.length ? "" : "none";
+}
+const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) activate(e.target); }); }, { rootMargin:"-45% 0px -45% 0px" });
+document.querySelectorAll(".step").forEach(s => io.observe(s));
+activate(document.querySelector(".step"));
+
+/* painted chapter banners (drawn once) and the hero */
+document.querySelectorAll("canvas[data-paint]").forEach(cv => {
+  const [biome, season, seed] = cv.dataset.paint.split(",");
+  const draw = () => { const d = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight; if (!w) return;
+    cv.width = w * d; cv.height = h * d; const ctx = cv.getContext("2d"); ctx.setTransform(d,0,0,d,0,0);
+    paintScene(ctx, w, h, { biome, season:+season, herd: biome !== "granite", camp: biome === "canyon" || biome === "granite", caravan: biome === "plains", scroll:0, t:2, seed:+seed, lodges:5 }); };
+  new ResizeObserver(draw).observe(cv);
+});
+(function(){
+  const cv = document.getElementById("heroCv"), ctx = cv.getContext("2d");
+  const o = { biome:"llano", season:2, herd:true, camp:false, caravan:true, scroll:0, t:0, seed:13 };
+  let w = 0, h = 0, last = 0;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(cv); fit();
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; o.t += dt; o.scroll += dt * 18; if (w) paintScene(ctx, w, h, o); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

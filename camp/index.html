@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Walk Through a Camp · Nʉmʉnʉʉ</title>
+<meta name="description" content="Walk through a Comanche camp on the southern plains. Tap the lodge, the travois, the drying racks, the shield and more to learn what each was and how it was made.">
+<meta property="og:title" content="Walk Through a Camp">
+<meta property="og:description" content="An interactive Comanche camp from numunuu.com.">
+<meta property="og:url" content="https://numunuu.com/camp/">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.intro{padding:28px 0 8px}
+.intro h1{font-size:clamp(40px,7vw,84px);text-transform:uppercase;line-height:.92}
+.intro h1 .accent{color:var(--gold)}
+.intro .lead{margin-top:12px}
+
+.campbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;margin:18px 0 12px}
+.seasons{display:flex;gap:6px;flex-wrap:wrap}
+.found{font-size:14px;font-weight:600;color:var(--ink-2)}
+.found b{color:var(--gold)}
+
+.campgrid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start}
+@media (max-width:980px){.campgrid{grid-template-columns:1fr}}
+.stage{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#3b3026;border:1px solid var(--line)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hot{position:absolute;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;border:2px solid #fff;background:rgba(217,119,54,.85);
+  display:grid;place-items:center;font-weight:700;font-size:13px;color:#1d0f05;box-shadow:0 2px 10px rgba(0,0,0,.4);padding:0}
+.hot::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(255,220,170,.8);animation:pulse 2.2s infinite}
+.hot.seen{background:rgba(167,189,140,.95)}
+.hot.seen::after{animation:none;opacity:0}
+.hot[aria-pressed="true"]{background:#fff;transform:translate(-50%,-50%) scale(1.15)}
+.hot .lab{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(20,14,10,.85);color:#fff;
+  font-size:12.5px;font-weight:600;padding:3px 8px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .15s}
+.hot:hover .lab,.hot:focus-visible .lab{opacity:1}
+@keyframes pulse{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.5);opacity:0}}
+@media (max-width:600px){.hot{width:28px;height:28px;font-size:11.5px}.stage{aspect-ratio:4/3}}
+@media (hover:none){.hot .lab{display:none}}
+
+.info{padding:20px 20px 18px;position:sticky;top:72px;min-height:300px}
+@media (max-width:980px){.info{position:static}}
+.info .who{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.info h2{font-size:32px}
+.info p{margin:0 0 12px;color:var(--ink-2);font-size:16px}
+.info ul{margin:0 0 12px;padding-left:18px;color:var(--ink-2);font-size:15.5px}
+.info li{margin:4px 0}
+.info .also{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
+.info .nav{display:flex;gap:8px;margin-top:14px}
+.info .nav .btn{padding:8px 14px;font-size:14px}
+.info.empty h2{color:var(--ink-2)}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:20px}
+.facts .card{padding:16px 18px}
+.facts b{font-family:var(--f-display);font-weight:800;font-size:30px;color:var(--gold);display:block;line-height:1}
+.facts span{color:var(--ink-2);font-size:15px}
+</style>
+</head>
+<body>
+<header data-site-top data-page="camp"></header>
+
+<main class="wrap">
+  <section class="intro">
+    <p class="eyebrow">Life on the plains</p>
+    <h1>Walk through <span class="accent">a camp</span></h1>
+    <p class="lead">A Comanche camp could be taken down, loaded onto horses, and set up again somewhere new in a single day. Tap anything glowing to learn what it was, who made it, and how.</p>
+  </section>
+
+  <div class="campbar">
+    <div class="seasons" role="group" aria-label="Season">
+      <button class="chip" data-season="0" aria-pressed="false">Spring</button>
+      <button class="chip" data-season="1" aria-pressed="false">Summer</button>
+      <button class="chip" data-season="2" aria-pressed="true">Fall</button>
+      <button class="chip" data-season="3" aria-pressed="false">Winter</button>
+    </div>
+    <div class="found" id="found" aria-live="polite"></div>
+  </div>
+
+  <div class="campgrid">
+    <div class="stage" id="stage"><canvas id="cv" aria-hidden="true"></canvas></div>
+    <aside class="card info empty" id="info" aria-live="polite">
+      <p class="eyebrow">Start anywhere</p>
+      <h2>Pick something in camp</h2>
+      <p>Every glowing marker is a real part of camp life: the lodge, the travois, the meat racks, a hide being tanned, the horse herd.</p>
+      <div class="nav"><button class="btn primary" id="tourBtn" type="button">Take the tour →</button></div>
+    </aside>
+  </div>
+
+  <section class="section" aria-labelledby="numbersH">
+    <h2 id="numbersH" style="font-size:clamp(28px,4vw,42px)">A camp by the numbers</h2>
+    <div class="facts">
+      <div class="card"><b>13–16</b><span>buffalo hides to cover one lodge about 15 feet across</span></div>
+      <div class="card"><b>Hers</b><span>The lodge belonged to the woman who made it. Women raised it, struck it, and kept it in repair</span></div>
+      <div class="card"><b>Hundreds</b><span>of horses could belong to a single wealthy family; a band's herd could number in the thousands</span></div>
+      <div class="card"><b>Before 1725</b><span>Comanches were still using dogs to haul their lodges. Within a few generations they were the finest horse people on the plains</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="moreH">
+    <h2 id="moreH" style="font-size:28px">Keep exploring</h2>
+    <div class="more">
+      <a href="../plants/"><b>Plants of the Comanchería</b><small>The woods, fruits, and roots behind the bows, arrows, and food in this camp</small></a>
+      <a href="../herd/"><b>Follow the Herd</b><small>Run a camp like this one for a whole year</small></a>
+      <a href="../stories/"><b>Turning Points</b><small>How the horse changed everything, and what came after</small></a>
+    </div>
+    <div class="note" style="margin-top:22px"><b>A note on this scene</b>This is a general picture of a Comanche camp in the mid-1800s, drawn from published ethnographies and museum collections. Details varied from band to band and family to family. Corrections from Comanche families and knowledge-keepers are welcome.</div>
+    <ul class="sources" style="margin-top:16px;padding-left:18px">
+      <li>Gustav G. Carlson and Volney H. Jones, "Some Notes on Uses of Plants by the Comanche Indians" (Papers of the Michigan Academy of Science, Arts and Letters, 1940)</li>
+      <li><a href="https://plainshumanities.unl.edu/encyclopedia/doc/egp.arc.048.html">Encyclopedia of the Great Plains: Tipis</a></li>
+      <li>Ernest Wallace and E. Adamson Hoebel, <i>The Comanches: Lords of the South Plains</i> (University of Oklahoma Press, 1952)</li>
+    </ul>
+  </section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+"use strict";
+/* =======================================================================
+   CAMP ITEMS
+   x, y: hotspot position as a fraction of the scene.
+   ======================================================================= */
+const ITEMS = [
+  { id:"lodge", x:.42, y:.42, title:"The lodge", who:["Made, raised, and owned by women"],
+    body:["The lodge was a cone of long poles covered with tanned buffalo hides sewn together with sinew. A lodge about fifteen feet across took thirteen to sixteen hides.",
+          "Women made the covers, raised the lodge, took it down, and kept it in repair. The lodge belonged to the woman who made it."],
+    list:["The door faced away from the prevailing wind, so the steep back of the cone took the weight of a storm.",
+          "Two smoke flaps at the top were steered by their own poles to draw smoke out whatever the wind did.",
+          "In summer the bottom edge of the cover was rolled up for a breeze. In winter an inner lining kept in the warmth."],
+    also:'See the hides counted in <a href="../herd/">Follow the Herd</a>\'s Every Part game.' },
+  { id:"travois", x:0.22, y:0.71, title:"The travois", who:["Built by women","Pulled by horses, earlier by dogs"],
+    body:["Two poles tied to a horse's sides, crossed above its shoulders, with the ends dragging behind. A frame of rawhide between them carried lodge covers, bedding, food, and sometimes small children or the elderly.",
+          "Before horses, dogs pulled smaller travois, and a camp moved only a few miles a day. Spanish reports say Comanches were still using dogs to haul their lodges as late as 1725."],
+    list:["The lodge poles themselves often served as the travois poles on the move.","Horses changed how far and how fast a camp could travel, and how much it could carry."],
+    also:'Read how the horse arrived in <a href="../stories/#horse">Turning Points</a>.' },
+  { id:"rack", x:0.6, y:0.69, title:"Drying racks", who:["Women's work"],
+    body:["After a hunt, meat was sliced into thin sheets and hung on pole racks to dry in the sun and wind. Dried meat was light, kept for months, and could be carried anywhere.",
+          "Dried meat pounded together with fat and wild fruit made pemmican, one of the most important foods for the winter."],
+    list:["The big fall hunts filled the racks for winter.","Chokecherries, plums, and other fruit were mixed in. See them in Plants of the Comanchería."],
+    also:'Plums, chokecherries, and persimmons are in <a href="../plants/">Plants of the Comanchería</a>.' },
+  { id:"hide", x:0.82, y:0.88, title:"A hide being tanned", who:["Women's work"],
+    body:["A fresh hide was staked out on the ground, hair side down. Then it was fleshed with a bone or iron tool, scraped thin, and worked soft.",
+          "Brains were rubbed into the hide to soften it. Carlson and Jones recorded that Comanche women added the leaves of a croton plant to the brain mixture."],
+    list:["Winter hides, with thick hair left on, became robes, the most valuable trade good on the plains.","Summer hides, with the hair scraped off, became lodge covers, bags, and clothing."],
+    also:'The croton plant is in <a href="../plants/#croton">Plants of the Comanchería</a>.' },
+  { id:"horses", x:0.12, y:0.56, title:"The horse herd", who:["Guarded by boys and young men"],
+    body:["Horses were the Comanche measure of wealth. A rich family might own hundreds, and the herd of a large band could number in the thousands.",
+          "Boys spent long days guarding the herd, moving it to fresh grass and water and watching for raiders. That is where they learned to ride as well as anyone on earth."],
+    list:["A man's best war horse or buffalo runner was often picketed right by his lodge at night.","The size of the herd decided where a camp could go: a thousand horses need a lot of grass."],
+    also:'Meet Smoke and Red Paint in <a href="../herd/">Follow the Herd</a>.' },
+  { id:"shield", x:0.31, y:0.67, title:"The shield", who:["Made by its owner"],
+    body:["A war shield was made from the thick hide of a buffalo's neck, shrunk and hardened over a fire until it was strong enough to turn an arrow. A soft cover went over the face.",
+          "A shield was personal. Its making and its design carried meaning for the man who carried it, and it was treated with care, often hung outside the lodge on a tripod."],
+    list:["Shields were angled in battle so arrows and some musket balls glanced off.","Feathers and other attachments were the owner's own choices."],
+    also:"Some of what shields meant is private. This page sticks to how they were made and used." },
+  { id:"bow", x:0.71, y:0.75, title:"Bow and arrows", who:["Men's work"],
+    body:["The best bows were made from the wood of the Osage orange, called bois d'arc, which is tough and springy. Many bows were backed with sinew for extra power.",
+          "Carlson and Jones recorded Comanche arrow shafts made from roughleaf dogwood and western soapberry, straightened by hand and heat."],
+    list:["A hunter on a good buffalo runner could ride alongside a bull and shoot arrow after arrow at a gallop.","By the 1840s, guns traded from Comancheros and Americans were common too, but the bow stayed faster to reload on horseback."],
+    also:'Bois d\'arc and dogwood are in <a href="../plants/#osage">Plants of the Comanchería</a>.' },
+  { id:"fire", x:0.5, y:0.85, title:"Cooking fire", who:["Women's work"],
+    body:["Meat was roasted over the coals or boiled. Before iron kettles, a cleaned buffalo stomach was hung from sticks, filled with water and meat, and brought to a boil by dropping in red-hot stones.",
+          "On the treeless plains, dried buffalo chips were the everyday fuel."],
+    list:["Iron kettles from traders replaced the stomach pot over time, and were among the most wanted trade goods.","Wild onions, roots, and fruit gathered by women filled out the meat."],
+    also:'Trade for kettles with Bent\'s traders in <a href="../herd/">Follow the Herd</a>.' },
+  { id:"parfleche", x:0.36, y:0.89, title:"Parfleche", who:["Made and painted by women"],
+    body:["A parfleche is a folded envelope of rawhide, stiff and nearly waterproof. Parfleches held dried meat, pemmican, clothing, and other things that had to travel.",
+          "Women painted them with bold geometric designs. Pairs were often made from one hide so they matched when hung on either side of a horse."],
+    list:["Rawhide was hide that had been cleaned and dried but not softened, so it held its shape.","Parfleches stacked inside the lodge along the walls, like a pantry and closet in one."] },
+  { id:"cradle", x:0.47, y:0.69, title:"Cradleboard", who:["Made by female relatives"],
+    body:["A baby spent its first months laced into a cradle on a board frame, with a shade over the head. The cradle could lean against a lodge, hang from a saddle, or ride on its mother's back while she worked.",
+          "Cradles were often made by the baby's grandmother or aunts and decorated with beadwork."],
+    list:["Babies were carried along on every move.","A child's first naming was often done by a respected relative."] },
+  { id:"kids", x:0.9, y:0.7, title:"Children at play", who:["Everyone's job to watch"],
+    body:["Comanche children were riding almost as soon as they could walk. Boys raced ponies, shot small bows, and played hunting games. Girls had their own play lodges and copied the work of their mothers and aunts.",
+          "Games were practice for adult life, and children were given a lot of freedom to roam the camp."],
+    list:["A boy's first buffalo kill was a big event, often celebrated by his father with a feast and a giveaway.","Grandparents did much of the teaching, especially in winter."],
+    also:'Little Hawk\'s first hunt happens in <a href="../herd/">Follow the Herd</a>.' },
+  { id:"dogs", x:0.66, y:0.9, title:"Camp dogs", who:["Everyone's"],
+    body:["Dogs were part of every camp. Before horses, they were the only animals that could carry a load, pulling small travois between camps.",
+          "After horses arrived, dogs stayed on as guards, companions, and the first to bark when strangers or wolves came near."] }
+];
+
+/* =======================================================================
+   DRAWING
+   Background from the game painter, then camp details on top.
+   ======================================================================= */
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d"), stage = document.getElementById("stage");
+let W = 0, H = 0, season = 2, t = 0;
+function fit(){ const d = Math.min(2, devicePixelRatio || 1); W = stage.clientWidth; H = stage.clientHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d,0,0,d,0,0); }
+new ResizeObserver(fit).observe(stage); fit();
+
+const groundY = fx => H * (.84 - .02 * Math.sin(fx * 7));
+
+function drawTravois(x, base, s){
+  ctx.save(); ctx.translate(x, base);
+  ctx.strokeStyle = "#5a3a22"; ctx.lineWidth = 3 * s; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.moveTo(-6 * s, -95 * s); ctx.lineTo(60 * s, 0); ctx.moveTo(6 * s, -95 * s); ctx.lineTo(-40 * s, 0); ctx.stroke();
+  ctx.fillStyle = "#cdb48c"; ctx.beginPath(); ctx.moveTo(-22 * s, -30 * s); ctx.lineTo(34 * s, -30 * s); ctx.lineTo(44 * s, -12 * s); ctx.lineTo(-30 * s, -12 * s); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = "#7a5a3a"; ctx.lineWidth = 1.5 * s; for (let i = -18; i < 40; i += 9){ ctx.beginPath(); ctx.moveTo(i * s, -30 * s); ctx.lineTo((i + 6) * s, -12 * s); ctx.stroke(); }
+  ctx.restore();
+}
+function drawRack(x, base, s, full){
+  ctx.save(); ctx.translate(x, base); ctx.strokeStyle = "#4a3020"; ctx.lineWidth = 3 * s; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.moveTo(-60 * s, 0); ctx.lineTo(-56 * s, -62 * s); ctx.moveTo(60 * s, 0); ctx.lineTo(56 * s, -62 * s);
+  ctx.moveTo(-64 * s, -58 * s); ctx.lineTo(64 * s, -58 * s); ctx.moveTo(-60 * s, -36 * s); ctx.lineTo(60 * s, -36 * s); ctx.stroke();
+  const n = full ? 9 : 4;
+  for (let i = 0; i < n; i++){ const px = (-50 + i * (100 / (n - 1 || 1))) * s, row = i % 2 ? -36 : -58;
+    ctx.fillStyle = i % 3 ? "#8a3a26" : "#a24a30"; ctx.beginPath(); ctx.moveTo(px - 5 * s, row * s); ctx.lineTo(px + 5 * s, row * s); ctx.lineTo(px + 4 * s, (row + 20) * s); ctx.lineTo(px - 4 * s, (row + 22) * s); ctx.closePath(); ctx.fill(); }
+  ctx.restore();
+}
+function drawHide(x, y, s, snow){
+  ctx.save(); ctx.translate(x, y);
+  ctx.fillStyle = snow ? "#e9e1d3" : "#d9c39a";
+  ctx.beginPath(); ctx.moveTo(-60 * s, -6 * s); ctx.quadraticCurveTo(-40 * s, -26 * s, -10 * s, -22 * s); ctx.quadraticCurveTo(10 * s, -30 * s, 40 * s, -20 * s);
+  ctx.quadraticCurveTo(66 * s, -10 * s, 58 * s, 8 * s); ctx.quadraticCurveTo(30 * s, 22 * s, 0, 18 * s); ctx.quadraticCurveTo(-40 * s, 24 * s, -60 * s, -6 * s); ctx.fill();
+  ctx.fillStyle = "#4a3020"; for (const [px, py] of [[-58,-6],[-40,-20],[-10,-22],[20,-26],[44,-18],[58,6],[30,18],[0,18],[-30,20]]){ ctx.fillRect(px * s - 1.5, py * s - 5 * s, 3, 8 * s); }
+  ctx.strokeStyle = "#6b4a2c"; ctx.lineWidth = 3 * s; ctx.beginPath(); ctx.moveTo(70 * s, -20 * s); ctx.lineTo(90 * s, -36 * s); ctx.stroke();
+  ctx.restore();
+}
+function drawShield(x, base, s){
+  ctx.save(); ctx.translate(x, base); ctx.strokeStyle = "#4a3020"; ctx.lineWidth = 2.5 * s; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.moveTo(-22 * s, 0); ctx.lineTo(0, -78 * s); ctx.lineTo(22 * s, 0); ctx.moveTo(0, -78 * s); ctx.lineTo(4 * s, 0); ctx.stroke();
+  ctx.fillStyle = "#e6d6b8"; ctx.beginPath(); ctx.arc(0, -46 * s, 22 * s, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#9e4a2c"; ctx.lineWidth = 3 * s; ctx.beginPath(); ctx.arc(0, -46 * s, 15 * s, 0, Math.PI * 2); ctx.stroke();
+  ctx.strokeStyle = "#2f4a5a"; ctx.beginPath(); ctx.arc(0, -46 * s, 7 * s, 0, Math.PI * 2); ctx.stroke();
+  ctx.strokeStyle = "#f1e6d2"; ctx.lineWidth = 2 * s; for (const a of [.3, .9, 1.5]){ ctx.beginPath(); ctx.moveTo(Math.cos(a + 1.6) * 22 * s, -46 * s + Math.sin(a + 1.6) * 22 * s); ctx.lineTo(Math.cos(a + 1.6) * 36 * s, -46 * s + Math.sin(a + 1.6) * 34 * s); ctx.stroke(); }
+  ctx.restore();
+}
+function drawBow(x, base, s){
+  ctx.save(); ctx.translate(x, base);
+  ctx.strokeStyle = "#5a3a22"; ctx.lineWidth = 3 * s; ctx.beginPath(); ctx.moveTo(-14 * s, 0); ctx.lineTo(0, -70 * s); ctx.lineTo(14 * s, 0); ctx.stroke();
+  ctx.strokeStyle = "#7a4a26"; ctx.lineWidth = 3.4 * s; ctx.beginPath(); ctx.arc(-24 * s, -40 * s, 34 * s, -1.1, 1.1); ctx.stroke();
+  ctx.strokeStyle = "rgba(240,230,210,.8)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(-24 * s + Math.cos(-1.1) * 34 * s, -40 * s + Math.sin(-1.1) * 34 * s); ctx.lineTo(-24 * s + Math.cos(1.1) * 34 * s, -40 * s + Math.sin(1.1) * 34 * s); ctx.stroke();
+  ctx.fillStyle = "#8a5634"; ctx.beginPath(); ctx.ellipse(16 * s, -40 * s, 7 * s, 24 * s, .25, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#f1e6d2"; ctx.lineWidth = 2 * s; for (let i = 0; i < 3; i++){ ctx.beginPath(); ctx.moveTo((10 + i * 4) * s, -62 * s); ctx.lineTo((8 + i * 5) * s, -74 * s); ctx.stroke(); }
+  ctx.restore();
+}
+function drawFire(x, base, s){
+  ctx.save(); ctx.translate(x, base);
+  ctx.strokeStyle = "#4a3020"; ctx.lineWidth = 2.5 * s; ctx.beginPath(); ctx.moveTo(-30 * s, 0); ctx.lineTo(-6 * s, -62 * s); ctx.moveTo(-18 * s, 0); ctx.lineTo(-6 * s, -62 * s); ctx.moveTo(10 * s, 0); ctx.lineTo(-6 * s, -62 * s); ctx.stroke();
+  ctx.fillStyle = "#6b4028"; ctx.beginPath(); ctx.ellipse(-8 * s, -34 * s, 13 * s, 16 * s, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#4a3020"; ctx.lineWidth = 1.5 * s; ctx.beginPath(); ctx.moveTo(-6 * s, -62 * s); ctx.lineTo(-8 * s, -50 * s); ctx.stroke();
+  ctx.fillStyle = "#5a5048"; for (let i = 0; i < 7; i++){ ctx.beginPath(); ctx.arc((20 + Math.cos(i) * 18) * s, (-2 + Math.sin(i) * 4) * s, 5 * s, 0, Math.PI * 2); ctx.fill(); }
+  const f = 1 + .15 * Math.sin(t * 9) + .1 * Math.sin(t * 13);
+  const g = ctx.createRadialGradient(20 * s, -10 * s, 0, 20 * s, -10 * s, 40 * s); g.addColorStop(0, "rgba(255,190,90,.45)"); g.addColorStop(1, "rgba(255,190,90,0)");
+  ctx.fillStyle = g; ctx.fillRect(-20 * s, -50 * s, 80 * s, 60 * s);
+  ctx.fillStyle = "#f2a33a"; ctx.beginPath(); ctx.moveTo(10 * s, -2 * s); ctx.quadraticCurveTo(20 * s, -30 * s * f, 30 * s, -2 * s); ctx.fill();
+  ctx.fillStyle = "#ffd77a"; ctx.beginPath(); ctx.moveTo(15 * s, -2 * s); ctx.quadraticCurveTo(20 * s, -18 * s * f, 25 * s, -2 * s); ctx.fill();
+  for (let p = 0; p < 5; p++){ const a = (t * .3 + p / 5) % 1; ctx.fillStyle = `rgba(230,225,220,${.3 * (1 - a)})`; ctx.beginPath(); ctx.arc(20 * s + Math.sin(a * 6 + p) * 8 * s, -30 * s - a * 90 * s, (4 + a * 12) * s, 0, Math.PI * 2); ctx.fill(); }
+  ctx.restore();
+}
+function drawParfleche(x, base, s){
+  ctx.save(); ctx.translate(x, base);
+  for (let k = 0; k < 2; k++){ const ox = k * 30 * s, oy = -k * 6 * s;
+    ctx.fillStyle = "#e9dcc0"; ctx.fillRect(ox - 22 * s, oy - 26 * s, 44 * s, 26 * s);
+    ctx.fillStyle = "#9e4a2c"; ctx.beginPath(); ctx.moveTo(ox - 18 * s, oy - 22 * s); ctx.lineTo(ox, oy - 4 * s); ctx.lineTo(ox + 18 * s, oy - 22 * s); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#2f4a5a"; ctx.fillRect(ox - 18 * s, oy - 8 * s, 10 * s, 5 * s); ctx.fillRect(ox + 8 * s, oy - 8 * s, 10 * s, 5 * s);
+    ctx.fillStyle = "#c79a3a"; ctx.beginPath(); ctx.moveTo(ox - 6 * s, oy - 22 * s); ctx.lineTo(ox, oy - 14 * s); ctx.lineTo(ox + 6 * s, oy - 22 * s); ctx.fill(); }
+  ctx.restore();
+}
+function drawCradle(x, base, s){
+  ctx.save(); ctx.translate(x, base); ctx.rotate(-.18);
+  ctx.strokeStyle = "#5a3a22"; ctx.lineWidth = 3 * s; ctx.beginPath(); ctx.moveTo(-8 * s, 6 * s); ctx.lineTo(-6 * s, -66 * s); ctx.moveTo(8 * s, 6 * s); ctx.lineTo(10 * s, -66 * s); ctx.stroke();
+  ctx.fillStyle = "#c9a26a"; ctx.beginPath(); ctx.ellipse(1 * s, -26 * s, 12 * s, 26 * s, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#2f4a5a"; ctx.fillRect(-10 * s, -36 * s, 22 * s, 3 * s); ctx.fillStyle = "#9e4a2c"; ctx.fillRect(-10 * s, -22 * s, 22 * s, 3 * s);
+  ctx.fillStyle = "#e9dcc0"; ctx.beginPath(); ctx.arc(1 * s, -52 * s, 13 * s, Math.PI, 0); ctx.fill();
+  ctx.fillStyle = "#8a5a3c"; ctx.beginPath(); ctx.arc(1 * s, -46 * s, 6 * s, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+function drawKid(x, base, s, ph){
+  ctx.save(); ctx.translate(x, base);
+  ctx.strokeStyle = "#6b4028"; ctx.lineWidth = 4 * s; ctx.lineCap = "round";
+  const l = Math.sin(ph) * 6 * s;
+  ctx.beginPath(); ctx.moveTo(0, -18 * s); ctx.lineTo(-4 * s + l, 0); ctx.moveTo(0, -18 * s); ctx.lineTo(4 * s - l, 0); ctx.moveTo(0, -18 * s); ctx.lineTo(0, -38 * s); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, -32 * s); ctx.lineTo(10 * s, -24 * s - l); ctx.stroke();
+  ctx.fillStyle = "#6b4028"; ctx.beginPath(); ctx.arc(0, -44 * s, 6 * s, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#1c130e"; ctx.beginPath(); ctx.arc(0, -46 * s, 6.2 * s, Math.PI, Math.PI * 2.1); ctx.fill();
+  ctx.restore();
+}
+function drawHoop(x, y, s){ ctx.strokeStyle = "#7a4a26"; ctx.lineWidth = 2.5 * s; ctx.beginPath(); ctx.ellipse(x, y, 9 * s, 10 * s, 0, 0, Math.PI * 2); ctx.stroke(); }
+function drawDog(x, base, s, ph){
+  ctx.save(); ctx.translate(x, base); ctx.fillStyle = "#6b5a48"; ctx.strokeStyle = "#6b5a48"; ctx.lineWidth = 3 * s; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.ellipse(0, -14 * s, 16 * s, 7 * s, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(17 * s, -21 * s, 6 * s, 5 * s, .3, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(14 * s, -26 * s); ctx.lineTo(15 * s, -32 * s); ctx.lineTo(19 * s, -26 * s); ctx.fill();
+  for (const lx of [-10, -5, 8, 12]){ ctx.beginPath(); ctx.moveTo(lx * s, -10 * s); ctx.lineTo(lx * s, 0); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(-15 * s, -16 * s); ctx.quadraticCurveTo(-24 * s, -22 * s + Math.sin(ph * 3) * 4 * s, -22 * s, -30 * s); ctx.stroke();
+  ctx.restore();
+}
+
+function render(){
+  if (!W) return;
+  const o = { biome:"river", season, herd:true, camp:false, caravan:false, scroll:0, t, seed:41 };
+  paintScene(ctx, W, H, o);
+  const s = Math.min(W / 900, H / 506);
+  const snow = season === 3;
+  /* far herd of horses */
+  for (let i = 0; i < 10; i++){ const x = W * (.03 + i * .022 + (i % 3) * .01), y = H * (.58 + (i % 4) * .025);
+    drawHorse(ctx, x, y, s * .55, t * .8 + i, { walk:true, pinto:i % 3 === 0, coat:["#8a5634","#5a3a26","#b0835a","#3a2a20"][i % 4] }); }
+  /* lodges */
+  drawTipi(ctx, W * .78, H * .64, H * .2, season, 2);
+  drawTipi(ctx, W * .64, H * .66, H * .27, season, 1);
+  drawTipi(ctx, W * .42, H * .74, H * .4, season, 0);
+  /* camp details */
+  drawShield(W * .31, H * .76, s);
+  drawTravois(W * .22, H * .8, s);
+  drawCradle(W * .47, H * .77, s * .9);
+  drawRack(W * .6, H * .79, s, season === 2 || season === 1);
+  drawBow(W * .71, H * .82, s);
+  drawFire(W * .5, H * .9, s);
+  drawParfleche(W * .35, H * .93, s);
+  drawHide(W * .82, H * .91, s, snow);
+  drawDog(W * .66, H * .95, s, t);
+  drawKid(W * .88, H * .8, s, t * 6); drawKid(W * .93, H * .78, s * .9, t * 6 + 2); drawHoop(W * .9 + Math.sin(t * 1.5) * 20 * s, H * .76, s);
+}
+let last = 0;
+function loop(ts){ const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; t += dt; render(); requestAnimationFrame(loop); }
+requestAnimationFrame(loop);
+
+/* =======================================================================
+   HOTSPOTS + INFO PANEL
+   ======================================================================= */
+const seen = new Set(); let current = -1;
+const info = document.getElementById("info");
+const esc2 = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+ITEMS.forEach((it, i) => {
+  const b = document.createElement("button");
+  b.className = "hot"; b.type = "button"; b.style.left = it.x * 100 + "%"; b.style.top = it.y * 100 + "%";
+  b.dataset.i = i; b.setAttribute("aria-label", it.title); b.setAttribute("aria-pressed", "false");
+  b.innerHTML = `${i + 1}<span class="lab">${esc2(it.title)}</span>`;
+  b.addEventListener("click", () => show(i));
+  stage.appendChild(b);
+});
+function updateFound(){ document.getElementById("found").innerHTML = `Explored <b>${seen.size}</b> of ${ITEMS.length}${seen.size === ITEMS.length ? " · You know this camp now." : ""}`; }
+function show(i){
+  current = i; const it = ITEMS[i]; seen.add(i); updateFound();
+  document.querySelectorAll(".hot").forEach(h => { h.setAttribute("aria-pressed", String(+h.dataset.i === i)); h.classList.toggle("seen", seen.has(+h.dataset.i)); });
+  info.classList.remove("empty");
+  info.innerHTML = `<p class="eyebrow">${i + 1} of ${ITEMS.length}</p><h2>${esc2(it.title)}</h2>
+    <div class="who">${it.who.map(w => `<span class="chip">${esc2(w)}</span>`).join("")}</div>
+    ${it.body.map(p => `<p>${esc2(p)}</p>`).join("")}
+    ${it.list ? `<ul>${it.list.map(l => `<li>${esc2(l)}</li>`).join("")}</ul>` : ""}
+    ${it.also ? `<p class="also">${it.also}</p>` : ""}
+    <div class="nav"><button class="btn" type="button" data-step="-1">← Back</button><button class="btn primary" type="button" data-step="1">Next →</button></div>`;
+  if (matchMedia("(max-width:980px)").matches) info.scrollIntoView({ behavior:"smooth", block:"nearest" });
+}
+info.addEventListener("click", e => {
+  const b = e.target.closest("[data-step]"); if (b) show((current + +b.dataset.step + ITEMS.length) % ITEMS.length);
+  if (e.target.closest("#tourBtn")) show(0);
+});
+document.querySelectorAll("[data-season]").forEach(b => b.addEventListener("click", () => {
+  season = +b.dataset.season; document.querySelectorAll("[data-season]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+}));
+updateFound();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>
