@@ -176,6 +176,33 @@ main .wrap{padding-block:12px 40px}
 </head>
 <body>
 <header data-site-top data-page="home"></header>
+<!-- November only: links to 30 Days of Comanche. Hidden the rest of the year. -->
+<a class="nov" id="nov" href="november/" hidden>
+  <span class="nov-k">Native American Heritage Month</span>
+  <span class="nov-t" id="novT">30 Days of Comanche</span>
+  <span class="nov-go" aria-hidden="true">→</span>
+</a>
+<style>
+.nov{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 14px;padding:10px max(16px,env(safe-area-inset-left));background:linear-gradient(90deg,#2a1d15,#3b2618 50%,#2a1d15);color:#f3eadb;text-decoration:none;font-family:"Fira Sans",system-ui,sans-serif;font-size:15px;border-bottom:1px solid rgba(227,183,102,.35);text-align:center}
+.nov[hidden]{display:none}
+.nov-k{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#d97736}
+.nov-t{font-weight:600}
+.nov-t b{color:#e3b766}
+.nov-go{color:#e3b766;font-weight:700;transition:transform .2s}
+.nov:hover .nov-go{transform:translateX(4px)}
+</style>
+<script>
+(function(){
+  /* keep in step with november/index.html */
+  const T = ["The People","Out of the mountains","The horse","The Comanchería","Moving camp","Peace at Pecos","The white flag","Mountain of Rocks","Camp Holmes","The bow","The Code Talkers","Utah Beach","The Great Raid","Woman's boots","The cradleboard","A peace that held","Medicine Lodge","LaDonna Harris","Adobe Walls","The Gold Medal","The last band comes in","Quanah Parker","Grass money","The Star House","Fort Sill Indian School","The harvest","Doc Tate Nevaquaya","The Jerome Agreement","A museum of our own","Still here"];
+  const p = new Intl.DateTimeFormat("en-US", { timeZone:"America/Chicago", year:"numeric", month:"numeric", day:"numeric" }).formatToParts(new Date());
+  const g = t => +p.find(x => x.type === t).value;
+  if (g("year") !== 2026 || g("month") !== 11) return;
+  const d = g("day"), el = document.getElementById("nov");
+  document.getElementById("novT").innerHTML = `30 Days of Comanche · Today, Day ${d}: <b>${T[d - 1]}</b>`;
+  el.href = "november/#day-" + d; el.hidden = false;
+})();
+</script>
 <div class="sky" id="sky">
   <canvas id="skyCv" aria-hidden="true"></canvas>
   <div class="wrap skyin">
@@ -283,8 +310,8 @@ main .wrap{padding-block:12px 40px}
 <div class="land" aria-hidden="true"><canvas id="hills"></canvas></div>
 <footer>
   <div class="wrap">
-    <p>An independent, personal project. Not affiliated with or endorsed by the Comanche Nation or any language committee.</p>
-    <p>© 2026 Numunuu</p>
+    <p>© 2026 Numunuu. Text, design and code are original to this site. Historic images and documents are public domain or used under the licenses shown with each one. An independent, personal project, not affiliated with or endorsed by the Comanche Nation or any language committee.</p>
+    <p><a href="about/#copyright">Copyright</a> · <a href="about/">About and sources</a></p>
   </div>
 </footer>
 

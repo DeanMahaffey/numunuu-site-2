@@ -4,7 +4,7 @@
 (function () {
   const MAIN = [["map", "Map"], ["timeline", "Timeline"], ["herd", "Game"]];
   const EXHIBITS = [
-    ["stories", "Turning Points"], ["treaties", "The Treaties"], ["catlin", "Painted in 1834"],
+    ["november", "30 Days of Comanche"], ["stories", "Turning Points"], ["treaties", "The Treaties"], ["catlin", "Painted in 1834"],
     ["quanah", "Quanah and the Star House"], ["beadwork", "Beads, Paint, and Fringe"], ["school", "Fort Sill Indian School"],
     ["codetalkers", "The Code Talkers"], ["honor", "Honor Wall"], ["camp", "Walk Through a Camp"], ["plants", "Plants of the Comanchería"]
   ];
@@ -23,8 +23,9 @@
   }
   const foot = document.querySelector("[data-site-foot]");
   if (foot){
+    const B2 = top && top.dataset.page === "home" ? "" : "../";
     foot.className = "site-foot";
-    foot.innerHTML = `<div class="wrap"><p>An independent, personal project of numunuu.com. Not affiliated with or endorsed by the Comanche Nation or any language committee. Corrections are welcome.</p><p><a href="../">numunuu.com</a></p></div>`;
+    foot.innerHTML = `<div class="wrap"><p>© ${new Date().getFullYear() > 2026 ? "2026–" + new Date().getFullYear() : "2026"} Numunuu. Text, design and code are original to this site. Historic images and documents are public domain or used under the licenses shown with each one.</p><p>An independent, personal project. Not affiliated with or endorsed by the Comanche Nation or any language committee. Corrections are welcome.</p><p><a href="${B2}about/#copyright">Copyright</a> · <a href="${B2}about/">About and sources</a> · <a href="${B2 || "./"}">numunuu.com</a></p></div>`;
   }
   /* Opened from your computer (file://)? Make folder links open their index.html. */
   if (location.protocol === "file:") document.querySelectorAll("a[href]").forEach(a => {

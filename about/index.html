@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About and Sources · Nʉmʉnʉʉ</title>
+<meta name="description" content="How numunuu.com is made: where the history comes from, how Comanche words and dates are handled, image credits, privacy, how to cite a page, and how to send a correction.">
+<meta property="og:title" content="About numunuu.com and its sources">
+<meta property="og:description" content="Where the history comes from, how words and dates are handled, and how to send a correction.">
+<meta property="og:url" content="https://numunuu.com/about/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted plains, titled Nʉmʉnʉʉ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/home.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero{min-height:min(62vh,560px)}
+.hero h1{font-size:clamp(42px,8vw,96px)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.jump a{font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,240,220,.35);background:rgba(20,15,12,.45);color:#f6ebdc;text-decoration:none}
+.jump a:hover{border-color:var(--gold)}
+
+.h2{font-size:clamp(30px,4.2vw,46px);margin-bottom:8px}
+.sub{color:var(--ink-2);max-width:64ch;margin:0 0 22px}
+.section + .section{padding-top:0}
+.intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+@media (max-width:820px){.intro{grid-template-columns:minmax(0,1fr)}}
+.intro p{color:var(--ink-2);margin:0 0 14px;max-width:62ch}
+.intro .card{padding:20px 22px}
+.intro .card b{display:block;font-family:var(--f-display);font-weight:800;font-size:22px;margin-bottom:6px}
+.intro .card ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:15.5px}
+.intro .card li{margin:4px 0}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.rules .card{padding:20px 22px}
+.rules .ic{width:36px;height:36px;color:var(--gold);margin-bottom:10px}
+.rules b{display:block;font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.1;margin-bottom:6px}
+.rules p{margin:0;color:var(--ink-2);font-size:15.5px}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.filters button{font-size:14px;font-weight:600;padding:6px 13px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1d0f05}
+.filters button:hover{border-color:var(--gold)}
+.count{font-size:14px;color:var(--muted);margin:-8px 0 18px}
+.group{margin:0 0 30px}
+.group h3{font-size:24px;margin:0 0 4px}
+.group > p{margin:0 0 12px;color:var(--muted);font-size:15px;max-width:66ch}
+.group[hidden]{display:none}
+.srcs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.srcs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:baseline;padding:12px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.srcs li[hidden]{display:none}
+.srcs .t{color:var(--ink);font-size:15.5px}
+.srcs .t a{color:var(--ink)}
+.srcs .t a:hover{color:var(--gold)}
+.srcs .t small{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
+.srcs .on{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.srcs .on a{font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.srcs .on a:hover{border-color:var(--gold);color:var(--gold)}
+@media (max-width:620px){.srcs li{grid-template-columns:minmax(0,1fr)}.srcs .on{justify-content:flex-start}}
+
+.cite{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:820px){.cite{grid-template-columns:minmax(0,1fr)}}
+.cite .card{padding:20px 22px}
+.cite label{display:block;font-size:14px;font-weight:600;color:var(--ink-2);margin:0 0 6px}
+.cite select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border-radius:10px;border:1px solid var(--line-2);background:var(--bg);color:var(--ink)}
+.styles{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.styles button{font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2)}
+.styles button[aria-pressed="true"]{background:var(--card-2);border-color:var(--gold);color:var(--ink)}
+.out{font-size:15.5px;color:var(--ink);line-height:1.55;padding:14px 16px;border-radius:10px;background:var(--bg);border:1px solid var(--line);margin:0 0 12px;overflow-wrap:anywhere;min-height:3em}
+
+.fix{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media (max-width:820px){.fix{grid-template-columns:minmax(0,1fr)}}
+.fix .card{padding:20px 22px}
+.fix ol{margin:0;padding-left:20px;color:var(--ink-2)}
+.fix li{margin:6px 0}
+.fix b.h{display:block;font-family:var(--f-display);font-weight:800;font-size:23px;margin-bottom:8px}
+.fix p{color:var(--ink-2);margin:0 0 12px}
+</style>
+</head>
+<body>
+<header data-site-top data-page="about"></header>
+
+<main>
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffcf96">About this site</p>
+    <h1 id="pageTitle">About <span class="accent">and Sources</span></h1>
+    <p class="lead">Where the history on numunuu.com comes from, how we handle Comanche words, dates and images, and how to tell us when something is wrong.</p>
+    <nav class="jump" aria-label="On this page">
+      <a href="#how">How we work</a><a href="#sources">All sources</a><a href="#images">Images</a><a href="#cite">Cite a page</a><a href="#copyright">Copyright</a><a href="#privacy">Privacy</a><a href="#fix">Send a correction</a>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap intro">
+    <div>
+      <h2 class="h2">What this is</h2>
+      <p>numunuu.com is an independent site about Comanche history, language and life, made by a citizen of the Comanche Nation. It brings together exhibits, a map, a timeline, a game and an online dictionary, so that more of the Comanche story is easy to find in one place.</p>
+      <p>It is a personal project. It is not run by, affiliated with, or endorsed by the Comanche Nation, the Comanche National Museum and Cultural Center, or any language committee. Nothing here speaks for the Nation.</p>
+      <p>The history on these pages comes from published books, museum records, government documents and news reporting. Every page lists its sources at the bottom, and all of them are gathered below.</p>
+    </div>
+    <div class="card">
+      <b>What's here</b>
+      <ul>
+        <li><a href="../map/">The map</a> and <a href="../timeline/">the timeline</a></li>
+        <li>Exhibits, from <a href="../stories/">Turning Points</a> and <a href="../treaties/">the treaties</a> to <a href="../codetalkers/">the code talkers</a></li>
+        <li><a href="../herd/">Follow the Herd</a>, a game set in 1845</li>
+        <li><a href="../visit/">A guide to visiting</a> the museum in Lawton</li>
+        <li><a href="https://dictionary.numunuu.com">The dictionary</a> ↗</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how" aria-labelledby="howH">
+  <div class="wrap">
+    <h2 class="h2" id="howH">How we work</h2>
+    <p class="sub">A few rules every page follows.</p>
+    <div class="rules">
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2Z"/><path d="M8 7h7M8 11h5"/></svg>
+        <b>Sources on every page</b>
+        <p>Each page ends with what it was built from. Books and primary records come first. Wikipedia is a starting point, not the last word, and where it's cited, it sits next to other sources.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg>
+        <b>Comanche words as recorded</b>
+        <p>We only use spellings found in published sources. We don't make up spellings or "fix" old ones. Where a word hasn't been checked, we leave it out rather than guess.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18M7 3v4M17 3v4"/><rect x="3" y="5" width="18" height="16" rx="2"/></svg>
+        <b>Dates as the record gives them</b>
+        <p>Many dates come from Spanish, Texan and American records, and some are disputed. When sources disagree, we give the range and say so.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M9 3h6v4H9z"/></svg>
+        <b>Names as they were written</b>
+        <p>On the treaties page, the signers' names are copied exactly as the clerks wrote them, even when the spelling is clumsy. Changing them would erase the record of who was in the room.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/></svg>
+        <b>Some things are left out</b>
+        <p>Ceremonial and private knowledge doesn't belong on a public website. The plant guide skips plants with ceremonial uses, and nothing here teaches ceremony.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <b>Outside eyes, named as such</b>
+        <p>Much of the old record was written or painted by outsiders, like George Catlin in 1834. We show it because it's what survives, and we say whose eyes it came through.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l5-6 4 4 3-3 6 5"/><circle cx="16" cy="7" r="2"/></svg>
+        <b>Painted scenes are made by code</b>
+        <p>The landscapes in the page banners and the game are drawn by the site's own painter. They are pictures, not historical images, and they show the country in general terms.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15Z"/><path d="M5 19l8-8"/></svg>
+        <b>History, not advice</b>
+        <p>Plant uses are recorded history, not medical advice. Hours and directions on the visit page are checked against public listings, so confirm with the museum before a long drive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sources" aria-labelledby="srcH">
+  <div class="wrap">
+    <h2 class="h2" id="srcH">All sources</h2>
+    <p class="sub">Every source used across the site, grouped by kind. Pick a page to see only what it was built from, or use the tags to jump to the page that uses each one.</p>
+    <div class="filters" id="filters" role="group" aria-label="Show sources for"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div id="groups"></div>
+  </div>
+</section>
+
+<section class="section" id="images" aria-labelledby="imgH">
+  <div class="wrap">
+    <h2 class="h2" id="imgH">Images</h2>
+    <p class="sub">Photographs and paintings come from museums and archives that make them free to use, either in the public domain or under an open license. Each image is credited where it appears, with its maker, date, collection and license.</p>
+    <div class="rules">
+      <div class="card"><b>Museum collections</b><p>Smithsonian American Art Museum, National Portrait Gallery, National Museum of the American Indian, Brooklyn Museum, Art Institute of Chicago, The Met, and others. Their open-access images load straight from the museums' own servers.</p></div>
+      <div class="card"><b>Archives</b><p>U.S. National Archives, U.S. Army, Missouri Historical Society, and The Portal to Texas History at the University of North Texas.</p></div>
+      <div class="card"><b>Wikimedia Commons</b><p>Some photos come through Wikimedia Commons, under the license shown on each one. Photos under CC BY-SA name their photographer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cite" aria-labelledby="citeH">
+  <div class="wrap">
+    <h2 class="h2" id="citeH">Cite a page</h2>
+    <p class="sub">For a school paper or an article. Pick a page and a style, then copy. Better still, cite the original sources the page lists, too.</p>
+    <div class="cite">
+      <div class="card">
+        <label for="citePage">Page</label>
+        <select id="citePage"></select>
+        <div class="styles" id="citeStyles" role="group" aria-label="Citation style"></div>
+      </div>
+      <div class="card">
+        <label>Citation</label>
+        <p class="out" id="citeOut"></p>
+        <button class="btn" id="citeCopy" type="button">Copy citation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="copyright" aria-labelledby="copyH">
+  <div class="wrap">
+    <h2 class="h2" id="copyH">Copyright and reuse</h2>
+    <p class="sub">© 2026 Numunuu. All rights reserved, except where another license is shown.</p>
+    <div class="rules">
+      <div class="card"><b>Original to this site</b><p>The writing, the site design and code, the map, the timeline, the Follow the Herd game, and the painted landscapes are original work, copyright Numunuu. Please ask before reusing them.</p></div>
+      <div class="card"><b>Not ours to claim</b><p>Treaty texts, government records and historic photographs and paintings are in the public domain. Photos under an open license, such as CC BY-SA, keep that license and their credit line. Books and articles we cite belong to their authors.</p></div>
+      <div class="card"><b>Always welcome</b><p>Linking to any page, sharing links, and quoting a sentence or two with credit and a link back. For anything more, use the contact below.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="privacy" aria-labelledby="privH">
+  <div class="wrap">
+    <h2 class="h2" id="privH">Privacy</h2>
+    <p class="sub">No ads, no accounts, and no tracking cookies.</p>
+    <div class="rules">
+      <div class="card"><b>What stays on your device</b><p>Follow the Herd saves your game in your own browser so you can pick up where you left off. It never leaves your device, and clearing your browser data erases it.</p></div>
+      <div class="card"><b>What other sites see</b><p>Fonts load from Google Fonts, and many images load from museum and Wikimedia servers. Like any website, those servers can see your IP address when your browser asks for a file.</p></div>
+      <div class="card"><b>The dictionary</b><p>The dictionary at dictionary.numunuu.com is a separate app. Anything you send through a form here, such as a name for the honor wall, is used only for that purpose.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="fix" aria-labelledby="fixH">
+  <div class="wrap">
+    <h2 class="h2" id="fixH">Send a correction</h2>
+    <p class="sub">If you see a mistake, a missing name, a bad spelling or a date that's off, please say so. Corrections from Comanche families, elders and knowledge-keepers are especially welcome, and they come first.</p>
+    <div class="fix">
+      <div class="card">
+        <b class="h">What helps</b>
+        <ol>
+          <li>The page, and what it says now.</li>
+          <li>What it should say.</li>
+          <li>How you know: a book, a record, or family knowledge. Family knowledge counts.</li>
+          <li>Whether we may thank you by name.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <b class="h">How to reach us</b>
+        <p id="contactTxt"></p>
+        <div id="contactAct"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+/* Where corrections go. Leave null until it's decided, then use one of:
+   const CONTACT = { mode:"email", to:"you@example.com" };
+   const CONTACT = { mode:"form",  url:"https://formspree.io/f/xxxx" }; */
+const CONTACT = null;
+
+/* ---------- pages ---------- */
+const PAGES = {
+  stories:     ["Turning Points", "../stories/"],
+  treaties:    ["The Comanche Treaties", "../treaties/"],
+  catlin:      ["Painted in 1834", "../catlin/"],
+  quanah:      ["Quanah and the Star House", "../quanah/"],
+  beadwork:    ["Beads, Paint, and Fringe", "../beadwork/"],
+  school:      ["Fort Sill Indian School", "../school/"],
+  codetalkers: ["The Code Talkers", "../codetalkers/"],
+  honor:       ["Honor Wall", "../honor/"],
+  camp:        ["Walk Through a Camp", "../camp/"],
+  plants:      ["Plants of the Comanchería", "../plants/"],
+  visit:       ["Visit the Museum", "../visit/"]
+};
+
+/* ---------- every source, by kind ---------- */
+const GROUPS = [
+  { id:"books", title:"Books and scholarly articles", note:"The deepest sources on the site. Most are in libraries, or for sale from their publishers.", items:[
+    { t:"Pekka Hämäläinen, <i>The Comanche Empire</i>", s:"Yale University Press, 2008", p:["stories"] },
+    { t:"Ernest Wallace and E. Adamson Hoebel, <i>The Comanches: Lords of the South Plains</i>", s:"University of Oklahoma Press, 1952", p:["camp"] },
+    { t:"William C. Meadows, <i>The Comanche Code Talkers of World War II</i>", s:"University of Texas Press, 2002", p:["codetalkers"] },
+    { t:"George Catlin, <i>Letters and Notes on the Manners, Customs, and Condition of the North American Indians</i>, vol. 2, letters 41 and 42", s:"London, 1841", p:["catlin"] },
+    { t:"William H. Truettner, <i>The Natural Man Observed: A Study of Catlin's Indian Gallery</i>", s:"Smithsonian Institution Press, 1979", p:["catlin"] },
+    { t:"Charles J. Kappler, ed., <i>Indian Affairs: Laws and Treaties</i>", s:"U.S. Government Printing Office; the treaty texts, via the OSU database below", p:["treaties"] },
+    { t:"Gustav G. Carlson and Volney H. Jones, \"Some Notes on Uses of Plants by the Comanche Indians\"", s:"<i>Papers of the Michigan Academy of Science, Arts and Letters</i> 25, 1940", p:["plants","camp"] },
+    { t:"Daniel E. Moerman, <i>Native American Ethnobotany</i>", s:"Timber Press, 1998", p:["plants"] },
+    { t:"Barbara A. Hail, ed., <i>Gifts of Pride and Love: Kiowa and Comanche Cradles</i>", s:"2001 exhibition and catalog", u:"https://na-moments.blogspot.com/2005/02/gifts-of-pride-and-lovekiowa-and.html", p:["beadwork"] }
+  ]},
+  { id:"primary", title:"Treaties, laws and government records", note:"Primary documents and official reports.", items:[
+    { t:"Tribal Treaties Database", s:"Oklahoma State University Libraries; transcripts of the treaties from 1835 to 1892", u:"https://treaties.okstate.edu/treaties/", p:["treaties"] },
+    { t:"Treaty with the Kiowa and Comanche, 1867 (15 Stat. 581)", s:"GovInfo, U.S. Government Publishing Office", u:"https://www.govinfo.gov/link/statute/15/581", p:["treaties"] },
+    { t:"<i>Lone Wolf v. Hitchcock</i>, 187 U.S. 553 (1903)", s:"U.S. Supreme Court, via Justia", u:"https://supreme.justia.com/cases/federal/us/187/553/", p:["treaties"] },
+    { t:"<i>The Indian Papers of Texas and the Southwest</i>, vol. II", s:"Texas History Trust; the 1844 Tehuacana Creek treaty", u:"https://archive.texashistorytrust.org/view/49753277/122/", p:["treaties"] },
+    { t:"Federal Indian Boarding School Initiative Investigative Report, vol. II", s:"U.S. Department of the Interior, July 2024", u:"https://www.bia.gov/service/federal-indian-boarding-school-initiative", p:["school"] },
+    { t:"Congressional Gold Medal ceremony remarks", s:"U.S. House of Representatives, November 20, 2013", u:"https://speakeremeritapelosi.house.gov/newsroom/pelosi-remarks-congressional-gold-medal-ceremony", p:["codetalkers"] },
+    { t:"Charles J. Chibitty and the Code Talkers", s:"U.S. Army Heritage and Education Center", u:"https://www.armyheritage.org/?p=1026", p:["codetalkers"] },
+    { t:"Comanche Code Talkers", s:"U.S. Army, Fort Gordon; names and Utah Beach landings", u:"https://gordon.armymwr.com/info/culturemil/comanche-code-talkers", p:["codetalkers","honor"] },
+    { t:"Quanah Parker", s:"National Park Service", u:"https://www.nps.gov/people/quanah-parker.htm", p:["quanah"] },
+    { t:"Indigenous Diplomacy: The Ute–Comanche Treaty of 1786", s:"National Park Service", u:"https://www.nps.gov/articles/000/indigenous-diplomacy-the-ute-comanche-treaty-of-1786.htm", p:["treaties"] },
+    { t:"Ethnobotany report, chapter 8: plant uses with sources", s:"National Park Service", u:"https://files.cfc.umt.edu/cesu/NPS/UMT/2004/Campbell_Etnobotony%20Report/chaptereight.pdf", p:["plants"] },
+    { t:"John Meusebach", s:"Texas State Library and Archives Commission", u:"https://www.tsl.texas.gov/mural-meusebach.html", p:["treaties"] }
+  ]},
+  { id:"museums", title:"Museums and collections", note:"Object records, painting records and open-access images.", items:[
+    { t:"Smithsonian American Art Museum", s:"Catlin's paintings, records and quotations; gift of Mrs. Joseph Harrison, Jr.", u:"https://americanart.si.edu/", p:["catlin"] },
+    { t:"National Museum of the American Indian, Smithsonian", s:"Comanche peyote fan, <i>Infinity of Nations</i>", u:"https://americanindian.si.edu/exhibitions/infinityofnations/plains-plateau/229197.html", p:["beadwork"] },
+    { t:"Minneapolis Institute of Art, <i>Beauty, Honor, and Tradition</i>", s:"Southern Plains style", u:"https://www.artsmia.org/beauty-honor-tradition/preview-southern.html", p:["beadwork"] },
+    { t:"The Metropolitan Museum of Art", s:"Woman's Boots, Comanche, ca. 1870 (Denver Art Museum)", u:"https://www.metmuseum.org/art/collection/search/641021", p:["beadwork"] },
+    { t:"Brooklyn Museum", s:"Object records and images", u:"https://www.brooklynmuseum.org/opencollection/objects/55242", p:["beadwork"] },
+    { t:"Art Institute of Chicago", s:"Leggings", u:"https://www.artic.edu/artworks/122708/leggings", p:["beadwork"] },
+    { t:"Bullock Texas State History Museum", s:"Comanche Cradleboard", u:"https://www.thestoryoftexas.com/artifacts/comanche-cradleboard/", p:["beadwork"] },
+    { t:"Bata Shoe Museum and Oklahoma History Center", s:"Object records", p:["beadwork"] },
+    { t:"Museum of the Great Plains, Lawton", s:"Collections and visitor information", u:"https://discovermgp.org/", p:["beadwork","visit"] },
+    { t:"National Portrait Gallery, U.S. National Archives, Missouri Historical Society, and The Portal to Texas History (University of North Texas)", s:"Photographs", p:["quanah"] },
+    { t:"Wikimedia Commons", s:"Photographs under the license shown on each, including the U.S. Army photo of the code talkers", u:"https://commons.wikimedia.org/wiki/File:Army_Code_Talkers.jpg", p:["honor","quanah"] }
+  ]},
+  { id:"reference", title:"Encyclopedias, articles and reporting", note:"Reference works, preservation groups and news.", items:[
+    { t:"Brad Agnew, \"Dodge-Leavenworth Expedition\"", s:"<i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society", u:"https://www.okhistory.org/publications/enc/entry?entry=DO004", p:["catlin"] },
+    { t:"Josh Clough, \"Fort Sill Indian School\"", s:"<i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society", u:"https://www.okhistory.org/publications/enc/entry?entry=FO039", p:["school"] },
+    { t:"\"Tipis\"", s:"<i>Encyclopedia of the Great Plains</i>, University of Nebraska–Lincoln", u:"https://plainshumanities.unl.edu/encyclopedia/doc/egp.arc.048.html", p:["camp"] },
+    { t:"\"Peace Between Spaniards and Comanches\"", s:"New Mexico History", u:"https://newmexicohistory.org/timeline/peace-between-spaniards-and-comanches", p:["treaties"] },
+    { t:"\"Quanah Parker Star House\"", s:"Preservation Oklahoma, Most Endangered Places", u:"https://endangered.preservationok.org/quanah-parker-star-house/", p:["quanah"] },
+    { t:"\"Fort Sill Indian School Girls Dormitory\"", s:"Preservation Oklahoma, Most Endangered Places", u:"https://endangered.preservationok.org/fort-sill-indian-school-girls-dormitory/", p:["school"] },
+    { t:"\"A brief history of Quanah Parker's Star House\"", s:"Southwest Ledger", u:"https://www.swoknews.com/news/a-brief-history-of-quanah-parkers-star-house/article_f31e1e84-e262-5aa8-9bca-98cc88882178.html", p:["quanah"] },
+    { t:"\"91-year-old Fort Sill Indian School relic recovered from creek near Lawton\"", s:"KOSU, August 14, 2024", u:"https://www.kosu.org/race-culture/2024-08-14/91-year-old-fort-sill-indian-school-relic-recovered-from-creek-near-lawton", p:["school"] },
+    { t:"National Native American Boarding School Healing Coalition", s:"Support and resources", u:"https://boardingschoolhealing.org/", p:["school"] },
+    { t:"\"Adobe Walls, Texas\"", s:"Legends of America", u:"https://www.legendsofamerica.com/tx-adobewalls/", p:["stories"] },
+    { t:"Wikipedia: Comanche", u:"https://en.wikipedia.org/wiki/Comanche", p:["stories"] },
+    { t:"Wikipedia: Battle of Plum Creek", u:"https://en.wikipedia.org/wiki/Battle_of_Plum_Creek", p:["stories"] },
+    { t:"Wikipedia: Battle of Palo Duro Canyon", u:"https://en.wikipedia.org/wiki/Battle_of_Palo_Duro_Canyon", p:["stories"] },
+    { t:"Wikipedia: Quanah Parker, and Quanah Parker Star House", u:"https://en.wikipedia.org/wiki/Quanah_Parker", p:["quanah","stories"] },
+    { t:"Wikipedia: Fort Sill Indian School", u:"https://en.wikipedia.org/wiki/Fort_Sill_Indian_School", p:["school"] },
+    { t:"Wikipedia: Charles Chibitty", u:"https://en.wikipedia.org/wiki/Charles_Chibitty", p:["codetalkers"] },
+    { t:"Wikipedia: Treaty of Tehuacana Creek, and Meusebach–Comanche Treaty", u:"https://en.wikipedia.org/wiki/Treaty_of_Tehuacana_Creek", p:["treaties"] }
+  ]},
+  { id:"visiting", title:"Visitor information", note:"Hours, prices and directions change, so the visit page is checked against these listings.", items:[
+    { t:"City of Lawton facility directory", s:"Address, phone and hours", u:"https://lawtonok.gov/Home/Components/FacilityDirectory/FacilityDirectory/54", p:["visit"] },
+    { t:"TravelOK: Comanche National Museum and Cultural Center", s:"Hours, admission and collections", u:"https://www.travelok.com/listings/view.profile/id.1689", p:["visit"] },
+    { t:"Destination Native America", s:"Galleries, programs and accessibility", u:"https://destinationnativeamerica.com/listings/comanche-national-museum-and-cultural-center", p:["visit"] },
+    { t:"Unearth the Voyage", s:"Museum visit write-up, March 2026", u:"https://unearththevoyage.com/oklahoma-comanche-history-museum-native-american-culture-exhibits/", p:["visit"] },
+    { t:"TravelOK: Fort Sill National Historic Landmark and Museum", u:"https://web1.travelok.com/listings/view.profile/id.2832", p:["visit"] },
+    { t:"U.S. Fish and Wildlife Service: Wichita Mountains, Visit Us", u:"https://fws.gov/refuge/wichita-mountains/visit-us", p:["visit"] },
+    { t:"TravelOK: Comanche Nation Fair", u:"https://www.travelok.com/listings/view.profile/id.16385", p:["visit"] }
+  ]}
+];
+
+const escA = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+
+/* ---------- render sources + filters ---------- */
+(function(){
+  const used = Object.keys(PAGES).filter(k => GROUPS.some(g => g.items.some(i => i.p.includes(k))));
+  const fEl = document.getElementById("filters"), gEl = document.getElementById("groups"), cEl = document.getElementById("count");
+  fEl.innerHTML = `<button type="button" data-f="all" aria-pressed="true">All pages</button>` +
+    used.map(k => `<button type="button" data-f="${k}" aria-pressed="false">${PAGES[k][0]}</button>`).join("");
+  gEl.innerHTML = GROUPS.map(g => `<div class="group" data-g="${g.id}"><h3>${g.title}</h3><p>${g.note}</p><ul class="srcs">${
+    g.items.map(i => `<li data-p="${i.p.join(" ")}"><span class="t">${i.u ? `<a href="${escA(i.u)}" rel="noopener">${i.t}</a>` : i.t}${i.s ? `<small>${i.s}</small>` : ""}</span><span class="on">${
+      i.p.map(k => `<a href="${PAGES[k][1]}">${PAGES[k][0]}</a>`).join("")}</span></li>`).join("")}</ul></div>`).join("");
+  const apply = f => {
+    let n = 0;
+    fEl.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.f === f));
+    gEl.querySelectorAll(".group").forEach(g => {
+      let any = 0;
+      g.querySelectorAll("li").forEach(li => { const on = f === "all" || li.dataset.p.split(" ").includes(f); li.hidden = !on; if (on){ any++; n++; } });
+      g.hidden = !any;
+    });
+    cEl.textContent = f === "all" ? `${n} sources across ${used.length} pages.` : `${n} source${n === 1 ? "" : "s"} for ${PAGES[f][0]}.`;
+  };
+  fEl.addEventListener("click", e => { const b = e.target.closest("button"); if (b) apply(b.dataset.f); });
+  apply("all");
+})();
+
+/* ---------- citation helper ---------- */
+(function(){
+  const CITE = [["home","Home","https://numunuu.com/"],["map","The Map","https://numunuu.com/map/"],["timeline","The Timeline","https://numunuu.com/timeline/"],
+    ...Object.entries(PAGES).map(([k, [t]]) => [k, t, `https://numunuu.com/${k}/`]),
+    ["herd","Follow the Herd","https://numunuu.com/herd/"],["about","About and Sources","https://numunuu.com/about/"]];
+  const sel = document.getElementById("citePage"), st = document.getElementById("citeStyles"), out = document.getElementById("citeOut"), btn = document.getElementById("citeCopy");
+  sel.innerHTML = CITE.map(([k, t]) => `<option value="${k}">${t}</option>`).join("");
+  const STY = ["MLA", "APA", "Chicago"];
+  let style = "MLA";
+  st.innerHTML = STY.map(s => `<button type="button" data-s="${s}" aria-pressed="${s === style}">${s}</button>`).join("");
+  const d = new Date(), M = d.toLocaleString("en-US", { month:"long" }), Ms = d.toLocaleString("en-US", { month:"short" });
+  const render = () => {
+    const [, t, u] = CITE.find(c => c[0] === sel.value);
+    const html = style === "MLA" ? `“${t}.” <i>Nʉmʉnʉʉ</i>, ${u.replace("https://", "")}. Accessed ${d.getDate()} ${Ms}. ${d.getFullYear()}.`
+      : style === "APA" ? `<i>${t}</i>. (n.d.). Nʉmʉnʉʉ. Retrieved ${M} ${d.getDate()}, ${d.getFullYear()}, from ${u}`
+      : `“${t}.” Nʉmʉnʉʉ. Accessed ${M} ${d.getDate()}, ${d.getFullYear()}. ${u}.`;
+    out.innerHTML = html;
+  };
+  sel.addEventListener("change", render);
+  st.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; style = b.dataset.s;
+    st.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); render(); });
+  btn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(out.textContent); btn.textContent = "Copied"; }
+    catch { const r = document.createRange(); r.selectNodeContents(out); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press copy"; }
+    setTimeout(() => { btn.textContent = "Copy citation"; }, 1800);
+  });
+  render();
+})();
+
+/* ---------- corrections contact ---------- */
+(function(){
+  const txt = document.getElementById("contactTxt"), act = document.getElementById("contactAct");
+  if (CONTACT && CONTACT.mode === "email"){
+    txt.textContent = "Email us. Every message is read, and corrections are made by hand.";
+    act.innerHTML = `<a class="btn primary" href="mailto:${escA(CONTACT.to)}?subject=${encodeURIComponent("Correction for numunuu.com")}">Email a correction</a>`;
+  } else if (CONTACT && CONTACT.mode === "form"){
+    txt.textContent = "Use the form. Every message is read, and corrections are made by hand.";
+    act.innerHTML = `<a class="btn primary" href="${escA(CONTACT.url)}" rel="noopener">Open the corrections form</a>`;
+  } else {
+    txt.textContent = "A corrections inbox is on the way. Check back here soon.";
+  }
+})();
+
+/* ---------- hero: open plains at dusk ---------- */
+(function(){
+  const cv = document.getElementById("heroCv"); if (!cv || typeof paintScene !== "function") return;
+  const ctx = cv.getContext("2d");
+  const o = { biome:"plains", season:2, tod:.78, herd:true, camp:true, caravan:false, scroll:0, t:0, seed:31 };
+  let w = 0, h = 0, last = 0, vis = true;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(cv); fit();
+  new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(cv);
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts;
+    if (vis && w){ o.t += still ? 0 : dt; o.scroll += still ? 0 : dt * 3; paintScene(ctx, w, h, o); }
+    requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

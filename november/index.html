@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>30 Days of Comanche · Nʉmʉnʉʉ</title>
+<meta name="description" content="Native American Heritage Month, told only through Comanche history: one person, moment, object or place for every day of November.">
+<meta property="og:title" content="30 Days of Comanche">
+<meta property="og:description" content="One Comanche story for every day of Native American Heritage Month. A new one opens each day.">
+<meta property="og:url" content="https://numunuu.com/november/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/november.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted plains in autumn, titled 30 Days of Comanche">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/november.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero{min-height:min(70vh,620px)}
+.hero h1{font-size:clamp(46px,9vw,112px)}
+.hero .meter{display:flex;align-items:center;gap:14px;margin-top:20px;max-width:520px}
+.hero .bar{flex:1;height:8px;border-radius:99px;background:rgba(255,240,220,.18);overflow:hidden}
+.hero .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--clay),#ffcf96);border-radius:99px;width:0;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.hero .meter b{font-family:var(--f-display);font-weight:800;font-size:18px;color:#ffcf96;white-space:nowrap}
+
+/* today */
+.today{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(18px,3.5vw,40px);align-items:center}
+@media (max-width:820px){.today{grid-template-columns:minmax(0,1fr)}}
+.pic{position:relative;border-radius:14px;overflow:hidden;background:#2b2017;aspect-ratio:4/3;box-shadow:0 0 0 1px rgba(0,0,0,.4),0 18px 40px rgba(0,0,0,.4)}
+.pic img,.pic canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pic img.contain{object-fit:contain;background:#14100d}
+.pic .daytag{position:absolute;left:12px;top:12px;z-index:1;font-family:var(--f-display);font-weight:800;font-size:15px;padding:4px 11px;border-radius:999px;background:rgba(20,15,12,.72);color:#ffcf96}
+.kind{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--clay);margin:0 0 8px}
+.today h2{font-size:clamp(34px,4.6vw,56px);margin:0 0 6px}
+.today .when{color:var(--gold);font-weight:600;margin:0 0 14px}
+.today p.story{color:var(--ink-2);margin:0 0 12px;max-width:60ch}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.btn.sm{padding:8px 13px;font-size:15px}
+.credit{font-size:13px;color:var(--muted);margin-top:14px}
+.credit a{color:var(--muted)}
+.next{margin-top:18px;font-size:15px;color:var(--muted)}
+.next b{color:var(--ink)}
+.pre{padding:22px 24px}
+.pre b{display:block;font-family:var(--f-display);font-weight:800;font-size:26px;margin-bottom:6px}
+.pre p{margin:0;color:var(--ink-2)}
+
+/* grid */
+.h2{font-size:clamp(30px,4.2vw,46px);margin-bottom:8px}
+.sub{color:var(--ink-2);max-width:64ch;margin:0 0 22px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.legend button{font-size:14px;font-weight:600;padding:6px 13px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2)}
+.legend button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1d0f05}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:14px}
+.d{position:relative;display:flex;flex-direction:column;text-align:left;padding:0;border-radius:14px;background:var(--card);border:1px solid var(--line);color:var(--ink);overflow:hidden;min-width:0}
+.d[hidden]{display:none}
+.d:not(.lock):hover{border-color:var(--gold)}
+.d .th{position:relative;aspect-ratio:4/3;background:#2b2017;overflow:hidden}
+.d .th img,.d .th canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.d:not(.lock):hover .th img,.d:not(.lock):hover .th canvas{transform:scale(1.04)}
+.d .n{position:absolute;left:10px;top:10px;font-family:var(--f-display);font-weight:800;font-size:14px;padding:3px 10px;border-radius:999px;background:rgba(20,15,12,.72);color:#ffcf96;z-index:1}
+.d .tx{padding:12px 14px 14px}
+.d .tx small{display:block;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--clay)}
+.d .tx b{display:block;font-family:var(--f-display);font-weight:800;font-size:20px;line-height:1.1;margin-top:3px}
+.d.is-today{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.d.is-today .n{background:var(--gold);color:#1d0f05}
+.d.lock{cursor:default;background:repeating-linear-gradient(135deg,var(--card),var(--card) 10px,#2d241d 10px,#2d241d 20px)}
+.d.lock .th{display:grid;place-items:center;background:transparent}
+.d.lock .th svg{width:34px;height:34px;color:var(--muted)}
+.d.lock .big{font-family:var(--f-display);font-weight:800;font-size:56px;line-height:1;color:rgba(243,234,219,.18);position:absolute;right:12px;bottom:4px}
+.d.lock .tx b{color:var(--muted);font-size:17px}
+.d.lock .tx small{color:var(--muted)}
+.d.soon .tx b{color:var(--ink-2)}
+
+/* viewer */
+dialog.v{width:min(980px,100vw);max-width:100vw;max-height:100dvh;margin:auto;padding:0;border:0;border-radius:16px;background:#1f1814;color:var(--ink);overflow:hidden}
+dialog.v::backdrop{background:rgba(8,6,5,.84);backdrop-filter:blur(4px)}
+.vw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);max-height:min(92dvh,820px)}
+.vw .pic{border-radius:0;aspect-ratio:auto;min-height:320px;box-shadow:none}
+.vw .txt{padding:28px 26px 22px;overflow:auto;max-height:min(92dvh,820px)}
+.vw h2{font-size:clamp(28px,3.4vw,40px);margin:0 0 4px}
+.vw .when{color:var(--gold);font-weight:600;margin:0 0 14px}
+.vw p.story{color:var(--ink-2);margin:0 0 12px}
+.vw .x{position:absolute;top:10px;right:10px;z-index:3;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:rgba(20,16,14,.85);color:var(--ink);font-size:20px;line-height:1}
+.vw .pn{display:flex;gap:8px;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:760px){
+  .vw{grid-template-columns:1fr;max-height:none}
+  dialog.v{border-radius:0;height:100dvh;max-height:100dvh}
+  dialog.v[open]{display:block;overflow:auto}
+  .vw .pic{min-height:0;aspect-ratio:4/3}
+  .vw .txt{max-height:none}
+}
+.toast2{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;background:var(--gold);color:#1d0f05;font-weight:600;padding:9px 16px;border-radius:999px;z-index:100;pointer-events:none}
+.toast2.on{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<header data-site-top data-page="november"></header>
+
+<main>
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffcf96">Native American Heritage Month · November</p>
+    <h1 id="pageTitle">30 Days <span class="accent">of Comanche</span></h1>
+    <p class="lead">One Comanche story for every day of November: a person, a moment, an object, or a place. A new one opens each day at midnight, Lawton time.</p>
+    <div class="meter" aria-hidden="true"><div class="bar"><i id="bar"></i></div><b id="meterTxt"></b></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="todayH">
+  <div class="wrap" id="todayBox"></div>
+</section>
+
+<section class="section" aria-labelledby="allH">
+  <div class="wrap">
+    <h2 class="h2" id="allH">All 30 days</h2>
+    <p class="sub" id="allSub">Open any day that has been released. Locked days open on their date.</p>
+    <div class="legend" id="legend" role="group" aria-label="Show"></div>
+    <div class="days" id="days"></div>
+    <div class="note" style="margin-top:28px"><b>About these stories</b>Every day is drawn from the sources listed on the linked exhibit pages and on <a href="../about/#sources">About and sources</a>. Dates follow the record, and where the record disagrees, we say so. Corrections from Comanche families and knowledge-keepers are welcome.</div>
+  </div>
+</section>
+</main>
+
+<dialog class="v" id="viewer" aria-labelledby="vTitle"><div class="vw" id="vw"></div></dialog>
+<div class="toast2" id="toast2" role="status" aria-live="polite"></div>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+(function(){
+/* ---------- settings ---------- */
+const YEAR = 2026;                 // the November these days release in
+const TZ = "America/Chicago";      // days open at midnight in Lawton
+
+/* ---------- images ---------- */
+const FP = (name, w) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}`;
+const SI = (id, max) => `https://ids.si.edu/ids/deliveryService?id=${id}&max=${max}`;
+const SAAM = id => ({ src:SI("SAAM-" + id, 900), credit:'George Catlin, Smithsonian American Art Museum, gift of Mrs. Joseph Harrison, Jr. Public domain.', contain:false });
+const BYSA3 = '<a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>';
+const BYSA4 = '<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>';
+const CODE = { src:FP("Army Code Talkers.jpg", 1000), credit:'U.S. Army, via <a href="https://commons.wikimedia.org/wiki/File:Army_Code_Talkers.jpg" rel="noopener">Wikimedia Commons</a>. Public domain.' };
+
+/* ---------- the 30 days ----------
+   k: person | moment | object | place.  img: a photo or painting; paint: options for a painted scene instead. */
+const DAYS = [
+  { k:"place", t:"The People", when:"Who we are",
+    p:["Before there was a Comanche Nation on any map, there was a people. Nʉmʉnʉʉ is what Comanche people call themselves. It means the people.",
+       "The name \"Comanche\" came from outsiders. This month is about the people behind it, told one day at a time."],
+    links:[["https://dictionary.numunuu.com","The dictionary"],["../timeline/","The timeline"]], paint:{ biome:"plains", season:2, tod:.3, herd:true, seed:3 } },
+  { k:"moment", t:"Out of the mountains", when:"Around 1700",
+    p:["The Comanche were once part of the Shoshone, in the high country to the north and west. Around 1700 their language began to separate, and they moved south and east onto the plains.",
+       "In 1706 a Spanish report from New Mexico used the name Comanche. It is the earliest written use anyone has found."],
+    links:[["../stories/#horse","Turning Points"],["../timeline/","The timeline"]], paint:{ biome:"hill", season:0, tod:.35, herd:false, seed:8 } },
+  { k:"moment", t:"The horse", when:"The 1700s",
+    p:["Spanish horses spread north after the Pueblo Revolt of 1680. Within a few generations the Comanche became the finest horsemen on the continent.",
+       "In 1834 George Catlin painted a rider dropping to the side of a running horse, using it as a shield and shooting over or under its neck. He called it a skill \"learned and practiced by every young man in the tribe.\""],
+    links:[["../catlin/","Painted in 1834"],["../herd/","Follow the Herd"]], img:SAAM("1985.66.487_1") },
+  { k:"place", t:"The Comanchería", when:"The 1700s and 1800s",
+    p:["With horses came power. The Comanche pushed the Apaches off much of the buffalo plains and held a homeland that ran from the Arkansas River deep into Texas.",
+       "The Spanish, the Mexicans, the Texans, and the Americans all had to deal with it. Historians call it the Comanchería."],
+    links:[["../map/","The map"],["../stories/","Turning Points"]], paint:{ biome:"llano", season:1, tod:.55, herd:true, seed:14 } },
+  { k:"moment", t:"Moving camp", when:"Painted in 1834",
+    p:["A whole camp on the move: horses dragging lodge poles, dogs pulling loads, families carrying the rest.",
+       "Before horses, dogs carried everything and lodges had to be small. Horses let families carry bigger lodges across the plains. Catlin watched a dog fight break out in the crowd and set the men laughing."],
+    links:[["../camp/","Walk through a camp"],["../catlin/","Painted in 1834"]], img:SAAM("1985.66.466_1") },
+  { k:"moment", t:"Peace at Pecos", when:"February 28, 1786",
+    p:["Ecueracapa, speaking for the western Comanche, met New Mexico's governor, Juan Bautista de Anza, at Pecos.",
+       "Their agreement ended a generation of war with New Mexico, and the peace largely held for decades. It is the oldest treaty in our treaties exhibit."],
+    links:[["../treaties/#1786","The treaty"],["../map/","The map"]], paint:{ biome:"mesa", season:3, tod:.45, herd:false, camp:true, seed:21 } },
+  { k:"moment", t:"The white flag", when:"July 1834",
+    p:["Comanche riders met a column of U.S. dragoons on the southern plains. One rider came out alone, with white buffalo skin on the point of his lance, touched it to the soldiers' flag, and shook the colonel's hand.",
+       "Then the Comanche led the soldiers to their village. The painter George Catlin rode with them."],
+    links:[["../catlin/","Painted in 1834"],["../map/#village","The map"]], img:SAAM("1985.66.353_1-000001") },
+  { k:"person", t:"Mountain of Rocks", when:"Painted in 1834",
+    p:["Catlin called him Ta-wáh-que-nah, the second chief, and wrote that he welcomed the visitors \"with great kindness at his village.\"",
+       "Catlin was told the name came from a time he led his people through a hidden passage inside the granite mountain behind the village, escaping a stronger enemy."],
+    links:[["../catlin/","Painted in 1834"]], img:SAAM("1985.66.47_1"), contain:true },
+  { k:"moment", t:"Camp Holmes", when:"August 24, 1835",
+    p:["The first treaty between the United States and the Comanche, signed in what is now Oklahoma.",
+       "It promised peace and friendship and opened the way for travel across Comanche country. It would not be the last promise made on paper."],
+    links:[["../treaties/#1835","The treaty"],["../map/","The map"]], paint:{ biome:"river", season:1, tod:.62, herd:false, camp:true, seed:35 } },
+  { k:"object", t:"The bow", when:"Osage orange",
+    p:["The best bow wood on the plains came from the Osage orange, or bois d'arc, which grows in the river bottoms of the Red River country.",
+       "The wood is hard, heavy and springy. Bows made from it were prized and traded far and wide."],
+    links:[["../plants/","Plants of the Comanchería"],["../herd/","Follow the Herd"]], paint:{ biome:"river", season:2, tod:.4, herd:true, seed:42 } },
+  { k:"person", t:"The Code Talkers", when:"Veterans Day",
+    p:["In 1941, seventeen young Comanche men joined the U.S. Army and turned their own language into a code no enemy listener could follow.",
+       "Comanche had no words for tanks or bombers, so they made them. Turtle meant tank. Altogether they built about 250 code terms. Today we honor them, and every Comanche veteran."],
+    links:[["../codetalkers/","The Code Talkers"],["../honor/","Honor Wall"]], img:CODE },
+  { k:"moment", t:"Utah Beach", when:"June 6, 1944",
+    p:["On D-Day, thirteen Comanche code talkers came ashore at Utah Beach with the 4th Infantry Division.",
+       "Charles Chibitty later recalled one of the first messages: \"Five miles to the right of the designated area and five miles inland, the fighting is fierce and we need help.\""],
+    links:[["../codetalkers/","The Code Talkers"]], paint:{ biome:"plains", season:1, tod:.2, herd:false, seed:44 } },
+  { k:"moment", t:"The Great Raid", when:"August 1840",
+    p:["Months after Texans killed Penateka peace leaders at the Council House in San Antonio, Buffalo Hump led hundreds of warriors all the way to the Gulf of Mexico.",
+       "They burned the port of Linnville. On the way home, Texans caught them at Plum Creek."],
+    links:[["../stories/#raid","Turning Points"],["../map/#linnville","The map"]], paint:{ biome:"plains", season:1, tod:.78, herd:false, caravan:true, seed:51 } },
+  { k:"object", t:"Woman's boots", when:"About 1890",
+    p:["One-piece boots of yellow-painted hide, with beadwork in narrow lanes up the sides and long fringe at the tops.",
+       "Most of the surface is left bare, to show off the color. Comanche style often said more with less."],
+    links:[["../beadwork/","Beads, Paint, and Fringe"]], img:{ src:FP("Comanche boots, c. 1890 - Bata Shoe Museum - DSC00501.JPG", 900), credit:'Bata Shoe Museum, Toronto. Photo: Daderot, public domain (CC0), via Wikimedia Commons.' }, contain:true },
+  { k:"object", t:"The cradleboard", when:"About 1900",
+    p:["Long pointed boards and a beaded cover. A cradle like this kept a baby upright, at the eye level of the grown-ups around them.",
+       "This one is at the Museum of the Great Plains in Lawton. Making one was an act of love for a new family member."],
+    links:[["../beadwork/","Beads, Paint, and Fringe"]], img:{ src:FP("Comanche Cradleboard Museum of the Great Plains Lawton Oklahoma.jpg", 900), credit:'Museum of the Great Plains, Lawton. Photo: Jphill19, ' + BYSA4 + ', via Wikimedia Commons.' }, contain:true },
+  { k:"moment", t:"A peace that held", when:"May 9, 1847",
+    p:["German settlers in Texas, led by John Meusebach, made a private peace with Penateka Comanche leaders after a council on the San Saba.",
+       "It is widely described as a treaty that was never broken. In Fredericksburg, Texas, it is still remembered."],
+    links:[["../treaties/#1847","The treaty"]], paint:{ biome:"hill", season:0, tod:.5, herd:false, camp:true, seed:57 } },
+  { k:"moment", t:"Medicine Lodge", when:"October 21, 1867",
+    p:["The treaty that created the Kiowa-Comanche-Apache reservation, and promised hunting south of the Arkansas River as long as the buffalo lasted.",
+       "Within a few years, hide hunters were killing the southern herd."],
+    links:[["../treaties/#1867","The treaty"],["../map/","The map"]], paint:{ biome:"river", season:2, tod:.7, herd:true, camp:true, seed:63 } },
+  { k:"person", t:"LaDonna Harris", when:"Born 1931",
+    p:["Born in Temple, Oklahoma, LaDonna Harris was raised by her Comanche grandparents. She grew up speaking Comanche and first learned English in school.",
+       "In 1965 she founded Oklahomans for Indian Opportunity, the state's first intertribal organization, and in 1970 Americans for Indian Opportunity. In 1980 she ran for vice president of the United States on the Citizens Party ticket."],
+    links:[["https://www.okhistory.org/publications/enc/entry?entry=HA035","Encyclopedia of Oklahoma History ↗"]], paint:{ biome:"granite", season:0, tod:.4, herd:false, seed:71 },
+    src:"Encyclopedia of Oklahoma History and Culture, \"Harris, LaDonna.\"" },
+  { k:"moment", t:"Adobe Walls", when:"June 27, 1874",
+    p:["Quanah and Isatai led warriors against the buffalo hunters' trading post in the Texas Panhandle, to stop the slaughter of the herds.",
+       "The attack failed, and the Army used it to launch the Red River War."],
+    links:[["../stories/#adobe","Turning Points"],["../map/#adobe","The map"]], paint:{ biome:"llano", season:1, tod:.12, herd:false, seed:77 } },
+  { k:"moment", t:"The Gold Medal", when:"November 20, 2013",
+    p:["On this day in 2013, the Comanche code talkers were awarded the Congressional Gold Medal, with code talkers from many other Native nations.",
+       "None of the Comanche men lived to see it. Charles Chibitty, the last, had died in 2005. He once said: \"What we did, we saved lives, using the Native American language.\""],
+    links:[["../codetalkers/","The Code Talkers"],["../honor/","Honor Wall"]], img:CODE },
+  { k:"moment", t:"The last band comes in", when:"1874 and 1875",
+    p:["In September 1874 the Army attacked the winter camps in Palo Duro Canyon, burned the food stores, and killed more than a thousand horses.",
+       "The Quahadi held out through the winter. In late May and early June 1875, Quanah led them in to Fort Sill, the last free band on the southern plains."],
+    links:[["../stories/#paloduro","Turning Points"],["../map/#paloduro","The map"]], paint:{ biome:"canyon", season:3, tod:.6, herd:false, seed:83 } },
+  { k:"person", t:"Quanah Parker", when:"About 1848 to 1911",
+    p:["Son of Peta Nocona and Nautda, born Cynthia Ann Parker. He was a Quahadi war leader at Adobe Walls, and then led the last band in to Fort Sill.",
+       "He spent the next thirty-six years fighting for his people in a new way: with leases, lawyers, lobbying in Washington, and a house open to anyone who came."],
+    links:[["../quanah/","Quanah and the Star House"]], img:{ src:SI("NPG-NPG_96_178-000002", 900), credit:'National Portrait Gallery, Smithsonian Institution, NPG.96.178. Public domain (CC0).' }, contain:true },
+  { k:"moment", t:"Grass money", when:"1884",
+    p:["Texas cattlemen wanted the reservation grass. Quanah pushed for grazing leases, and in 1884 the tribes received their first lease payments.",
+       "People called it grass money. Quanah became a rancher himself, and worked with cattlemen he had once raided."],
+    links:[["../quanah/","Quanah and the Star House"]], img:{ src:FP("Quanah Parker on horseback.jpg", 900), credit:'The Portal to Texas History, University of North Texas. Public domain.' }, contain:true },
+  { k:"place", t:"The Star House", when:"About 1890",
+    p:["Quanah's cattlemen friends paid for a two-story, ten-room house. Ten white stars were painted on the roof, and nobody knows for certain why.",
+       "It was always full. Geronimo visited, and so did President Theodore Roosevelt. Today a nonprofit is working to save it. It sits on private land, so please don't go onto it."],
+    links:[["../quanah/","Quanah and the Star House"],["../map/#star","The map"]], img:{ src:FP("Quanah Parker Star House.jpg", 1000), credit:'Photo: Karen Reid, ' + BYSA3 + ', via Wikimedia Commons.' } },
+  { k:"place", t:"Fort Sill Indian School", when:"1871 to 1980",
+    p:["For 109 years, Native children were sent to a boarding school a few miles from where the Comanche National Museum stands today. Some remember lifelong friendships. Others remember punishment for speaking their own language. Both are true.",
+       "Its stone girls' dormitory, built in 1904, still stands."],
+    links:[["../school/","Fort Sill Indian School"]], img:{ src:FP("Fort Sill Indian School Building 309.jpg", 1000), credit:'Photo: David Radcliff, ' + BYSA3 + ', via Wikimedia Commons.' } },
+  { k:"object", t:"The harvest", when:"Thanksgiving",
+    p:["Long before this holiday, fall was the season of plenty in the Comanchería. Women dressed buffalo hides into robes and dried strips of meat on racks for winter.",
+       "Pecans were gathered along the San Saba, wild plums were dried and stored, and sweet mesquite pods were pounded into meal."],
+    links:[["../plants/","Plants of the Comanchería"],["../camp/","Walk through a camp"]], img:SAAM("1985.66.346_1") },
+  { k:"person", t:"Doc Tate Nevaquaya", when:"1932 to 1996",
+    p:["Born in Fletcher, Oklahoma, to Comanche parents, and a student at Fort Sill Indian School. He became a painter, and a leader of the 1970s revival of the Comanche courting flute.",
+       "He studied how the flutes were made and played, recorded Comanche flute music, taught his sons, and was named a National Heritage Fellow in 1986."],
+    links:[["https://www.arts.gov/honors/heritage/joyce-doc-tate-nevaquaya","National Endowment for the Arts ↗"],["../school/","Fort Sill Indian School"]], paint:{ biome:"granite", season:2, tod:.82, herd:false, seed:91 },
+    src:"National Endowment for the Arts, \"Joyce Doc Tate Nevaquaya.\"" },
+  { k:"moment", t:"The Jerome Agreement", when:"1892",
+    p:["A federal commission pressed the Comanche, Kiowa, and Apache to take allotments and sell the rest of the reservation. The signatures fell short of the three-fourths that Medicine Lodge required.",
+       "Kiowa leader Lone Wolf sued. In 1903 the Supreme Court ruled that Congress could break a treaty on its own. Most of the land was opened to settlers."],
+    links:[["../treaties/#1892","The agreement"]], paint:{ biome:"plains", season:3, tod:.66, herd:false, seed:97 } },
+  { k:"place", t:"A museum of our own", when:"Opened 2007",
+    p:["The Comanche National Museum and Cultural Center opened in Lawton, Oklahoma, telling Comanche history in Comanche hands.",
+       "Its galleries include a section on the code talkers. If you're near Lawton this month, it's the best place to see this history up close."],
+    links:[["../visit/","Plan a visit"],["../map/#museum","The map"]], paint:{ biome:"granite", season:2, tod:.5, herd:true, seed:103 } },
+  { k:"place", t:"Still here", when:"Today",
+    p:["The Comanche Nation is headquartered in Lawton, Oklahoma, with about 17,000 enrolled citizens.",
+       "Thirty days can only scratch the surface. The people, and the language, are still here. Thank you for spending November with us."],
+    links:[["https://dictionary.numunuu.com","Learn the language"],["../timeline/","See it all on the timeline"]], paint:{ biome:"plains", season:2, tod:.27, herd:true, camp:true, seed:111 } }
+];
+
+const KIND = { person:"Person", moment:"Moment", object:"Object", place:"Place" };
+const escN = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === "file:";
+
+/* ---------- what day is it in Lawton? ---------- */
+function lawtonDate(){
+  const q = isLocal && new URLSearchParams(location.search).get("preview");   // testing only: ?preview=2026-11-18
+  if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)){ const [y, m, d] = q.split("-").map(Number); return { y, m, d, h:9, mi:0 }; }
+  const p = new Intl.DateTimeFormat("en-US", { timeZone:TZ, year:"numeric", month:"numeric", day:"numeric", hour:"numeric", minute:"numeric", hour12:false }).formatToParts(new Date());
+  const g = t => +p.find(x => x.type === t).value;
+  return { y:g("year"), m:g("month"), d:g("day"), h:g("hour") % 24, mi:g("minute") };
+}
+const now = lawtonDate();
+/* released: how many days are open. before Nov 1 → 0. during November → today's date. after → all 30. */
+const released = (now.y < YEAR || (now.y === YEAR && now.m < 11)) ? 0 : (now.y === YEAR && now.m === 11) ? now.d : 30;
+const live = now.y === YEAR && now.m === 11;
+const todayN = live ? now.d : 0;
+const dateLabel = n => new Date(Date.UTC(YEAR, 10, n, 12)).toLocaleDateString("en-US", { weekday:"short", month:"short", day:"numeric", timeZone:"UTC" });
+
+/* ---------- painted pictures ---------- */
+function paintInto(cv, o, w, h){
+  if (typeof paintScene !== "function") return;
+  const d = Math.min(2, devicePixelRatio || 1);
+  w = w || cv.clientWidth || 400; h = h || cv.clientHeight || 300;
+  cv.width = Math.round(w * d); cv.height = Math.round(h * d);
+  const ctx = cv.getContext("2d"); ctx.setTransform(d, 0, 0, d, 0, 0);
+  try { paintScene(ctx, w, h, Object.assign({ herd:false, camp:false, caravan:false, scroll:0, t:0 }, o)); } catch(e){}
+}
+const paintQ = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; paintQ.unobserve(e.target);
+  const n = +e.target.dataset.paint; paintInto(e.target, DAYS[n - 1].paint);
+}), { rootMargin:"200px" });
+
+function picHTML(n, cls){
+  const D = DAYS[n - 1];
+  if (D.img) return `<img ${cls ? `class="${cls}"` : ""} src="${escN(D.img.src)}" alt="${escN(D.t)}" loading="lazy"${(D.contain || D.img.contain) && cls !== "thumb" ? ' data-c="1"' : ""}>`;
+  return `<canvas data-paint="${n}" aria-hidden="true"></canvas>`;
+}
+function hookPics(root){
+  root.querySelectorAll("canvas[data-paint]").forEach(c => paintQ.observe(c));
+  root.querySelectorAll("img[data-c]").forEach(i => i.classList.add("contain"));
+}
+function creditHTML(D){
+  const parts = [];
+  if (D.img) parts.push(D.img.credit);
+  else parts.push("Painted scene by numunuu.com.");
+  if (D.src) parts.push("Source: " + escN(D.src));
+  return parts.join(" ");
+}
+
+/* ---------- story block (today + viewer share it) ---------- */
+function storyHTML(n, headTag, idAttr){
+  const D = DAYS[n - 1];
+  return `<p class="kind">${KIND[D.k]} · Day ${n} of 30</p>
+    <${headTag}${idAttr ? ` id="${idAttr}"` : ""}>${escN(D.t)}</${headTag}>
+    <p class="when">${escN(D.when)}</p>
+    ${D.p.map(x => `<p class="story">${escN(x)}</p>`).join("")}
+    <div class="acts">${D.links.map(([h, l]) => `<a class="btn sm" href="${escN(h)}"${/^https?:/.test(h) ? ' rel="noopener"' : ""}>${escN(l)}</a>`).join("")}</div>
+    <div class="acts">
+      <button class="btn sm primary" type="button" data-act="img" data-n="${n}">Download share image</button>
+      <button class="btn sm" type="button" data-act="cap" data-n="${n}">Copy caption</button>
+      <button class="btn sm" type="button" data-act="link" data-n="${n}">Copy link</button>
+    </div>
+    <p class="credit">${creditHTML(D)}</p>`;
+}
+
+/* ---------- hero meter ---------- */
+document.getElementById("meterTxt").textContent = released >= 30 ? "All 30 open" : released === 0 ? "Opens November 1" : `Day ${released} of 30`;
+requestAnimationFrame(() => setTimeout(() => { document.getElementById("bar").style.width = (released / 30 * 100) + "%"; }, 200));
+
+/* ---------- today ---------- */
+const box = document.getElementById("todayBox");
+function untilMidnight(){
+  const mins = (23 - now.h) * 60 + (60 - now.mi);
+  const h = Math.floor(mins / 60), m = mins % 60;
+  return h ? `${h} hour${h === 1 ? "" : "s"}${m ? ` and ${m} minute${m === 1 ? "" : "s"}` : ""}` : `${m} minute${m === 1 ? "" : "s"}`;
+}
+if (released === 0){
+  box.innerHTML = `<h2 class="sr" id="todayH">Coming soon</h2><div class="card pre"><b>Starting November 1</b><p>Come back on the first day of Native American Heritage Month for Day 1. A new Comanche story opens every day after that.</p></div>`;
+} else {
+  const n = live ? todayN : 30;
+  box.innerHTML = `<h2 class="sr" id="todayH">${live ? "Today" : "The last day"}</h2>
+    <div class="today">
+      <div class="pic">${picHTML(n)}<span class="daytag">${live ? "Today · " + dateLabel(n) : "Day 30"}</span></div>
+      <div>${storyHTML(n, "h2")}${live && n < 30 ? `<p class="next">Next: <b>Day ${n + 1}</b> opens in ${untilMidnight()}.</p>` : ""}</div>
+    </div>`;
+  hookPics(box);
+}
+
+/* ---------- grid ---------- */
+const grid = document.getElementById("days"), legend = document.getElementById("legend");
+if (released >= 30) document.getElementById("allSub").textContent = "Every day is open. Pick any one to read it.";
+const lockSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+grid.innerHTML = DAYS.map((D, i) => {
+  const n = i + 1, open = n <= released;
+  if (!open) return `<div class="d lock${n === released + 1 ? " soon" : ""}" data-k="${D.k}" aria-label="Day ${n}, opens ${dateLabel(n)}">
+      <div class="th">${lockSVG}<span class="big" aria-hidden="true">${n}</span></div>
+      <div class="tx"><small>Day ${n}</small><b>${n === released + 1 && live ? "Opens tomorrow" : "Opens " + dateLabel(n)}</b></div></div>`;
+  return `<button class="d${n === todayN ? " is-today" : ""}" type="button" data-n="${n}" data-k="${D.k}">
+      <div class="th">${picHTML(n, "thumb")}<span class="n">${n === todayN ? "Today" : "Day " + n}</span></div>
+      <div class="tx"><small>${KIND[D.k]}</small><b>${escN(D.t)}</b></div></button>`;
+}).join("");
+hookPics(grid);
+legend.innerHTML = `<button type="button" data-f="all" aria-pressed="true">All</button>` +
+  Object.entries(KIND).map(([k, l]) => `<button type="button" data-f="${k}" aria-pressed="false">${l}s</button>`).join("");
+legend.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return; const f = b.dataset.f;
+  legend.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  grid.querySelectorAll(".d").forEach(d => { d.hidden = f !== "all" && d.dataset.k !== f; });
+});
+
+/* ---------- viewer ---------- */
+const dlg = document.getElementById("viewer"), vw = document.getElementById("vw");
+let cur = 0;
+function openDay(n, push){
+  if (!(n >= 1 && n <= released)) return;
+  cur = n;
+  vw.innerHTML = `<button class="x" type="button" aria-label="Close" data-act="close">×</button>
+    <div class="pic">${picHTML(n)}<span class="daytag">${dateLabel(n)}</span></div>
+    <div class="txt">${storyHTML(n, "h2", "vTitle")}
+      <div class="pn">${n > 1 ? `<button class="btn sm" type="button" data-act="go" data-n="${n - 1}">← Day ${n - 1}</button>` : ""}${n < released ? `<button class="btn sm" type="button" data-act="go" data-n="${n + 1}">Day ${n + 1} →</button>` : ""}</div></div>`;
+  hookPics(vw);
+  if (!dlg.open) dlg.showModal();
+  vw.querySelector(".txt").scrollTop = 0;
+  if (push !== false) history.replaceState(null, "", "#day-" + n);
+}
+function closeDay(){ if (dlg.open) dlg.close(); }
+dlg.addEventListener("close", () => { history.replaceState(null, "", location.pathname + location.search); });
+dlg.addEventListener("click", e => { if (e.target === dlg) closeDay(); });
+grid.addEventListener("click", e => { const b = e.target.closest("button.d"); if (b) openDay(+b.dataset.n); });
+document.addEventListener("keydown", e => {
+  if (!dlg.open) return;
+  if (e.key === "ArrowRight" && cur < released) openDay(cur + 1);
+  if (e.key === "ArrowLeft" && cur > 1) openDay(cur - 1);
+});
+
+/* ---------- share ---------- */
+const toastEl = document.getElementById("toast2");
+let tt = 0;
+function say(t){ toastEl.textContent = t; toastEl.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => toastEl.classList.remove("on"), 2000); }
+const linkFor = n => `https://numunuu.com/november/#day-${n}`;
+const captionFor = n => { const D = DAYS[n - 1];
+  return `30 Days of Comanche, Day ${n}: ${D.t}\n\n${D.p[0]}\n\nRead more: ${linkFor(n)}\n\n#NativeAmericanHeritageMonth #Comanche #Numunuu`; };
+async function copy(t, ok){
+  try { await navigator.clipboard.writeText(t); say(ok); }
+  catch { const a = document.createElement("textarea"); a.value = t; document.body.appendChild(a); a.select();
+    try { document.execCommand("copy"); say(ok); } catch { say("Couldn't copy"); } a.remove(); }
+}
+function wrap(ctx, text, maxW){
+  const words = text.split(" "), lines = []; let line = "";
+  for (const w of words){ const t = line ? line + " " + w : w; if (ctx.measureText(t).width > maxW && line){ lines.push(line); line = w; } else line = t; }
+  if (line) lines.push(line); return lines;
+}
+async function shareImage(n){
+  const D = DAYS[n - 1], W = 1080, H = 1350;
+  try { await Promise.all(['800 80px "Fira Sans Condensed"', '400 36px "Fira Sans"', '600 30px "Fira Sans"'].map(f => document.fonts.load(f))); } catch {}
+  const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d");
+  const o = D.paint || { biome:["plains","river","granite","hill","llano"][n % 5], season:2, tod:[.3,.55,.72,.42][n % 4], herd:n % 2 === 0, camp:n % 3 === 0, seed:n * 7 };
+  try { paintScene(ctx, W, 920, Object.assign({ caravan:false, scroll:0, t:0 }, o)); } catch {}
+  const g = ctx.createLinearGradient(0, 480, 0, 900); g.addColorStop(0, "rgba(28,22,18,0)"); g.addColorStop(.75, "rgba(28,22,18,.92)"); g.addColorStop(1, "#1c1612");
+  ctx.fillStyle = g; ctx.fillRect(0, 480, W, 422); ctx.fillStyle = "#1c1612"; ctx.fillRect(0, 900, W, H - 900);
+  const L = 72; ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = "#e3b766"; ctx.font = '700 30px "Fira Sans Condensed", sans-serif';
+  ctx.fillText(`30 DAYS OF COMANCHE  ·  DAY ${n} OF 30`, L, 96);
+  ctx.font = '800 92px "Fira Sans Condensed", sans-serif'; ctx.fillStyle = "#fff";
+  let y = 860; const tl = wrap(ctx, D.t.toUpperCase(), W - L * 2);
+  y -= (tl.length - 1) * 88;
+  ctx.shadowColor = "rgba(0,0,0,.45)"; ctx.shadowBlur = 24;
+  tl.forEach((l, i) => ctx.fillText(l, L, y + i * 88)); ctx.shadowBlur = 0;
+  y += (tl.length - 1) * 88 + 62;
+  ctx.fillStyle = "#e3b766"; ctx.font = '600 34px "Fira Sans", sans-serif'; ctx.fillText(D.when, L, y);
+  y += 64; ctx.fillStyle = "#d9ccb8"; ctx.font = '400 35px "Fira Sans", sans-serif';
+  const body = wrap(ctx, D.p[0], W - L * 2).slice(0, 6);
+  body.forEach((l, i) => ctx.fillText(l + (i === 5 && body.length === 6 ? "…" : ""), L, y + i * 50));
+  ctx.fillStyle = "#d97736"; ctx.fillRect(L, H - 112, 64, 6);
+  ctx.fillStyle = "#f3eadb"; ctx.font = '700 34px "Fira Sans Condensed", sans-serif'; ctx.fillText("numunuu.com/november", L, H - 62);
+  ctx.fillStyle = "#a8997f"; ctx.font = '400 26px "Fira Sans", sans-serif';
+  const tag = "Native American Heritage Month"; ctx.fillText(tag, W - L - ctx.measureText(tag).width, H - 62);
+  cv.toBlob(b => {
+    const file = new File([b], `comanche-day-${n}.png`, { type:"image/png" });
+    if (navigator.canShare && navigator.canShare({ files:[file] }) && matchMedia("(pointer:coarse)").matches){
+      navigator.share({ files:[file], text:captionFor(n) }).catch(() => {}); return;
+    }
+    const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = file.name;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    say("Image saved");
+  }, "image/png");
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-act]"); if (!b) return;
+  const n = +b.dataset.n, a = b.dataset.act;
+  if (a === "close") closeDay();
+  else if (a === "go") openDay(n);
+  else if (a === "img") shareImage(n);
+  else if (a === "cap") copy(captionFor(n), "Caption copied");
+  else if (a === "link") copy(linkFor(n), "Link copied");
+});
+
+/* deep link: #day-12 opens that day, if it's out */
+const m = /^#day-(\d+)$/.exec(location.hash);
+if (m){ const n = +m[1]; if (n <= released) setTimeout(() => openDay(n, false), 150);
+  else if (n <= 30) setTimeout(() => say(`Day ${n} opens ${dateLabel(n)}`), 400); }
+
+/* ---------- hero: autumn plains ---------- */
+const hc = document.getElementById("heroCv");
+if (hc && typeof paintScene === "function"){
+  const ctx = hc.getContext("2d"), o = { biome:"plains", season:2, tod:.74, herd:true, camp:true, caravan:false, scroll:0, t:0, seed:11 };
+  let w = 0, h = 0, last = 0, vis = true;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = hc.clientWidth; h = hc.clientHeight; hc.width = w * d; hc.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(hc); fit();
+  new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(hc);
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts;
+    if (vis && w){ o.t += still ? 0 : dt; o.scroll += still ? 0 : dt * 3; paintScene(ctx, w, h, o); }
+    requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>
