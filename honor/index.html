@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Honor Wall · Nʉmʉnʉʉ</title>
+<meta name="description" content="An honor wall for Comanche men and women who served in the United States armed forces, beginning with the Comanche code talkers of World War II. Families can send a name.">
+<meta property="og:title" content="Honor Wall: Comanche veterans">
+<meta property="og:description" content="Comanche men and women who served, starting with the seventeen code talkers. Families can add a name.">
+<meta property="og:url" content="https://numunuu.com/honor/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/honor.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Names on a dark wall, titled Honor Wall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/honor.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+body{background:#16120f}
+.top{padding:clamp(40px,8vw,96px) 0 clamp(20px,4vw,40px);text-align:center;position:relative;overflow:hidden}
+.top h1{font-size:clamp(46px,9vw,112px);text-transform:uppercase;color:#f3eadb;line-height:.9}
+.top h1 span{color:#e3b766}
+.top .lead{margin:16px auto 0;text-align:center}
+.flag{width:120px;height:4px;margin:22px auto 0;background:linear-gradient(90deg,#a8432c 33%,#f3eadb 33% 66%,#2f5f9e 66%);border-radius:4px;opacity:.85}
+.photo{max-width:980px;margin:clamp(24px,4vw,40px) auto 0}
+.photo img{display:block;width:100%;border-radius:10px;filter:sepia(.25) contrast(1.05);background:#2a211b;aspect-ratio:1000/701;object-fit:cover}
+.photo figcaption{font-size:13.5px;color:var(--muted);margin-top:8px;text-align:left}
+
+.eras{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:clamp(30px,5vw,48px) 0 10px}
+.wallbox{background:linear-gradient(180deg,#221b16,#1a1511);border:1px solid rgba(243,234,219,.08);border-radius:18px;padding:clamp(18px,4vw,40px);box-shadow:inset 0 2px 30px rgba(0,0,0,.5)}
+.era{padding:22px 0;border-top:1px solid rgba(243,234,219,.07)}
+.era:first-child{border-top:0;padding-top:0}
+.era h2{font-size:clamp(24px,3vw,32px);color:#e3b766;text-align:center;letter-spacing:.06em;text-transform:uppercase}
+.era .sub{text-align:center;color:var(--muted);font-size:14.5px;margin:4px 0 16px}
+.names{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 18px}
+.nm{padding:10px 4px;text-align:center;border-bottom:1px solid rgba(243,234,219,.05)}
+.nm b{display:block;font-family:var(--f-display);font-weight:700;font-size:21px;letter-spacing:.02em;color:#efe4d2;text-shadow:0 1px 0 rgba(0,0,0,.6),0 -1px 0 rgba(255,255,255,.04)}
+.nm small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.nm.star b::after{content:" ★";color:#e3b766;font-size:.7em;vertical-align:.2em}
+.empty{text-align:center;color:var(--muted);font-size:15px;padding:6px 0 4px}
+.empty a{color:var(--gold)}
+.key{text-align:center;font-size:13.5px;color:var(--muted);margin-top:12px}
+
+.send{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:start}
+@media (max-width:820px){.send{grid-template-columns:1fr}}
+.send p{color:var(--ink-2)}
+form.card{padding:22px}
+.f{display:grid;gap:4px;margin-bottom:12px}
+.f label{font-size:14px;font-weight:600;color:var(--ink-2)}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;color:var(--ink);background:#1d1713;border:1px solid var(--line-2);border-radius:10px;padding:10px 12px}
+.f textarea{min-height:90px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+.ok{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2);margin:4px 0 14px}
+.ok input{margin-top:4px;width:18px;height:18px}
+.soon{font-size:14px;color:var(--gold);margin:10px 0 0}
+button[disabled]{opacity:.55;cursor:not-allowed}
+</style>
+</head>
+<body>
+<header data-site-top data-page="honor"></header>
+
+<main>
+<section class="top">
+  <div class="wrap">
+    <p class="eyebrow">Comanche veterans</p>
+    <h1>Honor <span>wall</span></h1>
+    <p class="lead">Comanche men and women have served in the United States armed forces, in war and in peace, for more than a century. This wall starts with the seventeen code talkers of World War II, and grows with the names families send.</p>
+    <div class="flag" aria-hidden="true"></div>
+    <figure class="photo">
+      <img alt="The Comanche code talkers in uniform, in two rows" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Army%20Code%20Talkers.jpg?width=1000">
+      <figcaption>The Comanche code talkers. Front row, left to right: Roderick Red Elk, Simmons Parker, Larry Saupitty, Melvin Permansu, Willis Yackeschi, Charles Chibitty, and Wellington Mihecoby. Back row: Morris Tabbyetchy, Perry Noyabad, Ralph Wahnee, Haddon Codynah, Robert Holder, Albert Nahquaddy Jr., Clifford Otitivo, and Forrest Kassanavoid. Not pictured: Elgin Red Elk and Anthony Tabbytite. U.S. Army photo, public domain.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="eras" id="eras" role="group" aria-label="Show service era"></div>
+    <div class="wallbox" id="wall"></div>
+    <p class="key">★ Landed at Utah Beach, June 6, 1944</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0" id="send">
+  <div class="wrap send">
+    <div>
+      <p class="eyebrow">Add a name</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);margin-bottom:12px">Honor someone in your family</h2>
+      <p>If someone in your family is a Comanche veteran, living or passed on, you can send their name for the wall. Every name is read by a person before it goes up.</p>
+      <p>Please only send a name you have the family's blessing to share. Nothing is published without it, and you can ask for a name to be changed or taken down at any time.</p>
+      <p class="muted" style="font-size:14.5px">This wall honors service. It is an independent project of numunuu.com and is not an official record of the Comanche Nation or the U.S. military.</p>
+    </div>
+    <form class="card" id="form" novalidate>
+      <div class="f"><label for="fName">Veteran's full name</label><input id="fName" required autocomplete="off"></div>
+      <div class="row2">
+        <div class="f"><label for="fBranch">Branch</label><select id="fBranch"><option>Army</option><option>Marine Corps</option><option>Navy</option><option>Air Force</option><option>Coast Guard</option><option>Space Force</option><option>National Guard</option><option>Other</option></select></div>
+        <div class="f"><label for="fEra">Era</label><select id="fEra"></select></div>
+      </div>
+      <div class="f"><label for="fNote">Unit, rank, years, or a few words about them (optional)</label><textarea id="fNote"></textarea></div>
+      <div class="row2">
+        <div class="f"><label for="fFrom">Your name</label><input id="fFrom" autocomplete="name"></div>
+        <div class="f"><label for="fRel">Your relationship to them</label><input id="fRel" placeholder="Grandson, daughter, niece…"></div>
+      </div>
+      <label class="ok"><input type="checkbox" id="fOk"> I have the family's blessing to share this name on numunuu.com.</label>
+      <button class="btn primary" type="submit" id="fGo">Send this name</button>
+      <p class="soon" id="soon" hidden>Sending names opens soon. Thank you for your patience.</p>
+    </form>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <h2 style="font-size:24px;margin-bottom:10px">Sources</h2>
+    <ul class="sources">
+      <li>Code talker names and Utah Beach landings: U.S. Army, as listed in <a href="../codetalkers/">The Comanche Code Talkers</a>, with its sources.</li>
+      <li>Photo: U.S. Army, "Comanche code talkers," via <a href="https://commons.wikimedia.org/wiki/File:Army_Code_Talkers.jpg" rel="noopener">Wikimedia Commons</a>. Public domain.</li>
+    </ul>
+    <div class="more">
+      <a href="../codetalkers/"><b>The Code Talkers</b><small>Turtle meant tank</small></a>
+      <a href="../school/"><b>Fort Sill Indian School</b><small>Where some of them went to school</small></a>
+      <a href="../visit/"><b>Visit the museum</b><small>The Code Talkers section in Lawton</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script>
+/* ---------- HOW TO ADD A NAME ----------
+   Add a line to HONOR below: { n:"Full Name", era:"ww2", b:"Army", note:"Unit or a few words" }
+   Eras: ww1, ww2, korea, vietnam, gulf (Gulf War and after), peace (peacetime and other service).
+
+   HOW TO TURN ON SENDING ----------
+   Set SEND to one of:
+     { mode:"email", to:"you@example.com" }   opens the visitor's email with the details filled in
+     { mode:"form",  url:"https://forms.gle/..." }   opens your Google Form
+   Leave it null to keep sending switched off. */
+const SEND = null;
+
+const ERAS = [
+  { id:"ww1", t:"World War I", y:"1917–1918" },
+  { id:"ww2", t:"World War II", y:"1941–1945" },
+  { id:"korea", t:"Korea", y:"1950–1953" },
+  { id:"vietnam", t:"Vietnam", y:"1955–1975" },
+  { id:"gulf", t:"The Gulf War and after", y:"1990–today" },
+  { id:"peace", t:"Peacetime and other service", y:"" }
+];
+const NOT_BEACH = { "Albert Nahquaddy Jr.":"Discharged before deployment", "Anthony Tabbytite":"Discharged before deployment", "Ralph Wahnee":"Discharged before deployment", "Morris Tabbyetchy":"Transferred to I Corps in England" };
+const CODE = ["Charles Chibitty","Haddon Codynah","Robert Holder","Forrest Kassanavoid","Wellington Mihecoby","Albert Nahquaddy Jr.","Perry Noyabad","Clifford Otitivo","Simmons Parker","Melvin Permansu","Elgin Red Elk","Roderick Red Elk","Larry Saupitty","Anthony Tabbytite","Morris Tabbyetchy","Ralph Wahnee","Willis Yackeschi"];
+const HONOR = [
+  ...CODE.map(n => ({ n, era:"ww2", b:"Army", note: NOT_BEACH[n] ? "Code talker · " + NOT_BEACH[n] : "Code talker · 4th Infantry Division", star: !NOT_BEACH[n] }))
+  /* add names here */
+];
+
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+let show = "all";
+function render(){
+  document.getElementById("eras").innerHTML = [{ id:"all", t:"All" }, ...ERAS].map(e => `<button class="chip" type="button" data-era="${e.id}" aria-pressed="${show === e.id}">${e.t}</button>`).join("");
+  document.getElementById("wall").innerHTML = ERAS.filter(e => show === "all" || show === e.id).map(e => {
+    const list = HONOR.filter(h => h.era === e.id).sort((a, b) => a.n.split(" ").slice(-1)[0].localeCompare(b.n.split(" ").slice(-1)[0]));
+    return `<div class="era"><h2>${e.t}</h2><p class="sub">${e.y}${list.length ? ` · ${list.length} name${list.length > 1 ? "s" : ""}` : ""}</p>
+      ${list.length ? `<div class="names">${list.map(h => `<div class="nm${h.star ? " star" : ""}"><b>${esc(h.n)}</b><small>${esc(h.b)}${h.note ? " · " + esc(h.note.replace(/^Code talker · /, "Code talker, ")) : ""}</small></div>`).join("")}</div>`
+        : `<p class="empty">No names yet. <a href="#send">Honor someone from this era →</a></p>`}</div>`; }).join("");
+}
+document.getElementById("eras").addEventListener("click", e => { const b = e.target.closest("[data-era]"); if (!b) return; show = b.dataset.era; render(); });
+render();
+
+/* the form */
+document.getElementById("fEra").innerHTML = ERAS.map(e => `<option value="${e.id}">${e.t}</option>`).join("");
+const go = document.getElementById("fGo");
+if (!SEND){ go.disabled = true; document.getElementById("soon").hidden = false; }
+document.getElementById("form").addEventListener("submit", e => {
+  e.preventDefault(); if (!SEND) return;
+  const v = id => document.getElementById(id).value.trim();
+  if (!v("fName")) { document.getElementById("fName").focus(); return; }
+  if (!document.getElementById("fOk").checked){ document.getElementById("fOk").focus(); return; }
+  const era = ERAS.find(x => x.id === v("fEra")).t;
+  const body = `Veteran: ${v("fName")}\nBranch: ${v("fBranch")}\nEra: ${era}\nAbout: ${v("fNote")}\n\nSent by: ${v("fFrom")} (${v("fRel")})\nI have the family's blessing to share this name.`;
+  if (SEND.mode === "email") location.href = `mailto:${SEND.to}?subject=${encodeURIComponent("Honor wall: " + v("fName"))}&body=${encodeURIComponent(body)}`;
+  else if (SEND.mode === "form") window.open(SEND.url, "_blank", "noopener");
+});
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

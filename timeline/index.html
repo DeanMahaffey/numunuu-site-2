@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comanche History Timeline · Nʉmʉnʉʉ</title>
+<meta name="description" content="Comanche history from the Shoshone homeland to today in one timeline: the horse, the Comanchería, the treaties, Adobe Walls, Quanah Parker, the boarding school, the code talkers, and the Comanche Nation now.">
+<meta property="og:title" content="Comanche History Timeline">
+<meta property="og:description" content="From the Shoshone homeland to today: three centuries of Comanche history in one scroll.">
+<meta property="og:url" content="https://numunuu.com/timeline/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/timeline.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted plains, titled Comanche History Timeline">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/timeline.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero{min-height:min(62vh,560px)}
+.hero h1{font-size:clamp(44px,8vw,100px)}
+.bar{position:sticky;top:56px;z-index:20;background:rgba(28,22,18,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;flex-direction:column;gap:8px;padding-top:10px;padding-bottom:10px}
+.eras{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.eras::-webkit-scrollbar{display:none}
+.eras a{flex:1 0 auto;text-decoration:none;text-align:center;font-size:13.5px;font-weight:600;color:var(--ink-2);padding:6px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line);white-space:nowrap}
+.eras a.on{background:rgba(217,119,54,.22);border-color:var(--clay);color:var(--ink)}
+.eras a small{display:block;font-weight:500;color:var(--muted);font-size:11.5px}
+.filters{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters .chip{white-space:nowrap}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed="false"]{opacity:.5}
+.chip[aria-pressed="false"] i{background:transparent;border:2px solid var(--c)}
+
+.tl{position:relative;padding:20px 0 40px}
+.tl::before{content:"";position:absolute;left:calc(118px + 16px);top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--clay),var(--gold) 50%,var(--sky))}
+@media (max-width:640px){.tl::before{left:22px}}
+.era{padding-top:28px}
+.era h2{position:relative;font-size:clamp(28px,4vw,42px);margin:0 0 4px calc(118px + 44px)}
+.era p.sum{margin:0 0 10px calc(118px + 44px);color:var(--muted);max-width:60ch}
+@media (max-width:640px){.era h2,.era p.sum{margin-left:50px}}
+.ev{position:relative;display:grid;grid-template-columns:118px minmax(0,1fr);gap:44px;padding:14px 0}
+@media (max-width:640px){.ev{grid-template-columns:1fr;gap:2px;padding-left:50px}}
+.ev .y{text-align:right;font-family:var(--f-display);font-weight:800;font-size:28px;line-height:1;color:var(--gold);padding-top:4px}
+.ev .y small{display:block;font-family:var(--f-ui);font-weight:500;font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.3}
+@media (max-width:640px){.ev .y{text-align:left;font-size:24px}.ev .y small{display:inline;margin-left:6px}}
+.ev::before{content:"";position:absolute;left:calc(118px + 10px);top:20px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--c)}
+@media (max-width:640px){.ev::before{left:16px}}
+.ev .b{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--c);border-radius:12px;padding:14px 16px;max-width:720px}
+.ev h3{font-size:22px;margin:0 0 4px;line-height:1.15}
+.ev p{margin:0;color:var(--ink-2);font-size:15.5px}
+.ev .links{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;font-size:14.5px;font-weight:600}
+.ev .links a{text-decoration:none}
+.ev .links a:hover{text-decoration:underline}
+.ev.big .b{background:linear-gradient(135deg,rgba(217,119,54,.16),var(--card) 60%)}
+.ev.big h3{font-size:26px}
+.ev.hide,.era.hide{display:none}
+</style>
+</head>
+<body>
+<header data-site-top data-page="timeline"></header>
+
+<main>
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffd7a8">Three centuries, one scroll</p>
+    <h1 id="pageTitle">Comanche history <span class="accent">timeline</span></h1>
+    <p class="lead">From the Shoshone homeland to the Comanche Nation today. Every entry links to the page on numunuu.com that tells the full story, and to the place on the map.</p>
+  </div>
+</section>
+
+<div class="bar">
+  <div class="wrap">
+    <nav class="eras" id="eras" aria-label="Jump to an era"></nav>
+    <div class="filters" id="filters" role="group" aria-label="Show topics"></div>
+  </div>
+</div>
+
+<section class="wrap tl" id="tl"></section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="note"><b>About these dates</b>Many dates in Comanche history come from Spanish, Texan, and American records, and some are disputed or approximate. Where the record gives a range, so do we. Each linked page lists its sources.</div>
+    <div class="more">
+      <a href="../map/"><b>The map</b><small>See every place on one map</small></a>
+      <a href="../stories/"><b>Turning Points</b><small>Five moments, told as scrolling stories</small></a>
+      <a href="../treaties/"><b>The treaties</b><small>Eleven treaties, 1786 to 1892</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+"use strict";
+const T = {
+  people:{ t:"People and land", c:"#a7bd8c" },
+  treaty:{ t:"Treaties", c:"#b8860b" },
+  war:{ t:"War and survival", c:"#b8402e" },
+  quanah:{ t:"Quanah Parker", c:"#c46a1f" },
+  school:{ t:"School and service", c:"#8a6cb0" },
+  today:{ t:"Remembering", c:"#9cc0d8" }
+};
+const ERAS = [
+  { id:"origins", t:"Origins", y:"to 1750", sum:"A mountain people becomes a horse people.", from:-Infinity, to:1750 },
+  { id:"empire", t:"The Comanchería", y:"1750–1849", sum:"The height of Comanche power on the southern plains.", from:1750, to:1850 },
+  { id:"war", t:"Treaties and war", y:"1850–1875", sum:"Promises on paper, the end of the buffalo, and the last free band.", from:1850, to:1876 },
+  { id:"res", t:"The reservation", y:"1875–1940", sum:"A new kind of fight, for land, schools, and the right to be Comanche.", from:1876, to:1940 },
+  { id:"century", t:"War and memory", y:"1941–1999", sum:"The language goes to war, and the long work of remembering.", from:1940, to:2000 },
+  { id:"now", t:"Today", y:"2000–", sum:"Still here.", from:2000, to:Infinity }
+];
+/* y: sort year; when: shown year; d: detail line; links: [href, text] */
+const E = [
+  { y:1650, when:"Before 1700", th:"people", t:"People of the mountains", p:"The Comanche were once part of the Shoshone, in the high country to the north and west. Around 1700 their language began to separate, and they moved south and east onto the plains.", links:[["../stories/#horse","Turning Points: The horse"]] },
+  { y:1680, when:"1680", th:"war", t:"The Pueblo Revolt", p:"The Pueblo peoples drove the Spanish out of New Mexico. Spanish horses scattered and spread north and east among the peoples of the plains.", links:[["../stories/#horse","Read more"],["../map/#santafe","Map"]] },
+  { y:1706, when:"1706", th:"people", t:"A new name", p:"The earliest known written use of the name Comanche, in a Spanish report from New Mexico.", links:[["../stories/#horse","Read more"]] },
+  { y:1725, when:"1725", th:"people", t:"Dogs still carry the lodges", p:"Spanish reports say some Comanches were still using large dogs to carry their lodges. Horses took time to spread.", links:[["../camp/","Walk through a camp"]] },
+  { y:1740, when:"1700s", th:"people", big:true, t:"Lords of the southern plains", p:"Within a few generations the Comanche became the finest horsemen on the continent, pushed the Apaches off much of the buffalo plains, and built the Comanchería, from the Arkansas River deep into Texas.", links:[["../stories/#horse","Read more"],["../herd/","Play Follow the Herd"]] },
+  { y:1786, when:"1786", d:"February 28", th:"treaty", t:"Peace at Pecos", p:"Ecueracapa, speaking for the western Comanche, met Governor Juan Bautista de Anza at Pecos and ended a generation of war with New Mexico.", links:[["../treaties/#1786","The treaty"],["../map/#t1786","Map"]] },
+  { y:1834, when:"1834", d:"July", th:"people", t:"The dragoons and the painter", p:"Comanche riders met a column of U.S. dragoons under a white flag and led them to their village. George Catlin painted the camp, the horsemen, and the people.", links:[["../catlin/","Painted in 1834"],["../map/#village","Map"]] },
+  { y:1835, when:"1835", d:"August 24", th:"treaty", t:"Treaty of Camp Holmes", p:"The first treaty between the United States and the Comanche.", links:[["../treaties/#1835","The treaty"],["../map/#t1835","Map"]] },
+  { y:1836, when:"1836", th:"quanah", t:"Fort Parker", p:"In a Comanche and Kiowa raid on Fort Parker, Texas, a girl of about nine named Cynthia Ann Parker was taken. Raised Comanche as Nautda, she became Quanah's mother.", links:[["../quanah/","Quanah and the Star House"]] },
+  { y:1840.2, when:"1840", d:"March 19", th:"war", t:"The Council House", p:"Penateka leaders came to San Antonio to make peace. Texans tried to take them prisoner and killed them.", links:[["../stories/#raid","Read more"],["../map/#council","Map"]] },
+  { y:1840.6, when:"1840", d:"August", th:"war", big:true, t:"The Great Raid", p:"Buffalo Hump led hundreds of warriors to the Gulf of Mexico and burned Linnville. On the way home they were caught at Plum Creek.", links:[["../stories/#raid","Read more"],["../map/#linnville","Map"]] },
+  { y:1844, when:"1844", d:"October 9", th:"treaty", t:"Tehuacana Creek", p:"Sam Houston's Republic of Texas made peace with the Penateka.", links:[["../treaties/#1844","The treaty"]] },
+  { y:1845, when:"1845", th:"people", t:"A year in the Comanchería", p:"Our history game is set in this year. Lead a band through the seasons, follow the herds, and keep your council together.", links:[["../herd/","Play Follow the Herd"]] },
+  { y:1846, when:"1846", d:"May 15", th:"treaty", t:"Council Springs", p:"Months after Texas joined the United States, a treaty put the southern Comanche under U.S. protection, with no boundary at all.", links:[["../treaties/#1846","The treaty"]] },
+  { y:1847, when:"1847", d:"May 9", th:"treaty", t:"The Meusebach–Comanche treaty", p:"A private peace with the German colonists of Texas, widely described as never broken.", links:[["../treaties/#1847","The treaty"]] },
+  { y:1848, when:"c. 1848", th:"quanah", t:"Quanah is born", p:"Son of Peta Nocona and Nautda. His own letter places his birth on Elk Creek, below the Wichita Mountains.", links:[["../quanah/","Read more"]] },
+  { y:1850, when:"1850–1853", th:"treaty", t:"Spring Creek, San Saba, Fort Atkinson", p:"Three more treaties. Two were never ratified. At Fort Atkinson the U.S. bought rights along the Santa Fe Trail.", links:[["../treaties/#1853","The treaties"]] },
+  { y:1860, when:"1860", d:"December", th:"quanah", t:"Pease River", p:"Texas Rangers attacked the camp of Quanah's family and carried off his mother and his sister, Prairie Flower.", links:[["../quanah/","Read more"],["../map/#pease","Map"]] },
+  { y:1865, when:"1865", d:"October 18", th:"treaty", t:"Little Arkansas", p:"A vast reservation promised for \"absolute and undisturbed use.\" Much of it lay in Texas, which refused to give it up.", links:[["../treaties/#1865","The treaty"]] },
+  { y:1867, when:"1867", d:"October 21", th:"treaty", big:true, t:"Medicine Lodge", p:"The treaty that created the Kiowa-Comanche-Apache reservation and promised hunting south of the Arkansas as long as the buffalo lasted. Within a few years hide hunters were killing the southern herd.", links:[["../treaties/#1867","The treaty"],["../map/#t1867","Map"]] },
+  { y:1871, when:"1871", th:"school", t:"A school at the agency", p:"The school that became Fort Sill Indian School opened with 24 students.", links:[["../school/","Fort Sill Indian School"]] },
+  { y:1874.5, when:"1874", d:"June 27", th:"war", big:true, t:"Adobe Walls", p:"Quanah and Isatai led warriors against the hide hunters' post. The attack failed, and the Army used it to launch the Red River War.", links:[["../stories/#adobe","Read more"],["../map/#adobe","Map"]] },
+  { y:1874.8, when:"1874", d:"September 28", th:"war", t:"Palo Duro Canyon", p:"The Army attacked the canyon camps at dawn, burned the winter food, and killed more than a thousand horses.", links:[["../stories/#paloduro","Read more"],["../map/#paloduro","Map"]] },
+  { y:1875, when:"1875", d:"Late May and June", th:"war", big:true, t:"The last band comes in", p:"Quanah led the Quahadi in to Fort Sill. The free life on the southern plains was over.", links:[["../stories/#fortsill","Read more"],["../map/#fortsill","Map"]] },
+  { y:1884, when:"1884", th:"quanah", t:"Grass money", p:"The tribes received their first grazing lease payments from Texas cattlemen, largely through Quanah's efforts.", links:[["../quanah/","Read more"]] },
+  { y:1890, when:"c. 1890", th:"quanah", t:"The Star House", p:"Cattlemen friends built Quanah a two-story house with ten stars on the roof.", links:[["../quanah/","Read more"],["../map/#star","Map"]] },
+  { y:1892, when:"1892", d:"October", th:"treaty", big:true, t:"The Jerome Agreement", p:"A federal commission pressed the Comanche, Kiowa, and Apache to take allotments and sell the rest. Signatures fell short of what Medicine Lodge required. Congress enacted it in 1900 anyway.", links:[["../treaties/#1892","The agreement"]] },
+  { y:1901, when:"1901", th:"people", t:"The land is opened", p:"After allotment, the rest of the reservation was opened to settlers.", links:[["../stories/#fortsill","Read more"]] },
+  { y:1904, when:"1904", th:"school", t:"The stone dormitory", p:"Fort Sill Indian School built a stone girls' dormitory, Building 309. It still stands.", links:[["../school/","Read more"]] },
+  { y:1905, when:"1905", d:"April", th:"quanah", t:"A president at the Star House", p:"Theodore Roosevelt visited Quanah and went wolf hunting nearby.", links:[["../quanah/","Read more"]] },
+  { y:1911, when:"1911", d:"February 23", th:"quanah", t:"Quanah dies", p:"He died at the Star House. Thousands of mourners came.", links:[["../quanah/","Read more"]] },
+  { y:1941, when:"1941", d:"January", th:"school", t:"Seventeen enlist", p:"Young Comanche men joined the Army and began building a code from their language. Turtle meant tank.", links:[["../codetalkers/","The Code Talkers"]] },
+  { y:1944, when:"1944", d:"June 6", th:"school", big:true, t:"Utah Beach", p:"Thirteen Comanche code talkers came ashore on D-Day. One of the first messages back was in Comanche.", links:[["../codetalkers/","The Code Talkers"],["../honor/","Honor wall"]] },
+  { y:1957, when:"1957", th:"quanah", t:"Chief's Knoll", p:"Quanah was reburied at Fort Sill, beside his mother and sister.", links:[["../visit/","Visit"],["../map/#knoll","Map"]] },
+  { y:1970, when:"1970", d:"September 29", th:"today", t:"The Star House is listed", p:"The house went on the National Register of Historic Places.", links:[["../quanah/","Read more"]] },
+  { y:1980, when:"1980", th:"school", t:"The school closes", p:"After alumni fought to keep it open, Fort Sill Indian School closed after 109 years.", links:[["../school/","Read more"]] },
+  { y:1989, when:"1989", th:"today", t:"France says thank you", p:"The government of France honored the Comanche code talkers.", links:[["../codetalkers/","Read more"]] },
+  { y:1999, when:"1999", d:"December 3", th:"today", t:"The Hall of Heroes", p:"Charles Chibitty was honored at the Pentagon.", links:[["../codetalkers/","Read more"]] },
+  { y:2005, when:"2005", d:"July 20", th:"today", t:"The last code talker", p:"Charles Chibitty died, the last surviving Comanche code talker.", links:[["../honor/","Honor wall"]] },
+  { y:2007, when:"2007", th:"today", t:"A museum of our own", p:"The Comanche National Museum and Cultural Center opened in Lawton.", links:[["../visit/","Plan a visit"],["../map/#museum","Map"]] },
+  { y:2013, when:"2013", d:"November 20", th:"today", t:"Congressional Gold Medal", p:"The Comanche code talkers were awarded the Congressional Gold Medal, with code talkers from many other Native nations.", links:[["../codetalkers/","Read more"]] },
+  { y:2022, when:"2022", th:"today", t:"Saving the Star House", p:"A nonprofit was formed to restore Quanah's house as a museum and education center.", links:[["../quanah/","Read more"]] },
+  { y:2024, when:"2024", th:"school", t:"A reckoning, and a sign", p:"The Interior Department's report counted 417 federal Indian boarding schools. Near Lawton, the old Fort Sill Indian School sign was pulled from a creek to go home to the campus.", links:[["../school/","Read more"]] },
+  { y:2026, when:"Today", th:"people", big:true, t:"Still here", p:"The Comanche Nation is headquartered in Lawton, Oklahoma, with about 17,000 enrolled citizens. The people, and the language, are still here.", links:[["https://dictionary.numunuu.com","Learn the language"],["../visit/","Visit"]] }
+];
+
+const escT = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const on = new Set(Object.keys(T));
+document.getElementById("tl").innerHTML = ERAS.map(er => {
+  const evs = E.filter(e => e.y >= er.from && e.y < er.to);
+  return `<div class="era" id="${er.id}"><h2>${er.t}</h2><p class="sum">${er.y} · ${er.sum}</p>${evs.map(e => `
+    <article class="ev${e.big ? " big" : ""}" data-th="${e.th}" style="--c:${T[e.th].c}">
+      <div class="y">${e.when}${e.d ? `<small>${e.d}</small>` : ""}</div>
+      <div class="b"><h3>${escT(e.t)}</h3><p>${escT(e.p)}</p><div class="links">${e.links.map(([h, l]) => `<a href="${h}">${l} →</a>`).join("")}</div></div>
+    </article>`).join("")}</div>`; }).join("");
+document.getElementById("eras").innerHTML = ERAS.map(er => `<a href="#${er.id}" data-era="${er.id}">${er.t}<small>${er.y}</small></a>`).join("");
+function filters(){
+  document.getElementById("filters").innerHTML = Object.entries(T).map(([k, t]) => `<button class="chip" type="button" data-th="${k}" style="--c:${t.c}" aria-pressed="${on.has(k)}"><i></i>${t.t}</button>`).join("");
+  document.querySelectorAll(".ev").forEach(ev => ev.classList.toggle("hide", !on.has(ev.dataset.th)));
+  document.querySelectorAll(".era").forEach(er => er.classList.toggle("hide", !er.querySelector(".ev:not(.hide)")));
+}
+document.getElementById("filters").addEventListener("click", e => { const b = e.target.closest("[data-th]"); if (!b) return; on.has(b.dataset.th) ? on.delete(b.dataset.th) : on.add(b.dataset.th); filters(); });
+filters();
+/* sticky era bar: offset jumps and highlight the current era */
+document.getElementById("eras").addEventListener("click", e => { const a = e.target.closest("a"); if (!a) return; e.preventDefault();
+  const el = document.getElementById(a.dataset.era), off = document.querySelector(".bar").offsetHeight + 64;
+  scrollTo({ top: el.getBoundingClientRect().top + scrollY - off, behavior:"smooth" }); });
+const eraLinks = [...document.querySelectorAll("#eras a")];
+const eo = new IntersectionObserver(es => es.forEach(x => { if (!x.isIntersecting) return;
+  eraLinks.forEach(a => a.classList.toggle("on", a.dataset.era === x.target.id)); }), { rootMargin:"-45% 0px -50% 0px" });
+document.querySelectorAll(".era").forEach(el => eo.observe(el));
+
+/* hero */
+(function(){
+  const cv = document.getElementById("heroCv"); if (!cv || typeof paintScene !== "function") return;
+  const ctx = cv.getContext("2d"), o = { biome:"llano", season:2, tod:.7, herd:true, camp:false, caravan:true, scroll:0, t:0, seed:44 };
+  let w = 0, h = 0, last = 0, vis = true;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(cv); fit(); new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(cv);
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; if (vis && w){ o.t += still ? 0 : dt; o.scroll += still ? 0 : dt * 8; paintScene(ctx, w, h, o); } requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

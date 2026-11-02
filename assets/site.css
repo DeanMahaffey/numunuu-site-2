@@ -33,12 +33,28 @@ h1,h2,h3{font-family:var(--f-display);font-weight:800;letter-spacing:-.01em;line
 .site-top .wrap{display:flex;align-items:center;gap:18px;height:56px}
 .site-top .brand{font-family:var(--f-display);font-weight:800;font-size:21px;text-decoration:none;color:var(--ink);white-space:nowrap;letter-spacing:.01em}
 .site-top .brand .u{color:var(--clay)}
-.site-top nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.site-top nav{display:flex;align-items:center;gap:4px;margin-left:auto}
 .site-top nav::-webkit-scrollbar{display:none}
 .site-top nav a{white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:14.5px;font-weight:500;padding:6px 10px;border-radius:999px}
 .site-top nav a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
 .site-top nav a[aria-current="page"]{color:var(--ink);background:rgba(217,119,54,.2)}
 @media (max-width:640px){.site-top .wrap{gap:10px}.site-top nav{mask-image:none;-webkit-mask-image:none}}
+.exmenu{position:relative}
+.exmenu summary{list-style:none;cursor:pointer;white-space:nowrap;color:var(--ink-2);font-size:14.5px;font-weight:500;padding:6px 10px;border-radius:999px}
+.exmenu summary::-webkit-details-marker{display:none}
+.exmenu summary::after{content:"";display:inline-block;width:6px;height:6px;margin-left:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg)}
+.exmenu[open] summary,.exmenu summary:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+.exmenu summary.cur{color:var(--ink);background:rgba(217,119,54,.2)}
+.exlist{position:absolute;right:0;top:calc(100% + 8px);min-width:250px;display:grid;padding:8px;background:#231b16;border:1px solid var(--line-2);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.45);z-index:60}
+.exlist a{border-radius:9px;padding:9px 12px!important}
+.exlist a.mob{display:none;border-top:1px solid var(--line);border-radius:0}
+@media (max-width:640px){
+  .site-top .brand{font-size:19px}
+  .site-top nav a,.exmenu summary{font-size:13.5px;padding:6px 7px}
+  .site-top nav > a[href*="dictionary"],.site-top nav > a[href$="herd/"]{display:none}
+  .exlist{position:fixed;left:12px;right:12px;top:62px;min-width:0}
+  .exlist a.mob{display:block}
+}
 
 /* ---------- hero with painted banner ---------- */
 .hero{position:relative;min-height:min(78vh,720px);display:flex;align-items:flex-end;overflow:hidden}

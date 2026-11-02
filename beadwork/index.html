@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beads, Paint, and Fringe · Nʉmʉnʉʉ</title>
+<meta name="description" content="An online exhibit of Comanche beadwork and Southern Plains style: painted moccasins and boots, fringed leggings, cradleboards, and the bags of the reservation years.">
+<meta property="og:title" content="Beads, Paint, and Fringe: Comanche beadwork">
+<meta property="og:description" content="Painted hide, long fringe, and beadwork used with restraint. An online exhibit of Comanche beadwork from numunuu.com.">
+<meta property="og:url" content="https://numunuu.com/beadwork/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/beadwork.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Beaded pattern background, titled Beads, Paint, and Fringe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/beadwork.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/exhibit.css">
+<style>
+/* hero: a field of beads that settles into a lane pattern */
+.hero.ex{background:#2b1f16}
+.hero.ex::after{background:linear-gradient(0deg,var(--bg) 0%,rgba(28,22,18,.8) 34%,rgba(28,22,18,.25) 70%,rgba(28,22,18,.05) 100%)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;max-width:860px}
+@media (max-width:640px){.compare{grid-template-columns:1fr}}
+.compare div{padding:18px 20px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.compare b{display:block;font-family:var(--f-display);font-weight:800;font-size:22px;margin-bottom:8px}
+.compare ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:15.5px}
+.compare .us{border-color:rgba(217,119,54,.55);background:linear-gradient(180deg,rgba(217,119,54,.12),var(--card))}
+.swatches{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.swatches span{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+.swatches i{width:22px;height:22px;border-radius:50%;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),0 0 0 2px rgba(255,255,255,.1)}
+</style>
+</head>
+<body>
+<header data-site-top data-page="beadwork"></header>
+
+<main>
+<section class="hero ex" aria-labelledby="pageTitle">
+  <canvas id="beads" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffd7a8">Online exhibit · Southern Plains style</p>
+    <h1 id="pageTitle">Beads, paint, <span class="accent">and fringe</span></h1>
+    <p class="lead">Comanche makers, most of them women, dressed their families in painted hide, long twisted fringe, and beadwork used with a sure and sparing hand. Here is what to look for, and some fine pieces from public collections.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <article class="ch">
+    <div class="when">Look for<small>How to know Southern Plains work</small></div>
+    <div>
+      <h2>Less is more</h2>
+      <p>On the northern plains, makers often covered whole garments in quills and beads. Southern Plains makers, the Comanche and Kiowa among them, took the opposite road. Hides were dyed or painted in warm, soft colors. Fringe was long, thin, and twisted. Beads were used as trim: along an edge, down a seam, across the toe of a moccasin.</p>
+      <div class="compare">
+        <div><b>Northern Plains</b><ul><li>Large fields of beadwork or quillwork</li><li>Often white, naturally tanned hide</li><li>Bold, all-over designs</li></ul></div>
+        <div class="us"><b>Southern Plains</b><ul><li>Beadwork as trim and accent</li><li>Hide painted or stained yellow, green, red</li><li>Long, thin, twisted fringe</li><li>German silver buttons</li></ul></div>
+      </div>
+      <div class="swatches" aria-label="Colors common in Southern Plains work">
+        <span><i style="background:#d9b13b"></i>Yellow pigment</span><span><i style="background:#4f8a5a"></i>Green stain</span><span><i style="background:#a8432c"></i>Red paint</span><span><i style="background:#c9d3d8"></i>German silver</span><span><i style="background:#2f5f9e"></i>Blue beads</span><span><i style="background:#f3efe4"></i>White beads</span>
+      </div>
+    </div>
+  </article>
+</div>
+
+<div id="rooms"></div>
+
+<section class="room">
+  <div class="wrap">
+    <div class="room-head"><span class="no">✦</span><h2>Reading these objects</h2>
+      <p>Every piece here was made by a person whose name was almost never written down.</p></div>
+    <div class="read">
+      <div class="card"><b>Makers without names</b><p>Collectors recorded the tribe, sometimes, and rarely the maker. Some labels still say "Kiowa or Comanche" because the two peoples lived side by side and their work is close.</p></div>
+      <div class="card"><b>Far from home</b><p>These pieces now sit in Toronto, Brooklyn, Chicago, and elsewhere. Some were sold in hard times, some were collected in ways we will never know.</p></div>
+      <div class="card"><b>Still being made</b><p>Comanche beadworkers carry these traditions today. See their work in person at the Comanche National Museum and the art show at the Comanche Nation Fair.</p><p><a href="../visit/">Plan a visit →</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <h2 style="font-size:28px;margin-bottom:10px">Sources</h2>
+    <ul class="sources">
+      <li>Minneapolis Institute of Art, <a href="https://www.artsmia.org/beauty-honor-tradition/preview-southern.html" rel="noopener"><i>Beauty, Honor, and Tradition</i>: Southern Plains style</a>.</li>
+      <li>The Metropolitan Museum of Art, <a href="https://www.metmuseum.org/art/collection/search/641021" rel="noopener">Woman's Boots, Comanche, ca. 1870</a> (Denver Art Museum).</li>
+      <li>National Museum of the American Indian, <i>Gifts of Pride and Love: Kiowa and Comanche Cradles</i>, curated by Barbara A. Hail (2001; <a href="https://na-moments.blogspot.com/2005/02/gifts-of-pride-and-lovekiowa-and.html" rel="noopener">summary</a>), and <a href="https://americanindian.si.edu/exhibitions/infinityofnations/plains-plateau/229197.html" rel="noopener">Comanche peyote fan</a>.</li>
+      <li>Bullock Texas State History Museum, <a href="https://www.thestoryoftexas.com/artifacts/comanche-cradleboard/" rel="noopener">Comanche Cradleboard</a>.</li>
+      <li>Object records: <a href="https://www.brooklynmuseum.org/opencollection/objects/55242" rel="noopener">Brooklyn Museum</a>, <a href="https://www.artic.edu/artworks/122708/leggings" rel="noopener">Art Institute of Chicago</a>, Bata Shoe Museum, Oklahoma History Center, Museum of the Great Plains.</li>
+      <li>Photographs and licenses are credited on each piece.</li>
+    </ul>
+    <div class="more">
+      <a href="../catlin/"><b>Painted in 1834</b><small>Catlin's paintings of Comanche dress</small></a>
+      <a href="../camp/"><b>Walk through a camp</b><small>How hides were tanned and painted</small></a>
+      <a href="../quanah/"><b>Quanah and the Star House</b><small>The reservation years</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script>
+const FP = (name, w) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}`;
+const BK = id => `https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size4/${id}.jpg`;
+const L = { cc0:"Public domain (CC0)", by3:'<a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a>', bysa4:'<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>', bkby:'<a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY</a>' };
+window.EX = {
+  roomWord: "Wall",
+  rooms: [
+    { no:1, title:"On the feet", wide:false,
+      intro:"Southern Plains women often wore one-piece boots, moccasin and legging together, instead of separate moccasins and leggings. Look at where the beads go: the toe, the edges, a thin line up the side.",
+      works:["boots","mocc","yellow"] },
+    { no:2, title:"Paint and fringe", wide:true,
+      intro:"Pigment did as much work as beads. These leggings are stained green and yellow, with long fringe along the side. The rawhide bag is painted, with no beads at all.",
+      works:["leggings","bag"] },
+    { no:3, title:"Carrying the children", wide:false,
+      intro:"From about 1870 to 1910, Kiowa and Comanche families preferred the lattice cradle: a cover laced over rawhide supports, fixed to two long, narrow, pointed boards. Kiowa covers were often heavily beaded. Comanche covers were often plainer, with the boards painted, carved, or set with brass tacks.",
+      works:["cradle","cradles","mikado"] },
+    { no:4, title:"The reservation years", wide:false,
+      intro:"On the reservation, beadwork turned to new things: pouches for ration cards, awl cases, and the regalia of a new religion. Makers used whatever leather they could get, even scrap harness and old boots.",
+      works:["ration","awl","girls"],
+      cards:[{ t:"The peyote stitch", html:"<p>A new beadwork style grew up with the peyote religion, the Native American Church, in which Quanah Parker was an early leader. Tiny beads are woven tightly around fan handles, rattles, and staffs in what is called the gourd or peyote stitch.</p><p>The National Museum of the American Indian holds a Comanche prayer fan from about 1890, its handle wrapped in this stitch. <a href=\"https://americanindian.si.edu/exhibitions/infinityofnations/plains-plateau/229197.html\" rel=\"noopener\">See it at the museum ↗</a></p>" }] }
+  ],
+  works: {
+    boots: { t:"Woman's boots", d:"Comanche, about 1890", r:3197/5268, src:FP("Comanche boots, c. 1890 - Bata Shoe Museum - DSC00501.JPG", 700), big:FP("Comanche boots, c. 1890 - Bata Shoe Museum - DSC00501.JPG", 2000),
+      lab:"A pair of one-piece boots in yellow-painted hide. The beadwork runs in narrow lanes up the sides of the legs, and long fringe falls from the tops. Most of the surface is left bare, to show off the color.",
+      credit:"Bata Shoe Museum, Toronto. Photo: Daderot, " + L.cc0 + ", via Wikimedia Commons.", link:"https://commons.wikimedia.org/wiki/File:Comanche_boots,_c._1890_-_Bata_Shoe_Museum_-_DSC00501.JPG" },
+    mocc: { t:"Moccasins", d:"Comanche, 1880–1890", r:5472/3648, src:FP("Comanche moccasins, 1880-1890 - Bata Shoe Museum - DSC00525.JPG", 800), big:FP("Comanche moccasins, 1880-1890 - Bata Shoe Museum - DSC00525.JPG", 2000),
+      lab:"Yellow-painted moccasins with long fringe falling over the top of the foot, a small beaded medallion on each, and thin lines of beads along the seams.",
+      credit:"Bata Shoe Museum, Toronto. Photo: Daderot, " + L.cc0 + ", via Wikimedia Commons.", link:"https://commons.wikimedia.org/wiki/File:Comanche_moccasins,_1880-1890_-_Bata_Shoe_Museum_-_DSC00525.JPG" },
+    yellow: { t:"Woman's moccasins", d:"Probably Comanche, early 1900s", r:1536/1007, src:BK("CUR.43.156.11"),
+      lab:"Painted yellow, with a beaded arrow design in white, red, and green on the top of the foot. The museum lists them as probably Comanche, based on what its consultants saw in the work.",
+      credit:"Brooklyn Museum, Gift of Mrs. Percy Jackson, 43.156.11. " + L.bkby + ", Brooklyn Museum.", link:"https://www.brooklynmuseum.org/opencollection/objects/55242" },
+    leggings: { t:"Leggings", d:"Comanche, about 1895", r:1992/2814, src:FP("Comanche, gambali, pianure del sud, stati uniti, 1895 ca.jpg", 700), big:FP("Comanche, gambali, pianure del sud, stati uniti, 1895 ca.jpg", 1800),
+      lab:"Deerskin, horsehair, glass beads, and pigment. The hide is left pale above and stained green below, and the long side fringe would have swung with every step.",
+      credit:"Art Institute of Chicago, Gift of the Powell Family, 2023.1380a-b. Photo: Sailko, " + L.by3 + ", via Wikimedia Commons.", link:"https://www.artic.edu/artworks/122708/leggings" },
+    bag: { t:"Woman's fringed rawhide bag", d:"Comanche, about 1900", r:1536/1202, src:BK("CUR.X1120_view1"),
+      lab:"A carrying bag of painted rawhide, with a strap and fringe. No beads at all: the design is all in the paint.",
+      credit:"Brooklyn Museum, X1120. " + L.bkby + ", Brooklyn Museum.", link:"https://brooklynmuseum.org/opencollection/objects/6882" },
+    cradle: { t:"Cradleboard", d:"Comanche, about 1900", r:2752/4484, src:FP("Comanche Cradleboard Museum of the Great Plains Lawton Oklahoma.jpg", 700), big:FP("Comanche Cradleboard Museum of the Great Plains Lawton Oklahoma.jpg", 1800),
+      lab:"A Comanche cradleboard at the Museum of the Great Plains in Lawton, with its long pointed boards and a beaded cover. Cradles like this kept a baby upright, at the eye level of the grown-ups around them.",
+      credit:"Museum of the Great Plains, Lawton. Photo: Jphill19, " + L.bysa4 + ", via Wikimedia Commons.", link:"https://commons.wikimedia.org/wiki/File:Comanche_Cradleboard_Museum_of_the_Great_Plains_Lawton_Oklahoma.jpg" },
+    cradles: { t:"Comanche babies in cradleboards", d:"About 1890–1895 · George A. Addison", r:3564/5200, src:FP("Comanche papoose in a cradleboard.jpg", 700), big:FP("Comanche papoose in a cradleboard.jpg", 1800),
+      lab:"Cradleboards propped upright, the way they stood in camp. You can see the long boards rising above the hood.",
+      credit:"Missouri Historical Society. Public domain.", link:"https://commons.wikimedia.org/wiki/File:Comanche_papoose_in_a_cradleboard.jpg" },
+    mikado: { t:"Mi-Ka-do and family", d:"About 1890–1895 · George A. Addison", r:3554/5200, src:FP("Mi-Ka-do and family, Comanches.jpg", 700), big:FP("Mi-Ka-do and family, Comanches.jpg", 1800),
+      lab:"A Comanche family photographed with their baby in a cradleboard. The name is spelled as the photographer wrote it.",
+      credit:"Missouri Historical Society. Public domain.", link:"https://commons.wikimedia.org/wiki/File:Mi-Ka-do_and_family,_Comanches.jpg" },
+    ration: { t:"Ration card bag", d:"Comanche, about 1880", r:329/576, src:FP("Comanche ration bag 1880 OHS.jpg", 600),
+      lab:"On the reservation, families had to show a card to get their government rations. Women beaded small pouches to carry them, often using scrap harness or boot leather.",
+      credit:"Oklahoma History Center. Photo: Uyvsdi, public domain, via Wikimedia Commons.", link:"https://commons.wikimedia.org/wiki/File:Comanche_ration_bag_1880_OHS.jpg" },
+    awl: { t:"A cowboy with a beaded awl case", d:"About 1868–1870", r:499/750, src:FP("Kiowa or Comanche cowboy, 1869.jpg", 500),
+      lab:"A cased photograph of a Texas cowboy wearing a Southern Plains beaded awl case, Kiowa or Comanche work, at his belt. Beadwork traveled far beyond the camps, by trade and by other means.",
+      credit:"Lawrence T. Jones III Texas Photography Collection, SMU Central University Libraries. No known restrictions.", link:"https://commons.wikimedia.org/wiki/File:Kiowa_or_Comanche_cowboy,_1869.jpg" },
+    girls: { t:"Asababy's daughters", d:"William S. Soule photograph", r:2196/3000, src:FP("Asababy's daughters. Comanche girls - NARA - 533054.jpg", 700), big:FP("Asababy's daughters. Comanche girls - NARA - 533054.jpg", 1800),
+      lab:"Two Comanche girls, the daughters of a man the photographer called Asababy. Soule photographed many Comanche and Kiowa people at Fort Sill in its early years.",
+      credit:"U.S. National Archives, NAID 533054. Public domain.", link:"https://catalog.archives.gov/id/533054" }
+  }
+};
+
+/* hero: beads fall into lane rows */
+(function(){
+  const cv = document.getElementById("beads"), ctx = cv.getContext("2d");
+  const COLS = ["#2f5f9e","#f3efe4","#a8432c","#d9b13b","#4f8a5a","#1f2a44"];
+  let w = 0, h = 0, beads = [], t0 = performance.now();
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function build(){
+    const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0);
+    beads = []; const s = 14, rows = Math.ceil(h / s * .62), cols = Math.ceil(w / s) + 2;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++){
+      const band = Math.floor(r / 6), lane = r % 6, x = c * s, y = r * s + 6;
+      const motif = (Math.abs(((c + band * 7) % 14) - 7) + lane) % 7 < 2;
+      const col = lane === 0 || lane === 5 ? COLS[5] : motif ? COLS[(band + 2) % 5] : (band % 2 ? COLS[1] : COLS[0]);
+      beads.push({ x, y, col, d: Math.random() * 1.2 + (c / cols) * .6 });
+    }
+  }
+  new ResizeObserver(build).observe(cv); build();
+  function draw(now){
+    const k = still ? 9 : (now - t0) / 1000; ctx.clearRect(0,0,w,h);
+    for (const b of beads){ const p = Math.max(0, Math.min(1, (k - b.d) / .6)); if (!p) continue;
+      const y = b.y - (1 - p) * (1 - p) * 60; ctx.globalAlpha = p * .72; ctx.fillStyle = b.col;
+      ctx.beginPath(); ctx.ellipse(b.x + 7, y, 5.6, 6.2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.globalAlpha = p * .35; ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(b.x + 5, y - 2.4, 1.6, 0, Math.PI * 2); ctx.fill(); }
+    ctx.globalAlpha = 1; if (!still && k < 4) requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+<script src="../assets/exhibit.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

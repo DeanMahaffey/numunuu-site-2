@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Map of the Comanchería · Nʉmʉnʉʉ</title>
+<meta name="description" content="An interactive map of Comanche history: treaty grounds, Adobe Walls and Palo Duro, Catlin's 1834 journey, the Star House, Fort Sill, and places to visit today.">
+<meta property="og:title" content="Map of the Comanchería">
+<meta property="og:description" content="Treaty grounds, battles, Catlin's 1834 journey, the Star House, and places to visit today, all on one map.">
+<meta property="og:url" content="https://numunuu.com/map/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/map.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A parchment map of the southern plains, titled Map of the Comanchería">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/map.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.head{padding:clamp(26px,4vw,44px) 0 14px}
+.head h1{font-size:clamp(38px,6vw,72px);text-transform:uppercase}
+.head h1 span{color:var(--clay)}
+.head p{color:var(--ink-2);max-width:66ch;margin:10px 0 0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.chip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed="false"]{opacity:.5}
+.chip[aria-pressed="false"] i{background:transparent;border:2px solid var(--c)}
+
+.mapwrap{position:relative;margin-top:14px;border-radius:16px;overflow:hidden;border:1px solid var(--line-2);background:#d9c49c;height:min(76vh,760px);min-height:440px;touch-action:none}
+@media (max-width:640px){.mapwrap{height:68vh;min-height:420px}}
+#map{display:block;width:100%;height:100%;cursor:grab;user-select:none;-webkit-user-select:none}
+#map.drag{cursor:grabbing}
+#map .lab{font-family:"Fira Sans Condensed",sans-serif;font-weight:700;fill:#5a3e26}
+#map .state{font-family:"Fira Sans Condensed",sans-serif;font-weight:800;fill:#7a5a3a;opacity:.32;letter-spacing:.2em}
+#map .river{font-family:"Fira Sans",sans-serif;font-style:italic;fill:#3f6f86;opacity:.85}
+#map .pin{cursor:pointer}
+#map .pin text{font-family:"Fira Sans Condensed",sans-serif;font-weight:700;fill:#2e1d10;paint-order:stroke;stroke:#ecdcb8;pointer-events:none}
+#map .pin.sel circle.dot{stroke:#1c1612}
+#map .pin.off{display:none}
+#map .pin:focus{outline:none}
+#map .pin:focus-visible circle.dot{stroke:#1c1612;stroke-width:4}
+.zoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.zoom button{width:42px;height:42px;border-radius:10px;border:1px solid rgba(0,0,0,.25);background:rgba(28,22,18,.88);color:#f3eadb;font-size:20px;font-weight:600}
+.jumps{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:6px;z-index:2;max-width:calc(100% - 80px)}
+.jumps button{font-size:13.5px;font-weight:600;padding:7px 12px;border-radius:999px;border:1px solid rgba(0,0,0,.25);background:rgba(28,22,18,.88);color:#f3eadb}
+.panel{position:absolute;right:12px;bottom:12px;z-index:3;width:min(380px,calc(100% - 24px));background:rgba(28,22,18,.96);border:1px solid var(--line-2);border-radius:14px;padding:18px 18px 16px;box-shadow:0 18px 40px rgba(0,0,0,.4);transform:translateY(12px);opacity:0;pointer-events:none;transition:.25s ease}
+.panel.on{transform:none;opacity:1;pointer-events:auto}
+.panel .tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--c)}
+.panel .tag i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.panel h2{font-size:26px;margin:6px 0 2px}
+.panel .yr{font-size:14px;color:var(--gold);font-weight:600;margin:0 0 8px}
+.panel p{margin:0 0 10px;color:var(--ink-2);font-size:15.5px}
+.panel .x{position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);background:transparent;color:var(--ink);font-size:18px}
+.panel .approx{font-size:13px;color:var(--muted)}
+.hint{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12.5px;color:#4a3420;background:rgba(236,220,184,.85);padding:4px 10px;border-radius:999px}
+
+.list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:20px}
+.list h3{font-size:22px;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.list h3 i{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.list ul{list-style:none;margin:0;padding:0}
+.list li{border-top:1px solid var(--line)}
+.list button{width:100%;text-align:left;background:none;border:0;padding:9px 2px;color:var(--ink-2);font-size:15.5px;display:flex;justify-content:space-between;gap:10px}
+.list button:hover{color:var(--ink)}
+.list button span{color:var(--muted);font-size:14px;white-space:nowrap}
+</style>
+</head>
+<body>
+<header data-site-top data-page="map"></header>
+
+<main>
+<section class="wrap head">
+  <p class="eyebrow">Explore</p>
+  <h1>Map of the <span>Comanchería</span></h1>
+  <p>Every place from across numunuu.com on one map: where treaties were signed, where turning points happened, where Catlin traveled in 1834, and where you can go today. Tap a place to read about it.</p>
+  <div class="filters" id="filters" role="group" aria-label="Show on the map"></div>
+</section>
+
+<div class="wrap">
+  <div class="mapwrap" id="mapwrap">
+    <svg id="map" viewBox="-200 -120 1400 1020" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of the southern plains with historical places marked"></svg>
+    <div class="jumps"><button type="button" data-jump="all">Whole Comanchería</button><button type="button" data-jump="lawton">Lawton area</button><button type="button" data-jump="texas">Texas</button></div>
+    <div class="zoom"><button type="button" data-z="in" aria-label="Zoom in">+</button><button type="button" data-z="out" aria-label="Zoom out">−</button></div>
+    <span class="hint" id="hint">Drag to move · scroll or pinch to zoom</span>
+    <div class="panel" id="panel" aria-live="polite"><button class="x" type="button" aria-label="Close">×</button><div id="pbody"></div></div>
+  </div>
+  <p class="muted" style="font-size:14px;margin-top:10px">Places are placed as closely as the record allows. Some are approximate and marked that way. The shaded Comanchería shows its general extent at its height, not a fixed border.</p>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <h2 style="font-size:clamp(28px,4vw,40px)">Every place on the map</h2>
+    <div class="list" id="list"></div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script>
+"use strict";
+/* Same frame as the Turning Points map: x = (longitude + 106) * 100, y = (38.5 - latitude) * 84 */
+const P = (lat, lon) => [(lon + 106) * 100, (38.5 - lat) * 84];
+const THEMES = {
+  treaty:{ t:"Treaties", c:"#b8860b" },
+  turn:{ t:"Turning points", c:"#b8402e" },
+  catlin:{ t:"Catlin, 1834", c:"#2f5f9e" },
+  quanah:{ t:"Quanah Parker", c:"#c46a1f" },
+  school:{ t:"School and service", c:"#6b4c8a" },
+  visit:{ t:"Visit today", c:"#3f7a4a" }
+};
+const PRI = { visit:0, quanah:1, turn:2, catlin:3, school:4, treaty:5 };
+const PLACES = [
+  // treaties
+  { id:"t1786", th:"treaty", n:"Pecos Pueblo", yr:"1786", at:P(35.55,-105.68), d:"Ecueracapa, speaking for the western Comanche, met Governor Juan Bautista de Anza here and ended a generation of war with New Mexico.", go:["../treaties/#1786","Read the Pecos treaty"] },
+  { id:"t1835", th:"treaty", n:"Camp Holmes", yr:"1835", at:P(35.02,-97.38), d:"Near the Canadian River. The first treaty between the United States and the Comanche, signed after the dragoon expedition Catlin rode with.", go:["../treaties/#1835","Read the Camp Holmes treaty"] },
+  { id:"t1844", th:"treaty", n:"Tehuacana Creek", yr:"1844", at:P(31.47,-97.08), d:"Near present-day Waco. Sam Houston's Republic of Texas made peace with the Penateka, four years after the Council House killings.", go:["../treaties/#1844","Read the Tehuacana Creek treaty"] },
+  { id:"t1846", th:"treaty", n:"Council Springs", yr:"1846", at:P(31.15,-96.62), approx:true, d:"Near the Brazos River. Signed months after Texas joined the United States, it put the southern Comanche under U.S. 'protection' but drew no boundary at all.", go:["../treaties/#1846","Read the Council Springs treaty"] },
+  { id:"t1847", th:"treaty", n:"Fredericksburg", yr:"1847", at:P(30.27,-98.87), d:"On the Pedernales River. Penateka chiefs and John O. Meusebach of the German colonists made a private peace, widely described as never broken.", go:["../treaties/#1847","Read the Meusebach–Comanche treaty"] },
+  { id:"t1850", th:"treaty", n:"Spring Creek", yr:"1850", at:P(31.12,-99.85), approx:true, d:"Near the San Saba River in Texas. A frontier line the Senate never ratified.", go:["../treaties/#1850","Read the Spring Creek treaty"] },
+  { id:"t1851", th:"treaty", n:"San Saba council ground", yr:"1851", at:P(30.88,-99.35), approx:true, d:"A council on the San Saba River. It bound the southern Comanche to stop raids into Mexico, and was never ratified.", go:["../treaties/#1851","Read the San Saba treaty"] },
+  { id:"t1853", th:"treaty", n:"Fort Atkinson", yr:"1853", at:P(37.76,-100.03), d:"South of the Arkansas River in present-day Kansas, on the Santa Fe Trail.", go:["../treaties/#1853","Read the Fort Atkinson treaty"] },
+  { id:"t1865", th:"treaty", n:"Little Arkansas River", yr:"1865", at:P(37.70,-97.33), d:"A council ground near present-day Wichita, Kansas.", go:["../treaties/#1865","Read the Little Arkansas treaty"] },
+  { id:"t1867", th:"treaty", n:"Medicine Lodge Creek", yr:"1867", at:P(37.28,-98.58), d:"Seventy miles south of Fort Larned. The treaty that created the Kiowa-Comanche-Apache reservation and promised hunting rights south of the Arkansas.", go:["../treaties/#1867","Read the Medicine Lodge treaty"] },
+  { id:"t1892", th:"treaty", n:"Jerome Agreement", yr:"1892", at:P(34.70,-98.47), d:"Negotiated at Fort Sill. It broke up the reservation into allotments and opened the rest to settlers.", go:["../treaties/#1892","Read the Jerome Agreement"] },
+  // turning points
+  { id:"santafe", th:"turn", n:"Santa Fe", yr:"1680–1706", at:P(35.69,-105.94), d:"After the Pueblo Revolt of 1680, Spanish horses spread onto the plains. In 1706 Spanish officials here wrote the first known record of the name Comanche.", go:["../stories/#horse","Read The horse"] },
+  { id:"council", th:"turn", n:"Council House, San Antonio", yr:"March 19, 1840", at:P(29.42,-98.49), d:"Penateka leaders came to make peace and were killed when Texans tried to take them prisoner.", go:["../stories/#raid","Read The Great Raid"] },
+  { id:"linnville", th:"turn", n:"Linnville", yr:"August 1840", at:P(28.62,-96.55), d:"Buffalo Hump's warriors rode all the way to the Gulf and burned this port town.", go:["../stories/#raid","Read The Great Raid"] },
+  { id:"plum", th:"turn", n:"Plum Creek", yr:"August 12, 1840", at:P(29.88,-97.67), d:"Near present-day Lockhart. Texans caught the returning raiders in a running fight.", go:["../stories/#raid","Read The Great Raid"] },
+  { id:"adobe", th:"turn", n:"Adobe Walls", yr:"June 27, 1874", at:P(35.89,-101.17), d:"Comanche, Cheyenne, Kiowa, and Arapaho warriors led by Quanah and Isatai attacked the hide hunters' post. The attack failed.", go:["../stories/#adobe","Read Adobe Walls"] },
+  { id:"paloduro", th:"turn", n:"Palo Duro Canyon", yr:"September 28, 1874", at:P(34.95,-101.66), d:"The Army attacked the canyon camps at dawn, burned the winter food, and killed the horse herd at Tule Canyon.", go:["../stories/#paloduro","Read Palo Duro"] },
+  { id:"fortsill", th:"turn", n:"Fort Sill", yr:"1875", at:P(34.652,-98.418), d:"In late May and early June 1875 Quanah led the Quahadi in. The free life on the southern plains was over.", go:["../stories/#fortsill","Read Coming in"] },
+  // Catlin
+  { id:"gibson", th:"catlin", n:"Fort Gibson", yr:"June 1834", at:P(35.80,-95.25), d:"The First Dragoons set out from here, with George Catlin riding along to paint.", go:["../catlin/","See the 1834 paintings"] },
+  { id:"village", th:"catlin", n:"Comanche village, 1834", yr:"July 1834", at:P(34.78,-98.30), approx:true, d:"Catlin painted the Comanche camp in a valley with granite mountains beyond, east of the Wichita Mountains. Its exact spot isn't known.", go:["../catlin/","See the 1834 paintings"] },
+  { id:"wichitav", th:"catlin", n:"Wichita village, Devil's Canyon", yr:"July 21–22, 1834", at:P(34.87,-99.30), approx:true, d:"The dragoons marched west through the Wichita Mountains to council here with Wichita, Comanche, and Kiowa leaders.", go:["../catlin/","See the 1834 paintings"] },
+  // Quanah
+  { id:"pease", th:"quanah", n:"Pease River", yr:"December 1860", at:P(34.25,-99.68), approx:true, d:"Texas Rangers attacked the camp of Quanah's family and carried off his mother, Nautda (Cynthia Ann Parker), and his sister.", go:["../quanah/","Quanah and the Star House"] },
+  { id:"star", th:"quanah", n:"The Star House", yr:"c. 1890 · today near Cache", at:P(34.63,-98.63), approx:true, d:"Quanah's two-story home with ten stars on the roof. It has been moved twice and now stands on private land near Cache. Not open to visitors.", go:["../quanah/","Quanah and the Star House"] },
+  { id:"knoll", th:"quanah", n:"Chief's Knoll", yr:"1957", at:P(34.672,-98.392), d:"In Fort Sill's post cemetery, where Quanah was reburied beside his mother and sister.", go:["../visit/","How to visit Fort Sill"] },
+  // school and service
+  { id:"fsis", th:"school", n:"Fort Sill Indian School", yr:"1871–1980", at:P(34.635,-98.37), approx:true, d:"A boarding school for Native children for 109 years. The 1904 stone girls' dormitory still stands.", go:["../school/","Read about the school"] },
+  // visit
+  { id:"museum", th:"visit", n:"Comanche National Museum", yr:"Open Mon–Sat · Free", at:P(34.617,-98.398), d:"701 NW Ferris Ave, Lawton. The Comanche Nation's own museum, with galleries on Comanche history, the code talkers, and Comanche artists.", go:["../visit/","Plan a visit"] },
+  { id:"fsmuseum", th:"visit", n:"Fort Sill National Historic Landmark and Museum", s:"Fort Sill Museum", yr:"Tue–Sat · Free", at:P(34.661,-98.402), d:"The old post. Visitors need a background check at the Visitor Control Center.", go:["../visit/","Plan a visit"] },
+  { id:"refuge", th:"visit", n:"Wichita Mountains Wildlife Refuge", s:"Wichita Mountains refuge", yr:"Daily, sunrise to sunset", at:P(34.73,-98.67), d:"Granite mountains, prairie, and free-roaming bison. The dragoons of 1834 marched through these mountains.", go:["../visit/","Plan a visit"] },
+  { id:"complex", th:"visit", n:"Comanche Nation Complex", yr:"Comanche Nation Fair, each fall", at:P(34.668,-98.445), d:"584 NW Bingo Rd, north of Lawton. Home of the Comanche Nation Fair: powwow, parade, art show, and honors for veterans.", go:["../visit/","Plan a visit"] }
+];
+const RIVERS = [
+  ["Arkansas", [[-160,10],[0,0],[120,22],[260,34],[400,46],[600,60],[800,66],[880,90],[960,170],[1100,230]], [520,48]],
+  ["Canadian", [[90,170],[180,230],[250,282],[350,250],[450,236],[600,220],[800,252],[1100,280]], [560,214]],
+  ["Red", [[405,300],[500,318],[600,336],[700,362],[820,392],[1100,400]], [880,384]],
+  ["Brazos", [[400,420],[500,438],[600,448],[750,488],[880,580],[930,640],[1000,700],[1080,820]], [640,452]],
+  ["Colorado", [[420,500],[480,530],[550,566],[700,612],[830,690],[950,750],[1020,860]], [600,575]],
+  ["Pecos", [[50,250],[120,320],[160,380],[200,500],[300,580],[380,640],[460,730]], [178,440]],
+  ["Río Grande", [[-60,-300],[-40,-60],[-20,140],[-30,300],[-40,500],[0,640],[120,700],[260,770],[400,792],[520,770],[640,820],[760,940]], [-60,420]],
+  ["Washita", [[560,250],[650,270],[720,290],[800,300]], [640,262]]
+];
+function catmull(pts){ let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++){ const p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+    d += ` C${p1[0]+(p2[0]-p0[0])/6},${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6},${p2[1]-(p3[1]-p1[1])/6} ${p2[0]},${p2[1]}`; } return d; }
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+const svg = document.getElementById("map");
+const STATES = [["KANSAS",37.9,-99],["OKLAHOMA",35.6,-97.2],["TEXAS",31.9,-100.6],["NEW MEXICO",34.4,-105.2]];
+svg.innerHTML = `<defs><radialGradient id="pg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#ecdcb8"/><stop offset="1" stop-color="#cdb184"/></radialGradient></defs>
+  <rect x="-600" y="-600" width="2400" height="2200" fill="url(#pg)"/>
+  <path d="M780,1100 L800,900 L900,860 L1040,880 L1300,900 L1300,1100 Z" fill="#9cc0d8" opacity=".55"/>
+  <text x="1010" y="960" class="river" font-size="18">Gulf of Mexico</text>
+  <path d="${catmull([[160,30],[420,20],[700,30],[900,140],[880,400],[800,560],[700,690],[520,720],[300,640],[170,470],[110,280],[160,30]])}Z" fill="#7a2e16" fill-opacity=".11" stroke="#7a2e16" stroke-width="2" stroke-dasharray="10 8" vector-effect="non-scaling-stroke"/>
+  <text x="330" y="430" class="state" data-big="1" font-size="34" style="opacity:.42;fill:#7a2e16">COMANCHERÍA</text>
+  ${STATES.map(([n, lat, lon]) => { const [x, y] = P(lat, lon); return `<text x="${x}" y="${y}" class="state" font-size="22" text-anchor="middle">${n}</text>`; }).join("")}
+  ${RIVERS.map(([n, p, lp]) => `<path d="${catmull(p)}" fill="none" stroke="#5b8aa0" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linecap="round" opacity=".8"/><text x="${lp[0]}" y="${lp[1]}" class="river rl" font-size="15">${n}</text>`).join("")}
+  <g id="lawton">${(() => { const [x, y] = P(34.61,-98.42); return `<text x="${x}" y="${y + 9}" class="lab city" font-size="6" text-anchor="middle" font-style="italic">Lawton</text>`; })()}</g>
+  <g id="pins"></g>`;
+const gp = document.getElementById("pins");
+gp.innerHTML = PLACES.map(p => `<g class="pin" data-id="${p.id}" data-th="${p.th}" transform="translate(${p.at[0].toFixed(1)},${p.at[1].toFixed(1)})" tabindex="0" role="button" aria-label="${esc(p.n)}, ${esc(p.yr)}">
+  <g class="ps">${p.approx ? `<circle r="16" fill="${THEMES[p.th].c}" opacity=".18"/>` : ""}<circle class="dot" r="8" fill="${THEMES[p.th].c}" stroke="#f6ead2" stroke-width="3"/><text y="-14" text-anchor="middle" font-size="14" stroke-width="4">${esc(p.s || p.n)}</text></g></g>`).join("");
+
+/* ---------- view: pan and zoom by animating the viewBox ---------- */
+const wrap = document.getElementById("mapwrap");
+const narrow = matchMedia("(max-width: 640px)").matches;
+let vb = narrow ? [130, -20, 820, 900] : [-200, -120, 1400, 1020], goal = vb.slice(), raf = 0;
+const VIEWS = { all: narrow ? [130,-20,820,900] : [-200,-120,1400,1020], lawton:[700,280,110,80], texas:[480,420,600,460] };
+function upp(){ const r = svg.getBoundingClientRect(); return Math.max(vb[2] / r.width, vb[3] / r.height); }
+function apply(){
+  svg.setAttribute("viewBox", vb.map(v => v.toFixed(2)).join(" "));
+  const u = upp(), s = Math.min(1, u * 1.15);
+  gp.querySelectorAll(".ps").forEach(g => g.setAttribute("transform", `scale(${s})`));
+  const showLabels = u < .55, placed = [];
+  const order = [...gp.querySelectorAll(".pin:not(.off)")].sort((a, b) => (b.classList.contains("sel") - a.classList.contains("sel")) || (PRI[a.dataset.th] - PRI[b.dataset.th]));
+  gp.querySelectorAll(".pin text").forEach(t => t.style.display = "none");
+  for (const g of order){ const t = g.querySelector("text"); if (!showLabels && !g.classList.contains("sel")) continue;
+    t.style.display = ""; const r = t.getBoundingClientRect();
+    if (placed.some(q => r.left < q.right + 4 && r.right > q.left - 4 && r.top < q.bottom + 2 && r.bottom > q.top - 2) && !g.classList.contains("sel")) t.style.display = "none"; else placed.push(r); }
+  document.querySelectorAll("#map .rl").forEach(t => t.setAttribute("font-size", (12 * u).toFixed(2)));
+  document.querySelectorAll("#map .state").forEach(t => t.setAttribute("font-size", ((t.dataset.big ? 22 : 13) * u).toFixed(2)));
+  const city = document.querySelector("#map .city"); if (city){ city.setAttribute("font-size", (12 * Math.min(u, .9)).toFixed(2)); }
+  document.querySelectorAll("#map .state").forEach(t => t.style.display = u > .25 ? "" : "none");
+}
+function animate(){ let done = true;
+  for (let i = 0; i < 4; i++){ const d = goal[i] - vb[i]; if (Math.abs(d) > .05){ vb[i] += d * .18; done = false; } else vb[i] = goal[i]; }
+  apply(); raf = done ? 0 : requestAnimationFrame(animate); }
+function go(v){ goal = v.slice(); if (!raf) raf = requestAnimationFrame(animate); }
+function zoomAt(f, cx, cy){
+  const w = Math.min(2400, Math.max(28, goal[2] * f)), h = w * goal[3] / goal[2];
+  if (cx == null){ cx = goal[0] + goal[2] / 2; cy = goal[1] + goal[3] / 2; }
+  const kx = (cx - goal[0]) / goal[2], ky = (cy - goal[1]) / goal[3];
+  go([cx - kx * w, cy - ky * h, w, h]);
+}
+function toSvg(e){ const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY; return pt.matrixTransform(svg.getScreenCTM().inverse()); }
+svg.addEventListener("wheel", e => { e.preventDefault(); const p = toSvg(e); zoomAt(e.deltaY > 0 ? 1.18 : 1 / 1.18, p.x, p.y); }, { passive:false });
+const ptrs = new Map(); let start = null, pinch = null, moved = false;
+svg.addEventListener("pointerdown", e => { ptrs.set(e.pointerId, e); moved = false;
+  if (ptrs.size === 1){ start = { x:e.clientX, y:e.clientY, vb:goal.slice() }; }
+  if (ptrs.size === 2){ moved = true; const [a, b] = [...ptrs.values()]; pinch = { d:Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY), vb:goal.slice(), c:toSvg({ clientX:(a.clientX + b.clientX) / 2, clientY:(a.clientY + b.clientY) / 2 }) }; } });
+svg.addEventListener("pointermove", e => { if (!ptrs.has(e.pointerId)) return; ptrs.set(e.pointerId, e);
+  if (ptrs.size === 2 && pinch){ const [a, b] = [...ptrs.values()]; const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+    const f = pinch.d / Math.max(20, d), w = Math.min(2400, Math.max(28, pinch.vb[2] * f)), h = w * pinch.vb[3] / pinch.vb[2];
+    const kx = (pinch.c.x - pinch.vb[0]) / pinch.vb[2], ky = (pinch.c.y - pinch.vb[1]) / pinch.vb[3];
+    goal = vb = [pinch.c.x - kx * w, pinch.c.y - ky * h, w, h]; apply(); moved = true; return; }
+  if (start){ const dx = e.clientX - start.x, dy = e.clientY - start.y; if (Math.abs(dx) + Math.abs(dy) > 4 && !moved){ moved = true; svg.classList.add("drag"); try { svg.setPointerCapture(e.pointerId); } catch (_) {} }
+    const r = svg.getBoundingClientRect(), u = Math.max(start.vb[2] / r.width, start.vb[3] / r.height);
+    goal = vb = [start.vb[0] - dx * u, start.vb[1] - dy * u, start.vb[2], start.vb[3]]; apply(); } });
+const end = e => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch = null; if (!ptrs.size){ start = null; svg.classList.remove("drag"); } };
+svg.addEventListener("pointerup", end); svg.addEventListener("pointercancel", end);
+document.querySelector(".zoom").addEventListener("click", e => { const b = e.target.closest("[data-z]"); if (b) zoomAt(b.dataset.z === "in" ? .6 : 1.6); });
+document.querySelector(".jumps").addEventListener("click", e => { const b = e.target.closest("[data-jump]"); if (b){ closePanel(); go(VIEWS[b.dataset.jump]); } });
+new ResizeObserver(apply).observe(svg);
+
+/* ---------- selecting a place ---------- */
+const panel = document.getElementById("panel");
+function select(id, fly){
+  const p = PLACES.find(x => x.id === id); if (!p) return;
+  gp.querySelectorAll(".pin").forEach(g => g.classList.toggle("sel", g.dataset.id === id));
+  const th = THEMES[p.th];
+  document.getElementById("pbody").innerHTML = `<span class="tag" style="--c:${th.c}"><i></i>${th.t}</span><h2>${esc(p.n)}</h2><p class="yr">${esc(p.yr)}</p><p>${esc(p.d)}</p>${p.approx ? `<p class="approx">Location approximate.</p>` : ""}<a class="btn primary" href="${p.go[0]}">${esc(p.go[1])} →</a>`;
+  panel.style.setProperty("--c", th.c); panel.classList.add("on");
+  const g = gp.querySelector(`[data-id="${id}"]`); g.parentNode.appendChild(g);
+  if (fly){ const w = Math.min(goal[2], p.at[1] > 250 && p.at[0] > 690 && p.at[0] < 830 && p.at[1] < 340 ? 110 : 420), h = w * VIEWS.all[3] / VIEWS.all[2];
+    go([p.at[0] - w / 2, p.at[1] - h * .42, w, h]); }
+  history.replaceState(null, "", "#" + id); apply();
+}
+function closePanel(){ panel.classList.remove("on"); gp.querySelectorAll(".pin.sel").forEach(g => g.classList.remove("sel")); history.replaceState(null, "", location.pathname); apply(); }
+panel.querySelector(".x").addEventListener("click", closePanel);
+gp.addEventListener("click", e => { if (moved) return; const g = e.target.closest(".pin"); if (g) select(g.dataset.id, false); });
+gp.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ const g = e.target.closest(".pin"); if (g){ e.preventDefault(); select(g.dataset.id, true); } } });
+
+/* ---------- filters and list ---------- */
+const on = new Set(Object.keys(THEMES));
+function filters(){
+  document.getElementById("filters").innerHTML = Object.entries(THEMES).map(([k, t]) => `<button class="chip" type="button" data-th="${k}" style="--c:${t.c}" aria-pressed="${on.has(k)}"><i></i>${t.t}</button>`).join("");
+  gp.querySelectorAll(".pin").forEach(g => g.classList.toggle("off", !on.has(g.dataset.th)));
+}
+document.getElementById("filters").addEventListener("click", e => { const b = e.target.closest("[data-th]"); if (!b) return; on.has(b.dataset.th) ? on.delete(b.dataset.th) : on.add(b.dataset.th); filters(); });
+filters();
+document.getElementById("list").innerHTML = Object.entries(THEMES).map(([k, t]) => `<div><h3 style="--c:${t.c}"><i></i>${t.t}</h3><ul>${PLACES.filter(p => p.th === k).map(p => `<li><button type="button" data-id="${p.id}">${esc(p.n)}<span>${esc(p.yr)}</span></button></li>`).join("")}</ul></div>`).join("");
+document.getElementById("list").addEventListener("click", e => { const b = e.target.closest("[data-id]"); if (!b) return;
+  const p = PLACES.find(x => x.id === b.dataset.id); on.add(p.th); filters(); wrap.scrollIntoView({ behavior:"smooth", block:"center" }); select(p.id, true); });
+
+apply();
+if (location.hash && PLACES.some(p => p.id === location.hash.slice(1))) select(location.hash.slice(1), true);
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

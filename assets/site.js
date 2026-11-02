@@ -2,18 +2,24 @@
    Pages include <header data-site-top data-page="camp"></header> and
    <footer data-site-foot></footer>; this fills them in. */
 (function () {
-  const PAGES = [
-    ["herd", "Game"], ["stories", "Turning Points"], ["camp", "Camp"],
-    ["plants", "Plants"], ["codetalkers", "Code Talkers"], ["treaties", "Treaties"],
-    ["catlin", "1834 Paintings"], ["visit", "Visit the Museum"]
+  const MAIN = [["map", "Map"], ["timeline", "Timeline"], ["herd", "Game"]];
+  const EXHIBITS = [
+    ["stories", "Turning Points"], ["treaties", "The Treaties"], ["catlin", "Painted in 1834"],
+    ["quanah", "Quanah and the Star House"], ["beadwork", "Beads, Paint, and Fringe"], ["school", "Fort Sill Indian School"],
+    ["codetalkers", "The Code Talkers"], ["honor", "Honor Wall"], ["camp", "Walk Through a Camp"], ["plants", "Plants of the Comanchería"]
   ];
   const top = document.querySelector("[data-site-top]");
   if (top){
-    const cur = top.dataset.page;
+    const cur = top.dataset.page, inEx = EXHIBITS.some(([p]) => p === cur);
+    const a = ([p, l]) => `<a href="../${p}/"${p === cur ? ' aria-current="page"' : ""}>${l}</a>`;
     top.className = "site-top";
     top.innerHTML = `<div class="wrap"><a class="brand" href="../">N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span></a>
-      <nav aria-label="numunuu.com">${PAGES.map(([p, l]) => `<a href="../${p}/"${p === cur ? ' aria-current="page"' : ""}>${l}</a>`).join("")}
-      <a href="https://dictionary.numunuu.com">Dictionary ↗</a></nav></div>`;
+      <nav aria-label="numunuu.com">${MAIN.map(a).join("")}
+      <details class="exmenu"><summary${inEx ? ' class="cur"' : ""}>Exhibits</summary><div class="exlist">${EXHIBITS.map(a).join("")}<a class="mob" href="../herd/">Follow the Herd (game)</a><a class="mob" href="https://dictionary.numunuu.com">Dictionary ↗</a></div></details>
+      ${a(["visit", "Visit"])}<a href="https://dictionary.numunuu.com">Dictionary ↗</a></nav></div>`;
+    const d = top.querySelector(".exmenu");
+    document.addEventListener("click", e => { if (d.open && !d.contains(e.target)) d.open = false; });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") d.open = false; });
   }
   const foot = document.querySelector("[data-site-foot]");
   if (foot){
@@ -37,7 +43,7 @@
   document.head.appendChild(css);
   if (still) return;
   /* reveal: only things that start below the fold, so nothing flashes on load */
-  const REVEAL = ".chapter,.section .card,.more a,.facts .card,.senses > li,.hist a,.roll > div,.sources,.note,.tool,.codes,.room-head,.wall .work,.voice,.read .card,.see .card,.stop,.prep a,.when li";
+  const REVEAL = ".chapter,.section .card,.more a,.facts .card,.senses > li,.hist a,.roll > div,.sources,.note,.tool,.codes,.room-head,.wall .work,.voice,.read .card,.see .card,.stop,.prep a,.when li,.ch,.ev,.years div,.alumni > *,.compare > div,.status div,.list > div";
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin:"0px 0px -8% 0px" });
   document.querySelectorAll(REVEAL).forEach((el, i) => {
     if (el.getBoundingClientRect().top < innerHeight * .92) return;
