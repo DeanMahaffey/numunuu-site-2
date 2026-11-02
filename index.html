@@ -176,7 +176,7 @@ main .wrap{padding-block:12px 40px}
 </head>
 <body>
 <header data-site-top data-page="home"></header>
-<!-- November only: links to 30 Days of Comanche. Hidden the rest of the year. -->
+<!-- November 2026: 30 Days of Comanche. December 2026: Winter as a Weapon. Hidden otherwise. -->
 <a class="nov" id="nov" href="november/" hidden>
   <span class="nov-k">Native American Heritage Month</span>
   <span class="nov-t" id="novT">30 Days of Comanche</span>
@@ -197,10 +197,16 @@ main .wrap{padding-block:12px 40px}
   const T = ["The People","Out of the mountains","The horse","The Comanchería","Moving camp","Peace at Pecos","The white flag","Mountain of Rocks","Camp Holmes","The bow","The Code Talkers","Utah Beach","The Great Raid","Woman's boots","The cradleboard","A peace that held","Medicine Lodge","LaDonna Harris","Adobe Walls","The Gold Medal","The last band comes in","Quanah Parker","Grass money","The Star House","Fort Sill Indian School","The harvest","Doc Tate Nevaquaya","The Jerome Agreement","A museum of our own","Still here"];
   const p = new Intl.DateTimeFormat("en-US", { timeZone:"America/Chicago", year:"numeric", month:"numeric", day:"numeric" }).formatToParts(new Date());
   const g = t => +p.find(x => x.type === t).value;
-  if (g("year") !== 2026 || g("month") !== 11) return;
-  const d = g("day"), el = document.getElementById("nov");
-  document.getElementById("novT").innerHTML = `30 Days of Comanche · Today, Day ${d}: <b>${T[d - 1]}</b>`;
-  el.href = "november/#day-" + d; el.hidden = false;
+  const y = g("year"), mo = g("month"), d = g("day"), el = document.getElementById("nov"), k = el.querySelector(".nov-k"), t = document.getElementById("novT");
+  if (y === 2026 && mo === 11){
+    t.innerHTML = `30 Days of Comanche · Today, Day ${d}: <b>${T[d - 1]}</b>`;
+    el.href = "november/#day-" + d; el.hidden = false;
+  } else if (y === 2026 && mo === 12){
+    /* December: the new winter exhibit, with its own line on Christmas Day */
+    k.textContent = d === 25 ? "On this day in 1868" : "New exhibit";
+    t.innerHTML = d === 25 ? "Soldier Spring, Christmas morning · <b>Winter as a Weapon</b>" : "<b>Winter as a Weapon</b> · How the Army made war on Comanche winters";
+    el.href = "winter/"; el.hidden = false;
+  }
 })();
 </script>
 <div class="sky" id="sky">

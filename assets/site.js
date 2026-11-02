@@ -8,6 +8,10 @@
     ["quanah", "Quanah and the Star House"], ["beadwork", "Beads, Paint, and Fringe"], ["school", "Fort Sill Indian School"],
     ["codetalkers", "The Code Talkers"], ["honor", "Honor Wall"], ["camp", "Walk Through a Camp"], ["plants", "Plants of the Comanchería"]
   ];
+  /* Winter as a Weapon joins the menu on December 1, 2026 (Lawton time). */
+  const ct = new Intl.DateTimeFormat("en-CA", { timeZone:"America/Chicago", year:"numeric", month:"2-digit", day:"2-digit" }).format(new Date());
+  const topEl = document.querySelector("[data-site-top]");
+  if (ct >= "2026-12-01" || (topEl && topEl.dataset.page === "winter")) EXHIBITS.splice(2, 0, ["winter", "Winter as a Weapon"]);
   const top = document.querySelector("[data-site-top]");
   if (top){
     const cur = top.dataset.page, inEx = EXHIBITS.some(([p]) => p === cur), B = cur === "home" ? "" : "../";

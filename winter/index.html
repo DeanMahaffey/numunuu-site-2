@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Winter as a Weapon · Nʉmʉnʉʉ</title>
+<meta name="description" content="How the U.S. Army learned to make war on Comanche winters, from Pease River in 1860 to Soldier Spring on Christmas Day 1868 and the last band coming in to Fort Sill in 1875.">
+<meta property="og:title" content="Winter as a Weapon">
+<meta property="og:description" content="Christmas Day, 1868. How the Army learned to fight Comanche families by destroying their winter.">
+<meta property="og:url" content="https://numunuu.com/winter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/winter.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A painted winter camp under snow, titled Winter as a Weapon">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/winter.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero{min-height:min(84vh,760px)}
+.hero h1{font-size:clamp(48px,9.4vw,120px)}
+.care{display:flex;gap:14px;align-items:flex-start;max-width:860px;margin:0 auto;padding:16px 18px;border-radius:14px;background:rgba(156,192,216,.08);border:1px solid rgba(156,192,216,.3);color:var(--ink-2);font-size:15.5px}
+.care svg{flex:none;width:26px;height:26px;color:var(--sky);margin-top:2px}
+.care b{color:var(--ink)}
+.h2{font-size:clamp(32px,4.6vw,54px);margin-bottom:8px}
+.sub{color:var(--ink-2);max-width:64ch;margin:0 0 24px}
+
+/* two mornings */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:min(76vh,640px)}
+@media (max-width:820px){.two{grid-template-columns:minmax(0,1fr);min-height:0}}
+.two > div{position:relative;padding:clamp(24px,4vw,44px);display:flex;flex-direction:column;justify-content:flex-end;min-height:340px}
+.two .home{background:radial-gradient(120% 90% at 30% 20%,#4a3524 0%,#2a1e16 60%,#1f1712 100%)}
+.two .home::before{content:"";position:absolute;inset:0;background:radial-gradient(40% 30% at 70% 30%,rgba(255,196,120,.22),transparent 70%),radial-gradient(30% 25% at 25% 60%,rgba(255,170,90,.14),transparent 70%)}
+.two .camp{background:#1a1f26;color:#fff}
+.two .camp canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.two .camp::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,16,20,.92) 0%,rgba(14,16,20,.4) 45%,rgba(14,16,20,0) 75%);pointer-events:none}
+.two .in{position:relative;z-index:1}
+.two .tag{font-family:var(--f-display);font-weight:800;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#ffcf96;margin:0 0 10px}
+.two .camp .tag{color:#bcd3e6}
+.two h3{font-size:clamp(28px,3.4vw,40px);line-height:1.02;margin:0 0 12px}
+.two p{margin:0 0 10px;color:var(--ink-2);max-width:42ch}
+.two .camp p{color:#dfe7ee}
+.after{max-width:760px;margin:28px auto 0;text-align:center;font-family:var(--f-display);font-weight:700;font-size:clamp(22px,2.8vw,30px);line-height:1.25;color:var(--ink)}
+.after small{display:block;font-family:var(--f-ui);font-weight:400;font-size:15px;color:var(--muted);margin-top:10px}
+
+/* season wheel */
+.wheel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(18px,3.5vw,40px);align-items:start}
+@media (max-width:860px){.wheel{grid-template-columns:minmax(0,1fr)}}
+.wheel .scene{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:#2b2017;border:1px solid var(--line)}
+.wheel .scene canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wheel .scene b{position:absolute;left:14px;top:12px;z-index:1;font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,40px);color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.6);text-transform:uppercase}
+.seasons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 18px}
+.seasons button{padding:10px 6px;border-radius:10px;border:1px solid var(--line-2);background:var(--card);color:var(--ink-2);font-weight:600;font-size:15px}
+.seasons button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1d0f05}
+.meters{display:grid;gap:12px}
+.meter{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:4px 14px;align-items:center}
+@media (max-width:480px){.meter{grid-template-columns:minmax(0,1fr)}}
+.meter > span{font-size:14px;font-weight:600;color:var(--ink-2)}
+.meter .bar{height:10px;border-radius:99px;background:rgba(243,234,219,.1);overflow:hidden}
+.meter .bar i{display:block;height:100%;border-radius:99px;background:var(--gold);transition:width .6s cubic-bezier(.2,.7,.2,1),background .4s}
+.meter.army .bar i{background:#7fa3bd}
+.meter small{grid-column:2;font-size:13.5px;color:var(--muted)}
+@media (max-width:480px){.meter small{grid-column:1}}
+.wtxt{margin:18px 0 0;color:var(--ink-2)}
+.quote{margin:22px 0 0;padding:16px 20px;border-left:4px solid #7fa3bd;background:rgba(127,163,189,.09);border-radius:0 14px 14px 0}
+.quote p{font-family:var(--f-display);font-weight:700;font-size:clamp(19px,2.2vw,24px);line-height:1.25;margin:0;color:var(--ink)}
+.quote cite{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--muted)}
+.quote[hidden]{display:none}
+
+/* scrolly map, as on Turning Points */
+.scrolly{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:28px;align-items:start;padding-top:8px}
+.mapbox{position:sticky;top:72px;height:calc(100vh - 92px);border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#dfe3e2}
+.mapbox svg{width:100%;height:100%;display:block}
+.yearbadge{position:absolute;left:16px;top:14px;font-family:var(--f-display);font-weight:800;font-size:clamp(34px,5vw,64px);line-height:1;color:#22323d;opacity:.85;pointer-events:none}
+.legendbox{position:absolute;right:12px;bottom:12px;background:rgba(240,243,243,.92);color:#22323d;border-radius:10px;padding:6px 10px;font-size:12.5px;font-weight:600;pointer-events:none;max-width:60%}
+.steps{padding-bottom:40vh}
+.chapter-head{margin:10vh 0 6vh;scroll-margin-top:80px}
+.chapter-head:first-child{margin-top:0}
+.chapter-head canvas{width:100%;aspect-ratio:16/8;border-radius:16px;display:block;background:#2b3138}
+.chapter-head .num{font-family:var(--f-display);font-weight:800;color:#9cc0d8;font-size:18px;margin-top:16px}
+.chapter-head h2{font-size:clamp(36px,5vw,56px);text-transform:uppercase;line-height:.92;margin-top:4px}
+.chapter-head p{color:var(--ink-2);margin:10px 0 0}
+.step{min-height:70vh;display:flex;align-items:center}
+.step .card{padding:20px 22px;opacity:.35;transition:opacity .35s;width:100%}
+.step.on .card{opacity:1;border-color:var(--line-2)}
+.step .when{font-family:var(--f-display);font-weight:800;font-size:28px;color:#9cc0d8;line-height:1}
+.step h3{font-size:26px;margin:6px 0 10px}
+.step p{margin:0 0 10px;color:var(--ink-2);font-size:16.5px}
+.step p:last-child{margin-bottom:0}
+.step blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid #7fa3bd;background:rgba(127,163,189,.09);border-radius:0 10px 10px 0;color:var(--ink);font-size:16px}
+.step blockquote small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+@media (max-width:900px){
+  .scrolly{grid-template-columns:1fr;gap:0}
+  .mapbox{order:-1;top:56px;height:42vh;z-index:5;border-radius:0 0 16px 16px;margin:0 -16px}
+  .steps{padding-bottom:30vh}
+  .step{min-height:60vh}
+  .step .card{background:rgba(42,33,27,.96)}
+  .chapter-head{margin:8vh 0 4vh}
+  .legendbox{top:10px;bottom:auto;right:10px;font-size:11px;max-width:48%}
+  .yearbadge{font-size:30px;top:10px;left:12px;max-width:48%}
+}
+.pin{transition:opacity .4s}.pin.off{opacity:0}
+.layer{transition:opacity .5s}.layer.off{opacity:0}
+.route{stroke-dasharray:2000;stroke-dashoffset:2000;transition:stroke-dashoffset 1.6s ease}
+.layer:not(.off) .route{stroke-dashoffset:0}
+
+/* the count */
+.count{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.count .card{padding:22px 22px 20px}
+.count .num{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,6vw,68px);line-height:.95;color:#ffcf96}
+.count .num small{font-size:.45em;color:var(--muted);font-weight:700;margin-left:4px}
+.count b{display:block;font-family:var(--f-display);font-weight:800;font-size:21px;margin:8px 0 4px}
+.count p{margin:0;color:var(--ink-2);font-size:15px}
+.count .src{display:block;margin-top:10px;font-size:12.5px;color:var(--muted)}
+
+/* survival + versions */
+.held{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.held .card{padding:20px 22px}
+.held .ic{width:34px;height:34px;color:var(--gold);margin-bottom:8px}
+.held b{display:block;font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.1;margin-bottom:6px}
+.held p{margin:0;color:var(--ink-2);font-size:15.5px}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:14px}
+@media (max-width:700px){.vs{grid-template-columns:minmax(0,1fr)}}
+.vs > div{padding:20px 22px}
+.vs > div + div{border-left:1px solid var(--line);background:rgba(227,183,102,.05)}
+@media (max-width:700px){.vs > div + div{border-left:0;border-top:1px solid var(--line)}}
+.vs small{display:block;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.vs p{margin:0;color:var(--ink-2)}
+.vs q{color:var(--ink)}
+.vsh{font-family:var(--f-display);font-weight:800;font-size:24px;margin:30px 0 0}
+
+/* close */
+.close{position:relative;border-radius:18px;overflow:hidden;min-height:min(64vh,520px);display:flex;align-items:flex-end;border:1px solid var(--line)}
+.close canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.close::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(28,22,18,.94) 0%,rgba(28,22,18,.45) 50%,rgba(28,22,18,0) 80%)}
+.close .in{position:relative;z-index:1;padding:clamp(24px,4vw,48px);max-width:760px}
+.close h2{font-size:clamp(34px,5vw,60px);text-transform:uppercase;line-height:.92;margin:0 0 14px;color:#fff}
+.close p{color:#efe4d3;margin:0 0 12px}
+</style>
+</head>
+<body>
+<header data-site-top data-page="winter"></header>
+
+<main>
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#bcd3e6">An exhibit · 1860–1875</p>
+    <h1 id="pageTitle">Winter <span class="accent">as a Weapon</span></h1>
+    <p class="lead">The Army could rarely catch Comanche riders in summer. So it learned to fight something else: the winter itself, and the food, lodges and horses families needed to survive it.</p>
+  </div>
+</section>
+
+<div class="wrap" style="padding-top:clamp(24px,4vw,40px)">
+  <div class="care" role="note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/></svg>
+    <div><b>A note before you read.</b> This exhibit is about attacks on Comanche families, including women and children. It describes what happened plainly, without graphic detail. These were someone's grandparents.</div>
+  </div>
+</div>
+
+<!-- ============ 1. TWO MORNINGS ============ -->
+<section class="section" aria-labelledby="twoH">
+  <div class="wrap">
+    <h2 class="sr" id="twoH">Two mornings</h2>
+    <div class="two">
+      <div class="home"><div class="in">
+        <p class="tag">December 25, 1868</p>
+        <h3>Christmas morning</h3>
+        <p>Across much of the United States it was a holiday: church bells, family tables, a day of rest.</p>
+        <p>It is still how most Americans picture that date.</p>
+      </div></div>
+      <div class="camp"><canvas id="campCv" aria-hidden="true"></canvas><div class="in">
+        <p class="tag">The same morning</p>
+        <h3>North Fork of the Red River</h3>
+        <p>Below the Quartz Mountains, in what is now southwestern Oklahoma, a Comanche village was in its winter camp. It was snowing.</p>
+        <p>Soldiers were coming up the river with two mountain howitzers.</p>
+      </div></div>
+    </div>
+    <p class="after">The attack on that village was no accident of timing. It was part of a plan.<small>To see why, start with the seasons.</small></p>
+  </div>
+</section>
+
+<!-- ============ 2. WHY WINTER ============ -->
+<section class="section" aria-labelledby="whyH" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2" id="whyH">Why winter</h2>
+    <p class="sub">Life on the southern plains followed the seasons. Pick a season to see what changed, for Comanche families and for the soldiers hunting them.</p>
+    <div class="wheel">
+      <div class="scene"><canvas id="seasonCv" aria-hidden="true"></canvas><b id="seasonName">Summer</b></div>
+      <div>
+        <div class="seasons" id="seasons" role="group" aria-label="Season"></div>
+        <div class="meters" id="meters" aria-live="polite"></div>
+        <p class="wtxt" id="wtxt"></p>
+        <blockquote class="quote" id="sheridan" hidden>
+          <p>"Their ponies would be thin, and weak from lack of food . . . their movements would be so much impeded that the troops could overtake them."</p>
+          <cite>General Philip Sheridan, on why he planned his campaign for winter. <i>Personal Memoirs</i>, vol. 2.</cite>
+        </blockquote>
+        <p class="muted" style="font-size:13.5px;margin:14px 0 0">A simplified picture. Life varied from band to band and year to year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. FOUR WINTERS ============ -->
+<section aria-labelledby="fourH">
+  <div class="wrap">
+    <h2 class="h2" id="fourH">Four winters</h2>
+    <p class="sub">Scroll, and the map follows the story.</p>
+    <div class="scrolly">
+      <div class="steps" id="steps">
+
+        <div class="chapter-head" id="pease"><canvas data-paint="river,3,61" aria-hidden="true"></canvas><div class="num">Winter 1</div><h2>Pease River, 1860</h2><p>Before it was a strategy, it was a lesson.</p></div>
+        <div class="step" data-view="300,140,620,420" data-pins="pease" data-layers="" data-year="Dec. 1860">
+          <div class="card"><div class="when">December 19, 1860</div><h3>A camp on the Pease</h3>
+            <p>About sixty Texas Rangers and militia under Captain Sul Ross found a small Nokoni Comanche camp on the Pease River, in what is now Foard County, Texas.</p>
+            <p>Most of the people in the camp were women. Nearly everyone there was killed.</p></div></div>
+        <div class="step" data-view="420,250,360,260" data-pins="pease" data-layers="" data-year="Dec. 1860">
+          <div class="card"><div class="when">Taken</div><h3>Nautda and Prairie Flower</h3>
+            <p>The Rangers carried off a woman and her baby daughter. She was Nautda, born Cynthia Ann Parker, taken from Texas as a girl of about nine and raised Comanche. She was Quanah's mother.</p>
+            <p>Prairie Flower died in 1864. Nautda died a few years later, never reunited with her Comanche family.</p>
+            <p><a href="../quanah/">Quanah and the Star House →</a></p></div></div>
+
+        <div class="chapter-head" id="campaign"><canvas data-paint="granite,3,68" aria-hidden="true"></canvas><div class="num">Winter 2</div><h2>The winter campaign, 1868</h2><p>A general turns the season into a plan.</p></div>
+        <div class="step" data-view="160,60,780,520" data-pins="supply,bascom" data-layers="columns" data-year="Nov. 1868">
+          <div class="card"><div class="when">November 1868</div><h3>Columns in the snow</h3>
+            <p>General Philip Sheridan sent three columns of soldiers into the southern plains as winter came on. One marched from Camp Supply in Indian Territory, one from Fort Lyon in Colorado, and one, under Major Andrew Evans, east from Fort Bascom in New Mexico.</p>
+            <p>The outer columns were meant to drive the bands toward the center, like hunters beating game toward a line of guns.</p></div></div>
+        <div class="step" data-view="520,140,320,240" data-pins="supply,washita" data-layers="columns" data-year="Nov. 27, 1868">
+          <div class="card"><div class="when">November 27, 1868</div><h3>The Washita</h3>
+            <p>At dawn, Lieutenant Colonel George Custer attacked the Cheyenne village of Black Kettle on the Washita River. His orders included killing the horses, and soldiers shot hundreds of them.</p>
+            <p>It was a Cheyenne village, not a Comanche one. But it showed every nation on the southern plains what the winter campaign meant.</p></div></div>
+        <div class="step" data-view="600,250,180,130" data-pins="soldierspring" data-layers="evans" data-year="Dec. 25, 1868">
+          <div class="card"><div class="when">December 25, 1868</div><h3>Soldier Spring</h3>
+            <p>On a snowy Christmas morning, Evans's column found a Comanche village on the North Fork of the Red River. Two howitzers fired into the lodges.</p>
+            <p>Warriors held the soldiers off so the women and children could get away. Kiowa warriors from a village downstream rode in to help. The families escaped toward Fort Cobb or west into the Texas Panhandle.</p>
+            <p>The soldiers burned the village and the winter meat supply. The Army estimated twenty to twenty-five warriors were killed. The Comanche acknowledged one death: a leader named Arrow Point.</p></div></div>
+        <div class="step" data-view="560,200,320,240" data-pins="soldierspring,fortsill,cobb" data-layers="" data-year="Jan. 1869">
+          <div class="card"><div class="when">January 8, 1869</div><h3>A fort at Medicine Bluff</h3>
+            <p>Two weeks later, Sheridan staked out a new post below the Wichita Mountains, in the heart of Comanche country. It became Fort Sill.</p>
+            <p>With no lodges and no winter food, many families had little choice but to come in to the agencies that winter.</p></div></div>
+
+        <div class="chapter-head" id="paloduro"><canvas data-paint="canyon,2,30" aria-hidden="true"></canvas><div class="num">Winter 3</div><h2>Palo Duro, 1874</h2><p>Not a winter attack. An attack on winter.</p></div>
+        <div class="step" data-view="340,230,220,180" data-pins="paloduro" data-layers="canyon" data-year="Fall 1874">
+          <div class="card"><div class="when">Fall 1874</div><h3>Ready for winter</h3>
+            <p>During the Red River War, Comanche, Kiowa and Cheyenne families gathered in Palo Duro Canyon, below the Llano Estacado. There was water, grass and shelter, and they had laid in their food for the winter.</p></div></div>
+        <div class="step" data-view="360,240,200,170" data-pins="paloduro,tule" data-layers="canyon,horses" data-year="Sept. 28, 1874">
+          <div class="card"><div class="when">September 28, 1874</div><h3>Everything burned</h3>
+            <p>Colonel Ranald Mackenzie's cavalry came down into the canyon at dawn. Most of the people escaped up the canyon on foot.</p>
+            <p>The soldiers burned more than 450 lodges and the stored winter meat. The next day, at Tule Canyon, they shot the captured horses: 1,048 by Mackenzie's own count, and by other counts many more.</p>
+            <p>Accounts of how many people died range from three, in Mackenzie's report, to dozens. But killing people was not the main goal. Winter was coming.</p></div></div>
+
+        <div class="chapter-head" id="last"><canvas data-paint="llano,3,77" aria-hidden="true"></canvas><div class="num">Winter 4</div><h2>The last winter, 1874–75</h2><p>Winter finishes what battles could not.</p></div>
+        <div class="step" data-view="300,180,560,400" data-pins="paloduro,fortsill" data-layers="walkin" data-year="Winter 1874–75">
+          <div class="card"><div class="when">Winter 1874–75</div><h3>Walking in</h3>
+            <p>Without horses, lodges or food, band after band could not last the cold months on the plains. By November 1874 many had walked in to Fort Sill. Others came through the winter.</p></div></div>
+        <div class="step" data-view="300,200,560,380" data-pins="llano,fortsill" data-layers="quahadi" data-year="June 1875">
+          <div class="card"><div class="when">Late May and June 1875</div><h3>The Quahadi</h3>
+            <p>One band held out through that winter on the Llano Estacado: the Quahadi, with Quanah among their leaders. With the buffalo nearly gone and the soldiers never stopping, they came in to Fort Sill in late May and early June 1875.</p>
+            <p>They were the last free band on the southern plains.</p></div></div>
+      </div>
+      <div class="mapbox" aria-hidden="true"><svg id="map" viewBox="160 60 780 520" preserveAspectRatio="xMidYMid meet"></svg><div class="yearbadge" id="year"></div><div class="legendbox" id="legend"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. THE COUNT ============ -->
+<section class="section" aria-labelledby="countH">
+  <div class="wrap">
+    <h2 class="h2" id="countH">The count</h2>
+    <p class="sub">What the winters took, from the records. Some counts are disputed, and the record mostly comes from the soldiers' side.</p>
+    <div class="count">
+      <div class="card"><div class="num">450<small>+</small></div><b>Lodges burned</b><p>At Palo Duro alone, each one a family's home for the winter.</p><span class="src">Texas Beyond History, University of Texas</span></div>
+      <div class="card"><div class="num">1,048</div><b>Horses shot</b><p>At Tule Canyon after Palo Duro, by Mackenzie's count. Other accounts say up to 1,500 or more.</p><span class="src">Encyclopedia of the Great Plains</span></div>
+      <div class="card"><div class="num">15<small>years</small></div><b>From Pease River to Fort Sill</b><p>December 1860 to June 1875. Fifteen winters from the first of these attacks to the last free band coming in.</p><span class="src">This exhibit's sources</span></div>
+      <div class="card"><div class="num">20<small>–25</small></div><b>Killed at Soldier Spring</b><p>The Army's estimate of warriors killed on Christmas Day, 1868. The Comanche acknowledged one death, the leader Arrow Point.</p><span class="src">Encyclopedia of Oklahoma History and Culture</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. HOW PEOPLE SURVIVED ============ -->
+<section class="section" aria-labelledby="heldH" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2" id="heldH">How people survived</h2>
+    <p class="sub">This is not only a story of what was done to Comanche families. It is also a story of what they did.</p>
+    <div class="held">
+      <div class="card"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3Z"/></svg><b>Covering the retreat</b><p>At Soldier Spring, warriors held the soldiers back so the women and children could escape the village.</p></div>
+      <div class="card"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M10 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg><b>Neighbors came</b><p>Kiowa warriors from a village downstream rode to the Comanches' aid on Christmas Day, slowing the soldiers' advance.</p></div>
+      <div class="card"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l5-8 4 5 3-4 4 7"/><path d="M12 4v4M10 6h4"/></svg><b>Scattering</b><p>At Palo Duro, most of the people got out of the canyon alive. Families scattered across the plains and found each other again.</p></div>
+      <div class="card"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M5 6l14 12M19 6L5 18"/></svg><b>Holding out</b><p>The Quahadi lived through the winter of 1874 to 1875 on the Llano Estacado, with almost nothing, and chose when to come in.</p></div>
+    </div>
+
+    <p class="vsh">Whose version?</p>
+    <p class="sub" style="margin-top:6px">Most of what we know comes from the men who carried out these attacks. Their accounts don't always hold up.</p>
+    <div class="vs">
+      <div><small>Sheridan's memoir, on Soldier Spring</small><p>He called the village <q>outlaws from the main tribe</q> and wrote that <q>most of the women and children</q> were captured.</p></div>
+      <div><small>Later history</small><p>The Oklahoma Historical Society's account says the warriors held the line so the women and children could escape, and they fled toward Fort Cobb or the Panhandle.</p></div>
+    </div>
+    <div class="vs">
+      <div><small>Sul Ross, on Pease River</small><p>Ross reported that his men killed Peta Nocona, Quanah's father, in the fight. His own telling of it changed over the years.</p></div>
+      <div><small>Quanah</small><p>Quanah always said his father was not at the camp, and lived on for years before dying of old wounds. Later historians have backed him.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. CLOSE ============ -->
+<section class="section" aria-labelledby="closeH" style="padding-top:0">
+  <div class="wrap">
+    <div class="close"><canvas id="closeCv" aria-hidden="true"></canvas><div class="in">
+      <h2 id="closeH">December 25, today</h2>
+      <p>The campaigns ended life on the open plains. They did not end the people.</p>
+      <p>Today the Comanche Nation is headquartered in Lawton, Oklahoma, a few miles from where Sheridan staked out his fort, with about 17,000 enrolled citizens. This December 25, Comanche families will spend the day as they choose, in their own homes, through their own winter.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px">
+        <a class="btn" href="../stories/">Turning Points</a><a class="btn" href="../quanah/">Quanah and the Star House</a><a class="btn" href="../treaties/#1867">Medicine Lodge</a><a class="btn" href="../timeline/">The timeline</a>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <h2 style="font-size:28px;margin-bottom:10px">Sources</h2>
+    <ul class="sources" style="padding-left:18px">
+      <li>Philip H. Sheridan, <i>Personal Memoirs of P. H. Sheridan</i>, vol. 2 (1888), via <a href="https://www.gutenberg.org/files/4362/old/orig4362-h/p6.htm" rel="noopener">Project Gutenberg</a>.</li>
+      <li>"<a href="https://www.okhistory.org/publications/enc/entry?entry=SO022" rel="noopener">Soldier Spring, Battle of</a>," <i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society.</li>
+      <li>National Park Service, Washita Battlefield National Historic Site: "<a href="https://www.nps.gov/waba/learn/historyculture/major-andrew-wallace-evans.htm" rel="noopener">Major Andrew Wallace Evans</a>" and "<a href="https://www.nps.gov/places/stop-six.htm" rel="noopener">Stop Six</a>."</li>
+      <li>Wikipedia, "<a href="https://en.wikipedia.org/wiki/Battle_of_Pease_River" rel="noopener">Battle of Pease River</a>," "<a href="https://en.wikipedia.org/wiki/Battle_of_Palo_Duro_Canyon" rel="noopener">Battle of Palo Duro Canyon</a>," and "<a href="https://en.wikipedia.org/wiki/Fort_Sill" rel="noopener">Fort Sill</a>."</li>
+      <li>"<a href="https://plainshumanities.unl.edu/encyclopedia/doc/egp.war.033.html" rel="noopener">Palo Duro Canyon, Battle of</a>," <i>Encyclopedia of the Great Plains</i>, University of Nebraska–Lincoln.</li>
+      <li>"<a href="http://www.texasbeyondhistory.net/redriver/" rel="noopener">The Red River War of 1874</a>," <i>Texas Beyond History</i>, University of Texas at Austin.</li>
+      <li>Paul H. Carlson and Tom Crum, <i>Myth, Memory, and Massacre: The Pease River Capture of Cynthia Ann Parker</i> (Texas Tech University Press).</li>
+    </ul>
+    <div class="more">
+      <a href="../stories/#paloduro"><b>Turning Points</b><small>Adobe Walls, Palo Duro, and coming in to Fort Sill</small></a>
+      <a href="../quanah/"><b>Quanah and the Star House</b><small>The boy who lost his mother at Pease River</small></a>
+      <a href="../map/"><b>The map</b><small>Every place, on one map</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+"use strict";
+(function(){
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* a painted canvas that animates while on screen */
+function live(cv, o, speed){
+  if (!cv || typeof paintScene !== "function") return null;
+  const ctx = cv.getContext("2d"); let w = 0, h = 0, last = 0, vis = true;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(cv); fit();
+  new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(cv);
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts;
+    if (vis && w){ o.t += still ? 0 : dt; o.scroll += still ? 0 : dt * (speed || 0); paintScene(ctx, w, h, o); }
+    requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+  return o;
+}
+const base = { herd:false, camp:false, caravan:false, scroll:0, t:0 };
+live(document.getElementById("heroCv"), Object.assign({}, base, { biome:"granite", season:3, tod:.82, camp:true, seed:12, lodges:6 }), 2);
+live(document.getElementById("campCv"), Object.assign({}, base, { biome:"granite", season:3, tod:.27, camp:true, seed:25, lodges:7 }), 0);
+live(document.getElementById("closeCv"), Object.assign({}, base, { biome:"plains", season:3, tod:.5, herd:true, seed:40 }), 1.5);
+
+/* ---------- season wheel ---------- */
+const SEASONS = [
+  { k:"Spring", s:0, tod:.4, m:[2,3,1,2], l:["Recovering on new grass","Starting to move","Stores running low","Hard to supply"],
+    t:"New grass brought the horses back to strength. Bands began to leave their winter camps, but the food stored last fall was nearly gone." },
+  { k:"Summer", s:1, tod:.55, m:[4,4,2,1], l:["Strong, fat on grass","Spread out and moving fast","Hunting as they travel","Almost impossible to catch"],
+    t:"With strong horses and the herds on the move, bands could cover great distances fast. Army columns chased them for weeks and often found nothing but old campsites." },
+  { k:"Fall", s:2, tod:.68, m:[4,3,4,2], l:["At their strongest","Gathering for winter","Drying meat for winter","Still hard to catch"],
+    t:"The big fall hunts filled the drying racks. Meat, robes and lodge covers were made ready, and bands began to gather at their winter sites." },
+  { k:"Winter", s:3, tod:.5, m:[1,1,4,4], l:["Thin, fed on cottonwood bark","Settled in sheltered valleys","Everything stored in camp","Grain-fed horses, wagon trains"],
+    t:"Grass died back, and horses grew thin, fed on cottonwood bark. Families settled into sheltered river valleys and canyons, with the winter's food stored in camp. Everything a band needed to survive was in one place. Soldiers' horses ate grain hauled in by wagon." }
+];
+const LABELS = ["Comanche horses", "Moving camp", "Food in camp", "Army's reach"];
+const sBox = document.getElementById("seasons"), mBox = document.getElementById("meters");
+const sCv = document.getElementById("seasonCv"), sO = Object.assign({}, base, { biome:"river", season:1, tod:.55, herd:true, camp:true, seed:9 });
+live(sCv, sO, 1.5);
+sBox.innerHTML = SEASONS.map((x, i) => `<button type="button" data-i="${i}" aria-pressed="false">${x.k}</button>`).join("");
+mBox.innerHTML = LABELS.map((l, i) => `<div class="meter${i === 3 ? " army" : ""}"><span>${l}</span><div class="bar"><i></i></div><small></small></div>`).join("");
+function pick(i){
+  const S = SEASONS[i];
+  sBox.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.i === i));
+  mBox.querySelectorAll(".meter").forEach((m, j) => { m.querySelector("i").style.width = (S.m[j] / 4 * 100) + "%"; m.querySelector("small").textContent = S.l[j]; });
+  document.getElementById("wtxt").textContent = S.t;
+  document.getElementById("seasonName").textContent = S.k;
+  document.getElementById("sheridan").hidden = i !== 3;
+  Object.assign(sO, { season:S.s, tod:S.tod, herd:i !== 3, camp:i >= 2 });
+}
+sBox.addEventListener("click", e => { const b = e.target.closest("button"); if (b) pick(+b.dataset.i); });
+pick(1);
+
+/* ---------- map ----------
+   x = (longitude + 106) * 100, y = (38.5 - latitude) * 84, the same frame as the site map. */
+const PINS = {
+  pease:{ x:630, y:376, label:"Pease River" }, supply:{ x:643, y:162, label:"Camp Supply" }, bascom:{ x:240, y:277, label:"Fort Bascom" },
+  washita:{ x:633, y:242, label:"Washita" }, soldierspring:{ x:672, y:300, label:"Soldier Spring" }, cobb:{ x:756, y:286, label:"Fort Cobb" },
+  fortsill:{ x:760, y:323, label:"Fort Sill", below:true }, paloduro:{ x:433, y:298, label:"Palo Duro Canyon" }, tule:{ x:462, y:338, label:"Tule Canyon", below:true },
+  llano:{ x:330, y:390, label:"Llano Estacado", below:true }
+};
+const RIVERS = [
+  ["Arkansas", [[-160,10],[0,0],[120,22],[260,34],[400,46],[600,60],[800,66],[880,90],[960,170],[1100,230]], [520,48]],
+  ["Canadian", [[90,170],[180,230],[250,282],[350,250],[450,236],[600,220],[800,252],[1100,280]], [540,212]],
+  ["Red", [[405,300],[500,318],[600,336],[700,362],[820,392],[1100,400]], [880,384]],
+  ["North Fork", [[560,262],[620,282],[672,298],[720,330],[760,368]], [600,268]],
+  ["Pease", [[520,372],[580,374],[640,378],[700,370]], [560,392]],
+  ["Washita", [[560,250],[650,270],[720,290],[800,300]], [690,276]],
+  ["Brazos", [[400,420],[500,438],[600,448],[750,488],[880,580]], [640,452]]
+];
+function catmull(pts){ let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++){ const p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+    d += ` C${p1[0]+(p2[0]-p0[0])/6},${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6},${p2[1]-(p3[1]-p1[1])/6} ${p2[0]},${p2[1]}`; } return d; }
+const route = (pts, col, w = 6) => `<path class="route" d="${catmull(pts)}" fill="none" stroke="${col}" data-w="${w * .6}" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>`;
+const LAYERS = {
+  columns: route([[240,277],[400,280],[560,292],[650,300]], "#2f4a5a", 5) + route([[643,162],[638,200],[633,236]], "#2f4a5a", 5) + route([[330,60],[480,140],[600,220]], "#2f4a5a", 5) +
+    `<text x="250" y="262" class="lab">Evans</text><text x="652" y="150" class="lab">Custer</text><text x="300" y="52" class="lab">From Fort Lyon</text>`,
+  evans: route([[520,292],[600,296],[664,300]], "#2f4a5a", 5) + `<circle cx="672" cy="300" r="26" fill="#b8402e" fill-opacity=".18"/>`,
+  canyon: `<path d="${catmull([[380,268],[410,285],[433,298],[452,318],[470,340]])}" fill="none" stroke="#b6553a" data-w="12" stroke-linecap="round" opacity=".6"/>`,
+  horses: route([[433,298],[462,338]], "#7a2e16", 3) + `<text x="470" y="360" class="lab small">Horses shot</text>`,
+  walkin: [[[433,298],[600,315],[752,322]],[[520,250],[650,290],[752,318]],[[470,380],[620,360],[752,328]]].map(p => route(p, "#d97736", 4)).join(""),
+  quahadi: route([[330,390],[450,370],[600,345],[752,326]], "#d97736", 6)
+};
+const LEGENDS = { columns:"Army columns, winter 1868", evans:"Evans's column on Christmas Day", horses:"Tule Canyon", walkin:"Bands walking in", quahadi:"The Quahadi come in" };
+const svg = document.getElementById("map");
+svg.innerHTML = `<defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <radialGradient id="pg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#f1f3f2"/><stop offset="1" stop-color="#c9d2d3"/></radialGradient>
+  </defs>
+  <style></style>
+  <rect x="-400" y="-500" width="1700" height="1600" fill="url(#pg)"/>
+  <path d="M660,268 L800,262 L805,372 L700,362 L655,330 Z" fill="#2f4a5a" fill-opacity=".1" stroke="#2f4a5a" data-w="1.5" stroke-dasharray="6 6"/>
+  <text x="700" y="356" class="lab small">1867 reservation</text>
+  ${RIVERS.map(([n, p, lp]) => `<path d="${catmull(p)}" fill="none" stroke="#5b8aa0" data-w="${n === "Arkansas" ? 3 : 2}" stroke-linecap="round" opacity=".8"/><text x="${lp[0]}" y="${lp[1]}" class="lab river">${n}</text>`).join("")}
+  ${Object.entries(LAYERS).map(([k, g]) => `<g class="layer off" data-layer="${k}">${g}</g>`).join("")}
+  ${Object.entries(PINS).map(([k, p]) => `<g class="pin off" data-pin="${k}" transform="translate(${p.x},${p.y})"><g class="ps"><circle r="9" fill="#d97736" stroke="#fff" stroke-width="3"/>
+     <text y="${p.below ? 28 : -15}" text-anchor="middle" style="font-family:'Fira Sans Condensed',sans-serif;font-weight:700;font-size:15px;fill:#22323d;paint-order:stroke;stroke:#eef1f1;stroke-width:4px">${p.label}</text></g></g>`).join("")}`;
+
+let vb = [160, 60, 780, 520], target = vb.slice(), lastUpp = 0;
+const styleEl = svg.querySelector("style");
+function tick(){
+  for (let i = 0; i < 4; i++){ const d = target[i] - vb[i]; vb[i] = Math.abs(d) > .3 ? vb[i] + d * .08 : target[i]; }
+  svg.setAttribute("viewBox", vb.map(v => v.toFixed(1)).join(" "));
+  const bw = svg.clientWidth || 1, bh = svg.clientHeight || 1;
+  const upp = 1 / Math.min(bw / vb[2], bh / vb[3]);
+  if (Math.abs(upp - lastUpp) > lastUpp * .004){
+    lastUpp = upp;
+    svg.querySelectorAll(".pin .ps").forEach(g => g.setAttribute("transform", `scale(${upp.toFixed(4)})`));
+    svg.querySelectorAll("[data-w]").forEach(el => el.setAttribute("stroke-width", (el.dataset.w * upp).toFixed(2)));
+    styleEl.textContent = `.lab{font-family:"Fira Sans Condensed",sans-serif;font-weight:700;font-size:${(15 * upp).toFixed(2)}px;fill:#22323d}
+      .lab.small{font-size:${(13 * upp).toFixed(2)}px}.lab.river{fill:#3d5f70;font-style:italic;font-weight:500}`;
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+function activate(step){
+  document.querySelectorAll(".step").forEach(s => s.classList.toggle("on", s === step));
+  target = step.dataset.view.split(",").map(Number);
+  const pins = step.dataset.pins ? step.dataset.pins.split(",") : [], layers = step.dataset.layers ? step.dataset.layers.split(",") : [];
+  svg.querySelectorAll(".pin").forEach(p => p.classList.toggle("off", !pins.includes(p.dataset.pin)));
+  svg.querySelectorAll(".layer").forEach(l => l.classList.toggle("off", !layers.includes(l.dataset.layer)));
+  document.getElementById("year").textContent = step.dataset.year || "";
+  const lg = layers.map(l => LEGENDS[l]).filter(Boolean), le = document.getElementById("legend");
+  le.textContent = lg.join(" · "); le.style.display = lg.length ? "" : "none";
+}
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) activate(e.target); }), { rootMargin:"-45% 0px -45% 0px" });
+document.querySelectorAll(".step").forEach(s => io.observe(s));
+activate(document.querySelector(".step"));
+
+/* chapter banners, drawn once */
+document.querySelectorAll("canvas[data-paint]").forEach(cv => {
+  const [biome, season, seed] = cv.dataset.paint.split(",");
+  const draw = () => { const d = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight; if (!w || typeof paintScene !== "function") return;
+    cv.width = w * d; cv.height = h * d; const ctx = cv.getContext("2d"); ctx.setTransform(d,0,0,d,0,0);
+    paintScene(ctx, w, h, Object.assign({}, base, { biome, season:+season, tod:+season === 3 ? .45 : .7, camp: biome !== "llano", t:2, seed:+seed, lodges:5 })); };
+  new ResizeObserver(draw).observe(cv);
+});
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -285,7 +285,9 @@ const PAGES = {
   honor:       ["Honor Wall", "../honor/"],
   camp:        ["Walk Through a Camp", "../camp/"],
   plants:      ["Plants of the Comanchería", "../plants/"],
-  visit:       ["Visit the Museum", "../visit/"]
+  visit:       ["Visit the Museum", "../visit/"],
+  november:    ["30 Days of Comanche", "../november/"],
+  winter:      ["Winter as a Weapon", "../winter/"]
 };
 
 /* ---------- every source, by kind ---------- */
@@ -299,6 +301,8 @@ const GROUPS = [
     { t:"Charles J. Kappler, ed., <i>Indian Affairs: Laws and Treaties</i>", s:"U.S. Government Printing Office; the treaty texts, via the OSU database below", p:["treaties"] },
     { t:"Gustav G. Carlson and Volney H. Jones, \"Some Notes on Uses of Plants by the Comanche Indians\"", s:"<i>Papers of the Michigan Academy of Science, Arts and Letters</i> 25, 1940", p:["plants","camp"] },
     { t:"Daniel E. Moerman, <i>Native American Ethnobotany</i>", s:"Timber Press, 1998", p:["plants"] },
+    { t:"Philip H. Sheridan, <i>Personal Memoirs of P. H. Sheridan</i>, vol. 2", s:"1888; via Project Gutenberg", u:"https://www.gutenberg.org/files/4362/old/orig4362-h/p6.htm", p:["winter"] },
+    { t:"Paul H. Carlson and Tom Crum, <i>Myth, Memory, and Massacre: The Pease River Capture of Cynthia Ann Parker</i>", s:"Texas Tech University Press", p:["winter"] },
     { t:"Barbara A. Hail, ed., <i>Gifts of Pride and Love: Kiowa and Comanche Cradles</i>", s:"2001 exhibition and catalog", u:"https://na-moments.blogspot.com/2005/02/gifts-of-pride-and-lovekiowa-and.html", p:["beadwork"] }
   ]},
   { id:"primary", title:"Treaties, laws and government records", note:"Primary documents and official reports.", items:[
@@ -313,6 +317,8 @@ const GROUPS = [
     { t:"Quanah Parker", s:"National Park Service", u:"https://www.nps.gov/people/quanah-parker.htm", p:["quanah"] },
     { t:"Indigenous Diplomacy: The Ute–Comanche Treaty of 1786", s:"National Park Service", u:"https://www.nps.gov/articles/000/indigenous-diplomacy-the-ute-comanche-treaty-of-1786.htm", p:["treaties"] },
     { t:"Ethnobotany report, chapter 8: plant uses with sources", s:"National Park Service", u:"https://files.cfc.umt.edu/cesu/NPS/UMT/2004/Campbell_Etnobotony%20Report/chaptereight.pdf", p:["plants"] },
+    { t:"Major Andrew Wallace Evans, and Stop Six", s:"National Park Service, Washita Battlefield National Historic Site", u:"https://www.nps.gov/waba/learn/historyculture/major-andrew-wallace-evans.htm", p:["winter"] },
+    { t:"Joyce Doc Tate Nevaquaya", s:"National Endowment for the Arts, National Heritage Fellowships", u:"https://www.arts.gov/honors/heritage/joyce-doc-tate-nevaquaya", p:["november"] },
     { t:"John Meusebach", s:"Texas State Library and Archives Commission", u:"https://www.tsl.texas.gov/mural-meusebach.html", p:["treaties"] }
   ]},
   { id:"museums", title:"Museums and collections", note:"Object records, painting records and open-access images.", items:[
@@ -331,6 +337,10 @@ const GROUPS = [
   { id:"reference", title:"Encyclopedias, articles and reporting", note:"Reference works, preservation groups and news.", items:[
     { t:"Brad Agnew, \"Dodge-Leavenworth Expedition\"", s:"<i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society", u:"https://www.okhistory.org/publications/enc/entry?entry=DO004", p:["catlin"] },
     { t:"Josh Clough, \"Fort Sill Indian School\"", s:"<i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society", u:"https://www.okhistory.org/publications/enc/entry?entry=FO039", p:["school"] },
+    { t:"\"Harris, LaDonna\"", s:"<i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society", u:"https://www.okhistory.org/publications/enc/entry?entry=HA035", p:["november"] },
+    { t:"\"Soldier Spring, Battle of\"", s:"<i>The Encyclopedia of Oklahoma History and Culture</i>, Oklahoma Historical Society", u:"https://www.okhistory.org/publications/enc/entry?entry=SO022", p:["winter"] },
+    { t:"\"Palo Duro Canyon, Battle of\"", s:"<i>Encyclopedia of the Great Plains</i>, University of Nebraska–Lincoln", u:"https://plainshumanities.unl.edu/encyclopedia/doc/egp.war.033.html", p:["winter"] },
+    { t:"\"The Red River War of 1874\"", s:"<i>Texas Beyond History</i>, University of Texas at Austin", u:"http://www.texasbeyondhistory.net/redriver/", p:["winter"] },
     { t:"\"Tipis\"", s:"<i>Encyclopedia of the Great Plains</i>, University of Nebraska–Lincoln", u:"https://plainshumanities.unl.edu/encyclopedia/doc/egp.arc.048.html", p:["camp"] },
     { t:"\"Peace Between Spaniards and Comanches\"", s:"New Mexico History", u:"https://newmexicohistory.org/timeline/peace-between-spaniards-and-comanches", p:["treaties"] },
     { t:"\"Quanah Parker Star House\"", s:"Preservation Oklahoma, Most Endangered Places", u:"https://endangered.preservationok.org/quanah-parker-star-house/", p:["quanah"] },
@@ -341,7 +351,8 @@ const GROUPS = [
     { t:"\"Adobe Walls, Texas\"", s:"Legends of America", u:"https://www.legendsofamerica.com/tx-adobewalls/", p:["stories"] },
     { t:"Wikipedia: Comanche", u:"https://en.wikipedia.org/wiki/Comanche", p:["stories"] },
     { t:"Wikipedia: Battle of Plum Creek", u:"https://en.wikipedia.org/wiki/Battle_of_Plum_Creek", p:["stories"] },
-    { t:"Wikipedia: Battle of Palo Duro Canyon", u:"https://en.wikipedia.org/wiki/Battle_of_Palo_Duro_Canyon", p:["stories"] },
+    { t:"Wikipedia: Battle of Palo Duro Canyon", u:"https://en.wikipedia.org/wiki/Battle_of_Palo_Duro_Canyon", p:["stories","winter"] },
+    { t:"Wikipedia: Battle of Pease River, and Fort Sill", u:"https://en.wikipedia.org/wiki/Battle_of_Pease_River", p:["winter"] },
     { t:"Wikipedia: Quanah Parker, and Quanah Parker Star House", u:"https://en.wikipedia.org/wiki/Quanah_Parker", p:["quanah","stories"] },
     { t:"Wikipedia: Fort Sill Indian School", u:"https://en.wikipedia.org/wiki/Fort_Sill_Indian_School", p:["school"] },
     { t:"Wikipedia: Charles Chibitty", u:"https://en.wikipedia.org/wiki/Charles_Chibitty", p:["codetalkers"] },
