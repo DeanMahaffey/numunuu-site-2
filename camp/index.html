@@ -8,8 +8,19 @@
 <meta property="og:title" content="Walk Through a Camp">
 <meta property="og:description" content="An interactive Comanche camp from numunuu.com.">
 <meta property="og:url" content="https://numunuu.com/camp/">
-<meta name="theme-color" content="#1c1612">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/camp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted Comanche camp at dusk, titled Walk Through a Camp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/camp.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
@@ -75,6 +86,12 @@
       <button class="chip" data-season="1" aria-pressed="false">Summer</button>
       <button class="chip" data-season="2" aria-pressed="true">Fall</button>
       <button class="chip" data-season="3" aria-pressed="false">Winter</button>
+    </div>
+    <div class="seasons" role="group" aria-label="Time of day">
+      <button class="chip" data-tod=".32" aria-pressed="false">Morning</button>
+      <button class="chip" data-tod=".5" aria-pressed="true">Midday</button>
+      <button class="chip" data-tod=".755" aria-pressed="false">Sunset</button>
+      <button class="chip" data-tod=".93" aria-pressed="false">Night</button>
     </div>
     <div class="found" id="found" aria-live="polite"></div>
   </div>
@@ -191,7 +208,7 @@ const ITEMS = [
    Background from the game painter, then camp details on top.
    ======================================================================= */
 const cv = document.getElementById("cv"), ctx = cv.getContext("2d"), stage = document.getElementById("stage");
-let W = 0, H = 0, season = 2, t = 0;
+let W = 0, H = 0, season = 2, t = 0, tod = .5;
 function fit(){ const d = Math.min(2, devicePixelRatio || 1); W = stage.clientWidth; H = stage.clientHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d,0,0,d,0,0); }
 new ResizeObserver(fit).observe(stage); fit();
 
@@ -296,8 +313,11 @@ function drawDog(x, base, s, ph){
 
 function render(){
   if (!W) return;
-  const o = { biome:"river", season, herd:true, camp:false, caravan:false, scroll:0, t, seed:41 };
+  const o = { biome:"river", season, tod, herd:true, camp:false, caravan:false, scroll:0, t, seed:41, extra: drawCamp };
   paintScene(ctx, W, H, o);
+}
+/* the camp's own objects, drawn inside the painter so they share its light and weather */
+function drawCamp(){
   const s = Math.min(W / 900, H / 506);
   const snow = season === 3;
   /* far herd of horses */
@@ -318,6 +338,7 @@ function render(){
   drawHide(W * .82, H * .91, s, snow);
   drawDog(W * .66, H * .95, s, t);
   drawKid(W * .88, H * .8, s, t * 6); drawKid(W * .93, H * .78, s * .9, t * 6 + 2); drawHoop(W * .9 + Math.sin(t * 1.5) * 20 * s, H * .76, s);
+  return [[W * .42, H * .74, H * .4, 1], [W * .64, H * .66, H * .27, 2], [W * .78, H * .64, H * .2, 3]];
 }
 let last = 0;
 function loop(ts){ const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; t += dt; render(); requestAnimationFrame(loop); }
@@ -354,6 +375,9 @@ info.addEventListener("click", e => {
   const b = e.target.closest("[data-step]"); if (b) show((current + +b.dataset.step + ITEMS.length) % ITEMS.length);
   if (e.target.closest("#tourBtn")) show(0);
 });
+document.querySelectorAll("[data-tod]").forEach(b => b.addEventListener("click", () => {
+  tod = +b.dataset.tod; document.querySelectorAll("[data-tod]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+}));
 document.querySelectorAll("[data-season]").forEach(b => b.addEventListener("click", () => {
   season = +b.dataset.season; document.querySelectorAll("[data-season]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
 }));

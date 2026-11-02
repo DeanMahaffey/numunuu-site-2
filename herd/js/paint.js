@@ -120,20 +120,33 @@ function sizeScene(){
 function paintScene(ctx, W, H, o){
   const P = PAL[o.season], B = BIOMES[o.biome] || BIOMES.plains, rng = mulberry(o.seed);
   const t = o.t, sc = o.scroll;
+  /* --- time of day ---
+     o.tod: 0..1 through the day (0.25 sunrise, 0.5 noon, 0.75 sunset). Omit for a fixed midday look.
+     n = how dark it is (0 day .. 1 night), g = golden-hour warmth near sunrise and sunset. */
+  const timed = o.tod != null;
+  const el = timed ? Math.sin((o.tod - .25) * Math.PI * 2) : 1;
+  const n = timed ? clamp((.08 - el) / .38, 0, 1) : 0;
+  const g = timed ? clamp(1 - Math.abs(el - .02) / .3, 0, 1) : 0;
+  const glowPts = [];
   /* --- sky --- */
+  const skyT = mix(mix(P.skyT, "#5b6aa2", g * .7), "#060b18", n), skyH = mix(mix(P.skyH, "#ff9e62", g * .8), "#1d2944", n);
   const sky = ctx.createLinearGradient(0, 0, 0, H * B.horizon + 40);
-  sky.addColorStop(0, P.skyT); sky.addColorStop(1, P.skyH);
+  sky.addColorStop(0, skyT); sky.addColorStop(1, skyH);
   ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
-  const sx = W * .72, sy = H * (o.season === 2 ? .3 : .2);
-  const glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, H * .7);
-  glow.addColorStop(0, rgba(P.sun, .85)); glow.addColorStop(.12, rgba(P.sun, .35)); glow.addColorStop(1, rgba(P.sun, 0));
-  ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
-  ctx.fillStyle = rgba(P.sun, .95); ctx.beginPath(); ctx.arc(sx, sy, Math.min(W,H) * .035, 0, Math.PI*2); ctx.fill();
+  let sx = W * .72, sy = H * (o.season === 2 ? .3 : .2);
+  if (timed){ const k = clamp((o.tod - .22) / .56, 0, 1); sx = W * (.08 + .84 * k); sy = H * (B.horizon - .02) - Math.max(el, -.2) * H * .5; }
+  const sunCol = mix(P.sun, "#ffb36e", g);
+  if (sy < H * B.horizon + 20){
+    const glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, H * (.7 + g * .4));
+    glow.addColorStop(0, rgba(sunCol, .85)); glow.addColorStop(.12, rgba(sunCol, .35 + g * .2)); glow.addColorStop(1, rgba(sunCol, 0));
+    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = rgba(sunCol, .95); ctx.beginPath(); ctx.arc(sx, sy, Math.min(W,H) * (.035 + g * .01), 0, Math.PI*2); ctx.fill();
+  }
   /* clouds: soft stacked ellipses drifting */
   for (let i = 0; i < 6; i++){
     const cw = W * (.12 + rng() * .16), cy = H * (.06 + rng() * .22);
     const cx = ((rng() * W * 1.6 + t * (4 + i) - sc * .05) % (W * 1.6)) - W * .3;
-    ctx.fillStyle = rgba(P.cloud, o.season === 3 ? .5 : .38);
+    ctx.fillStyle = rgba(mix(mix(P.cloud, "#ffb59a", g * .6), "#2a3450", n), (o.season === 3 ? .5 : .38) * (1 - n * .4));
     for (let k = 0; k < 5; k++){ ctx.beginPath(); ctx.ellipse(cx + (k - 2) * cw * .18, cy + Math.sin(k*1.7) * cw * .03, cw * (.16 + .05 * Math.sin(k)), cw * .06, 0, 0, Math.PI*2); ctx.fill(); }
   }
   const hz = H * B.horizon;
@@ -226,7 +239,7 @@ function paintScene(ctx, W, H, o){
     const spots = [.56, .64, .72, .8, .9, .48, .41, .97, .86, .35].slice(0, o.lodges || 6);
     spots.forEach((f, k) => {
       const x = W * f + (cr() - .5) * W * .03, base = nearY(x) + H * .01, h = H * (.13 + cr() * .03) * (k >= 5 ? .82 : 1);
-      drawTipi(ctx, x, base, h, o.season, k);
+      drawTipi(ctx, x, base, h, o.season, k); glowPts.push([x, base, h, k]);
       if (k === 1 || k === 3){ for (let p = 0; p < 6; p++){ const age = ((t * .25 + p / 6) % 1);
         ctx.fillStyle = `rgba(235,230,224,${.35 * (1 - age)})`; ctx.beginPath(); ctx.arc(x + Math.sin(age * 5 + k) * 10 * age + age * 30, base - h * 1.15 - age * H * .12, 4 + age * 14, 0, Math.PI*2); ctx.fill(); } }
     });
@@ -248,10 +261,105 @@ function paintScene(ctx, W, H, o){
     const x = ((gr() * W * 1.2 - sc) % (W * 1.2) + W * 1.2) % (W * 1.2) - W * .1;
     const y0 = nearY(x), y = y0 + gr() * (H - y0);
     const len = (4 + gr() * 12) * (y / H) * (H / 600);
-    const sway = Math.sin(t * 1.5 + x * .02) * 2;
+    const sway = Math.sin(t * 1.5 + x * .02) * 2 + Math.max(0, Math.sin(t * .9 - x * .006)) * 6;
     ctx.strokeStyle = rgba(gr() > .5 ? P.grass : mix(P.near, "#000000", .25), .5);
     ctx.lineWidth = 1 + (y / H) * 1.4;
     ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + sway + (gr() - .5) * 4, y - len); ctx.stroke();
+  }
+  /* extra drawing from the page (e.g. the camp's own objects), so it gets the same light and weather */
+  if (o.extra){ const gp = o.extra(ctx, W, H); if (gp) glowPts.push(...gp); }
+  /* cloud shadows sliding across the ground (daytime) */
+  if (o.fx !== false && n < .6){
+    ctx.save(); ctx.globalCompositeOperation = "multiply";
+    for (let i = 0; i < 3; i++){
+      const cx = ((i * W * .55 + t * 16 - sc * .7) % (W * 1.7) + W * 1.7) % (W * 1.7) - W * .35, cy = hz + (H - hz) * (.3 + i * .22);
+      const r = W * (.22 + i * .05);
+      const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+      cg.addColorStop(0, `rgba(60,50,70,${.16 * (1 - n)})`); cg.addColorStop(1, "rgba(60,50,70,0)");
+      ctx.fillStyle = cg; ctx.beginPath(); ctx.ellipse(cx, cy, r, r * .22, 0, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.restore();
+  }
+  /* golden hour wash and night darkness */
+  if (g > 0){ ctx.save(); ctx.globalCompositeOperation = "soft-light"; ctx.fillStyle = rgba("#ff8a4a", .45 * g); ctx.fillRect(0, 0, W, H); ctx.restore(); }
+  if (n > 0){
+    ctx.save(); ctx.globalCompositeOperation = "multiply";
+    ctx.fillStyle = rgba("#1a2550", .72 * n); ctx.fillRect(0, 0, W, H); ctx.restore();
+    /* stars and moon, only in the sky above the far ridge */
+    ctx.save(); ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(W, 0);
+    for (let x = W; x >= 0; x -= 8) ctx.lineTo(x, farY(x) - 2);
+    ctx.closePath(); ctx.clip();
+    const st = mulberry(o.seed + 777);
+    for (let i = 0; i < 220; i++){
+      const x = st() * W, y = st() * hz * .95, r = st() < .08 ? 1.6 : .5 + st() * .8;
+      const tw = .55 + .45 * Math.sin(t * (1 + st() * 2) + i);
+      ctx.fillStyle = `rgba(255,250,235,${n * tw * (1 - y / (hz * 1.1))})`; ctx.fillRect(x, y, r, r);
+    }
+    /* a faint band of the Milky Way */
+    const mw = mulberry(o.seed + 99);
+    for (let i = 0; i < 46; i++){ const k = i / 46, x = W * (k * 1.1 - .05) + (mw() - .5) * W * .06, y = hz * (.06 + k * .6) + (mw() - .5) * hz * .08, r = Math.min(W, H) * (.05 + mw() * .06);
+      const mgr = ctx.createRadialGradient(x, y, 0, x, y, r); mgr.addColorStop(0, `rgba(205,212,255,${.05 * n})`); mgr.addColorStop(1, "rgba(205,212,255,0)");
+      ctx.fillStyle = mgr; ctx.fillRect(x - r, y - r, r * 2, r * 2); }
+    const mx = W * .24, my = H * .16, mr = Math.min(W, H) * .028;
+    const mg = ctx.createRadialGradient(mx, my, 0, mx, my, mr * 6); mg.addColorStop(0, `rgba(230,236,255,${.35 * n})`); mg.addColorStop(1, "rgba(230,236,255,0)");
+    ctx.fillStyle = mg; ctx.fillRect(mx - mr * 6, my - mr * 6, mr * 12, mr * 12);
+    ctx.fillStyle = `rgba(244,240,226,${n})`; ctx.beginPath(); ctx.arc(mx, my, mr, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = `rgba(200,196,182,${.5 * n})`; for (const [dx, dy, r] of [[-.3,-.2,.22],[.25,.15,.18],[-.05,.35,.12]]){ ctx.beginPath(); ctx.arc(mx + dx * mr, my + dy * mr, r * mr, 0, Math.PI * 2); ctx.fill(); }
+    ctx.restore();
+    /* firelight inside the lodges */
+    if (glowPts.length){
+      ctx.save(); ctx.globalCompositeOperation = "lighter";
+      for (const [x, base, h, k] of glowPts){
+        const fl = .85 + .15 * Math.sin(t * 7 + k * 2);
+        const lg = ctx.createRadialGradient(x, base - h * .3, 0, x, base - h * .3, h * .75);
+        lg.addColorStop(0, `rgba(255,150,60,${.5 * n * fl})`); lg.addColorStop(1, "rgba(255,150,60,0)");
+        ctx.fillStyle = lg; ctx.fillRect(x - h, base - h * 1.2, h * 2, h * 1.4);
+        if (k === 1) for (let p = 0; p < 8; p++){ const a = (t * .5 + p / 8) % 1;
+          ctx.fillStyle = `rgba(255,190,90,${n * (1 - a)})`; ctx.fillRect(x + Math.sin(a * 9 + p) * 8, base - h * 1.1 - a * H * .1, 2, 2); }
+      }
+      ctx.restore();
+    }
+  }
+  /* weather and life */
+  if (o.fx !== false){
+    const wx = o.weather || ["birds","dust","leaves","snow"][o.season];
+    const fx = mulberry(o.seed + 4242);
+    if (n < .55){ /* birds crossing the sky */
+      ctx.strokeStyle = rgba(mix("#2a2420", "#0a0a12", n), .75); ctx.lineWidth = 1.6; ctx.lineCap = "round";
+      for (let i = 0; i < 5; i++){
+        const sp = 18 + fx() * 22, x = ((fx() * W + t * sp - sc * .2) % (W * 1.4) + W * 1.4) % (W * 1.4) - W * .2;
+        const y = H * (.1 + fx() * .18) + Math.sin(t * .8 + i) * 6, s = 4 + fx() * 4, f = Math.sin(t * 9 + i * 2) * s * .6;
+        ctx.beginPath(); ctx.moveTo(x - s, y - f); ctx.quadraticCurveTo(x - s * .4, y - s * .2, x, y); ctx.quadraticCurveTo(x + s * .4, y - s * .2, x + s, y - f); ctx.stroke();
+      }
+    }
+    if (wx === "snow"){
+      for (let i = 0; i < 160; i++){
+        const sp = 18 + fx() * 30, x = ((fx() * W + Math.sin(t * .6 + i) * 18 + t * 10 - sc * .3) % W + W) % W, y = (fx() * H + t * sp) % H, r = .8 + fx() * 2;
+        ctx.fillStyle = `rgba(255,255,255,${.55 + fx() * .35})`; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+      }
+    } else if (wx === "leaves"){
+      for (let i = 0; i < 22; i++){
+        const sp = 14 + fx() * 18, x = ((fx() * W + t * (26 + fx() * 20) - sc * .5) % (W * 1.2) + W * 1.2) % (W * 1.2) - W * .1, y = (fx() * H + t * sp) % H;
+        ctx.save(); ctx.translate(x, y); ctx.rotate(t * 2 + i); ctx.fillStyle = ["#d9a83f","#c7742e","#a8502a"][i % 3];
+        ctx.beginPath(); ctx.ellipse(0, 0, 4, 2, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+      }
+    } else if (wx === "rain"){
+      ctx.strokeStyle = "rgba(210,225,240,.35)"; ctx.lineWidth = 1;
+      for (let i = 0; i < 180; i++){ const x = (fx() * W + t * 60) % W, y = (fx() * H + t * 700) % H; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 4, y + 14); ctx.stroke(); }
+    } else if (wx === "dust" && n < .3){
+      for (let i = 0; i < 40; i++){ const x = ((fx() * W + t * 14) % W), y = hz + fx() * (H - hz) + Math.sin(t + i) * 6;
+        ctx.fillStyle = `rgba(255,236,190,${.18 + .12 * Math.sin(t * 2 + i)})`; ctx.beginPath(); ctx.arc(x, y, 1.2, 0, Math.PI * 2); ctx.fill(); }
+    }
+    if ((o.season === 1 || o.season === 0) && (n > .2 || (g > .4 && o.tod > .5))){ /* fireflies at dusk */
+      ctx.save(); ctx.globalCompositeOperation = "lighter";
+      for (let i = 0; i < 34; i++){
+        const x = ((fx() * W + Math.sin(t * .5 + i) * 30) % W + W) % W, y = hz + (H - hz) * (.25 + fx() * .7) + Math.sin(t * .7 + i * 3) * 10;
+        const on = Math.max(0, Math.sin(t * 2.2 + i * 1.7)); if (on < .2) continue;
+        const fg = ctx.createRadialGradient(x, y, 0, x, y, 7); fg.addColorStop(0, `rgba(220,255,140,${on * .9 * Math.max(n, g * .6)})`); fg.addColorStop(1, "rgba(220,255,140,0)");
+        ctx.fillStyle = fg; ctx.fillRect(x - 7, y - 7, 14, 14);
+      }
+      ctx.restore();
+    }
   }
   /* grain + vignette */
   ctx.save(); ctx.globalAlpha = .07; ctx.globalCompositeOperation = "overlay";

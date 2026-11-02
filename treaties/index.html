@@ -8,8 +8,19 @@
 <meta property="og:title" content="The Comanche Treaties (1786–1892): Ink & Sovereignty">
 <meta property="og:description" content="Eleven treaties and accords between the Nʉmʉnʉʉ and Spain, Texas, German colonists, and the United States.">
 <meta property="og:url" content="https://numunuu.com/treaties/">
-<meta name="theme-color" content="#121214">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/treaties.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Title card for the Comanche Treaties exhibit, 1786 to 1892">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/treaties.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Inter for UI; Gentium Book Plus for display (full support for barred-u ʉ / Ʉ) -->
@@ -68,12 +79,14 @@ button{font:inherit;color:inherit}
 .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
 .brand b{font-family:var(--f-display);font-weight:700;font-size:21px;letter-spacing:.01em}
 .brand b .u{color:var(--clay)}
-.brand span{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.brand > span{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 .nav{display:flex;gap:4px;align-items:center}
 .nav a,.nav button{background:none;border:1px solid transparent;border-radius:999px;padding:6px 12px;font-size:13.5px;
   color:var(--ink-2);text-decoration:none;cursor:pointer}
 .nav a:hover,.nav button:hover{border-color:var(--border-2);color:var(--ink)}
 .brand b,.nav a,.nav button{white-space:nowrap}
+@media (max-width:1180px){.brand > span{display:none}}
+@media (max-width:900px){.nav .hide-sm{display:none}}
 @media (max-width:560px){.brand > span{display:none}.nav .hide-sm{display:none}.brand b{font-size:18px}.nav a,.nav button{padding:6px 8px}}
 
 /* =====================================================================
@@ -309,7 +322,7 @@ footer p{margin:0;max-width:80ch}
 .brand b,.hero h1,.ins-head h2,.tl .yr,.stats b,.modal-in h2,.cell .bn,.sig .rec{font-weight:800;letter-spacing:-.01em}
 .hero h1{font-size:clamp(34px,5vw,60px);line-height:1}
 .hero h1 em{font-style:normal}
-.brand span,.eyebrow,.rail-head h2,.era,.badge,.facts dt,.panel h3,.audit-head,.audit-row .lbl,.audit-row .art,.verdict b,.terms .a,
+.brand > span,.eyebrow,.rail-head h2,.era,.badge,.facts dt,.panel h3,.audit-head,.audit-row .lbl,.audit-row .art,.verdict b,.terms .a,
 .sig .orth.pending,.sig .band,.cell .st,.legend,.src li small,.basis,.stats,.tab .n,.chip .n,.blockquote cite,blockquote.q cite,.mono{
   font-family:var(--f-ui);text-transform:none;letter-spacing:0}
 .eyebrow{font-size:14px;font-weight:600}
@@ -325,6 +338,14 @@ blockquote.q p{font-family:var(--f-ui);font-style:normal;font-size:18px;font-wei
 .tl .yr{font-size:22px}
 .cell .bn{font-size:19px}
 .modal-in h2{font-size:30px}
+
+/* smooth page-to-page transitions (supported browsers; others just navigate) */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .26s ease both}
+::view-transition-new(root){animation:vt-in .42s cubic-bezier(.2,.7,.2,1) both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-10px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 </style>
 </head>
 <body>
@@ -338,8 +359,11 @@ blockquote.q p{font-family:var(--f-ui);font-style:normal;font-size:18px;font-wei
     </a>
     <nav class="nav" aria-label="Site">
       <a href="../herd/">Game</a>
+      <a class="hide-sm" href="../stories/">Stories</a>
+      <a class="hide-sm" href="../camp/">Camp</a>
+      <a class="hide-sm" href="../plants/">Plants</a>
+      <a class="hide-sm" href="../codetalkers/">Code Talkers</a>
       <a href="https://dictionary.numunuu.com" target="_blank" rel="noopener">Dictionary</a>
-      <a class="hide-sm" href="../">numunuu.com</a>
       <button type="button" id="aboutBtn" aria-haspopup="dialog">About<span class="hide-sm"> the Project</span></button>
     </nav>
   </div>

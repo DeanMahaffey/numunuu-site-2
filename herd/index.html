@@ -8,8 +8,19 @@
 <meta property="og:title" content="Follow the Herd">
 <meta property="og:description" content="A year in the Comanchería, 1845. A free history game from numunuu.com.">
 <meta property="og:url" content="https://numunuu.com/herd/">
-<meta name="theme-color" content="#1c1612">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/herd.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted buffalo herd crossing the plains, titled Follow the Herd">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/herd.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,600;0,700;0,800;1,500&family=Fira+Sans:wght@400;500;600;700&display=swap">
@@ -274,6 +285,14 @@ h1,h2,.hud h1,#title h1,.card h2,.story .t,.stat .v,.mapinfo h3,.timeline b,.sto
 .nations .nw{font-size:12px;color:var(--muted);margin-left:6px}
 .goal .perks{margin:6px 0 0;padding-left:16px;color:var(--ink-2);font-size:12.5px;line-height:1.5}
 .bands{grid-template-columns:repeat(2,1fr)}
+
+/* smooth page-to-page transitions (supported browsers; others just navigate) */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .26s ease both}
+::view-transition-new(root){animation:vt-in .42s cubic-bezier(.2,.7,.2,1) both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-10px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 </style>
 </head>
 <body>

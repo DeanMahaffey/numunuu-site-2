@@ -25,3 +25,43 @@
     if (h.endsWith("/")) a.setAttribute("href", h + "index.html");
   });
 })();
+
+/* ---------- polish: scroll reveal, count-up numbers, card tilt ---------- */
+(function () {
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const css = document.createElement("style");
+  css.textContent = `.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+    .rv.in{opacity:1;transform:none}
+    [data-tilt]{transition:transform .25s ease;will-change:transform}`;
+  document.head.appendChild(css);
+  if (still) return;
+  /* reveal: only things that start below the fold, so nothing flashes on load */
+  const REVEAL = ".chapter,.section .card,.more a,.facts .card,.senses > li,.hist a,.roll > div,.sources,.note,.tool,.codes";
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin:"0px 0px -8% 0px" });
+  document.querySelectorAll(REVEAL).forEach((el, i) => {
+    if (el.getBoundingClientRect().top < innerHeight * .92) return;
+    el.classList.add("rv"); el.style.transitionDelay = (i % 4) * 60 + "ms"; io.observe(el);
+  });
+  /* count-up: <b data-count="17">17</b>, optional data-prefix */
+  const co = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return; co.unobserve(e.target);
+    const el = e.target, to = +el.dataset.count, pre = el.dataset.prefix || "", t0 = performance.now(), dur = 1200;
+    const step = (now) => { const k = Math.min(1, (now - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      el.textContent = pre + v; if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }), { threshold:.6 });
+  document.querySelectorAll("[data-count]").forEach((el) => co.observe(el));
+  /* tilt: cards lean toward the pointer */
+  if (!matchMedia("(hover: hover)").matches) return;
+  const TILT = ".more a,.hist a,.preview,.tl,.plant,.goal,.code";
+  let cur = null;
+  document.addEventListener("pointermove", (e) => {
+    const el = e.target.closest && e.target.closest(TILT);
+    if (cur && cur !== el){ cur.style.transform = ""; cur = null; }
+    if (!el) return; cur = el; el.dataset.tilt = "";
+    const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    if (el.classList.contains("code") && el.classList.contains("flip")) return;
+    el.style.transform = `perspective(900px) rotateX(${(-y * 5).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg) translateY(-3px)`;
+  }, { passive:true });
+  document.addEventListener("pointerleave", () => { if (cur){ cur.style.transform = ""; cur = null; } });
+})();
