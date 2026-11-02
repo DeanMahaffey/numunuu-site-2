@@ -107,8 +107,9 @@
 <footer data-site-foot></footer>
 
 <script>
-const FP = (name, w) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}`;
-const BK = id => `https://d1lfxha3ugu3d4.cloudfront.net/images/opencollection/objects/size4/${id}.jpg`;
+const LOCALIMG = key => `../assets/img/museum/${key.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}-m.jpg`;   /* our own copy; large sizes still come from the museum */
+const FP = (name, w) => w > 1000 ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}` : LOCALIMG(name.replace(/\.(jpe?g|png)$/i, ""));
+const BK = id => LOCALIMG(id);
 const L = { cc0:"Public domain (CC0)", by3:'<a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a>', bysa4:'<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>', bkby:'<a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY</a>' };
 window.EX = {
   roomWord: "Wall",

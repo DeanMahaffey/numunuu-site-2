@@ -1,10 +1,87 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found · Nʉmʉnʉʉ</title><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found · Nʉmʉnʉʉ</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<!-- This page can be shown at any address, so every link here starts from the site root. -->
+<link rel="stylesheet" href="/assets/site.css">
 <style>
-:root{--bg:#e8ecea;--ink:#1b2220;--muted:#5d6764;--accent:#a3412a}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1314;--ink:#e4e9e6;--muted:#8f9c97;--accent:#e0815f;color-scheme:dark}}
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;text-align:center;padding:24px}
-h1{font-family:Georgia,serif;font-weight:400;font-size:40px;margin:0 0 8px}p{color:var(--muted);margin:0 0 20px}a{color:var(--accent);font-weight:600}
-</style></head>
-<body><div><h1>Page not found</h1><p>That page doesn't exist.</p><a href="/">Go to numunuu.com</a> · <a href="https://dictionary.numunuu.com">Open the dictionary</a></div></body></html>
+.lost{position:relative;min-height:calc(100dvh - 56px);display:flex;align-items:flex-end;overflow:hidden}
+.lost canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.lost::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,13,10,.95) 0%,rgba(18,13,10,.55) 45%,rgba(18,13,10,.05) 80%);pointer-events:none}
+.lost .wrap{position:relative;z-index:1;padding-bottom:clamp(36px,8vh,80px)}
+.code{font-family:var(--f-display);font-weight:800;font-size:15px;letter-spacing:.12em;color:#ffcf96;margin:0 0 8px}
+.lost h1{font-size:clamp(48px,9vw,112px);text-transform:uppercase;line-height:.88;color:#fff;margin:0;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.lost h1 em{font-style:normal;color:#ffcf96}
+.lost .lead{color:#f0e5d4;margin:16px 0 0;max-width:52ch}
+.guess{margin:18px 0 0;padding:12px 16px;border-radius:12px;background:rgba(227,183,102,.12);border:1px solid rgba(227,183,102,.35);max-width:560px;color:#f3eadb}
+.guess[hidden]{display:none}
+.guess a{font-weight:700}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.paths{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.paths a{font-size:14px;font-weight:600;padding:6px 13px;border-radius:999px;border:1px solid rgba(255,240,220,.3);background:rgba(20,15,12,.5);color:#f3eadb;text-decoration:none}
+.paths a:hover{border-color:var(--gold)}
+</style>
+</head>
+<body>
+<header data-site-top data-page="404" data-base="/"></header>
+
+<main class="lost">
+  <canvas id="cv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="code">404 · PAGE NOT FOUND</p>
+    <h1>This trail <em>went cold</em></h1>
+    <p class="lead">There's nothing at this address. The page may have moved, or the link may have a typo. Here are some ways back.</p>
+    <p class="guess" id="guess" hidden></p>
+    <div class="acts">
+      <a class="btn primary" href="/">Go to the homepage</a>
+      <button class="btn" type="button" id="find">Search the site</button>
+    </div>
+    <nav class="paths" aria-label="Popular pages">
+      <a href="/stories/">Turning Points</a><a href="/map/">The map</a><a href="/timeline/">The timeline</a><a href="/herd/">Follow the Herd</a>
+      <a href="/treaties/">The treaties</a><a href="/codetalkers/">The code talkers</a><a href="/calendar/">2027 calendar</a><a href="https://dictionary.numunuu.com">The dictionary ↗</a>
+    </nav>
+  </div>
+</main>
+
+<script src="/herd/js/util.js"></script>
+<script src="/herd/js/paint.js"></script>
+<script>
+(function(){
+  /* guess what they meant, from the address they typed */
+  const PAGES = { stories:"Turning Points", treaties:"The Comanche Treaties", catlin:"Painted in 1834", quanah:"Quanah and the Star House", beadwork:"Beads, Paint, and Fringe",
+    school:"Fort Sill Indian School", codetalkers:"The Code Talkers", honor:"Honor Wall", camp:"Walk Through a Camp", plants:"Plants of the Comanchería", visit:"Visit the Museum",
+    map:"The Map", timeline:"The Timeline", herd:"Follow the Herd", november:"30 Days of Comanche", winter:"Winter as a Weapon", calendar:"2027 Calendar", about:"About and Sources", ancestors:"Finding Comanche Ancestors" };
+  const ALIAS = { story:"stories", "turning-points":"stories", treaty:"treaties", "code-talkers":"codetalkers", codetalker:"codetalkers", "star-house":"quanah", parker:"quanah",
+    beads:"beadwork", game:"herd", "follow-the-herd":"herd", museum:"visit", plant:"plants", sources:"about", genealogy:"ancestors", ancestor:"ancestors", family:"ancestors" };
+  const words = location.pathname.toLowerCase().split(/[\/._]+/).filter(Boolean);
+  let hit = null;
+  for (const w of words){ if (PAGES[w]) { hit = w; break; } if (ALIAS[w]) { hit = ALIAS[w]; break; }
+    const k = Object.keys(PAGES).find(p => p.startsWith(w.slice(0, 4)) && w.length >= 4); if (k){ hit = k; break; } }
+  if (hit){ const g = document.getElementById("guess"); g.innerHTML = `Were you looking for <a href="/${hit}/">${PAGES[hit]}</a>?`; g.hidden = false; }
+  document.getElementById("find").addEventListener("click", () => { const b = document.querySelector(".site-top .sbtn"); if (b) b.click(); });
+
+  /* a quiet night on the llano */
+  const cv = document.getElementById("cv");
+  if (cv && typeof paintScene === "function"){
+    const ctx = cv.getContext("2d"), o = { biome:"llano", season:2, tod:.9, herd:false, camp:false, caravan:false, scroll:0, t:0, seed:404 };
+    let w = 0, h = 0, last = 0;
+    const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+    new ResizeObserver(fit).observe(cv); fit();
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts; if (w){ o.t += still ? 0 : dt; o.scroll += still ? 0 : dt * 2; paintScene(ctx, w, h, o); } requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+})();
+</script>
+<script src="/assets/site.js"></script>
+</body>
+</html>

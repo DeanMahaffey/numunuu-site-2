@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finding Comanche Ancestors · Nʉmʉnʉʉ</title>
+<meta name="description" content="A free, step-by-step guide to finding Comanche ancestors: family knowledge, Indian Census Rolls, the 1901 allotment rolls, Kiowa Agency records, and how Comanche Nation enrollment works.">
+<meta property="og:title" content="Finding Comanche Ancestors">
+<meta property="og:description" content="A step-by-step guide to the records: census rolls, the 1901 allotments, agency files, and where to find them.">
+<meta property="og:url" content="https://numunuu.com/ancestors/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/ancestors.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted plains at dawn, titled Finding Comanche Ancestors">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/ancestors.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero{min-height:min(72vh,640px)}
+.hero h1{font-size:clamp(44px,8.4vw,104px)}
+.hero .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.h2{font-size:clamp(30px,4.2vw,46px);margin-bottom:8px}
+.sub{color:var(--ink-2);max-width:64ch;margin:0 0 22px}
+.care{display:flex;gap:14px;align-items:flex-start;max-width:860px;padding:16px 18px;border-radius:14px;background:rgba(156,192,216,.08);border:1px solid rgba(156,192,216,.3);color:var(--ink-2);font-size:15.5px}
+.care svg{flex:none;width:26px;height:26px;color:var(--sky);margin-top:2px}
+.care b{color:var(--ink)}
+
+/* the path: a line down the left with numbered stops */
+.path{position:relative;max-width:900px;margin:0;padding:0;list-style:none;counter-reset:st}
+.path::before{content:"";position:absolute;left:23px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--clay),var(--gold) 60%,rgba(227,183,102,.15))}
+.st{position:relative;padding:0 0 clamp(36px,5vw,56px) 72px;counter-increment:st;scroll-margin-top:80px}
+.st::before{content:counter(st);position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:2px solid var(--clay);font-family:var(--f-display);font-weight:800;font-size:22px;color:#ffcf96}
+.st .k{font-size:12.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--clay);margin:0 0 2px}
+.st h3{font-size:clamp(26px,3.2vw,36px);margin:0 0 10px;line-height:1.05}
+.st p{color:var(--ink-2);margin:0 0 12px;max-width:66ch}
+.st ul{margin:0 0 12px;padding-left:20px;color:var(--ink-2);max-width:66ch}
+.st li{margin:5px 0}
+.st li b{color:var(--ink)}
+.box{margin:14px 0 4px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line);max-width:66ch}
+.box b.t{display:block;font-family:var(--f-display);font-weight:800;font-size:18px;margin-bottom:4px;color:var(--gold)}
+.box p,.box ul{margin:0 0 6px;font-size:15.5px}
+.box p:last-child,.box ul:last-child{margin-bottom:0}
+.rec{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;margin:14px 0 4px;max-width:760px}
+.rec div{padding:12px 14px;border-radius:12px;background:rgba(227,183,102,.07);border:1px solid rgba(227,183,102,.22)}
+.rec b{display:block;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.rec span{font-size:15px;color:var(--ink-2)}
+
+.myths{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.myth{padding:20px 22px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.myth .q{font-family:var(--f-display);font-weight:800;font-size:21px;line-height:1.15;color:var(--ink);margin:0 0 8px}
+.myth .q::before{content:"Myth";display:block;font-family:var(--f-ui);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:4px}
+.myth p{margin:0;color:var(--ink-2);font-size:15.5px}
+.myth p b{color:var(--sage)}
+
+.places{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.place{padding:20px 22px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.place small{display:block;font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--clay)}
+.place b{display:block;font-family:var(--f-display);font-weight:800;font-size:22px;line-height:1.1;margin:3px 0 6px}
+.place p{margin:0 0 8px;color:var(--ink-2);font-size:15px}
+.place .meta{font-size:14px;color:var(--muted)}
+
+.check{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-width:760px}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);cursor:pointer;color:var(--ink-2)}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--clay);flex:none}
+.check input:checked + span{color:var(--muted);text-decoration:line-through}
+.prog{font-size:14px;color:var(--muted);margin:10px 0 0}
+
+@media print{
+  .site-top,.site-foot,.hero canvas,.hero .acts,.more{display:none!important}
+  body{background:#fff;color:#000}
+  .hero{min-height:0}.hero::after{display:none}.hero h1,.hero .lead{color:#000;text-shadow:none}
+  .card,.box,.myth,.place,.check label,.rec div{background:#fff!important;border-color:#bbb!important;color:#000}
+  .st p,.st ul,.myth p,.place p,.sub{color:#222}
+  .path::before{background:#999}.st::before{background:#fff;color:#000;border-color:#999}
+}
+</style>
+</head>
+<body>
+<header data-site-top data-page="ancestors"></header>
+
+<main>
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffcf96">A free guide</p>
+    <h1 id="pageTitle">Finding Comanche <span class="accent">Ancestors</span></h1>
+    <p class="lead">Your family's story is written down somewhere: on census rolls, allotment lists, and agency papers kept for more than a century. Here is how to find them, one step at a time.</p>
+    <div class="acts"><a class="btn primary" href="#steps">Start the steps</a><button class="btn" type="button" onclick="window.print()">Print this guide</button></div>
+  </div>
+</section>
+
+<div class="wrap" style="padding-top:clamp(24px,4vw,40px)">
+  <div class="care" role="note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+    <div><b>Before you begin.</b> This is a research guide, not legal or enrollment advice. Only the Comanche Nation decides who can enroll. This site is independent and not connected to the Nation's Enrollment Department.</div>
+  </div>
+</div>
+
+<section class="section" id="steps" aria-labelledby="stepsH">
+  <div class="wrap">
+    <h2 class="h2" id="stepsH">Six steps back in time</h2>
+    <p class="sub">Work from today backward. Every generation you confirm makes the next one easier to find.</p>
+    <ol class="path">
+
+      <li class="st" id="family">
+        <p class="k">Start at home</p>
+        <h3>What your family already knows</h3>
+        <p>Before any archive, talk to your relatives. Older family members often hold the names, places and dates that unlock everything else. Write down every version of a name you hear.</p>
+        <ul>
+          <li><b>Names:</b> English names, Comanche names, nicknames, and maiden names. Clerks wrote Comanche names many different ways, so keep every spelling.</li>
+          <li><b>Places:</b> where people lived, went to school, worshipped and were buried. Many Comanche families lived around Lawton and the towns of Comanche County.</li>
+          <li><b>Papers:</b> birth and death certificates, obituaries, funeral programs, family Bibles, old letters, school records, military discharge papers.</li>
+          <li><b>Numbers:</b> an allotment number or census roll number written on old papers is gold. Copy it exactly.</li>
+        </ul>
+        <div class="box"><b class="t">Tip</b><p>Record elders on your phone, with their permission. A voice telling a story is a record too.</p></div>
+      </li>
+
+      <li class="st" id="recent">
+        <p class="k">The last hundred years</p>
+        <h3>Recent records</h3>
+        <p>Use certificates and obituaries to reach the generation born around 1900 to 1940. Obituaries often name parents, brothers and sisters, and where someone was born.</p>
+        <ul>
+          <li><b>Obituaries:</b> the Lawton Public Library's family history room keeps a compiled set of Comanche, Kiowa and Apache obituaries.</li>
+          <li><b>The federal census:</b> taken every ten years. The census is a good place to find American Indian ancestors' names alongside their neighbors.</li>
+          <li><b>Vital records:</b> births, marriages and deaths. The Kiowa Agency kept its own vital records for Kiowa, Comanche, Apache and Fort Sill Apache people, and some from 1924 to 1937 are on FamilySearch.</li>
+        </ul>
+      </li>
+
+      <li class="st" id="census">
+        <p class="k">1885 to 1940</p>
+        <h3>The Indian Census Rolls</h3>
+        <p>Each year, federal agents counted the people enrolled at their agency. Comanche people were counted at the Kiowa Agency, later run from Anadarko. These rolls are one of the best ways to follow a family year by year.</p>
+        <div class="rec">
+          <div><b>What a roll shows</b><span>Indian and English names, sex, age, relationship to the head of the family, and roll numbers</span></div>
+          <div><b>From 1929</b><span>Allotment or annuity numbers, for tribes that had them</span></div>
+          <div><b>Where</b><span>National Archives microfilm M595. Indexed with images on FamilySearch</span></div>
+        </div>
+        <p>You'll need a name to start. Search the person, then look at the whole page: families are listed together, so a single entry can show you parents, children and grandparents.</p>
+        <div class="box"><b class="t">Good to know</b><ul><li>Not every year survives for every tribe.</li><li>Ages drift from year to year. Look for the same family across several rolls.</li><li>The rolls list people who kept a formal tie to the agency, so a relative who moved away may drop off.</li></ul></div>
+      </li>
+
+      <li class="st" id="allotment">
+        <p class="k">About 1901</p>
+        <h3>The allotment rolls</h3>
+        <p>This is the most important record for Comanche families. After the <a href="../treaties/#1892">Jerome Agreement</a>, Congress passed the Act of June 6, 1900, and Comanche people received individual allotments of land around 1901. The rest of the reservation was opened to settlers.</p>
+        <p>The people who received those allotments form the <b>base roll</b> of the Comanche Nation today. If you can connect your family to an allottee, you have found the anchor of your Comanche line.</p>
+        <div class="rec">
+          <div><b>National Archives</b><span>Allotments, about 1901: microfilm 7RA249, rolls 1 to 7, at the National Archives in Fort Worth</span></div>
+          <div><b>Lawton library</b><span>A schedule of land allotments and allotment plat maps for southwest Oklahoma</span></div>
+        </div>
+      </li>
+
+      <li class="st" id="agency">
+        <p class="k">The deep files</p>
+        <h3>Kiowa Agency records</h3>
+        <p>The agency that served the Kiowa, Comanche and Apache kept far more than censuses. These files can answer questions the rolls can't: who inherited land, who married whom, who went to which school.</p>
+        <ul>
+          <li><b>Births, marriages, divorces, deaths and wills,</b> 1869 to 1925.</li>
+          <li><b>Estate records,</b> 1872 to 1925, which can name the heirs in a family.</li>
+          <li><b>School enrollment records.</b> Children's school records often turn up in agency files, including for schools far from home. See <a href="../school/">Fort Sill Indian School</a>.</li>
+          <li><b>Payments:</b> per capita and annuity payment lists.</li>
+        </ul>
+        <p>The Oklahoma Historical Society holds the Kiowa Agency records on microfilm (series KA, 101 rolls), free to view at its Research Center in Oklahoma City. Staff can't search names for you, so bring what you've found.</p>
+      </li>
+
+      <li class="st" id="enroll">
+        <p class="k">If you want to enroll</p>
+        <h3>Comanche Nation enrollment</h3>
+        <p>Membership is set by the Comanche Nation's constitution, Article III. In short:</p>
+        <ul>
+          <li><b>The base roll</b> is everyone who received an allotment as a Comanche under the Act of June 6, 1900, and later acts.</li>
+          <li><b>Descendants of allottees</b> with <b>one-eighth (1/8) or more</b> degree of Comanche blood are eligible.</li>
+          <li><b>Proof</b> means authenticated copies of birth certificates or other records recognized by state or federal recorders.</li>
+        </ul>
+        <div class="box"><b class="t">Comanche Nation Enrollment Department</b>
+          <p>584 NW Bingo Rd, Lawton, OK 73507 · Mail: PO Box 908, Lawton, OK 73502</p>
+          <p>(580) 492-3371 · Monday to Friday, 8 am to 5 pm</p>
+          <p>The department provides the enrollment application and the request form for a CDIB (Certificate of Degree of Indian Blood). <a href="https://www.comanchenation.com/node/226" rel="noopener">Enrollment Department page ↗</a></p></div>
+        <p class="muted" style="font-size:14px">Summarized from the Comanche Nation constitution as amended. Always check with the Enrollment Department for current rules and forms.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="mythH" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2" id="mythH">Common mix-ups</h2>
+    <p class="sub">A few things that send people down the wrong road.</p>
+    <div class="myths">
+      <div class="myth"><p class="q">"Look for them on the Dawes Rolls."</p><p><b>Not for Comanches.</b> The Dawes Rolls cover the Five Tribes: Cherokee, Creek, Choctaw, Chickasaw and Seminole. Comanche families are found on the Kiowa Agency census rolls and the 1901 allotment rolls.</p></div>
+      <div class="myth"><p class="q">"A DNA test will show my tribe."</p><p><b>Membership is by documented descent.</b> The Comanche Nation enrolls descendants of allottees, proven with records like birth certificates. A DNA test can't stand in for that paper trail.</p></div>
+      <div class="myth"><p class="q">"The name has to match exactly."</p><p><b>Spellings wander.</b> Clerks wrote Comanche names by ear, and the same person can appear several ways. Search by family, age and place, not one spelling. You can see this on the <a href="../treaties/">treaty signer lists</a>.</p></div>
+      <div class="myth"><p class="q">"Great-grandma was a Comanche princess."</p><p><b>A family story is a start, not proof.</b> Many families carry stories like this. Treat it as a clue, and follow the records to see where it leads.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="whereH" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2" id="whereH">Where the records are</h2>
+    <p class="sub">Start online, then visit in person when you know what you're looking for.</p>
+    <div class="places">
+      <div class="place"><small>Online · free account</small><b>FamilySearch</b><p>Indexed Indian Census Rolls, 1885 to 1940, plus Kiowa Agency vital records, 1924 to 1937. Some images may need a FamilySearch Center visit.</p><p class="meta"><a href="https://familysearch.org/search/collection/2761958" rel="noopener">Census rolls collection ↗</a></p></div>
+      <div class="place"><small>Fort Worth, Texas</small><b>National Archives at Fort Worth</b><p>The ca. 1901 allotment microfilm (7RA249) and more records for the region's agencies.</p><p class="meta">1400 John Burgess Dr. · (817) 551-2051 · Monday to Friday, 9 to 4 · <a href="https://www.archives.gov/fort-worth/finding-aids/native-american-microfilm.html" rel="noopener">Microfilm list ↗</a></p></div>
+      <div class="place"><small>Oklahoma City</small><b>Oklahoma Historical Society Research Center</b><p>Kiowa Agency records on microfilm and American Indian census rolls, free to view in person. Some names are indexed online in the American Indian Archives card index.</p><p class="meta"><a href="https://okhistory.org/research/airecord" rel="noopener">American Indian records ↗</a></p></div>
+      <div class="place"><small>Lawton, Oklahoma</small><b>Lawton Public Library family history room</b><p>Kiowa Agency census rolls, vital and estate records, allotment schedules and plat maps, Indian cemetery records, and compiled obituaries.</p><p class="meta"><a href="https://lawtonok.gov/departments/library/about-us/family-history-genealogy/native-american-resources" rel="noopener">Native American resources ↗</a></p></div>
+      <div class="place"><small>Topeka, Kansas</small><b>Kansas Historical Society</b><p>Indian Census Rolls on microfilm for 1895 to 1939, and published Comanche censuses from 1895, 1905 and 1917.</p><p class="meta"><a href="https://www.kansashistory.gov/research/pdfs/Comanche%20Nation.pdf" rel="noopener">Comanche research guide (PDF) ↗</a></p></div>
+      <div class="place"><small>Lawton, Oklahoma</small><b>Comanche Nation Enrollment Department</b><p>For questions about membership, CDIB cards and the enrollment application.</p><p class="meta">(580) 492-3371 · <a href="https://www.comanchenation.com/node/226" rel="noopener">Department page ↗</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="checkH" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2" id="checkH">Your checklist</h2>
+    <p class="sub">Tick things off as you go. Your progress is saved in this browser only.</p>
+    <ul class="check" id="check">
+      <li><label><input type="checkbox" data-k="c1"><span>Talk to the oldest relatives I can, and write down every name and spelling.</span></label></li>
+      <li><label><input type="checkbox" data-k="c2"><span>Gather certificates, obituaries and family papers.</span></label></li>
+      <li><label><input type="checkbox" data-k="c3"><span>Find my family in the federal census back to 1900.</span></label></li>
+      <li><label><input type="checkbox" data-k="c4"><span>Find them in the Indian Census Rolls at the Kiowa Agency.</span></label></li>
+      <li><label><input type="checkbox" data-k="c5"><span>Identify an ancestor who received an allotment around 1901.</span></label></li>
+      <li><label><input type="checkbox" data-k="c6"><span>Check Kiowa Agency vital, estate and school records for more detail.</span></label></li>
+      <li><label><input type="checkbox" data-k="c7"><span>If enrolling, contact the Comanche Nation Enrollment Department.</span></label></li>
+    </ul>
+    <p class="prog" id="prog" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <h2 style="font-size:28px;margin-bottom:10px">Sources</h2>
+    <ul class="sources" style="padding-left:18px">
+      <li>Comanche Nation, <a href="https://comanchenation.com/sites/default/files/fileattachments/government/page/2270/constitution_12.09.2023.pdf" rel="noopener">Constitution</a>, Article III (Membership), as amended.</li>
+      <li>Comanche Nation, <a href="https://www.comanchenation.com/node/226" rel="noopener">Enrollment Department</a>.</li>
+      <li>National Archives at Fort Worth, <a href="https://www.archives.gov/fort-worth/finding-aids/native-american-microfilm.html" rel="noopener">American Indian Records on Microfilm</a>.</li>
+      <li>FamilySearch, <a href="https://familysearch.org/search/collection/2761958" rel="noopener">United States, Native American, Census Rolls, 1885–1940</a>; <a href="https://www.familysearch.org/search/catalog/725905" rel="noopener">Kiowa, Comanche, Apache &amp; Ft. Sill Apache vital records at Kiowa Agency, 1924–1937</a>; <a href="https://www.familysearch.org/search/catalog/723561" rel="noopener">Kiowa Indian census at Kiowa Agency</a>.</li>
+      <li>Oklahoma Historical Society, <a href="https://okhistory.org/research/airecord" rel="noopener">American Indian Records</a> and <a href="https://okhistory.org/research/censusrolls" rel="noopener">American Indian Census on Microfilm</a>.</li>
+      <li>City of Lawton, Lawton Public Library, <a href="https://lawtonok.gov/departments/library/about-us/family-history-genealogy/native-american-resources" rel="noopener">Native American Resources</a>.</li>
+      <li>Kansas Historical Society, <a href="https://www.kansashistory.gov/research/pdfs/Comanche%20Nation.pdf" rel="noopener">Comanche Nation research guide</a>.</li>
+      <li>Texas State Library and Archives Commission, <a href="https://www.tsl.texas.gov/ref/americanindiangenealogy" rel="noopener">American Indian Genealogy</a>.</li>
+      <li>U.S. Department of the Interior, <a href="https://www.doi.gov/node/11067" rel="noopener">Trace Indian Ancestry</a>.</li>
+    </ul>
+    <div class="more">
+      <a href="../treaties/#1892"><b>The Jerome Agreement</b><small>How the 1901 allotments came about</small></a>
+      <a href="../school/"><b>Fort Sill Indian School</b><small>Where many grandparents went to school</small></a>
+      <a href="../honor/"><b>Honor Wall</b><small>Add a Comanche veteran from your family</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script>
+(function(){
+  /* checklist, remembered in this browser */
+  const KEY = "numunuu-ancestors-check", box = document.getElementById("check"), prog = document.getElementById("prog");
+  let saved = {}; try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch {}
+  const all = [...box.querySelectorAll("input")];
+  const show = () => { const n = all.filter(i => i.checked).length; prog.textContent = n ? `${n} of ${all.length} done.` : ""; };
+  all.forEach(i => { i.checked = !!saved[i.dataset.k]; i.addEventListener("change", () => { saved[i.dataset.k] = i.checked; try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch {} show(); }); });
+  show();
+
+  /* hero: plains at dawn */
+  const cv = document.getElementById("heroCv");
+  if (cv && typeof paintScene === "function"){
+    const ctx = cv.getContext("2d"), o = { biome:"granite", season:0, tod:.28, herd:true, camp:true, caravan:false, scroll:0, t:0, seed:1901 };
+    let w = 0, h = 0, last = 0, vis = true;
+    const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+    new ResizeObserver(fit).observe(cv); fit();
+    new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(cv);
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts;
+      if (vis && w){ o.t += still ? 0 : dt; o.scroll += still ? 0 : dt * 2; paintScene(ctx, w, h, o); }
+      requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

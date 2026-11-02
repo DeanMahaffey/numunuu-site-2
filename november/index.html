@@ -145,8 +145,9 @@ const YEAR = 2026;                 // the November these days release in
 const TZ = "America/Chicago";      // days open at midnight in Lawton
 
 /* ---------- images ---------- */
-const FP = (name, w) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}`;
-const SI = (id, max) => `https://ids.si.edu/ids/deliveryService?id=${id}&max=${max}`;
+const LOCALIMG = key => `../assets/img/museum/${key.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}-m.jpg`;   /* our own copy; large sizes still come from the museum */
+const FP = (name, w) => w > 1000 ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}` : LOCALIMG(name.replace(/\.(jpe?g|png)$/i, ""));
+const SI = (id, max) => max > 1000 ? `https://ids.si.edu/ids/deliveryService?id=${id}&max=${max}` : LOCALIMG(id);
 const SAAM = id => ({ src:SI("SAAM-" + id, 900), credit:'George Catlin, Smithsonian American Art Museum, gift of Mrs. Joseph Harrison, Jr. Public domain.', contain:false });
 const BYSA3 = '<a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>';
 const BYSA4 = '<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>';

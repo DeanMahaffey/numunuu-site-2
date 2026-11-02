@@ -6,7 +6,7 @@
   const EXHIBITS = [
     ["november", "30 Days of Comanche"], ["stories", "Turning Points"], ["treaties", "The Treaties"], ["catlin", "Painted in 1834"],
     ["quanah", "Quanah and the Star House"], ["beadwork", "Beads, Paint, and Fringe"], ["school", "Fort Sill Indian School"],
-    ["codetalkers", "The Code Talkers"], ["honor", "Honor Wall"], ["camp", "Walk Through a Camp"], ["plants", "Plants of the Comanchería"]
+    ["codetalkers", "The Code Talkers"], ["honor", "Honor Wall"], ["ancestors", "Finding Comanche Ancestors"], ["camp", "Walk Through a Camp"], ["plants", "Plants of the Comanchería"]
   ];
   /* Winter as a Weapon joins the menu on December 1, 2026 (Lawton time). */
   const ct = new Intl.DateTimeFormat("en-CA", { timeZone:"America/Chicago", year:"numeric", month:"2-digit", day:"2-digit" }).format(new Date());
@@ -14,7 +14,7 @@
   if (ct >= "2026-12-01" || (topEl && topEl.dataset.page === "winter")) EXHIBITS.splice(2, 0, ["winter", "Winter as a Weapon"]);
   const top = document.querySelector("[data-site-top]");
   if (top){
-    const cur = top.dataset.page, inEx = EXHIBITS.some(([p]) => p === cur), B = cur === "home" ? "" : "../";
+    const cur = top.dataset.page, inEx = EXHIBITS.some(([p]) => p === cur), B = top.dataset.base != null ? top.dataset.base : cur === "home" ? "" : "../";
     const a = ([p, l]) => `<a href="${B}${p}/"${p === cur ? ' aria-current="page"' : ""}>${l}</a>`;
     top.className = "site-top";
     top.innerHTML = `<div class="wrap"><a class="brand" href="${B || "./"}" aria-label="numunuu.com home">N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span></a>
@@ -28,7 +28,7 @@
   }
   const foot = document.querySelector("[data-site-foot]");
   if (foot){
-    const B2 = top && top.dataset.page === "home" ? "" : "../";
+    const B2 = top && top.dataset.base != null ? top.dataset.base : top && top.dataset.page === "home" ? "" : "../";
     foot.className = "site-foot";
     foot.innerHTML = `<div class="wrap"><p>© ${new Date().getFullYear() > 2026 ? "2026–" + new Date().getFullYear() : "2026"} Numunuu. Text, design and code are original to this site. Historic images and documents are public domain or used under the licenses shown with each one.</p><p>An independent, personal project. Not affiliated with or endorsed by the Comanche Nation or any language committee. Corrections are welcome.</p><p><a href="${B2}calendar/">2027 calendar</a> · <a href="${B2}about/#copyright">Copyright</a> · <a href="${B2}about/">About and sources</a> · <a href="${B2 || "./"}">numunuu.com</a></p></div>`;
   }
@@ -39,11 +39,16 @@
   });
 })();
 
+/* ---------- photos: our own copy loads first; a sharper museum copy replaces it if it arrives ---------- */
+document.querySelectorAll("img[data-hi]").forEach(img => {
+  const hi = new Image(); hi.onload = () => { img.src = hi.src; }; hi.src = img.dataset.hi;
+});
+
 /* ---------- site search: index in assets/search.json, opened from the header ---------- */
 (function () {
   const top = document.querySelector("[data-site-top]"), btn = top && top.querySelector(".sbtn");
   if (!btn) return;
-  const B = top.dataset.page === "home" ? "" : "../";
+  const B = top.dataset.base != null ? top.dataset.base : top.dataset.page === "home" ? "" : "../";
   let data = null, dlg = null, inp = null, list = null, sel = 0, hits = [];
   const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ʉ/g, "u").replace(/[’']/g, "'");
   const escS = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));

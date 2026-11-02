@@ -189,7 +189,7 @@
     <h2 class="h2" id="imgH">Images</h2>
     <p class="sub">Photographs and paintings come from museums and archives that make them free to use, either in the public domain or under an open license. Each image is credited where it appears, with its maker, date, collection and license.</p>
     <div class="rules">
-      <div class="card"><b>Museum collections</b><p>Smithsonian American Art Museum, National Portrait Gallery, National Museum of the American Indian, Brooklyn Museum, Art Institute of Chicago, The Met, and others. Their open-access images load straight from the museums' own servers.</p></div>
+      <div class="card"><b>Museum collections</b><p>Smithsonian American Art Museum, National Portrait Gallery, National Museum of the American Indian, Brooklyn Museum, Art Institute of Chicago, The Met, and others. We keep our own copies of their open-access images on this site, and the extra-large zoom versions load from the museums when you open a picture.</p></div>
       <div class="card"><b>Archives</b><p>U.S. National Archives, U.S. Army, Missouri Historical Society, and The Portal to Texas History at the University of North Texas.</p></div>
       <div class="card"><b>Wikimedia Commons</b><p>Some photos come through Wikimedia Commons, under the license shown on each one. Photos under CC BY-SA name their photographer.</p></div>
     </div>
@@ -232,8 +232,8 @@
     <h2 class="h2" id="privH">Privacy</h2>
     <p class="sub">No ads, no accounts, and no tracking cookies.</p>
     <div class="rules">
-      <div class="card"><b>What stays on your device</b><p>Follow the Herd saves your game in your own browser so you can pick up where you left off. It never leaves your device, and clearing your browser data erases it.</p></div>
-      <div class="card"><b>What other sites see</b><p>Fonts load from Google Fonts, and many images load from museum and Wikimedia servers. Like any website, those servers can see your IP address when your browser asks for a file.</p></div>
+      <div class="card"><b>What stays on your device</b><p>Follow the Herd saves your game, and the ancestors guide saves your checklist, in your own browser so you can pick up where you left off. None of it leaves your device, and clearing your browser data erases it.</p></div>
+      <div class="card"><b>What other sites see</b><p>Fonts load from Google Fonts, and a few large images load from museum and Wikimedia servers. Like any website, those servers can see your IP address when your browser asks for a file.</p></div>
       <div class="card"><b>The dictionary</b><p>The dictionary at dictionary.numunuu.com is a separate app. Anything you send through a form here, such as a name for the honor wall, is used only for that purpose.</p></div>
     </div>
   </div>
@@ -288,7 +288,8 @@ const PAGES = {
   plants:      ["Plants of the Comanchería", "../plants/"],
   visit:       ["Visit the Museum", "../visit/"],
   november:    ["30 Days of Comanche", "../november/"],
-  winter:      ["Winter as a Weapon", "../winter/"]
+  winter:      ["Winter as a Weapon", "../winter/"],
+  ancestors:   ["Finding Comanche Ancestors", "../ancestors/"]
 };
 
 /* ---------- every source, by kind ---------- */
@@ -358,6 +359,18 @@ const GROUPS = [
     { t:"Wikipedia: Fort Sill Indian School", u:"https://en.wikipedia.org/wiki/Fort_Sill_Indian_School", p:["school"] },
     { t:"Wikipedia: Charles Chibitty", u:"https://en.wikipedia.org/wiki/Charles_Chibitty", p:["codetalkers"] },
     { t:"Wikipedia: Treaty of Tehuacana Creek, and Meusebach–Comanche Treaty", u:"https://en.wikipedia.org/wiki/Treaty_of_Tehuacana_Creek", p:["treaties"] }
+  ]},
+  { id:"genealogy", title:"Family history records", note:"Where the records for finding Comanche ancestors are kept.", items:[
+    { t:"Comanche Nation Constitution, Article III (Membership)", s:"Comanche Nation", u:"https://comanchenation.com/sites/default/files/fileattachments/government/page/2270/constitution_12.09.2023.pdf", p:["ancestors"] },
+    { t:"Enrollment Department", s:"Comanche Nation", u:"https://www.comanchenation.com/node/226", p:["ancestors"] },
+    { t:"American Indian Records on Microfilm", s:"National Archives at Fort Worth", u:"https://www.archives.gov/fort-worth/finding-aids/native-american-microfilm.html", p:["ancestors"] },
+    { t:"United States, Native American, Census Rolls, 1885–1940", s:"FamilySearch", u:"https://familysearch.org/search/collection/2761958", p:["ancestors"] },
+    { t:"Kiowa, Comanche, Apache and Ft. Sill Apache vital records at Kiowa Agency, 1924–1937", s:"FamilySearch catalog", u:"https://www.familysearch.org/search/catalog/725905", p:["ancestors"] },
+    { t:"American Indian Records, and American Indian Census on Microfilm", s:"Oklahoma Historical Society", u:"https://okhistory.org/research/airecord", p:["ancestors"] },
+    { t:"Native American Resources", s:"Lawton Public Library", u:"https://lawtonok.gov/departments/library/about-us/family-history-genealogy/native-american-resources", p:["ancestors"] },
+    { t:"Comanche Nation research guide", s:"Kansas Historical Society", u:"https://www.kansashistory.gov/research/pdfs/Comanche%20Nation.pdf", p:["ancestors"] },
+    { t:"American Indian Genealogy", s:"Texas State Library and Archives Commission", u:"https://www.tsl.texas.gov/ref/americanindiangenealogy", p:["ancestors"] },
+    { t:"Trace Indian Ancestry", s:"U.S. Department of the Interior", u:"https://www.doi.gov/node/11067", p:["ancestors"] }
   ]},
   { id:"visiting", title:"Visitor information", note:"Hours, prices and directions change, so the visit page is checked against these listings.", items:[
     { t:"City of Lawton facility directory", s:"Address, phone and hours", u:"https://lawtonok.gov/Home/Components/FacilityDirectory/FacilityDirectory/54", p:["visit"] },

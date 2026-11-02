@@ -41,7 +41,7 @@
 <main>
 <section class="hero ex" aria-labelledby="pageTitle">
   <canvas id="heroCv" aria-hidden="true"></canvas>
-  <img class="art" id="heroArt" alt="" src="https://commons.wikimedia.org/wiki/Special:FilePath/Quanah%20Parker%20Star%20House.jpg?width=1800">
+  <img class="art" id="heroArt" alt="" src="../assets/img/museum/quanah-parker-star-house-m.jpg" data-hi="https://commons.wikimedia.org/wiki/Special:FilePath/Quanah%20Parker%20Star%20House.jpg?width=1800">
   <p class="cap" id="heroCap" hidden>The Star House near Cache, Oklahoma, 2014. Photo: Karen Reid, CC BY-SA 3.0.</p>
   <div class="wrap">
     <p class="eyebrow" style="color:#ffd7a8">Online exhibit · c. 1848–1911</p>
@@ -155,7 +155,8 @@
 <script src="../herd/js/util.js"></script>
 <script src="../herd/js/paint.js"></script>
 <script>
-const FP = (name, w) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}`;
+const LOCALIMG = key => `../assets/img/museum/${key.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}-m.jpg`;   /* our own copy; large sizes still come from the museum */
+const FP = (name, w) => w > 1000 ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}?width=${w}` : LOCALIMG(name.replace(/\.(jpe?g|png)$/i, ""));
 const CBYSA3 = '<a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>';
 window.EX = {
   roomWord: "Wall",
@@ -167,7 +168,7 @@ window.EX = {
   ],
   works: {
     npg: { t:"Quanah Parker", d:"About 1890 · E. W. Hamilton", r:2182/3200,
-      src:"https://ids.si.edu/ids/deliveryService?id=NPG-NPG_96_178-000002&max=800", big:"https://ids.si.edu/ids/deliveryService?id=NPG-NPG_96_178-000002&max=2000",
+      src:"../assets/img/museum/npg-npg-96-178-000002-m.jpg", big:"https://ids.si.edu/ids/deliveryService?id=NPG-NPG_96_178-000002&max=2000",
       lab:"A studio portrait from around 1890, with Quanah holding a feather fan. By then he was principal chief and one of the best-known Native men in the country.",
       credit:"National Portrait Gallery, Smithsonian Institution, NPG.96.178. Public domain (CC0).", link:"https://www.si.edu/object/quanah-parker:npg_NPG.96.178" },
     tent: { t:"Quanah Parker, standing before a lodge", d:"Early 1900s", r:1666/3000,

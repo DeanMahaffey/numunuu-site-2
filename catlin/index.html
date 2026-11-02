@@ -114,7 +114,7 @@ dialog.viewer::backdrop{background:rgba(8,6,5,.86);backdrop-filter:blur(4px)}
 <main>
 <section class="hero" aria-labelledby="pageTitle">
   <canvas id="heroCv" aria-hidden="true"></canvas>
-  <img class="art" id="heroArt" alt="" src="https://ids.si.edu/ids/deliveryService?id=SAAM-1985.66.352_1&max=1800">
+  <img class="art" id="heroArt" alt="" src="../assets/img/museum/saam-1985-66-352-1-m.jpg" data-hi="https://ids.si.edu/ids/deliveryService?id=SAAM-1985.66.352_1&max=1800">
   <p class="cap" id="heroCap" hidden>Catlin, <i>Ta-wa-que-nah, or the Rocky Mountain, Near the Comanche Village</i>, 1834–1835. Smithsonian American Art Museum.</p>
   <div class="wrap">
     <p class="eyebrow" style="color:#ffd7a8">Online exhibit · Paintings by George Catlin</p>
@@ -210,7 +210,8 @@ dialog.viewer::backdrop{background:rgba(8,6,5,.86);backdrop-filter:blur(4px)}
 <script>
 /* Paintings: titles, dates and object numbers from the Smithsonian American Art Museum.
    Labels are written for this exhibit. Quotes are Catlin's own, as quoted by the museum. */
-const IMG = (id, max) => `https://ids.si.edu/ids/deliveryService?id=SAAM-${id}&max=${max}`;
+const LOCALIMG = key => `../assets/img/museum/${key.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}-m.jpg`;   /* our own copy; large sizes still come from the museum */
+const IMG = (id, max) => max > 1000 ? `https://ids.si.edu/ids/deliveryService?id=SAAM-${id}&max=${max}` : LOCALIMG("SAAM-" + id);
 const SAAM = slug => `https://americanart.si.edu/artwork/${slug}`;
 const ROOMS = [
   { no:1, title:"The meeting", wide:true,
