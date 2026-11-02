@@ -44,8 +44,8 @@
 
 /* code cards */
 .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:18px 0 8px}
-.code{perspective:800px;height:132px;background:none;border:0;padding:0;text-align:left}
-.code .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.code{display:block;width:100%;min-width:0;perspective:800px;height:132px;background:none;border:0;padding:0;text-align:left}
+.code .in{display:block;position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
 .code.flip .in{transform:rotateY(180deg)}
 .code .f,.code .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
 .code .f{background:var(--card);border:1px solid var(--line-2)}
