@@ -146,7 +146,7 @@ button[disabled]{opacity:.55;cursor:not-allowed}
      { mode:"email", to:"you@example.com" }   opens the visitor's email with the details filled in
      { mode:"form",  url:"https://forms.gle/..." }   opens your Google Form
    Leave it null to keep sending switched off. */
-const SEND = null;
+const SEND = { mode:"email", to:[..."moc.kooltuo@yeffaham.naed"].reverse().join("") };   /* built at runtime, never shown on the page */
 
 const ERAS = [
   { id:"ww1", t:"World War I", y:"1917–1918" },

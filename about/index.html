@@ -268,10 +268,11 @@
 <script src="../herd/js/util.js"></script>
 <script src="../herd/js/paint.js"></script>
 <script>
-/* Where corrections go. Leave null until it's decided, then use one of:
-   const CONTACT = { mode:"email", to:"you@example.com" };
-   const CONTACT = { mode:"form",  url:"https://formspree.io/f/xxxx" }; */
-const CONTACT = null;
+/* Where corrections go. The address is put together only when someone clicks,
+   so it never appears on the page or in search results. To use a form instead:
+   const CONTACT = { mode:"form", url:"https://formspree.io/f/xxxx" }; */
+const CONTACT = { mode:"email" };
+const mailTo = () => [..."moc.kooltuo@yeffaham.naed"].reverse().join("");
 
 /* ---------- pages ---------- */
 const PAGES = {
@@ -427,8 +428,12 @@ const escA = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", 
 (function(){
   const txt = document.getElementById("contactTxt"), act = document.getElementById("contactAct");
   if (CONTACT && CONTACT.mode === "email"){
-    txt.textContent = "Email us. Every message is read, and corrections are made by hand.";
-    act.innerHTML = `<a class="btn primary" href="mailto:${escA(CONTACT.to)}?subject=${encodeURIComponent("Correction for numunuu.com")}">Email a correction</a>`;
+    txt.textContent = "Send us an email. Every message is read, and corrections are made by hand.";
+    act.innerHTML = `<button class="btn primary" type="button" id="mailBtn">Email a correction</button>`;
+    document.getElementById("mailBtn").addEventListener("click", () => {
+      location.href = "mailto:" + mailTo() + "?subject=" + encodeURIComponent("Correction for numunuu.com") +
+        "&body=" + encodeURIComponent("Page:\nWhat it says now:\nWhat it should say:\nHow I know:\nMay we thank you by name? (yes/no)\n");
+    });
   } else if (CONTACT && CONTACT.mode === "form"){
     txt.textContent = "Use the form. Every message is read, and corrections are made by hand.";
     act.innerHTML = `<a class="btn primary" href="${escA(CONTACT.url)}" rel="noopener">Open the corrections form</a>`;

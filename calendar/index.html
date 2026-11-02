@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2027 Calendar · Nʉmʉnʉʉ</title>
+<meta name="description" content="A free printable 2027 calendar: twelve painted months of the southern plains, marked with the dates that shaped Comanche history.">
+<meta property="og:title" content="A free 2027 Comanche history calendar">
+<meta property="og:description" content="Twelve painted months, marked with the treaties, battles, code talkers and people of Comanche history. Free to print.">
+<meta property="og:url" content="https://numunuu.com/calendar/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nʉmʉnʉʉ">
+<meta property="og:image" content="https://numunuu.com/assets/og/calendar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Painted plains, titled 2027 Calendar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://numunuu.com/assets/og/calendar.jpg">
+<meta name="theme-color" content="#1c1612">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600;700;800&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero{min-height:min(70vh,620px)}
+.hero h1{font-size:clamp(56px,11vw,140px)}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.acts small{display:block;width:100%;color:#e8dccb;font-size:14px}
+.h2{font-size:clamp(30px,4.2vw,46px);margin-bottom:8px}
+.sub{color:var(--ink-2);max-width:64ch;margin:0 0 22px}
+.months{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.mo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.mo .art{position:relative;aspect-ratio:16/10;background:#2b2017}
+.mo .art canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.mo .art b{position:absolute;left:14px;bottom:10px;font-family:var(--f-display);font-weight:800;font-size:32px;text-transform:uppercase;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.55);line-height:1}
+.mo .art span{position:absolute;right:12px;top:10px;font-size:12px;color:rgba(255,246,232,.9);background:rgba(20,15,12,.45);padding:2px 9px;border-radius:999px}
+.mini{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:12px 14px 4px;font-size:12.5px;text-align:center}
+.mini .dn{color:var(--muted);font-weight:600;font-size:11px}
+.mini i{font-style:normal;padding:3px 0;border-radius:6px;color:var(--ink-2)}
+.mini i.ev{background:var(--clay);color:#1d0f05;font-weight:700}
+.mo ul{list-style:none;margin:0;padding:8px 14px 16px;display:grid;gap:6px}
+.mo li{font-size:14px;color:var(--ink-2);line-height:1.4}
+.mo li b{color:var(--gold);font-family:var(--f-display);font-weight:700;margin-right:6px}
+.mo li.n{color:var(--muted);font-style:italic}
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.tips .card{padding:20px 22px}
+.tips b{display:block;font-family:var(--f-display);font-weight:800;font-size:22px;margin-bottom:6px}
+.tips p{margin:0;color:var(--ink-2);font-size:15.5px}
+</style>
+</head>
+<body>
+<header data-site-top data-page="calendar"></header>
+
+<main>
+<section class="hero" aria-labelledby="pageTitle">
+  <canvas id="heroCv" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow" style="color:#ffcf96">Free to print · A year in Comanche history</p>
+    <h1 id="pageTitle">2027 <span class="accent">Calendar</span></h1>
+    <p class="lead">Twelve painted months of the southern plains, marked with the dates that shaped the Comanche people: treaties, battles, the code talkers, Quanah, and more.</p>
+    <div class="acts">
+      <a class="btn primary" href="numunuu-2027-calendar.pdf" download>Download the PDF</a>
+      <button class="btn" type="button" id="ics">Add the dates to your phone</button>
+      <small>13 pages, letter size, about 2 MB. Free for personal and classroom use.</small>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="mH">
+  <div class="wrap">
+    <h2 class="h2" id="mH">The twelve months</h2>
+    <p class="sub">Every date comes from the exhibits on this site. Click a date to read the story behind it.</p>
+    <div class="months" id="months"></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="tH" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h2" id="tH">Printing tips</h2>
+    <div class="tips">
+      <div class="card"><b>Paper</b><p>Letter size, portrait. Heavier paper (65 lb cardstock or more) holds the colors best and hangs flat.</p></div>
+      <div class="card"><b>Settings</b><p>Print at actual size, or "fit to page," with borderless printing if your printer has it. Print double-sided to make a booklet.</p></div>
+      <div class="card"><b>Hanging it</b><p>Staple or bind along the top edge, then punch a hole above the art. A local print shop can bind it for a few dollars.</p></div>
+      <div class="card"><b>Sharing</b><p>Print as many as you like for family, friends and classrooms. Please don't sell it, and send people to numunuu.com/calendar for their own copy.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-foot></footer>
+
+<script src="../herd/js/util.js"></script>
+<script src="../herd/js/paint.js"></script>
+<script src="data.js"></script>
+<script>
+(function(){
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const Y = CAL.year, still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* where each date's story lives */
+const LINK = { "Chibitty enlists":"../codetalkers/", "Fort Sill staked out":"../winter/", "Quanah dies":"../quanah/", "Peace at Pecos":"../treaties/#1786",
+  "Council House":"../stories/#raid", "Meusebach treaty":"../treaties/#1847", "Council Springs":"../treaties/#1846", "Utah Beach":"../codetalkers/",
+  "Adobe Walls":"../stories/#adobe", "Last code talker":"../honor/", "Camp Holmes":"../treaties/#1835", "Palo Duro":"../stories/#paloduro",
+  "Star House listed":"../quanah/", "Tehuacana Creek":"../treaties/#1844", "Little Arkansas":"../treaties/#1865", "Medicine Lodge":"../treaties/#1867",
+  "Veterans Day":"../honor/", "Gold Medal":"../codetalkers/", "Hall of Heroes":"../codetalkers/", "Spring Creek":"../treaties/#1850",
+  "Pease River":"../winter/#pease", "Soldier Spring":"../winter/" };
+const escC = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+
+const box = document.getElementById("months");
+box.innerHTML = CAL.months.map((m, i) => {
+  const first = new Date(Y, i, 1).getDay(), n = new Date(Y, i + 1, 0).getDate(), ev = new Set(m.days.map(d => d[0]));
+  let mini = ["S","M","T","W","T","F","S"].map(d => `<span class="dn">${d}</span>`).join("") + "<i></i>".repeat(first);
+  for (let d = 1; d <= n; d++) mini += `<i${ev.has(d) ? ' class="ev"' : ""}>${d}</i>`;
+  const items = m.days.map(d => `<li><b>${MONTHS[i].slice(0, 3)} ${d[0]}</b>${LINK[d[1]] ? `<a href="${LINK[d[1]]}">${escC(d[1])}</a>` : escC(d[1])}. ${escC(d[2].replace(/^\d{4}: /, ""))}</li>`).join("") +
+    (m.note ? `<li class="n">${escC(m.note)}</li>` : "");
+  return `<article class="mo"><div class="art"><canvas data-m="${i}" aria-hidden="true"></canvas><b>${MONTHS[i]}</b><span>${escC(m.cap)}</span></div>
+    <div class="mini" aria-hidden="true">${mini}</div><ul>${items}</ul></article>`;
+}).join("");
+
+/* paint each month once it scrolls into view */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting || typeof paintScene !== "function") return; io.unobserve(e.target);
+  const cv = e.target, d = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight;
+  cv.width = w * d; cv.height = h * d; const ctx = cv.getContext("2d"); ctx.setTransform(d, 0, 0, d, 0, 0);
+  paintScene(ctx, w, h, Object.assign({ herd:false, camp:false, caravan:false, scroll:0, t:3 }, CAL.months[+cv.dataset.m].scene));
+}), { rootMargin:"200px" });
+box.querySelectorAll("canvas").forEach(c => io.observe(c));
+
+/* add every date to a phone or computer calendar (.ics file) */
+document.getElementById("ics").addEventListener("click", () => {
+  const p = n => String(n).padStart(2, "0"), stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+  const esc = s => s.replace(/\\/g, "\\\\").replace(/[,;]/g, m => "\\" + m).replace(/\n/g, "\\n");
+  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//numunuu.com//2027 Calendar//EN", "CALSCALE:GREGORIAN", "X-WR-CALNAME:Comanche history (numunuu.com)"];
+  CAL.months.forEach((m, i) => m.days.forEach(([d, t, x]) => {
+    const a = `${Y}${p(i + 1)}${p(d)}`, nx = new Date(Y, i, d + 1), b = `${nx.getFullYear()}${p(nx.getMonth() + 1)}${p(nx.getDate())}`;
+    lines.push("BEGIN:VEVENT", `UID:${a}-${t.replace(/\W+/g, "")}@numunuu.com`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${a}`, `DTEND;VALUE=DATE:${b}`,
+      `SUMMARY:${esc(t)}`, `DESCRIPTION:${esc(x + " Read more at numunuu.com")}`, `URL:https://numunuu.com/${(LINK[t] || "../").replace("../", "")}`, "TRANSP:TRANSPARENT", "END:VEVENT");
+  }));
+  lines.push("END:VCALENDAR");
+  const blob = new Blob([lines.join("\r\n")], { type:"text/calendar" }), a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "comanche-history-2027.ics"; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+});
+
+/* hero */
+const hc = document.getElementById("heroCv");
+if (hc && typeof paintScene === "function"){
+  const ctx = hc.getContext("2d"), o = { biome:"plains", season:2, tod:.74, herd:true, camp:true, caravan:false, scroll:0, t:0, seed:11 };
+  let w = 0, h = 0, last = 0, vis = true;
+  const fit = () => { const d = Math.min(2, devicePixelRatio || 1); w = hc.clientWidth; h = hc.clientHeight; hc.width = w * d; hc.height = h * d; ctx.setTransform(d,0,0,d,0,0); };
+  new ResizeObserver(fit).observe(hc); fit();
+  new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(hc);
+  const loop = ts => { const dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts;
+    if (vis && w){ o.t += still ? 0 : dt; o.scroll += still ? 0 : dt * 3; paintScene(ctx, w, h, o); }
+    requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+})();
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

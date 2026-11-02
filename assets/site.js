@@ -19,8 +19,9 @@
     top.className = "site-top";
     top.innerHTML = `<div class="wrap"><a class="brand" href="${B || "./"}" aria-label="numunuu.com home">N<span class="u">ʉ</span>m<span class="u">ʉ</span>n<span class="u">ʉʉ</span></a>
       <nav aria-label="numunuu.com">${MAIN.map(a).join("")}
-      <details class="exmenu"><summary${inEx ? ' class="cur"' : ""}>Exhibits</summary><div class="exlist">${EXHIBITS.map(a).join("")}<a class="mob" href="${B}herd/">Follow the Herd (game)</a><a class="mob" href="https://dictionary.numunuu.com">Dictionary ↗</a></div></details>
-      ${a(["visit", "Visit"])}<a href="https://dictionary.numunuu.com">Dictionary ↗</a></nav></div>`;
+      <details class="exmenu"><summary${inEx ? ' class="cur"' : ""}>Exhibits</summary><div class="exlist">${EXHIBITS.map(a).join("")}<a class="mob" href="${B}visit/">Visit the museum</a><a class="mob" href="${B}herd/">Follow the Herd (game)</a><a class="mob" href="https://dictionary.numunuu.com">Dictionary ↗</a></div></details>
+      ${a(["visit", "Visit"])}<a href="https://dictionary.numunuu.com">Dictionary ↗</a>
+      <button class="sbtn" type="button" aria-label="Search the site" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button></nav></div>`;
     const d = top.querySelector(".exmenu");
     document.addEventListener("click", e => { if (d.open && !d.contains(e.target)) d.open = false; });
     document.addEventListener("keydown", e => { if (e.key === "Escape") d.open = false; });
@@ -29,12 +30,107 @@
   if (foot){
     const B2 = top && top.dataset.page === "home" ? "" : "../";
     foot.className = "site-foot";
-    foot.innerHTML = `<div class="wrap"><p>© ${new Date().getFullYear() > 2026 ? "2026–" + new Date().getFullYear() : "2026"} Numunuu. Text, design and code are original to this site. Historic images and documents are public domain or used under the licenses shown with each one.</p><p>An independent, personal project. Not affiliated with or endorsed by the Comanche Nation or any language committee. Corrections are welcome.</p><p><a href="${B2}about/#copyright">Copyright</a> · <a href="${B2}about/">About and sources</a> · <a href="${B2 || "./"}">numunuu.com</a></p></div>`;
+    foot.innerHTML = `<div class="wrap"><p>© ${new Date().getFullYear() > 2026 ? "2026–" + new Date().getFullYear() : "2026"} Numunuu. Text, design and code are original to this site. Historic images and documents are public domain or used under the licenses shown with each one.</p><p>An independent, personal project. Not affiliated with or endorsed by the Comanche Nation or any language committee. Corrections are welcome.</p><p><a href="${B2}calendar/">2027 calendar</a> · <a href="${B2}about/#copyright">Copyright</a> · <a href="${B2}about/">About and sources</a> · <a href="${B2 || "./"}">numunuu.com</a></p></div>`;
   }
   /* Opened from your computer (file://)? Make folder links open their index.html. */
   if (location.protocol === "file:") document.querySelectorAll("a[href]").forEach(a => {
     const h = a.getAttribute("href"); if (/^(https?:|mailto:|#)/.test(h)) return;
     if (h.endsWith("/")) a.setAttribute("href", h + "index.html");
+  });
+})();
+
+/* ---------- site search: index in assets/search.json, opened from the header ---------- */
+(function () {
+  const top = document.querySelector("[data-site-top]"), btn = top && top.querySelector(".sbtn");
+  if (!btn) return;
+  const B = top.dataset.page === "home" ? "" : "../";
+  let data = null, dlg = null, inp = null, list = null, sel = 0, hits = [];
+  const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ʉ/g, "u").replace(/[’']/g, "'");
+  const escS = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+  function hrefFor(e){
+    const base = e.u ? B + e.u : (B || "./");
+    if (e.a) return base + "#" + e.a;
+    if (e.top) return base;
+    return base + "#:~:text=" + encodeURIComponent(e.t);
+  }
+  function mark(text, terms){
+    let out = escS(text);
+    terms.forEach(t => { if (t.length < 2) return;
+      const re = new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+      out = out.replace(re, "<mark>$1</mark>"); });
+    return out;
+  }
+  function snippet(x, terms){
+    if (!x) return "";
+    const f = fold(x); let i = -1;
+    for (const t of terms){ i = f.indexOf(t); if (i >= 0) break; }
+    if (i < 0) return x.slice(0, 140) + (x.length > 140 ? "…" : "");
+    const a = Math.max(0, i - 50);
+    return (a ? "…" : "") + x.slice(a, a + 160) + (x.length > a + 160 ? "…" : "");
+  }
+  function run(q){
+    const terms = fold(q).split(/[^a-z0-9']+/).filter(Boolean);
+    if (!terms.length){ hits = []; render(q, terms); return; }
+    hits = data.map(e => {
+      const T = e._t || (e._t = fold(e.t)), X = e._x || (e._x = fold(e.x)), P = e._p || (e._p = fold(e.pg || e.t));
+      let sc = 0;
+      for (const t of terms){
+        const wb = new RegExp("(^|[^a-z0-9])" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        if (wb.test(T)) sc += 8; else if (T.includes(t)) sc += 4;
+        else if (wb.test(X)) sc += 2; else if (X.includes(t)) sc += 1;
+        else if (P.includes(t)) sc += 1;
+        else return null;
+      }
+      if (e.top) sc += 3;
+      return { e, sc };
+    }).filter(Boolean).sort((a, b) => b.sc - a.sc).slice(0, 30).map(h => h.e);
+    render(q, terms);
+  }
+  function render(q, terms){
+    sel = 0;
+    if (!q.trim()){
+      list.innerHTML = `<p class="shint">Try <button type="button" data-q="Quanah">Quanah</button> <button type="button" data-q="code talkers">code talkers</button> <button type="button" data-q="Medicine Lodge">Medicine Lodge</button> <button type="button" data-q="beadwork">beadwork</button> <button type="button" data-q="pecans">pecans</button></p>`;
+      return;
+    }
+    const dict = `<a class="sres dict" href="https://dictionary.numunuu.com" rel="noopener"><b>Look up words in the Comanche dictionary ↗</b><small>dictionary.numunuu.com</small></a>`;
+    if (!hits.length){ list.innerHTML = `<p class="snone">Nothing on the site matches “${escS(q)}”.</p>` + dict; return; }
+    list.innerHTML = hits.map((e, i) => `<a class="sres${i === 0 ? " on" : ""}" href="${escS(hrefFor(e))}"><span class="spg">${escS(e.top ? "Page" : e.pg)}</span><b>${mark(e.t, terms)}</b><small>${mark(snippet(e.x, terms), terms)}</small></a>`).join("") + dict;
+  }
+  function move(d){
+    const rs = list.querySelectorAll(".sres"); if (!rs.length) return;
+    sel = (sel + d + rs.length) % rs.length;
+    rs.forEach((r, i) => r.classList.toggle("on", i === sel)); rs[sel].scrollIntoView({ block:"nearest" });
+  }
+  function build(){
+    dlg = document.createElement("dialog"); dlg.className = "sdlg"; dlg.setAttribute("aria-label", "Search numunuu.com");
+    dlg.innerHTML = `<div class="sbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="search" placeholder="Search people, places, treaties, plants…" aria-label="Search" autocomplete="off" spellcheck="false"><button type="button" class="sx" aria-label="Close">Esc</button></div>
+      <div class="slist" role="list"></div>`;
+    document.body.appendChild(dlg);
+    inp = dlg.querySelector("input"); list = dlg.querySelector(".slist");
+    inp.addEventListener("input", () => { if (data) run(inp.value); });
+    inp.addEventListener("keydown", e => {
+      if (e.key === "ArrowDown"){ e.preventDefault(); move(1); }
+      else if (e.key === "ArrowUp"){ e.preventDefault(); move(-1); }
+      else if (e.key === "Enter"){ const r = list.querySelectorAll(".sres")[sel]; if (r){ e.preventDefault(); r.click(); } }
+    });
+    list.addEventListener("click", e => { const b = e.target.closest("button[data-q]"); if (b){ inp.value = b.dataset.q; run(inp.value); inp.focus(); } else { const l = e.target.closest("a"); if (l && new URL(l.href, location.href).pathname === location.pathname) dlg.close(); } });
+    dlg.querySelector(".sx").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  }
+  async function open(){
+    if (!dlg) build();
+    if (!dlg.open) dlg.showModal();
+    inp.select(); render(inp.value, []);
+    if (!data){
+      list.innerHTML = `<p class="shint">Loading…</p>`;
+      try { data = await (await fetch(B + "assets/search.json")).json(); } catch { list.innerHTML = `<p class="snone">Search couldn't load. Try again in a moment.</p>`; return; }
+    }
+    run(inp.value);
+  }
+  btn.addEventListener("click", open);
+  document.addEventListener("keydown", e => {
+    if (e.key === "/" && !e.metaKey && !e.ctrlKey && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) && !document.activeElement.isContentEditable){ e.preventDefault(); open(); }
   });
 })();
 
